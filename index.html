@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histogramm — Wie hättest du entschieden?</title>
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-muted: #5a574f;
+    --ink-faint: #a09d94;
+    --paper: #f7f4ef;
+    --paper-warm: #ede9e0;
+    --amber: #c4780a;
+    --amber-light: #faeeda;
+    --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12);
+    --border-strong: rgba(26,24,20,0.28);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Telegraph line background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 79px,
+        rgba(26,24,20,0.035) 79px,
+        rgba(26,24,20,0.035) 80px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Header */
+  header {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--border-strong);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-name {
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .site-tagline {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  /* Hero timestamp */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+  }
+
+  .date-stamp {
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .date-stamp span {
+    color: var(--amber);
+  }
+
+  .location-stamp {
+    font-size: 1rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-question {
+    font-size: 1.35rem;
+    color: var(--ink);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* Progress */
+  .progress-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .progress-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    transition: background 0.3s;
+  }
+
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+
+  .progress-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0.5rem;
+  }
+
+  /* Main content */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* Scene card */
+  .scene {
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .scene-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .scene-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .scene-time {
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
+  }
+
+  .scene-body {
+    background: white;
+    padding: 1.75rem 1.5rem;
+    line-height: 1.75;
+    font-size: 1rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scene-body p + p { margin-top: 1rem; }
+
+  .scene-role {
+    background: var(--amber-light);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--amber-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .role-label {
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  /* Decisions */
+  .decisions-heading {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+  }
+
+  .decision-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.65rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.5;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+
+  .decision-option:hover {
+    border-color: var(--amber);
+    background: var(--amber-light);
+  }
+
+  .decision-option.selected {
+    border-color: var(--amber);
+    background: var(--amber-light);
+  }
+
+  .decision-option.selected::after {
+    content: '✓';
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--amber);
+    font-size: 1rem;
+  }
+
+  .option-letter {
+    display: inline-block;
+    width: 1.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    vertical-align: middle;
+    margin-right: 0.25rem;
+  }
+
+  /* Justification */
+  .justify-field {
+    margin-top: 1.25rem;
+    display: none;
+  }
+
+  .justify-field.visible { display: block; }
+
+  .justify-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 0.85rem 1rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: white;
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+
+  textarea::placeholder { color: var(--ink-faint); font-style: italic; }
+
+  /* CTA */
+  .cta-row {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 2px;
+    padding: 0.8rem 2rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+
+  .cta-hint {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* Results */
+  .result-panel {
+    display: none;
+    margin-top: 2rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .result-panel.visible { display: block; }
+
+  .result-header {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .result-body {
+    background: white;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .result-title {
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  /* Bar chart */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .bar-label {
+    width: 1.5rem;
+    color: var(--ink-faint);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 24px;
+    background: var(--paper-warm);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--ink-muted);
+    transition: width 0.8s ease;
+    border-radius: 1px;
+  }
+
+  .bar-fill.highlight { background: var(--amber); }
+
+  .bar-pct {
+    width: 2.8rem;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-family: 'Courier New', monospace;
+    flex-shrink: 0;
+  }
+
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+
+  .result-narrative {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .share-row {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .share-text {
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.5rem 0.85rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    flex: 1;
+  }
+
+  .btn-share {
+    background: none;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.8rem;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s;
+  }
+
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+
+  /* Navigation between days */
+  .next-day-btn {
+    display: none;
+    width: 100%;
+    background: none;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 1rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.15s;
+    letter-spacing: 0.05em;
+  }
+
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+
+  /* Epilog */
+  .epilog {
+    display: none;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    background: white;
+  }
+
+  .epilog.visible { display: block; }
+
+  .epilog-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  .epilog-title {
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .epilog-body {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink-muted);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+
+  .epilog-cta {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+
+  .epilog-cta a { color: var(--amber-dark); }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 1rem; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    main { padding: 0 1.25rem 4rem; }
+    .date-stamp { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <span class="site-tagline">Wie hättest du entschieden?</span>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">14. April <span>1912</span></div>
+  <div class="location-stamp">Nordatlantik · Deck B · 23:40 Uhr</div>
+  <p class="hero-question">Das größte Schiff der Welt hat soeben etwas getroffen.<br>Du bist der zweite Offizier. Was tust du?</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- DAY 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Nacht 1</span>
+        <span class="scene-time">23:40 — 23:55 Uhr</span>
+      </div>
+      <div class="scene-body">
+        <p>Ein dumpfer Stoß. Dann Stille. Kein Knall, kein Schrei — nur das Erzittern des Rumpfs, kaum spürbar, wie ein Atemzug des Schiffes.</p>
+        <p>Du stehst auf der Brücke. Kapitän Smith schläft. Der Chefingenieur meldet sich per Rohrpost: <em>„Schaden noch nicht abschätzbar. Wassereinbruch in Sektion 5 und 6. Pumpen laufen."</em></p>
+        <p>Auf dem Promenadendeck laufen Passagiere in Abendkleidung — sie haben nichts bemerkt. Einige lachen. Einer hebt ein Eisstück vom Boden auf, das über die Reling gefallen ist.</p>
+        <p>Du hast drei Minuten, bevor jemand eine Entscheidung erwartet.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Zweiter Offizier, RMS Titanic</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+
+    <button class="decision-option" onclick="selectOption(1, 'A', this)">
+      <span class="option-letter">A</span>
+      Du weckst Kapitän Smith sofort. Er soll entscheiden — nicht du.
+    </button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)">
+      <span class="option-letter">B</span>
+      Du wartest auf den nächsten Bericht des Ingenieurs. Panik wäre schlimmer als der Schaden.
+    </button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)">
+      <span class="option-letter">C</span>
+      Du ordnest an, die Rettungsboote vorzubereiten — still, ohne Durchsage.
+    </button>
+
+    <div class="justify-field" id="justify1">
+      <label class="justify-label">Begründe deine Entscheidung</label>
+      <textarea id="justifyText1" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — 14. April, Nacht</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">
+      Weiter zu Nacht 2 — Die Boote →
+    </button>
+  </div>
+
+  <!-- DAY 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Nacht 2</span>
+        <span class="scene-time">00:20 — 00:45 Uhr</span>
+      </div>
+      <div class="scene-body">
+        <p>Es ist jetzt sicher: Das Schiff sinkt. Kapitän Smith hat den Notruf befohlen. Die Rettungsboote reichen für 1.178 Personen — an Bord sind 2.224.</p>
+        <p>Das erste Boot hängt bereit. Es fasst 65 Personen. Darin sitzen 28.</p>
+        <p>Die Passagiere der ersten Klasse stehen näher an den Booten und kennen die Prozedur. Die Zwischendeckpassagiere sind noch unten — niemand hat sie informiert. Die Besatzung wartet auf deinen Befehl.</p>
+        <p>Ein Herr im Smoking fragt dich, ob er seiner Frau in das Boot helfen darf. Hinter ihm stehen zwanzig weitere.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Zweiter Offizier, RMS Titanic — 00:20 Uhr</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+
+    <button class="decision-option" onclick="selectOption(2, 'A', this)">
+      <span class="option-letter">A</span>
+      Du folgst strikt dem Protokoll: Frauen und Kinder zuerst, keine Ausnahmen.
+    </button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)">
+      <span class="option-letter">B</span>
+      Du schickst sofort jemanden hinunter, um die Zwischendeckpassagiere zu rufen — auch wenn das Zeit kostet.
+    </button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)">
+      <span class="option-letter">C</span>
+      Du lässt das Boot mit den 28 jetzt ablassen. Jede Minute Warten ist eine Minute weniger für das nächste Boot.
+    </button>
+
+    <div class="justify-field" id="justify2">
+      <label class="justify-label">Begründe deine Entscheidung</label>
+      <textarea id="justifyText2" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — 15. April, 00:20 Uhr</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">
+      Weiter zu Nacht 3 — Das letzte Boot →
+    </button>
+  </div>
+
+  <!-- DAY 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Nacht 3</span>
+        <span class="scene-time">02:10 Uhr</span>
+      </div>
+      <div class="scene-body">
+        <p>Das Vorschiff ist unter Wasser. Das Heck steigt. Noch 20 Minuten, schätzt du.</p>
+        <p>Das letzte Rettungsboot — Klappboot D — hängt an Steuerbord. Es ist vorbereitet. Darin ist Platz für eine weitere Person.</p>
+        <p>Kapitän Smith hat das Megafon weggelegt. Er hat gesagt: <em>„Es ist jetzt jeder für sich."</em> Dann ist er gegangen.</p>
+        <p>Ein Matrose schaut dich an. Drei Passagiere schreien. Das Wasser ist zwei Grad kalt. Wer jetzt nicht im Boot ist, hat wenige Minuten.</p>
+        <p>Du könntest einsteigen.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Zweiter Offizier, RMS Titanic — 02:10 Uhr</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+
+    <button class="decision-option" onclick="selectOption(3, 'A', this)">
+      <span class="option-letter">A</span>
+      Du steigst ein. Dein Tod rettet niemanden mehr.
+    </button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)">
+      <span class="option-letter">B</span>
+      Du gibst deinen Platz dem lautesten der drei Passagiere und bleibst an Deck.
+    </button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)">
+      <span class="option-letter">C</span>
+      Du lässt das Boot ab — leer. Du bleibst, ohne Kalkulation.
+    </button>
+
+    <div class="justify-field" id="justify3">
+      <label class="justify-label">Begründe deine Entscheidung</label>
+      <textarea id="justifyText3" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — 15. April, 02:10 Uhr</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">
+      Epilog lesen →
+    </button>
+    </button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">15. April 1912 · 02:20 Uhr</div>
+    <div class="epilog-title">Die Titanic sinkt.<br>1.517 Menschen sterben.</div>
+    <div class="epilog-body">
+      <p>Was du entschieden hast, haben echte Menschen in jener Nacht auch entschieden — und sich anders entschieden, und beides überlebt oder nicht überlebt.</p>
+      <p style="margin-top:1rem">Es gibt keine richtige Antwort. Nur deine — und die aller anderen.</p>
+      <p style="margin-top:1rem">Morgen: ein neuer Moment. Eine andere Frage.</p>
+    </div>
+    <button class="btn-primary" onclick="restartDemo()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p class="epilog-cta">
+      Dieses Format im Unterricht einsetzen? →
+      <a href="https://wieskoenig-ops.github.io/Epitorials/" target="_blank">Epitorials</a>
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; Ein Vorprodukt von Epitorials &nbsp;·&nbsp; © 2026
+</footer>
+
+<script>
+const state = {
+  selections: {},
+  justifications: {}
+};
+
+const results = {
+  1: {
+    A: { pct: 52, label: "Kapitän wecken" },
+    B: { pct: 31, label: "Warten" },
+    C: { pct: 17, label: "Boote vorbereiten" },
+    narratives: {
+      A: "Die Mehrheit überträgt die Verantwortung nach oben — ein vertrauter Reflex in Hierarchien. Der Kapitän wurde geweckt. Die nächsten zehn Minuten gehörten ihm.",
+      B: "Abwarten erscheint vernünftig: mehr Information, weniger Panik. Doch jede Minute Warten ist eine Minute weniger für die Boote.",
+      C: "Die Minderheit, die still die Boote vorbereitet hat, dachte weiter als der Moment verlangte. Klug — aber niemand wusste es in jener Nacht."
+    }
+  },
+  2: {
+    A: { pct: 41, label: "Protokoll: Frauen & Kinder" },
+    B: { pct: 44, label: "Zwischendeck benachrichtigen" },
+    C: { pct: 15, label: "Boot sofort ablassen" },
+    narratives: {
+      A: "Das Protokoll gibt Sicherheit — und Verantwortung. Wer sich daran hält, hat sich an die Regeln gehalten. Was die Regeln verschwiegen, war eine andere Frage.",
+      B: "Die knappe Mehrheit dachte an die, die niemand informiert hatte. Ob die Zeit reichte, ist eine andere Geschichte.",
+      C: "15 % haben das Pragmatischste getan: das Boot weg, das nächste füllen. In Zahlen vertretbar. Im Moment unerträglich."
+    }
+  },
+  3: {
+    A: { pct: 29, label: "Einsteigen" },
+    B: { pct: 38, label: "Platz abgeben" },
+    C: { pct: 33, label: "Bleiben ohne Kalkulation" },
+    narratives: {
+      A: "Weniger als ein Drittel hat sich für das eigene Überleben entschieden. Die meisten haben das für falsch gehalten — und dennoch ist es die einzige Entscheidung, die niemanden schlechter stellt.",
+      B: "Den Lautesten zu retten ist keine gerechte Wahl — aber in jenem Moment die menschlichste. Man rettet, was greifbar ist.",
+      C: "Ein Drittel hat nicht kalkuliert. Hat einfach nicht eingestiegen. Ob das Opfer, Würde oder Erstarrung war — das wussten nicht einmal sie selbst."
+    }
+  }
+};
+
+const shareTexts = {
+  1: { A: "Histogramm 14.4.1912 · Nacht 1: A (52% ✓) · Wer entscheidet, wenn der Kapitän schläft?", B: "Histogramm 14.4.1912 · Nacht 1: B (31%) · Gegen den Strom der Mehrheit.", C: "Histogramm 14.4.1912 · Nacht 1: C (17%) · In der Minderheit — aber vorausdenkend." },
+  2: { A: "Histogramm 14.4.1912 · Nacht 2: A (41%) · Protokoll oder Menschlichkeit?", B: "Histogramm 14.4.1912 · Nacht 2: B (44% ✓) · Knapp mit der Mehrheit.", C: "Histogramm 14.4.1912 · Nacht 2: C (15%) · Das Pragmatische und das Unmögliche." },
+  3: { A: "Histogramm 14.4.1912 · Nacht 3: A (29%) · Überleben ohne Schuldgefühl?", B: "Histogramm 14.4.1912 · Nacht 3: B (38% ✓) · Den Nächsten retten.", C: "Histogramm 14.4.1912 · Nacht 3: C (33%) · Bleiben ohne Grund." }
+};
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+
+  const justifyField = document.getElementById('justify' + day);
+  justifyField.classList.add('visible');
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  const hint = document.getElementById('hint' + day);
+  submitBtn.disabled = false;
+  hint.textContent = 'Begründung optional';
+}
+
+function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+
+  const justifyText = document.getElementById('justifyText' + day).value;
+  state.justifications[day] = justifyText;
+
+  const res = results[day];
+  const chosen = res[letter];
+  const options = ['A', 'B', 'C'];
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track">
+          <div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${res[opt].pct}%"></div>
+        </div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${res[opt].pct}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => res[a].pct > res[b].pct ? a : b);
+  const isMajority = letter === majorityOpt;
+  const titleText = isMajority
+    ? `Du hast wie die Mehrheit entschieden — ${chosen.pct}% haben ${chosen.label} gewählt.`
+    : `Du hast gegen die Mehrheit entschieden — nur ${chosen.pct}% haben ${chosen.label} gewählt.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = res.narratives[letter];
+  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+
+  const panel = document.getElementById('result' + day);
+  panel.classList.add('visible');
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const nextSection = document.getElementById('day' + day);
+  nextSection.style.display = 'block';
+  setTimeout(() => nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+
+  const dot = document.getElementById('dot' + day);
+  if (dot) { dot.classList.add('active'); }
+}
+
+function showEpilog() {
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+
+function restartDemo() {
+  location.reload();
+}
+</script>
+</body>
+</html>
