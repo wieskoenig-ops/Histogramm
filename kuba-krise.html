@@ -132,11 +132,6 @@
     <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du stimmst dem Kapitän zu. Wenn Krieg ist, zählt jede Minute.</button>
     <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du forderst, vor jeder Entscheidung aufzutauchen — und nach echten Informationen zu suchen.</button>
     <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verweigerst deine Zustimmung. Ohne Gewissheit kein Abschuss.</button>
-
-    <div class="justify-field" id="justify1">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText1" placeholder="Zwei Sätze genügen."></textarea>
-    </div>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -178,11 +173,6 @@
     <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du änderst deine Meinung. Die Mehrheit hat recht — handeln statt zögern.</button>
     <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst bei deiner Position, aber schlägst einen letzten Kompromiss vor: kurz auftauchen, dann entscheiden.</button>
     <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst hart. Ohne meine Zustimmung — kein Abschuss. Auch gegen den Kapitän.</button>
-
-    <div class="justify-field" id="justify2">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText2" placeholder="Zwei Sätze genügen."></textarea>
-    </div>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint2">Wähle eine Option</span>
@@ -224,11 +214,6 @@
     <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>"Wir feuern." Du gibst nach. Lieber handeln als untergehen ohne Antwort.</button>
     <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>"Wir tauchen auf. Jetzt." Du erzwingst die einzige Möglichkeit, die Wahrheit zu erfahren.</button>
     <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>"Ich verweigere die Zustimmung. Endgültig." Ohne Gewissheit gibt es keinen Abschuss — koste es, was es wolle.</button>
-
-    <div class="justify-field" id="justify3">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText3" placeholder="Zwei Sätze genügen."></textarea>
-    </div>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint3">Wähle eine Option</span>
@@ -313,17 +298,14 @@ function selectOption(day, letter, btn) {
   options.forEach(o => o.classList.remove('selected'));
   btn.classList.add('selected');
   state.selections[day] = letter;
-  document.getElementById('justify' + day).classList.add('visible');
   document.getElementById('submitBtn' + day).disabled = false;
-  document.getElementById('hint' + day).textContent = 'Begründung optional';
+  document.getElementById('hint' + day).textContent = '';
 }
 
 async function submitDay(day) {
   const letter = state.selections[day];
   if (!letter) return;
   const prefix = SCENARIO_PREFIX + '-stunde' + day;
-
-  state.justifications[day] = document.getElementById('justifyText' + day).value;
 
   const submitBtn = document.getElementById('submitBtn' + day);
   submitBtn.disabled = true;
@@ -374,6 +356,7 @@ async function submitDay(day) {
   document.getElementById('narrative' + day).textContent = narratives[letter];
   document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
   document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';
   const nextBtn = document.getElementById('nextDay' + day);
   if (nextBtn) nextBtn.classList.add('visible');
