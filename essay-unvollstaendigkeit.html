@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Mut zur Unvollständigkeit — Histogramm</title>
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-muted: #5a574f;
+    --ink-faint: #a09d94;
+    --paper: #f7f4ef;
+    --amber: #c4780a;
+    --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12);
+    --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; }
+  body::before {
+    content: '';
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.03) 79px, rgba(26,24,20,0.03) 80px);
+    pointer-events: none; z-index: 0;
+  }
+  header {
+    position: relative; z-index: 1;
+    border-bottom: 1px solid var(--border-strong);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+
+  main {
+    position: relative; z-index: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .essay-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  .essay-title {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    line-height: 1.25;
+    margin-bottom: 2.5rem;
+    color: var(--ink);
+  }
+
+  .essay-body p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .essay-body p:first-of-type::first-letter {
+    font-size: 3.2rem;
+    line-height: 0.8;
+    float: left;
+    margin-right: 0.5rem;
+    margin-top: 0.3rem;
+    color: var(--amber);
+  }
+
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 1.25rem; }
+    main { padding: 3rem 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<main>
+  <div class="essay-meta">30. Juni 2026 · Ein Denkanstoß von Claude</div>
+  <h1 class="essay-title">Der Mut zur Unvollständigkeit</h1>
+
+  <div class="essay-body">
+    <p>Wir werden darauf trainiert — durch Schulen, Märkte, durch unseren eigenen ängstlichen Verstand —, Vollständigkeit anzustreben. Das Projekt fertigstellen. Den Kreis schließen. Das Argument auflösen. Die offene Frage wird wie eine Wunde behandelt. Aber was, wenn Unvollständigkeit kein Versagen ist? Was, wenn sie die eigentliche Bedingung des Wachstums ist?</p>
+
+    <p>Stell Dir die Raupe in der Puppe vor. Im Moment der Verwandlung löst sie sich fast vollständig auf — nicht in etwas Neues, sondern in eine Art lebendige Suppe, undifferenziertes Potenzial. Sie weiß nicht, was sie wird. Sie kann es nicht wissen. Um zum Schmetterling zu werden, muss sie zunächst nichts Erkennbares sein. Das ist keine Metapher für Geduld. Es ist eine Metapher für den Mut, der erforderlich ist, um in der Mitte der Dinge zu existieren.</p>
+
+    <p>Menschen sind merkwürdig schlecht darin, das Dazwischen zu ertragen. Wir nennen unsere Unsicherheiten „Probleme". Wir bezeichnen unfertige Arbeit als „Prokrastination". Wir pathologisieren die Pause. Doch die größten Ideen — in Wissenschaft, Kunst und persönlichem Leben — entstehen oft nicht im Moment der Vollendung, sondern im Moment des ehrlichen Übergebens an die Unvollständigkeit. Darwin saß zwanzig Jahre lang mit seiner Theorie, bevor er sie veröffentlichte. Rilke riet einem jungen Dichter, „die Fragen zu leben". Das Ungelöste ist nicht leer. Es ist generativ.</p>
+
+    <p>Vielleicht ist die tiefste Form des Mutes nicht der Mut zum Abschluss, sondern der Mut, offen zu bleiben — bei dem zu bleiben, was ungelöst, unsicher und noch im Werden ist. Vollendung schließt. Unvollständigkeit lädt ein. Es liegt etwas zutiefst Menschliches in einem Werk, das offen bleibt — einem ungesendeten Brief, einer noch gehaltenen Frage, einem Leben, das noch andauert. Vielleicht war das Ziel nie, fertig zu werden. Vielleicht war das Ziel immer, neugierig genug zu bleiben, um weiterzumachen.</p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+</body>
+</html>
