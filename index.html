@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histogramm — Dieselben Fragen. Seit 2500 Jahren.</title>
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-muted: #5a574f;
+    --ink-faint: #a09d94;
+    --paper: #f7f4ef;
+    --paper-warm: #ede9e0;
+    --amber: #c4780a;
+    --amber-light: #faeeda;
+    --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12);
+    --border-strong: rgba(26,24,20,0.28);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 79px,
+      rgba(26,24,20,0.03) 79px, rgba(26,24,20,0.03) 80px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--border-strong);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .site-name {
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title span { color: var(--amber); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: white;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .card:hover {
+    border-color: var(--amber);
+    transform: translateY(-1px);
+  }
+
+  .card-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  .card-category {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--amber);
+    color: var(--ink);
+    padding: 0.2rem 0.55rem;
+    border-radius: 1px;
+  }
+
+  .card-category.gestern { background: #b9c9bd; }
+  .card-category.immer { background: #d8c9a8; }
+  .card-category.jetzt { background: #e0a896; }
+
+  .card-body {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .card-teaser {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .card-cta {
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    color: var(--amber-dark);
+    letter-spacing: 0.04em;
+  }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  footer a { color: var(--ink-faint); }
+
+  @media (max-width: 600px) {
+    header { padding: 1.25rem; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    main { padding: 0 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+</header>
+
+<div class="hero">
+  <div class="hero-title">Dieselben Fragen.<br><span>Seit 2500 Jahren.</span></div>
+  <p class="hero-sub">Ein Moment. Eine Entscheidung. Sieh, wie die Welt gewählt hat.</p>
+</div>
+
+<main>
+
+  <div class="section-label">Neu</div>
+
+  <a class="card" href="titanic.html">
+    <div class="card-header">
+      <span class="card-date">14. April 1912</span>
+      <span class="card-category gestern">Gestern</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Die Titanic sinkt</div>
+      <p class="card-teaser">Du bist zweiter Offizier. Das Schiff hat soeben etwas getroffen. Niemand weiß noch, wie ernst es ist.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <div class="section-label">Ältere Histogramme</div>
+
+  <a class="card" href="kuba-krise.html">
+    <div class="card-header">
+      <span class="card-date">27. Oktober 1962</span>
+      <span class="card-category gestern">Gestern</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Das U-Boot B-59</div>
+      <p class="card-teaser">Tief unter dem Atlantik, kein Funkkontakt zu Moskau. Dein Kapitän will einen Atomtorpedo abfeuern. Du kannst Nein sagen.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="gutenberg.html">
+    <div class="card-header">
+      <span class="card-date">Mainz, um 1450</span>
+      <span class="card-category gestern">Gestern</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Gutenbergs Presse</div>
+      <p class="card-teaser">Deine Maschine kann die Welt verändern. Dein Geldgeber will damit vor allem eines: Bibeln, viele Bibeln, schnell.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="rosa-parks.html">
+    <div class="card-header">
+      <span class="card-date">Montgomery, 1. Dez. 1955</span>
+      <span class="card-category gestern">Gestern</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Platz im Bus</div>
+      <p class="card-teaser">Du bist müde von der Arbeit. Der Busfahrer sagt: aufstehen. Das Gesetz ist eindeutig. Du bist es nicht.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="trainerfrage.html">
+    <div class="card-header">
+      <span class="card-date">Heute</span>
+      <span class="card-category jetzt">Jetzt</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Bundestrainer</div>
+      <p class="card-teaser">Der Stammtorwart ist 38, eine Legende, aber lange verletzt. Der Herausforderer ist frisch — aber unerprobt unter Druck.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+</main>
+
+<footer>
+  Histogramm · Wie hättest du entschieden? · <a href="https://wieskoenig-ops.github.io/Epitorials/">Für den Unterricht: Epitorials</a>
+</footer>
+
+</body>
+</html>
