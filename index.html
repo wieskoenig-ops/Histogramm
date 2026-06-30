@@ -828,16 +828,47 @@ function selectOption(day, letter, btn) {
   hint.textContent = 'Begründung optional';
 }
 
-function submitDay(day) {
+async function submitDay(day) {
   const letter = state.selections[day];
   if (!letter) return;
+
+  const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+  const prefix = 'titanic-night' + day;
 
   const justifyText = document.getElementById('justifyText' + day).value;
   state.justifications[day] = justifyText;
 
-  const res = results[day];
-  const chosen = res[letter];
+  // Button sofort sperren, damit nicht doppelt abgestimmt wird
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
   const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    // 1. Stimme abgeben
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+
+    // 2. Aktuelle Ergebnisse holen
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('Histogramm API nicht erreichbar, nutze Fallback-Werte', err);
+    // Fallback: simulierte Werte falls API mal nicht erreichbar ist
+    const fallback = results[day];
+    counts = { A: fallback.A.pct, B: fallback.B.pct, C: fallback.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => {
+    pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0;
+  });
+
+  const labels = results[day]; // Labels & Narrative bleiben redaktionell, nicht aus der API
+  const narratives = results[day].narratives;
 
   let barsHtml = '';
   options.forEach(opt => {
@@ -846,28 +877,30 @@ function submitDay(day) {
       <div class="bar-row">
         <span class="bar-label">${opt}</span>
         <div class="bar-track">
-          <div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${res[opt].pct}%"></div>
+          <div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div>
         </div>
-        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${res[opt].pct}%</span>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
       </div>`;
   });
 
-  const majorityOpt = options.reduce((a, b) => res[a].pct > res[b].pct ? a : b);
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
   const isMajority = letter === majorityOpt;
-  const titleText = isMajority
-    ? `Du hast wie die Mehrheit entschieden — ${chosen.pct}% haben ${chosen.label} gewählt.`
-    : `Du hast gegen die Mehrheit entschieden — nur ${chosen.pct}% haben ${chosen.label} gewählt.`;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority
+        ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen heute)`
+        : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen heute)`)
+    : `Du bist die erste Stimme heute. Schau später wieder vorbei.`;
 
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
-  document.getElementById('narrative' + day).textContent = res.narratives[letter];
+  document.getElementById('narrative' + day).textContent = narratives[letter];
   document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
 
   const panel = document.getElementById('result' + day);
   panel.classList.add('visible');
 
-  const submitBtn = document.getElementById('submitBtn' + day);
-  submitBtn.disabled = true;
+  submitBtn.textContent = 'Entscheiden →';
 
   const nextBtn = document.getElementById('nextDay' + day);
   if (nextBtn) nextBtn.classList.add('visible');
