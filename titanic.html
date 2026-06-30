@@ -593,11 +593,6 @@
       Du ordnest an, die Rettungsboote vorzubereiten — still, ohne Durchsage.
     </button>
 
-    <div class="justify-field" id="justify1">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText1" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
-    </div>
-
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -654,11 +649,6 @@
       <span class="option-letter">C</span>
       Du lässt das Boot mit den 28 jetzt ablassen. Jede Minute Warten ist eine Minute weniger für das nächste Boot.
     </button>
-
-    <div class="justify-field" id="justify2">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText2" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
-    </div>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -717,11 +707,6 @@
       <span class="option-letter">C</span>
       Du lässt das Boot ab — leer. Du bleibst, ohne Kalkulation.
     </button>
-
-    <div class="justify-field" id="justify3">
-      <label class="justify-label">Begründe deine Entscheidung</label>
-      <textarea id="justifyText3" placeholder="Zwei Sätze genügen. Was war ausschlaggebend?"></textarea>
-    </div>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -821,13 +806,10 @@ function selectOption(day, letter, btn) {
   btn.classList.add('selected');
   state.selections[day] = letter;
 
-  const justifyField = document.getElementById('justify' + day);
-  justifyField.classList.add('visible');
-
   const submitBtn = document.getElementById('submitBtn' + day);
   const hint = document.getElementById('hint' + day);
   submitBtn.disabled = false;
-  hint.textContent = 'Begründung optional';
+  hint.textContent = '';
 }
 
 async function submitDay(day) {
@@ -836,9 +818,6 @@ async function submitDay(day) {
 
   const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
   const prefix = 'titanic-night' + day;
-
-  const justifyText = document.getElementById('justifyText' + day).value;
-  state.justifications[day] = justifyText;
 
   // Button sofort sperren, damit nicht doppelt abgestimmt wird
   const submitBtn = document.getElementById('submitBtn' + day);
@@ -901,6 +880,7 @@ async function submitDay(day) {
 
   const panel = document.getElementById('result' + day);
   panel.classList.add('visible');
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 
   submitBtn.textContent = 'Entscheiden →';
 
