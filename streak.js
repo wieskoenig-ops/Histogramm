@@ -200,6 +200,24 @@ const Streak = (() => {
     }
   }
 
+  // Gespielte Kacheln auf der Startseite markieren
+  // Aufruf: Streak.markPlayedCards() in index.html
+  function markPlayedCards() {
+    const played = getPlayedIds();
+    if (!played.length) return;
+
+    // Alle Karten-Links finden
+    const cards = document.querySelectorAll('a.card[href]');
+    cards.forEach(card => {
+      // Dateiname aus href extrahieren: "titanic.html" → "titanic"
+      const href = card.getAttribute('href') || '';
+      const id = href.replace('.html', '');
+      if (played.includes(id)) {
+        card.classList.add('played');
+      }
+    });
+  }
+
   // Auto-init wenn DOM bereit
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
@@ -207,6 +225,6 @@ const Streak = (() => {
     init();
   }
 
-  return { markPlayed, getPlayedIds };
+  return { markPlayed, getPlayedIds, markPlayedCards };
 
 })();
