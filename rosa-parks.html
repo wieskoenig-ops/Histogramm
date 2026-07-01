@@ -127,12 +127,10 @@
         <span>Rosa Parks, Montgomery, Alabama</span>
       </div>
     </div>
-
     <div class="decisions-heading">Deine Entscheidung</div>
     <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du stehst auf. Heute nicht — der Kampf wird an einem anderen Tag geführt.</button>
     <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bleibst sitzen und schaust Blake direkt an. Kein Wort.</button>
     <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst sitzen und sagst ruhig: <em>"Nein."</em></button>
-
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -169,12 +167,10 @@
         <span>Rosa Parks — kurz vor der Verhaftung</span>
       </div>
     </div>
-
     <div class="decisions-heading">Deine Entscheidung</div>
     <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du stehst jetzt auf. Die Verhaftung vermeiden — und den Kampf auf anderem Weg führen.</button>
     <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst ruhig sitzen, sagst nichts mehr und lässt dich widerstandslos verhaften.</button>
     <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du sprichst laut, damit alle Fahrgäste hören: <em>"Ich sitze, wo ich sitze."</em></button>
-
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint2">Wähle eine Option</span>
@@ -211,12 +207,10 @@
         <span>Rosa Parks — die eigentliche Entscheidung</span>
       </div>
     </div>
-
     <div class="decisions-heading">Deine Entscheidung</div>
     <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Was heute passiert ist, war genug — du willst dein Leben nicht zur Bühne machen.</button>
     <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bittest um Bedenkzeit — du willst mit deinem Mann sprechen, bevor du entscheidest.</button>
     <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst sofort ja. Wenn nicht jetzt, wann dann — und wenn nicht du, wer dann?</button>
-
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint3">Wähle eine Option</span>
@@ -246,142 +240,6 @@
     </div>
     <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Rosa_Parks" target="_blank" rel="noopener">Mehr zu Rosa Parks auf Wikipedia →</a></p>
-    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
-  </div>
-</main>
-  <!-- DAY 1 -->
-  <div id="day1">
-    <div class="scene">
-      <div class="scene-header">
-        <span class="scene-label">Erstes Gespräch</span>
-        <span class="scene-time">Werkstatt, früher Morgen</span>
-      </div>
-      <div class="scene-body">
-        <p>Johann Fust, dein Geldgeber, steht zwischen den Lettern und Pressbalken. Er hat dir 800 Gulden geliehen — eine gewaltige Summe. Jetzt will er wissen, was sie ihm einbringt.</p>
-        <p><em>"Eine Bibel,"</em> sagt er. <em>"Hunderte Bibeln. Die Kirche zahlt gut, und schnell. Was du sonst drucken willst — Fabeln, Kalender, Ablassbriefe — interessiert mich nicht."</em></p>
-        <p>Du hast eine Maschine gebaut, die alles verändern könnte: Wissen, das nicht mehr von Mönchen Wort für Wort abgeschrieben werden muss. Aber Fust hält die Bücher — im wörtlichen wie im finanziellen Sinn.</p>
-      </div>
-      <div class="scene-role">
-        <span class="role-label">Deine Rolle</span>
-        <span>Johannes Gutenberg, Werkstattbesitzer, Mainz</span>
-      </div>
-    </div>
-
-    <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sagst zu. Ohne Fusts Geld gibt es keine Presse. Die Bibel zuerst, alles andere später.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schlägst einen Mittelweg vor: Bibeln für Fust, aber du druckst nebenbei eigene, kleinere Arbeiten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du widersprichst offen. Die Presse soll Wissen verbreiten — nicht nur das, was sich am schnellsten verkauft.</button>
-    <div class="cta-row">
-      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
-      <span class="cta-hint" id="hint1">Wähle eine Option</span>
-    </div>
-    <div class="result-panel" id="result1">
-      <div class="result-header">So hat die Welt entschieden — Erstes Gespräch</div>
-      <div class="result-body">
-        <p class="result-title" id="result1Title"></p>
-        <div id="bars1"></div>
-        <div class="result-narrative" id="narrative1"></div>
-        <div class="share-row">
-          <div class="share-text" id="shareText1"></div>
-          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
-        </div>
-      </div>
-    </div>
-    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Ein Jahr später →</button>
-  </div>
-
-  <!-- DAY 2 -->
-  <div id="day2" style="display:none">
-    <div class="scene">
-      <div class="scene-header">
-        <span class="scene-label">Ein Jahr später</span>
-        <span class="scene-time">Werkstatt, Abend</span>
-      </div>
-      <div class="scene-body">
-        <p>Die ersten Bibelseiten stehen, makellos, gleichmäßig — etwas, das noch kein Mensch gesehen hat. Fust ist zufrieden. Aber dein Geselle Peter Schöffer bringt dir heimlich ein Manuskript: eine Sammlung Fabeln, in einfacher Sprache, für Leute, die keine Kirchenlatein lesen.</p>
-        <p><em>"Wenn wir das drucken,"</em> sagt Schöffer, <em>"können sich auch Kaufleute und Handwerker Bücher leisten. Nicht nur Klöster und Fürsten."</em></p>
-        <p>Es würde Pressenzeit kosten, die eigentlich für die Bibel reserviert ist. Fust würde es nicht gutheißen — wenn er es erfährt.</p>
-      </div>
-      <div class="scene-role">
-        <span class="role-label">Deine Rolle</span>
-        <span>Johannes Gutenberg — ein Jahr nach der Zusage</span>
-      </div>
-    </div>
-
-    <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Ein Vertrag ist ein Vertrag — die Bibel hat Vorrang, alles andere wäre Vertrauensbruch.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du druckst die Fabeln heimlich, nachts, ohne Fust zu informieren.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du gehst offen zu Fust und versuchst, ihn zu überzeugen — auch auf das Risiko hin, dass er das Geld zurückzieht.</button>
-    <div class="cta-row">
-      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
-      <span class="cta-hint" id="hint2">Wähle eine Option</span>
-    </div>
-    <div class="result-panel" id="result2">
-      <div class="result-header">So hat die Welt entschieden — Ein Jahr später</div>
-      <div class="result-body">
-        <p class="result-title" id="result2Title"></p>
-        <div id="bars2"></div>
-        <div class="result-narrative" id="narrative2"></div>
-        <div class="share-row">
-          <div class="share-text" id="shareText2"></div>
-          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
-        </div>
-      </div>
-    </div>
-    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Der Rechtsstreit →</button>
-  </div>
-
-  <!-- DAY 3 -->
-  <div id="day3" style="display:none">
-    <div class="scene">
-      <div class="scene-header">
-        <span class="scene-label">Der Rechtsstreit</span>
-        <span class="scene-time">1455, vor Gericht</span>
-      </div>
-      <div class="scene-body">
-        <p>Fust verklagt dich. Er fordert sein Geld zurück — mit Zinsen, die du nicht zahlen kannst. Die Werkstatt, die Presse, sogar die fertigen Bibeln stehen auf dem Spiel.</p>
-        <p>Schöffer, dein Geselle, hat sich auf Fusts Seite gestellt. Er kennt die Technik so gut wie du — und Fust hat ihm angeboten, die Werkstatt gemeinsam weiterzuführen, falls du verlierst.</p>
-        <p>Du könntest vor Gericht hart bleiben — oder einen Vergleich suchen, der dir wenig lässt, aber wenigstens etwas.</p>
-      </div>
-      <div class="scene-role">
-        <span class="role-label">Deine Rolle</span>
-        <span>Johannes Gutenberg — vor dem Mainzer Gericht</span>
-      </div>
-    </div>
-
-    <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du kämpfst bis zum Ende. Die Presse ist deine Erfindung — du gibst sie nicht kampflos her.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du suchst einen Vergleich. Du verlierst die große Werkstatt, behältst aber genug, um andernorts neu zu beginnen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du überlässt Fust und Schöffer alles — Werkstatt, Presse, Bibeln — und fängst mit nichts neu an.</button>
-    <div class="cta-row">
-      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
-      <span class="cta-hint" id="hint3">Wähle eine Option</span>
-    </div>
-    <div class="result-panel" id="result3">
-      <div class="result-header">So hat die Welt entschieden — Der Rechtsstreit</div>
-      <div class="result-body">
-        <p class="result-title" id="result3Title"></p>
-        <div id="bars3"></div>
-        <div class="result-narrative" id="narrative3"></div>
-        <div class="share-row">
-          <div class="share-text" id="shareText3"></div>
-          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
-        </div>
-      </div>
-    </div>
-    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
-  </div>
-
-  <!-- EPILOG -->
-  <div class="epilog" id="epilog">
-    <div class="epilog-date">Mainz, 1455 und danach</div>
-    <div class="epilog-title">Gutenberg verlor den Prozess.<br>Seine Erfindung verlor er nicht.</div>
-    <div class="epilog-body">
-      <p>Fust und Schöffer übernahmen Werkstatt und Bibeln. Gutenberg begann mit wenig Mitteln neu — gestorben ist er, ohne den Ruhm zu erleben, der seinen Namen heute trägt.</p>
-      <p style="margin-top:1rem">Die Technik selbst ließ sich nicht zurückhalten. Innerhalb weniger Jahrzehnte druckten Werkstätten in ganz Europa. Was als Geschäft um Bibeln begann, veränderte, wie Menschen lesen, denken und glauben.</p>
-    </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
-    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Johannes_Gutenberg" target="_blank" rel="noopener">Mehr zu Johannes Gutenberg auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>
 </main>
