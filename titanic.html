@@ -537,6 +537,7 @@
     .date-stamp { font-size: 2.4rem; }
   }
 </style>
+<script src="streak.js"></script>
 </head>
 <body>
 
@@ -909,6 +910,7 @@ function goToDay(day) {
 }
 
 function showEpilog() {
+  Streak.markPlayed('titanic');
   document.getElementById('epilog').classList.add('visible');
   setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
 }

@@ -88,6 +88,7 @@
   footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
   @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
 </style>
+<script src="streak.js"></script>
 </head>
 <body>
 
@@ -381,6 +382,7 @@ function goToDay(day) {
 }
 
 function showEpilog() {
+  Streak.markPlayed('gutenberg');
   document.getElementById('epilog').classList.add('visible');
   setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
 }
