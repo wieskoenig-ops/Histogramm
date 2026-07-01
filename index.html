@@ -143,6 +143,17 @@
   .card-category.immer { background: #d8c9a8; }
   .card-category.jetzt { background: #e0a896; }
 
+  /* Neue Themenkategorien */
+  .card-category.fuehrung     { background: #b89a5a; }
+  .card-category.krieg        { background: #8fa3b1; }
+  .card-category.zivilcourage { background: #c4846a; }
+  .card-category.wissenschaft { background: #7a9e8e; }
+  .card-category.gewissen     { background: #9a8fb0; }
+  .card-category.sport        { background: #b07a5a; }
+  .card-category.kunst        { background: #a08070; }
+  .card-category.musik        { background: #8a7a9e; }
+  .card-category.literatur    { background: #7a9070; }
+
   .card-body {
     padding: 1.25rem 1.5rem;
   }
@@ -283,7 +294,7 @@
   <a class="card" href="galileo.html" data-tags="Wissenschaft, Kirche, Wahrheit, Mut">
     <div class="card-header">
       <span class="card-date">Rom, 1633</span>
-      <span class="card-category gestern">Gestern</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
     </div>
     <div class="card-body">
       <div class="card-title">Galileo vor der Inquisition</div>
@@ -295,7 +306,7 @@
   <a class="card" href="darwin.html" data-tags="Wissenschaft, Mut, Familie, Glaube">
     <div class="card-header">
       <span class="card-date">England, 1859</span>
-      <span class="card-category gestern">Gestern</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
     </div>
     <div class="card-body">
       <div class="card-title">Darwins Manuskript</div>
@@ -307,11 +318,107 @@
   <a class="card" href="antigone.html" data-tags="Antike, Familie, Gesetz, Gewissen">
     <div class="card-header">
       <span class="card-date">Theben, Antike</span>
-      <span class="card-category gestern">Gestern</span>
+      <span class="card-category gewissen">Gewissen</span>
     </div>
     <div class="card-body">
       <div class="card-title">Antigone</div>
       <p class="card-teaser">Dein Bruder liegt unbeerdigt vor den Stadtmauern. Der König hat es verboten. Du hast eine Schaufel.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="oppenheimer.html" data-tags="Wissenschaft, Krieg, Gewissen, USA">
+    <div class="card-header">
+      <span class="card-date">New Mexico, 16. Juli 1945</span>
+      <span class="card-category gewissen">Gewissen</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Oppenheimer</div>
+      <p class="card-teaser">Der erste Atomtest gelingt. Du hast es gebaut. Jetzt weißt du was es kann. Was sagst du morgen früh beim Briefing?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="marie-curie.html" data-tags="Wissenschaft, Gesellschaft, Mut">
+    <div class="card-header">
+      <span class="card-date">Paris, 1911</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Marie Curie</div>
+      <p class="card-teaser">Zweiter Nobelpreis. Skandal in der Presse. Paris fordert deinen Rückzug. Gehst du?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="michelangelo.html" data-tags="Kunst, Führung, Loyalität">
+    <div class="card-header">
+      <span class="card-date">Rom, 1508</span>
+      <span class="card-category kunst">Kunst</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Michelangelo</div>
+      <p class="card-teaser">Der Papst befiehlt: die Sixtinische Kapelle. Du willst Skulpturen. Er bezahlt. Er wartet. Er droht.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="caravaggio.html" data-tags="Kunst, Gewissen, Flucht">
+    <div class="card-header">
+      <span class="card-date">Rom, 1606</span>
+      <span class="card-category kunst">Kunst</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Caravaggio</div>
+      <p class="card-teaser">Du hast einen Mann getötet. Die Kirche will deine Bilder. Du bist auf der Flucht. Malst du weiter?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="beethoven.html" data-tags="Musik, Gewissen, Mut">
+    <div class="card-header">
+      <span class="card-date">Wien, 1802</span>
+      <span class="card-category musik">Musik</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Beethoven</div>
+      <p class="card-teaser">Du merkst: du wirst taub. Dein Leben ist Musik. Sagst du es — oder komponierst du weiter, als wäre nichts?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="beatles.html" data-tags="Musik, Führung, Konflikt">
+    <div class="card-header">
+      <span class="card-date">London, 1969</span>
+      <span class="card-category musik">Musik</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Die Beatles</div>
+      <p class="card-teaser">Du bist Ringo. John, Paul und George streiten. Niemand hört dir zu. Du könntest die Band retten — oder gehen lassen.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="max-brod.html" data-tags="Literatur, Gewissen, Freundschaft">
+    <div class="card-header">
+      <span class="card-date">Prag, 1924</span>
+      <span class="card-category literatur">Literatur</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Max Brod</div>
+      <p class="card-teaser">Kafka ist gestorben. Er hat dich gebeten, alles zu verbrennen — Das Schloss, Der Prozess, alles. Was tust du?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="duerrenmatt.html" data-tags="Literatur, Moral, Gerechtigkeit">
+    <div class="card-header">
+      <span class="card-date">Güllen, 1956</span>
+      <span class="card-category literatur">Literatur</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Besuch der alten Dame</div>
+      <p class="card-teaser">Claire Zachanassian bietet der Stadt eine Milliarde. Die Bedingung: der Tod eines Mannes. Du bist Bürgermeister.</p>
       <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
     </div>
   </a>
