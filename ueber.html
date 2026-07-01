@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über Histogramm</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding: 4.5rem 2rem 6rem; }
+  .page-title { font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.25; margin-bottom: 2.5rem; }
+  .page-title span { color: var(--amber); }
+  .prose { font-size: 1.05rem; line-height: 1.85; color: var(--ink); }
+  .prose p { margin-bottom: 1.4rem; }
+  .prose em { color: var(--amber-dark); font-style: italic; }
+  .signoff { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--ink-muted); line-height: 1.8; }
+  .signoff a { color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); }
+  .signoff a:hover { opacity: 0.75; }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  footer a { color: var(--ink-faint); }
+  @media (max-width: 600px) { header { padding: 1rem; } main { padding: 3rem 1.25rem 4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<main>
+  <div class="page-title">Dieselben Fragen.<br>Seit <span>2500 Jahren</span>.</div>
+
+  <div class="prose">
+    <p>Histogramm zeigt dir einen Moment, in dem jemand entscheiden muss, ohne zu wissen, wie es ausgeht. Sokrates wusste nicht, ob die Flucht ihn zum Verräter seiner eigenen Philosophie machen würde. Galileo wusste nicht, ob sein Widerruf ihn zum Feigling machen würde oder einfach nur zu einem alten Mann, der weiterleben wollte. Wir kennen die Antworten heute — aber nur, weil wir hinterher geboren wurden.</p>
+
+    <p>Du bekommst eine kurze Situation, keine Vorgeschichte. Drei Optionen. Du entscheidest — und siehst danach ein Balkendiagramm: wie alle anderen entschieden haben, die heute dasselbe gespielt haben. Kein Punktestand, keine Belohnung fürs Richtigraten. Es gibt nichts zu erraten.</p>
+
+    <p>Der Vergleich, der uns vorschwebte, war nie ein Geschichtsquiz, eher ein tägliches Worträtsel: ein Moment, alle spielen denselben, fünf Minuten, danach weißt du, wo du stehst. Der Unterschied: bei einem Worträtsel gibt es ein Wort, das stimmt. Hier gibt es nur die Verteilung der Menschheit über eine Frage, die sich nie ganz erledigt.</p>
+
+    <p>Manche Momente sind historisch — Rom 1633, Montgomery 1955, ein U-Boot im Oktober 1962. Manche sind zeitlos: Loyalität oder Wahrheit, Sicherheit oder Gewissen. Manche sind heute — Fragen, die gerade verhandelt werden, deren Ausgang noch niemand kennt.</p>
+
+    <p>Das ist alles, was Histogramm sein will: ein Moment am Tag, in dem du kurz jemand anders bist.</p>
+  </div>
+
+  <div class="signoff">
+    Ein Vorschlag für einen Moment, der noch fehlt? Schreib uns: <a href="mailto:read.me@web.de">read.me@web.de</a>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+</body>
+</html>
