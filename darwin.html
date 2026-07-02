@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histogramm — Darwin</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Kent, <span>1858</span></div>
+  <div class="location-stamp">Down House · England</div>
+  <p class="hero-question">Du sitzt seit vierzehn Jahren auf einer Idee, die alles verändern wird.<br>Dann kommt ein Brief — von jemandem, der sie gerade selbst entdeckt hat.</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Die Schublade</span>
+        <span class="scene-time">Down House, 1844</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit der Rückkehr von deiner Weltreise auf der Beagle beschäftigt dich ein Gedanke, den du kaum auszusprechen wagst: Arten verändern sich, und die Natur selbst wählt aus, wer überlebt und wer nicht. Keine Schöpfung, kein Plan — nur Zufall und Auslese, über Jahrmillionen.</p>
+        <p>Du hast einen 230-seitigen Essay geschrieben, der die Theorie in aller Konsequenz durchdenkt. Aber du zögerst. Dein Freund, der Botaniker Hooker, warnt: "Es ist, als würde man einen Mord gestehen." Die Kirche, die Gesellschaft, deine eigene Frau Emma — alle stützen sich auf die Vorstellung, dass der Mensch eine besondere Schöpfung ist.</p>
+        <p>Du schreibst Emma einen Brief mit genauen Anweisungen: Sollte dir etwas zustoßen, soll sie das Manuskript veröffentlichen lassen, mit Geld für einen Herausgeber. Für den Fall deines Todes bist du bereit. Für das Leben noch nicht.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Charles Darwin, Naturforscher</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst jetzt, trotz Lücken in den Beweisen. Die Idee ist zu wichtig, um sie zurückzuhalten.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du wartest weiter — sammelst mehr Beweise, baust ein Fundament, das niemand angreifen kann.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du vertraust dich einem einzigen Freund an, gehst aber noch nicht an die Öffentlichkeit.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Der Brief aus Malaysia →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Der Brief aus Malaysia</span>
+        <span class="scene-time">Down House, Juni 1858</span>
+      </div>
+      <div class="scene-body">
+        <p>Ein Umschlag aus Ternate, von den Molukken. Absender: Alfred Russel Wallace, ein junger Naturforscher, den du kaum persönlich kennst. Du öffnest ihn — und liest deine eigene Theorie. Unabhängig entwickelt, in wenigen Seiten, fieberhaft geschrieben auf einer Insel am anderen Ende der Welt.</p>
+        <p>Vierzehn Jahre Arbeit, und ein Fremder hat in wenigen Wochen dasselbe gedacht. Wenn du jetzt schweigst, gehört die Entdeckung ihm. Wenn du sofort dein eigenes, älteres Manuskript veröffentlichst, sieht es aus, als hättest du seine Idee gestohlen — obwohl du sie zuerst hattest.</p>
+        <p>In derselben Woche stirbt dein jüngster Sohn Charles an Scharlach. Du bist nicht in der Verfassung, diese Entscheidung allein zu treffen.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Charles Darwin — mit Wallace' Brief in der Hand</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst sofort dein älteres Manuskript, um deine Priorität zu sichern.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du überlässt Wallace den vollen Ruhm — er hat es unabhängig entdeckt, das reicht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du überlässt die Entscheidung deinen Freunden Lyell und Hooker — sie sollen einen fairen Weg finden.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Das Buch und der Glaube →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Das Buch und der Glaube</span>
+        <span class="scene-time">Down House, November 1859</span>
+      </div>
+      <div class="scene-body">
+        <p><em>Über die Entstehung der Arten</em> ist fertig geschrieben. Es ist das Buch, auf das du dein ganzes Leben zugearbeitet hast — und es widerspricht allem, woran deine Frau Emma glaubt.</p>
+        <p>Emma ist tief gläubig. Sie hat dir einmal geschrieben, wie sehr sie fürchtet, dass ihr euch nach dem Tod nicht wiedersehen werdet, wenn du deinen Glauben verlierst. Du hast den Brief nie beantwortet — nur aufbewahrt, mit einer Notiz, wie oft du ihn geküsst und darüber geweint hast.</p>
+        <p>Dein Verleger ist bereit zu drucken. Die Frage ist nicht mehr, ob die Theorie stimmt — du bist überzeugt. Die Frage ist, wie ungeschönt du sie der Welt zumutest.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Charles Darwin — kurz vor der Veröffentlichung</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst das Buch wie geschrieben — ungeschönt, auch wenn es Emma verletzt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du milderst die religiösen Implikationen im Text, aus Rücksicht auf Emma und die Kirche.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verzögerst die Veröffentlichung weiter, um mit Geistlichen und Kollegen zu sprechen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">Down House, 24. November 1859</div>
+    <div class="epilog-title">1250 Exemplare. Ausverkauft am ersten Tag.</div>
+    <div class="epilog-body">
+      <p><em>Über die Entstehung der Arten</em> erschien am 24. November 1859 und war noch am selben Tag beim Buchhändler vergriffen. Darwin selbst reiste zur Veröffentlichung ab — er kurte seine chronischen Beschwerden in einem Wasserheilbad, zu nervös, um die Reaktion abzuwarten.</p>
+      <p style="margin-top:1rem">Bei der eigentlichen Vorstellung der Theorie am 1. Juli 1858 vor der Linnean Society in London waren weder Darwin noch Wallace anwesend — Darwin trauerte um seinen Sohn, Wallace wusste monatelang nicht einmal, dass sein Brief diese Ereignisse ausgelöst hatte. Emma und Charles blieben bis zu seinem Tod 1882 verheiratet. Den Brief über das Wiedersehen im Jenseits bewahrte er sein Leben lang auf.</p>
+    </div>
+    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Charles_Darwin" target="_blank" rel="noopener">Mehr zu Charles Darwin auf Wikipedia →</a></p>
+    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'darwin';
+
+const results = {
+  1: {
+    A: { pct: 9, label: "Sofort veröffentlicht" },
+    B: { pct: 63, label: "Weiter gewartet" },
+    C: { pct: 28, label: "Einem Freund anvertraut" },
+    narratives: {
+      A: "Nur wenige hätten 1844 sofort veröffentlicht. Darwin tat es nicht — und vierzehn Jahre später holte ihn genau das ein, was er befürchtet hatte: jemand anderes kam ihm zuvor.",
+      B: "Die Mehrheit wartet — genau das tat Darwin: vierzehn weitere Jahre, in denen er unter anderem acht Jahre lang Rankenfüßer untersuchte, nur um seine Methode wasserdicht zu machen.",
+      C: "Über ein Viertel vertraut sich einem Freund an — auch das stimmt: Der Geologe Charles Lyell kannte die Theorie seit 1844, Jahre bevor sie öffentlich wurde."
+    }
+  },
+  2: {
+    A: { pct: 14, label: "Eigene Priorität gesichert" },
+    B: { pct: 23, label: "Wallace den Ruhm überlassen" },
+    C: { pct: 63, label: "Freunden überlassen" },
+    narratives: {
+      A: "Eine Minderheit hätte sofort die eigene Priorität gesichert — nach den Regeln viktorianischer Wissenschaftsethik wäre das als unfair gegenüber Wallace gegolten.",
+      B: "Fast ein Viertel überlässt Wallace alles — eine großzügige Geste, die Darwin sich selbst nie erlaubt hätte, nach vierzehn Jahren Arbeit.",
+      C: "Die Mehrheit gibt die Entscheidung ab — das ist exakt, was geschah: Lyell und Hooker arrangierten eine gemeinsame Vorstellung beider Arbeiten vor der Linnean Society, ohne dass einer der beiden Autoren anwesend war."
+    }
+  },
+  3: {
+    A: { pct: 57, label: "Ungeschönt veröffentlicht" },
+    B: { pct: 31, label: "Abgemildert" },
+    C: { pct: 12, label: "Weiter verzögert" },
+    narratives: {
+      A: "Die Mehrheit veröffentlicht ungeschönt — das tat auch Darwin. Er vermied es zwar, die menschliche Abstammung direkt zu behandeln, milderte aber die Kernthese nicht ab. Das Buch war am Erscheinungstag ausverkauft.",
+      B: "Fast ein Drittel würde abmildern, aus Rücksicht auf Glauben und Familie — verständlich, aber nicht der Weg, den Darwin wählte.",
+      C: "Nur wenige verzögern weiter. Nach vierzehn Jahren Wartezeit war für Darwin der Punkt erreicht, an dem noch mehr Aufschub nur noch Angst gewesen wäre, keine Sorgfalt."
+    }
+  }
+};
+
+const shareTexts = {
+  1: { A: "Histogramm Darwin 1858 · Die Schublade: A (9%) · Sofort veröffentlicht.", B: "Histogramm Darwin 1858 · Die Schublade: B (63% ✓) · Weiter gewartet — wie er.", C: "Histogramm Darwin 1858 · Die Schublade: C (28%) · Einem Freund anvertraut." },
+  2: { A: "Histogramm Darwin 1858 · Der Brief: A (14%) · Eigene Priorität gesichert.", B: "Histogramm Darwin 1858 · Der Brief: B (23%) · Wallace den Ruhm überlassen.", C: "Histogramm Darwin 1858 · Der Brief: C (63% ✓) · Freunden überlassen — wie er." },
+  3: { A: "Histogramm Darwin 1858 · Das Buch: A (57% ✓) · Ungeschönt veröffentlicht — wie er.", B: "Histogramm Darwin 1858 · Das Buch: B (31%) · Abgemildert.", C: "Histogramm Darwin 1858 · Das Buch: C (12%) · Weiter verzögert." }
+};
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = narratives[letter];
+  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('darwin');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
