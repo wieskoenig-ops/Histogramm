@@ -200,6 +200,23 @@ const Streak = (() => {
     }
   }
 
+  // Kleine, dezente Streak-Anzeige im Header — nur für Rückkehrer sichtbar
+  // Aufruf: Streak.renderHeaderStreak('elementId') in der jeweiligen Seite
+  function renderHeaderStreak(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    const streak = parseInt(localStorage.getItem(KEY_STREAK) || '0', 10);
+    const last   = localStorage.getItem(KEY_LAST_PLAYED);
+    const played = getPlayedIds().length;
+
+    // Nur anzeigen wenn heute oder gestern gespielt wurde — sonst bleibt es leer
+    if (streak > 0 && played > 0 && (last === today() || last === yesterday())) {
+      const tageLabel = streak === 1 ? 'Tag' : 'Tage';
+      el.textContent = `${streak} ${tageLabel} · ${played} gespielt`;
+    }
+  }
+
   // Gespielte Kacheln auf der Startseite markieren
   // Aufruf: Streak.markPlayedCards() in index.html
   function markPlayedCards() {
@@ -225,6 +242,6 @@ const Streak = (() => {
     init();
   }
 
-  return { markPlayed, getPlayedIds, markPlayedCards };
+  return { markPlayed, getPlayedIds, markPlayedCards, renderHeaderStreak };
 
 })();
