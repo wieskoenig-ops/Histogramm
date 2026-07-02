@@ -264,39 +264,46 @@ const results = {
     A: { pct: 43, label: "Flucht angenommen" },
     B: { pct: 31, label: "Abgewartet" },
     C: { pct: 26, label: "Sofort abgelehnt" },
+    historical: 'C',
     narratives: {
-      A: "Fast die Hälfte würde fliehen — Leben ist Leben, und ein ungerechtes Urteil verdient keinen Gehorsam. Das ist ein starkes Argument. Sokrates folgte ihm nicht.",
-      B: "Ein Drittel wartet ab — sucht noch einen anderen Weg, ohne sofort Nein zu sagen. Menschlich, aber in Sokrates' Fall wohl nur ein Aufschub.",
-      C: "Etwas mehr als ein Viertel lehnt sofort ab — das Prinzip steht über dem Leben. Genau das lehrte Sokrates sein ganzes Leben. Und genau das tat er."
+      A: "Leben ist Leben, und ein ungerechtes Urteil verdient keinen Gehorsam. Das ist ein starkes Argument. Sokrates folgte ihm nicht.",
+      B: "Abzuwarten und noch einen anderen Weg zu suchen, ohne sofort Nein zu sagen, ist menschlich — aber in Sokrates' Fall wäre es wohl nur ein Aufschub gewesen.",
+      C: "Das Prinzip steht über dem Leben. Genau das lehrte Sokrates sein ganzes Leben. Und genau das tat er."
     }
   },
   2: {
     A: { pct: 29, label: "Kriton überzeugt" },
     B: { pct: 51, label: "Widerspruch: Prinzip" },
     C: { pct: 20, label: "Gegenfrage gestellt" },
+    historical: 'B',
     narratives: {
-      A: "Fast ein Drittel lässt sich von Kritons Argument überzeugen — die Verantwortung gegenüber Kindern und Schülern wiegt schwer. Sokrates sah das anders.",
-      B: "Die Mehrheit widerspricht: Wer nur dann dem Gesetz gehorcht, wenn es bequem ist, hat dem Gesetz nie wirklich gehorcht. Das ist die sokratische Antwort.",
-      C: "Ein Fünftel dreht den Spieß um — und stellt die unbequeme Frage zurück. Das ist typisch für Sokrates, auch wenn er es hier wohl nicht tat."
+      A: "Sich von Kritons Argument überzeugen zu lassen — die Verantwortung gegenüber Kindern und Schülern wiegt schwer. Sokrates sah das anders.",
+      B: "Wer nur dann dem Gesetz gehorcht, wenn es bequem ist, hat dem Gesetz nie wirklich gehorcht. Das ist die sokratische Antwort.",
+      C: "Den Spieß umzudrehen und die unbequeme Frage zurückzustellen ist typisch für Sokrates — auch wenn er es hier wohl nicht tat."
     }
   },
   3: {
     A: { pct: 38, label: "Ja, Angst — kein Argument" },
     B: { pct: 44, label: "Nein, kein Grund zur Angst" },
     C: { pct: 18, label: "Schweigen, trinken" },
+    historical: 'B',
     narratives: {
-      A: "Über ein Drittel sagt ja zur Angst — und macht daraus kein Argument. Das ist vielleicht die ehrlichste Antwort.",
-      B: "Die knappe Mehrheit wählt die klassisch sokratische Haltung: wer gut gelebt hat, hat keinen Grund den Tod zu fürchten. Das ist nah an dem, was Platon überliefert.",
-      C: "Schweigen als letzte Antwort — das ist die radikalste Wahl, und vielleicht die würdevollste. Aber Sokrates sprach bis zuletzt."
+      A: "Ja zur Angst zu sagen, ohne daraus ein Argument zu machen, ist vielleicht die ehrlichste Antwort.",
+      B: "Die klassisch sokratische Haltung: wer gut gelebt hat, hat keinen Grund, den Tod zu fürchten. Das ist nah an dem, was Platon überliefert.",
+      C: "Schweigen als letzte Antwort wäre die radikalste Wahl gewesen, und vielleicht die würdevollste. Aber Sokrates sprach bis zuletzt."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Sokrates 399 v.Chr. · Tag 1: A (43%) · Flucht angenommen.", B: "Histogramm Sokrates 399 v.Chr. · Tag 1: B (31%) · Abgewartet.", C: "Histogramm Sokrates 399 v.Chr. · Tag 1: C (26%) · Sofort abgelehnt — wie er." },
-  2: { A: "Histogramm Sokrates 399 v.Chr. · Tag 2: A (29%) · Kriton überzeugt.", B: "Histogramm Sokrates 399 v.Chr. · Tag 2: B (51% ✓) · Prinzip über Leben.", C: "Histogramm Sokrates 399 v.Chr. · Tag 2: C (20%) · Gegenfrage gestellt." },
-  3: { A: "Histogramm Sokrates 399 v.Chr. · Letzter Morgen: A (38%) · Ja, Angst — kein Argument.", B: "Histogramm Sokrates 399 v.Chr. · Letzter Morgen: B (44% ✓) · Kein Grund zur Angst.", C: "Histogramm Sokrates 399 v.Chr. · Letzter Morgen: C (18%) · Schweigen." }
-};
+const sceneNames = { 1: "Tag 1", 2: "Tag 2", 3: "Letzter Morgen" };
+const scenarioTitle = "Histogramm Sokrates 399 v.Chr.";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -359,7 +366,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';
