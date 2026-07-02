@@ -46,7 +46,17 @@
     z-index: 1;
     border-bottom: 1px solid var(--border-strong);
     padding: 1.5rem 2rem;
-    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .header-streak {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    white-space: nowrap;
   }
 
   .site-name {
@@ -167,6 +177,7 @@
   .card-category.kunst        { background: #a08070; }
   .card-category.musik        { background: #8a7a9e; }
   .card-category.literatur    { background: #7a9070; }
+  .card-category.wirtschaft   { background: #8a7256; }
 
   .card-body {
     padding: 1.25rem 1.5rem;
@@ -228,6 +239,7 @@
 
 <header>
   <span class="site-name">Histogramm</span>
+  <span class="header-streak" id="headerStreak"></span>
 </header>
 
 <div class="hero">
@@ -241,6 +253,32 @@
 <main>
 
   <div class="section-label">Neu</div>
+
+  <a class="card" href="rachel-carson.html" data-tags="Wissenschaft, Umwelt, Zivilcourage, Gesundheit">
+    <div class="card-header">
+      <span class="card-date">USA, 1958</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Rachel Carson</div>
+      <p class="card-teaser">Ein Brief beschreibt tote Vögel nach einer DDT-Spritzung. Du bist Naturschriftstellerin, keine Aktivistin. Schreibst du trotzdem?</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="darwin.html" data-tags="Wissenschaft, Glaube, Familie, Mut">
+    <div class="card-header">
+      <span class="card-date">Kent, 1858</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Darwins Manuskript</div>
+      <p class="card-teaser">Vierzehn Jahre sitzt du auf einer Idee, die alles verändern wird. Dann kommt ein Brief — von jemandem, der sie gerade selbst entdeckt hat.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <div class="section-label">Ältere Histogramme</div>
 
   <a class="card" href="galileo.html" data-tags="Wissenschaft, Kirche, Wahrheit, Gewissen">
     <div class="card-header">
@@ -332,14 +370,110 @@
 
   <div class="section-label">In Vorbereitung</div>
 
-  <a class="card" href="darwin.html" data-tags="Wissenschaft, Mut, Familie, Glaube">
+  <a class="card" href="semmelweis.html" data-tags="Wissenschaft, Medizin, Zivilcourage">
     <div class="card-header">
-      <span class="card-date">England, 1859</span>
+      <span class="card-date">Wien, 1847</span>
       <span class="card-category wissenschaft">Wissenschaft</span>
     </div>
     <div class="card-body">
-      <div class="card-title">Darwins Manuskript</div>
-      <p class="card-teaser">Das Buch ist fertig. Deine Frau ist gläubig. Die Welt ist noch nicht bereit. Veröffentlichst du?</p>
+      <div class="card-title">Semmelweis</div>
+      <p class="card-teaser">Du weißt: Ärzte töten Wöchnerinnen, weil sie sich nicht die Hände waschen. Niemand glaubt dir. Schweigst du oder riskierst du deine Karriere?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="mauerfall.html" data-tags="Führung, Kalter Krieg, Gewissen, Deutschland">
+    <div class="card-header">
+      <span class="card-date">Ost-Berlin, 9. Nov. 1989</span>
+      <span class="card-category fuehrung">Führung</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Grenzoffizier</div>
+      <p class="card-teaser">Tausende stehen am Tor. Kein Befehl von oben, keine Anweisung. Du entscheidest, ob die Schlagbäume aufgehen.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="jesse-owens.html" data-tags="Sport, Gesellschaft, Mut, USA">
+    <div class="card-header">
+      <span class="card-date">Berlin, 1936</span>
+      <span class="card-category sport">Sport</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Jesse Owens</div>
+      <p class="card-teaser">Olympia unter Hitler. Boykottieren, um das Regime nicht zu legitimieren — oder antreten und die Propaganda live widerlegen?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="kindertransporte.html" data-tags="Zivilcourage, Familie, Krieg, Verlust">
+    <div class="card-header">
+      <span class="card-date">Wien, 1938</span>
+      <span class="card-category zivilcourage">Zivilcourage</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Die Kindertransporte</div>
+      <p class="card-teaser">Dein Kind darf allein nach England. Du nicht. Lässt du es gehen, wissend, dass ihr euch vielleicht nie wiederseht?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="apollo13.html" data-tags="Führung, Wissenschaft, Krise, USA">
+    <div class="card-header">
+      <span class="card-date">Houston, 1970</span>
+      <span class="card-category fuehrung">Führung</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Apollo 13</div>
+      <p class="card-teaser">Die Astronauten haben zu wenig Sauerstoff für den geplanten Kurs zurück zur Erde. Am Boden triffst du die Entscheidung.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="whistleblower.html" data-tags="Gewissen, Arbeit, Loyalität, Immer">
+    <div class="card-header">
+      <span class="card-date">Ohne Ort und Zeit</span>
+      <span class="card-category gewissen">Gewissen</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Whistleblower</div>
+      <p class="card-teaser">Du siehst: dein Arbeitgeber vertuscht etwas Gefährliches. Meldest du es — auf Kosten deines Jobs?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="chaplin.html" data-tags="Kunst, Krieg, Mut, Film">
+    <div class="card-header">
+      <span class="card-date">Hollywood, 1939</span>
+      <span class="card-category kunst">Kunst</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Chaplin</div>
+      <p class="card-teaser">Du willst Hitler öffentlich lächerlich machen, mitten im Krieg, mit deinem berühmtesten Film. Dein Studio warnt dich eindringlich.</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="mandela.html" data-tags="Gewissen, Widerstand, Gerechtigkeit, Südafrika">
+    <div class="card-header">
+      <span class="card-date">Rivonia-Prozess, 1964</span>
+      <span class="card-category gewissen">Gewissen</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Mandela</div>
+      <p class="card-teaser">Gewaltfreier Widerstand hat nichts erreicht. Bewaffneter Kampf ist eine Option. Überschreitest du diese Linie?</p>
+      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+    </div>
+  </a>
+
+  <a class="card" href="bankangestellte.html" data-tags="Wirtschaft, Gewissen, Krise, USA">
+    <div class="card-header">
+      <span class="card-date">New York, 2008</span>
+      <span class="card-category wirtschaft">Wirtschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Die Bankangestellte</div>
+      <p class="card-teaser">Du siehst faule Kredite, die als sicher verkauft werden. Meldest du es — bevor alles zusammenbricht?</p>
       <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
     </div>
   </a>
@@ -473,6 +607,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     Streak.markPlayedCards();
+    Streak.renderHeaderStreak('headerStreak');
   });
 </script>
 </body>
