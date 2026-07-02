@@ -263,39 +263,46 @@ const results = {
     A: { pct: 58, label: "Freiwillig nach Rom" },
     B: { pct: 31, label: "Zeit kaufen" },
     C: { pct: 11, label: "Offen verweigert" },
+    historical: 'A',
     narratives: {
-      A: "Mehr als die Hälfte geht freiwillig — Kooperation als Strategie, nicht als Kapitulation. Das ist auch das was Galileo tat: er reiste nach Rom, weil er glaubte, seine Argumente würden überzeugen.",
-      B: "Fast ein Drittel kauft Zeit. Klug — aber die Inquisition hatte Geduld, und der Sturm ging nicht vorbei.",
-      C: "Nur wenige verweigern offen. Das wäre die mutigste, sichtbarste Wahl — und historisch die gefährlichste."
+      A: "Das ist auch das, was Galileo tat: er reiste nach Rom, weil er glaubte, seine Argumente würden überzeugen. Kooperation als Strategie, nicht als Kapitulation.",
+      B: "Zeit kaufen wäre klug gewesen — aber die Inquisition hatte Geduld, und der Sturm ging nicht vorbei.",
+      C: "Das wäre die mutigste, sichtbarste Wahl gewesen — und historisch die gefährlichste."
     }
   },
   2: {
     A: { pct: 61, label: "Vollständig widerrufen" },
     B: { pct: 27, label: "Form widerrufen, Inhalt behalten" },
     C: { pct: 12, label: "Standgehalten" },
+    historical: 'A',
     narratives: {
-      A: "Die Mehrheit widerruft — das ist was Galileo tat, und was die meisten Menschen in dieser Lage täten. Leben ist wertvoller als das Recht haben. Und die Wahrheit bleibt wahr, egal was man sagt.",
-      B: "Über ein Viertel sucht den inneren Vorbehalt — die Worte sprechen, ohne sie zu meinen. Das ist moralisch komplex, und historisch schwer zu belegen.",
-      C: "Nur wenige halten stand — das ist das Märtyrertum, das die Legende will, aber das Galileo nicht wählte. Giordano Bruno hatte es gewählt. Er wurde verbrannt."
+      A: "Das ist, was Galileo tat. Leben ist wertvoller als das Recht haben — und die Wahrheit bleibt wahr, egal was man sagt.",
+      B: "Den inneren Vorbehalt zu suchen — die Worte zu sprechen, ohne sie zu meinen — ist moralisch komplex, und historisch schwer zu belegen.",
+      C: "Das ist das Märtyrertum, das die Legende will, aber das Galileo nicht wählte. Giordano Bruno hatte es gewählt. Er wurde verbrannt."
     }
   },
   3: {
     A: { pct: 71, label: "Erlaubt" },
     B: { pct: 22, label: "Stillschweigend erlaubt" },
     C: { pct: 7, label: "Verboten" },
+    historical: 'A',
     narratives: {
-      A: "Die deutliche Mehrheit erlaubt den Schmuggel — das Werk muss überleben. Das ist auch was historisch geschah: die Discorsi erschienen 1638 in Leiden.",
-      B: "Fast ein Viertel wählt den mittleren Weg: nicht verbieten, aber auch nicht offiziell erlauben. Viviani trägt die Verantwortung. Das ist eine Form von Feigheit — und von Klugheit.",
-      C: "Nur wenige verbieten es. Das wäre das Ende des Werkes gewesen. Galileo war 74, fast blind — aber er ließ das Manuskript ziehen."
+      A: "Das ist auch, was historisch geschah: die Discorsi erschienen 1638 in Leiden — geschmuggelt, während Galileo noch unter Hausarrest stand.",
+      B: "Der mittlere Weg: nicht verbieten, aber auch nicht offiziell erlauben, während Viviani die Verantwortung trägt. Eine Form von Feigheit — und von Klugheit.",
+      C: "Das wäre das Ende des Werkes gewesen. Galileo war 74, fast blind — aber er ließ das Manuskript ziehen."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Galileo 1633 · Vorladung: A (58% ✓) · Freiwillig nach Rom — wie er.", B: "Histogramm Galileo 1633 · Vorladung: B (31%) · Zeit kaufen.", C: "Histogramm Galileo 1633 · Vorladung: C (11%) · Offen verweigert." },
-  2: { A: "Histogramm Galileo 1633 · Verhör: A (61% ✓) · Widerrufen — wie er.", B: "Histogramm Galileo 1633 · Verhör: B (27%) · Form widerrufen, Inhalt behalten.", C: "Histogramm Galileo 1633 · Verhör: C (12%) · Standgehalten." },
-  3: { A: "Histogramm Galileo 1633 · Hausarrest: A (71% ✓) · Schmuggel erlaubt — wie er.", B: "Histogramm Galileo 1633 · Hausarrest: B (22%) · Stillschweigend erlaubt.", C: "Histogramm Galileo 1633 · Hausarrest: C (7%) · Verboten." }
-};
+const sceneNames = { 1: "Vorladung", 2: "Verhör", 3: "Hausarrest" };
+const scenarioTitle = "Histogramm Galileo 1633";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -358,7 +365,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';

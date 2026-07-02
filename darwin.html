@@ -257,39 +257,46 @@ const results = {
     A: { pct: 9, label: "Sofort veröffentlicht" },
     B: { pct: 63, label: "Weiter gewartet" },
     C: { pct: 28, label: "Einem Freund anvertraut" },
+    historical: 'B',
     narratives: {
-      A: "Nur wenige hätten 1844 sofort veröffentlicht. Darwin tat es nicht — und vierzehn Jahre später holte ihn genau das ein, was er befürchtet hatte: jemand anderes kam ihm zuvor.",
-      B: "Die Mehrheit wartet — genau das tat Darwin: vierzehn weitere Jahre, in denen er unter anderem acht Jahre lang Rankenfüßer untersuchte, nur um seine Methode wasserdicht zu machen.",
-      C: "Über ein Viertel vertraut sich einem Freund an — auch das stimmt: Der Geologe Charles Lyell kannte die Theorie seit 1844, Jahre bevor sie öffentlich wurde."
+      A: "Ein sofortiges Veröffentlichen 1844 hätte einen Unterschied gemacht: Darwin tat es nicht. Vierzehn Jahre später holte ihn genau das ein, was er befürchtet hatte — jemand anderes kam ihm zuvor.",
+      B: "Das war Darwins tatsächlicher Weg: vierzehn weitere Jahre, in denen er unter anderem acht Jahre lang Rankenfüßer untersuchte, nur um seine Methode wasserdicht zu machen.",
+      C: "Auch das tat Darwin tatsächlich: Der Geologe Charles Lyell kannte die Theorie bereits seit 1844, Jahre bevor sie öffentlich wurde."
     }
   },
   2: {
     A: { pct: 14, label: "Eigene Priorität gesichert" },
     B: { pct: 23, label: "Wallace den Ruhm überlassen" },
     C: { pct: 63, label: "Freunden überlassen" },
+    historical: 'C',
     narratives: {
-      A: "Eine Minderheit hätte sofort die eigene Priorität gesichert — nach den Regeln viktorianischer Wissenschaftsethik wäre das als unfair gegenüber Wallace gegolten.",
-      B: "Fast ein Viertel überlässt Wallace alles — eine großzügige Geste, die Darwin sich selbst nie erlaubt hätte, nach vierzehn Jahren Arbeit.",
-      C: "Die Mehrheit gibt die Entscheidung ab — das ist exakt, was geschah: Lyell und Hooker arrangierten eine gemeinsame Vorstellung beider Arbeiten vor der Linnean Society, ohne dass einer der beiden Autoren anwesend war."
+      A: "Nach den Regeln viktorianischer Wissenschaftsethik hätte das sofortige Sichern der eigenen Priorität als unfair gegenüber Wallace gegolten — Darwin vermied diesen Weg bewusst.",
+      B: "Wallace den vollen Ruhm zu überlassen wäre eine großzügige Geste gewesen, die sich Darwin selbst nach vierzehn Jahren Arbeit nie erlaubt hätte.",
+      C: "Genau das geschah: Lyell und Hooker arrangierten eine gemeinsame Vorstellung beider Arbeiten vor der Linnean Society, ohne dass einer der beiden Autoren anwesend war."
     }
   },
   3: {
     A: { pct: 57, label: "Ungeschönt veröffentlicht" },
     B: { pct: 31, label: "Abgemildert" },
     C: { pct: 12, label: "Weiter verzögert" },
+    historical: 'A',
     narratives: {
-      A: "Die Mehrheit veröffentlicht ungeschönt — das tat auch Darwin. Er vermied es zwar, die menschliche Abstammung direkt zu behandeln, milderte aber die Kernthese nicht ab. Das Buch war am Erscheinungstag ausverkauft.",
-      B: "Fast ein Drittel würde abmildern, aus Rücksicht auf Glauben und Familie — verständlich, aber nicht der Weg, den Darwin wählte.",
-      C: "Nur wenige verzögern weiter. Nach vierzehn Jahren Wartezeit war für Darwin der Punkt erreicht, an dem noch mehr Aufschub nur noch Angst gewesen wäre, keine Sorgfalt."
+      A: "Genau das tat Darwin: er milderte die Kernthese nicht ab, vermied lediglich eine direkte Passage über die menschliche Abstammung. Das Buch war am Erscheinungstag ausverkauft.",
+      B: "Eine Abmilderung aus Rücksicht auf Glauben und Familie wäre verständlich gewesen — es war aber nicht der Weg, den Darwin wählte.",
+      C: "Weiteres Verzögern kam für Darwin nicht mehr infrage: Nach vierzehn Jahren Wartezeit wäre noch mehr Aufschub für ihn selbst nur noch Angst gewesen, keine Sorgfalt."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Darwin 1858 · Die Schublade: A (9%) · Sofort veröffentlicht.", B: "Histogramm Darwin 1858 · Die Schublade: B (63% ✓) · Weiter gewartet — wie er.", C: "Histogramm Darwin 1858 · Die Schublade: C (28%) · Einem Freund anvertraut." },
-  2: { A: "Histogramm Darwin 1858 · Der Brief: A (14%) · Eigene Priorität gesichert.", B: "Histogramm Darwin 1858 · Der Brief: B (23%) · Wallace den Ruhm überlassen.", C: "Histogramm Darwin 1858 · Der Brief: C (63% ✓) · Freunden überlassen — wie er." },
-  3: { A: "Histogramm Darwin 1858 · Das Buch: A (57% ✓) · Ungeschönt veröffentlicht — wie er.", B: "Histogramm Darwin 1858 · Das Buch: B (31%) · Abgemildert.", C: "Histogramm Darwin 1858 · Das Buch: C (12%) · Weiter verzögert." }
-};
+const sceneNames = { 1: "Die Schublade", 2: "Der Brief", 3: "Das Buch" };
+const scenarioTitle = "Histogramm Darwin 1858";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -352,7 +359,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';

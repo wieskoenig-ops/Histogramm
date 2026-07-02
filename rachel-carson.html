@@ -257,39 +257,46 @@ const results = {
     A: { pct: 68, label: "Sofort umfassend recherchiert" },
     B: { pct: 21, label: "Kurzer Zeitungsartikel" },
     C: { pct: 11, label: "An Kollegen abgegeben" },
+    historical: 'A',
     narratives: {
-      A: "Die deutliche Mehrheit entscheidet sich für die große Recherche — genau das tat Carson: vier Jahre lang sammelte sie Daten, bevor sie ein Wort veröffentlichte, um kein Angriffsziel für schlampige Wissenschaft zu bieten.",
-      B: "Über ein Fünftel würde es bei einem kurzen Artikel belassen — sicherer, aber wohl folgenlos geblieben. Die Chemieindustrie hätte einen einzelnen Zeitungstext leicht weggewischt.",
-      C: "Nur wenige geben das Thema ab. Frauen in der Wissenschaft standen damals genau unter diesem Druck — Carson tat es nicht, obwohl sie wusste, was ihr bevorstand."
+      A: "Genau das tat Carson: vier Jahre lang sammelte sie Daten, bevor sie ein Wort veröffentlichte, um kein Angriffsziel für schlampige Wissenschaft zu bieten.",
+      B: "Ein kurzer Artikel wäre der sicherere Weg gewesen — vermutlich aber folgenlos: Die Chemieindustrie hätte einen einzelnen Zeitungstext leicht weggewischt.",
+      C: "Frauen in der Wissenschaft standen damals genau unter diesem Druck, ein Thema abzugeben — Carson tat es nicht, obwohl sie wusste, was ihr bevorstand."
     }
   },
   2: {
     A: { pct: 19, label: "Komplett geheim gehalten" },
     B: { pct: 57, label: "Kleinem Kreis anvertraut, weitergearbeitet" },
     C: { pct: 24, label: "Pausiert" },
+    historical: 'B',
     narratives: {
-      A: "Eine Minderheit hätte absolute Geheimhaltung gewählt — nah an dem, was Carson tat, auch wenn ein sehr kleiner Kreis enger Freunde eingeweiht war.",
-      B: "Die Mehrheit informiert nur wenige und arbeitet weiter — das ist exakt Carsons Weg: durch Mastektomie und Bestrahlung hindurch, nach außen unverändert, während die Krankheit sich längst ausbreitete.",
-      C: "Fast ein Viertel würde pausieren. Carson tat das nie — sie hatte das Gefühl, keine Zeit mehr zu haben, die sie sich nehmen konnte."
+      A: "Absolute Geheimhaltung kommt nah an das, was Carson tat — auch wenn ein sehr kleiner Kreis enger Freunde eingeweiht war.",
+      B: "Das ist exakt Carsons Weg: durch Mastektomie und Bestrahlung hindurch, nach außen unverändert, während sich die Krankheit längst ausbreitete.",
+      C: "Eine Pause legte Carson nie ein — sie hatte das Gefühl, keine Zeit mehr zu haben, die sie sich nehmen konnte."
     }
   },
   3: {
     A: { pct: 64, label: "Live verteidigt" },
     B: { pct: 27, label: "Verlag übernehmen lassen" },
     C: { pct: 9, label: "Zurückgezogen" },
+    historical: 'A',
     narratives: {
-      A: "Die Mehrheit geht ins Fernsehen — das ist genau, was geschah: die CBS-Sendung im April 1963 gilt heute als der Moment, der die öffentliche Meinung kippen ließ, obwohl Carsons Krebs zu diesem Zeitpunkt bereits gestreut hatte.",
-      B: "Über ein Viertel überlässt es dem Verlag — nachvollziehbar angesichts ihrer Gesundheit, aber es hätte der Kampagne die stärkste Stimme genommen.",
-      C: "Fast niemand zieht Passagen zurück. Carsons Daten waren so gründlich recherchiert, dass sie 1963 von einem Regierungsausschuss unter Präsident Kennedy offiziell bestätigt wurden."
+      A: "Genau das geschah: die CBS-Sendung im April 1963 gilt heute als der Moment, der die öffentliche Meinung kippen ließ, obwohl Carsons Krebs zu diesem Zeitpunkt bereits gestreut hatte.",
+      B: "Nachvollziehbar angesichts ihrer Gesundheit — es hätte der Kampagne aber ihre stärkste Stimme genommen.",
+      C: "Carsons Daten waren so gründlich recherchiert, dass sie 1963 von einem Regierungsausschuss unter Präsident Kennedy offiziell bestätigt wurden — ein Zurückziehen wäre nicht nötig gewesen."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Rachel Carson 1958 · Der Brief: A (68% ✓) · Sofort recherchiert — wie sie.", B: "Histogramm Rachel Carson 1958 · Der Brief: B (21%) · Kurzer Artikel.", C: "Histogramm Rachel Carson 1958 · Der Brief: C (11%) · An Kollegen abgegeben." },
-  2: { A: "Histogramm Rachel Carson 1958 · Die Diagnose: A (19%) · Komplett geheim gehalten.", B: "Histogramm Rachel Carson 1958 · Die Diagnose: B (57% ✓) · Weitergearbeitet — wie sie.", C: "Histogramm Rachel Carson 1958 · Die Diagnose: C (24%) · Pausiert." },
-  3: { A: "Histogramm Rachel Carson 1958 · Gegenangriff: A (64% ✓) · Live verteidigt — wie sie.", B: "Histogramm Rachel Carson 1958 · Gegenangriff: B (27%) · Verlag übernehmen lassen.", C: "Histogramm Rachel Carson 1958 · Gegenangriff: C (9%) · Zurückgezogen." }
-};
+const sceneNames = { 1: "Der Brief", 2: "Die Diagnose", 3: "Gegenangriff" };
+const scenarioTitle = "Histogramm Rachel Carson 1958";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie sie." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -352,7 +359,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';
