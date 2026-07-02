@@ -260,39 +260,46 @@ const results = {
     A: { pct: 38, label: "Zustimmung zum Kapitän" },
     B: { pct: 41, label: "Auftauchen vor Entscheidung" },
     C: { pct: 21, label: "Verweigerung" },
+    historical: 'B',
     narratives: {
-      A: "Über ein Drittel folgt der Logik der Lage: keine Zeit, keine Information, also handeln. Das ist die Logik, die fast zum Atomkrieg geführt hätte.",
-      B: "Die knappe Mehrheit sucht den dritten Weg — weder gehorchen noch verweigern, sondern zuerst wissen wollen. Genau das tat in der echten Geschichte Archipow.",
-      C: "Ein Fünftel verweigert sofort. Mutig — und in jenem Moment kaum durchsetzbar gegen einen entschlossenen Kapitän."
+      A: "Diese Logik — keine Zeit, keine Information, also handeln — ist genau die Logik, die fast zum Atomkrieg geführt hätte.",
+      B: "Der dritte Weg — weder gehorchen noch verweigern, sondern zuerst wissen wollen — ist genau das, was in der echten Geschichte der Offizier Wassili Archipow tat.",
+      C: "Sofortige Verweigerung wäre mutig gewesen — und in jenem Moment kaum durchsetzbar gegen einen entschlossenen Kapitän."
     }
   },
   2: {
     A: { pct: 22, label: "Meinung geändert" },
     B: { pct: 46, label: "Kompromiss: Auftauchen" },
     C: { pct: 32, label: "Hart geblieben" },
+    historical: 'B',
     narratives: {
-      A: "Gruppendruck wirkt — selbst unter Lebensgefahr ändert ein gutes Drittel die Position um der Einigkeit willen.",
-      B: "Die Mehrheit bleibt beim Mittelweg. Genau diese Hartnäckigkeit eines Einzelnen hat die echte Geschichte verändert.",
-      C: "Ein knappes Drittel bleibt vollständig stur. Historisch betrachtet: genau diese Sturheit hat möglicherweise die Welt gerettet."
+      A: "Gruppendruck wirkt — selbst unter Lebensgefahr ändert sich Position oft um der Einigkeit willen.",
+      B: "Der Mittelweg blieb bestehen. Genau diese Hartnäckigkeit eines Einzelnen hat die echte Geschichte verändert.",
+      C: "Vollständig stur zu bleiben — historisch betrachtet hat genau diese Sturheit möglicherweise die Welt gerettet."
     }
   },
   3: {
     A: { pct: 14, label: "Feuer freigeben" },
     B: { pct: 51, label: "Auftauchen erzwingen" },
     C: { pct: 35, label: "Endgültig verweigert" },
+    historical: 'B',
     narratives: {
-      A: "Nur eine kleine Minderheit hätte am Ende wirklich gefeuert. Unter extremem Druck bleibt der Reflex zur Zurückhaltung stärker als gedacht.",
-      B: "Die Mehrheit entscheidet sich für genau das, was real geschah: Auftauchen statt Schießen. Diese Mehrheit hätte die Geschichte bestätigt.",
-      C: "Über ein Drittel verweigert bis zum Ende kompromisslos. Das ist die seltenste, aber konsequenteste Haltung."
+      A: "Unter extremem Druck bleibt der Reflex zur Zurückhaltung oft stärker als gedacht — Feuer freizugeben wäre der seltenere Ausgang gewesen.",
+      B: "Genau das geschah real: Auftauchen statt Schießen. Archipows Weigerung, dem Angriffsbefehl zuzustimmen, verhinderte mitten in der Kubakrise einen Atomtorpedo-Abschuss.",
+      C: "Bis zum Ende kompromisslos zu verweigern wäre die konsequenteste, aber auch seltenste Haltung gewesen."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Kuba 1962 · Stunde 1: A (38%) · Zustimmung zum Kapitän.", B: "Histogramm Kuba 1962 · Stunde 1: B (41% ✓) · Erst auftauchen, dann entscheiden.", C: "Histogramm Kuba 1962 · Stunde 1: C (21%) · Sofort verweigert." },
-  2: { A: "Histogramm Kuba 1962 · Stunde 2: A (22%) · Meinung geändert.", B: "Histogramm Kuba 1962 · Stunde 2: B (46% ✓) · Kompromiss: Auftauchen.", C: "Histogramm Kuba 1962 · Stunde 2: C (32%) · Hart geblieben." },
-  3: { A: "Histogramm Kuba 1962 · Letzte Stunde: A (14%) · Feuer freigegeben.", B: "Histogramm Kuba 1962 · Letzte Stunde: B (51% ✓) · Auftauchen erzwungen — wie real geschehen.", C: "Histogramm Kuba 1962 · Letzte Stunde: C (35%) · Endgültig verweigert." }
-};
+const sceneNames = { 1: "Stunde 1", 2: "Stunde 2", 3: "Letzte Stunde" };
+const scenarioTitle = "Histogramm Kuba 1962";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie real geschehen." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -355,7 +362,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';

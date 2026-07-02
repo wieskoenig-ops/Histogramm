@@ -257,39 +257,46 @@ const results = {
     A: { pct: 31, label: "Aufgestanden" },
     B: { pct: 28, label: "Sitzen geblieben, geschwiegen" },
     C: { pct: 41, label: "Nein gesagt" },
+    historical: 'C',
     narratives: {
-      A: "Fast ein Drittel wählt das Nachgeben — vernünftig, sicher, und die Entscheidung die die meisten Menschen in diesem Moment getroffen hätten. Historisch war das nicht die Entscheidung von Rosa Parks.",
-      B: "Schweigendes Sitzen ist eine eigene Form des Widerstands — gewaltlos, eindeutig, ohne Konfrontation. Knapp dahinter der laute Widerspruch.",
-      C: "Die Mehrheit sagt Nein. Ein kurzes, ruhiges Wort — und damit einer der bekanntesten Momente der Bürgerrechtsbewegung."
+      A: "Nachgeben wäre vernünftig und sicher gewesen — die Entscheidung, die viele Menschen in diesem Moment getroffen hätten. Historisch war das nicht die Entscheidung von Rosa Parks.",
+      B: "Schweigendes Sitzen ist eine eigene Form des Widerstands — gewaltlos, eindeutig, ohne Konfrontation.",
+      C: "Ein kurzes, ruhiges Wort — und damit einer der bekanntesten Momente der Bürgerrechtsbewegung."
     }
   },
   2: {
     A: { pct: 18, label: "Doch aufgestanden" },
     B: { pct: 54, label: "Ruhig sitzen geblieben" },
     C: { pct: 28, label: "Laut gesprochen" },
+    historical: 'B',
     narratives: {
-      A: "Weniger als ein Fünftel zieht in letzter Minute zurück. Unter dem Druck der Verhaftung klar die seltenste Wahl.",
-      B: "Die Mehrheit bleibt ruhig — das ist nah an dem, was Rosa Parks selbst beschrieben hat. Keine Dramatik, keine Provokation. Nur die stille Weigerung.",
-      C: "Über ein Viertel spricht laut. Historisch schwerer zu belegen — Parks war bekannt für ihre Stille, nicht für Konfrontation."
+      A: "In letzter Minute zurückzuziehen wäre unter dem Druck der Verhaftung eine nachvollziehbare, aber seltene Reaktion.",
+      B: "Das ist nah an dem, was Rosa Parks selbst beschrieben hat. Keine Dramatik, keine Provokation. Nur die stille Weigerung.",
+      C: "Laut zu sprechen ist historisch schwerer zu belegen — Parks war bekannt für ihre Stille, nicht für Konfrontation."
     }
   },
   3: {
     A: { pct: 14, label: "Abgelehnt" },
     B: { pct: 33, label: "Um Bedenkzeit gebeten" },
     C: { pct: 53, label: "Sofort ja gesagt" },
+    historical: 'C',
     narratives: {
-      A: "Nur wenige lehnen ab — in diesem Moment, nach allem was passiert ist, fällt das schwer.",
-      B: "Ein Drittel bittet um Bedenkzeit. Menschlich, verständlich — und historisch nicht das, was Parks tat.",
-      C: "Die Mehrheit sagt sofort ja. Historisch korrekt — Parks war seit Jahren auf diesen Moment vorbereitet, auch wenn sie ihn nicht geplant hatte."
+      A: "Abzulehnen fällt in diesem Moment schwer, nach allem was gerade passiert ist.",
+      B: "Um Bedenkzeit zu bitten wäre menschlich und verständlich gewesen — historisch aber nicht das, was Parks tat.",
+      C: "Historisch korrekt: Parks war seit Jahren auf diesen Moment vorbereitet, auch wenn sie ihn nicht geplant hatte."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Rosa Parks 1955 · Bus: A (31%) · Aufgestanden.", B: "Histogramm Rosa Parks 1955 · Bus: B (28%) · Sitzen, geschwiegen.", C: "Histogramm Rosa Parks 1955 · Bus: C (41% ✓) · Nein gesagt — wie sie." },
-  2: { A: "Histogramm Rosa Parks 1955 · Verhaftung: A (18%) · Doch aufgestanden.", B: "Histogramm Rosa Parks 1955 · Verhaftung: B (54% ✓) · Ruhig geblieben.", C: "Histogramm Rosa Parks 1955 · Verhaftung: C (28%) · Laut gesprochen." },
-  3: { A: "Histogramm Rosa Parks 1955 · Entscheidung: A (14%) · Abgelehnt.", B: "Histogramm Rosa Parks 1955 · Entscheidung: B (33%) · Bedenkzeit erbeten.", C: "Histogramm Rosa Parks 1955 · Entscheidung: C (53% ✓) · Sofort ja — wie sie." }
-};
+const sceneNames = { 1: "Bus", 2: "Verhaftung", 3: "Entscheidung" };
+const scenarioTitle = "Histogramm Rosa Parks 1955";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie sie." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -352,7 +359,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';

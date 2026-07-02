@@ -768,9 +768,9 @@ const results = {
     B: { pct: 31, label: "Warten" },
     C: { pct: 17, label: "Boote vorbereiten" },
     narratives: {
-      A: "Die Mehrheit überträgt die Verantwortung nach oben — ein vertrauter Reflex in Hierarchien. Der Kapitän wurde geweckt. Die nächsten zehn Minuten gehörten ihm.",
+      A: "Die Verantwortung nach oben zu übertragen ist ein vertrauter Reflex in Hierarchien. Der Kapitän wurde geweckt. Die nächsten zehn Minuten gehörten ihm.",
       B: "Abwarten erscheint vernünftig: mehr Information, weniger Panik. Doch jede Minute Warten ist eine Minute weniger für die Boote.",
-      C: "Die Minderheit, die still die Boote vorbereitet hat, dachte weiter als der Moment verlangte. Klug — aber niemand wusste es in jener Nacht."
+      C: "Still die Boote vorzubereiten heißt, weiter zu denken als der Moment verlangt. Klug — aber niemand wusste es in jener Nacht."
     }
   },
   2: {
@@ -779,8 +779,8 @@ const results = {
     C: { pct: 15, label: "Boot sofort ablassen" },
     narratives: {
       A: "Das Protokoll gibt Sicherheit — und Verantwortung. Wer sich daran hält, hat sich an die Regeln gehalten. Was die Regeln verschwiegen, war eine andere Frage.",
-      B: "Die knappe Mehrheit dachte an die, die niemand informiert hatte. Ob die Zeit reichte, ist eine andere Geschichte.",
-      C: "15 % haben das Pragmatischste getan: das Boot weg, das nächste füllen. In Zahlen vertretbar. Im Moment unerträglich."
+      B: "An die zu denken, die niemand informiert hatte. Ob die Zeit reichte, ist eine andere Geschichte.",
+      C: "Das Pragmatischste: das Boot weg, das nächste füllen. In Zahlen vertretbar. Im Moment unerträglich."
     }
   },
   3: {
@@ -788,18 +788,26 @@ const results = {
     B: { pct: 38, label: "Platz abgeben" },
     C: { pct: 33, label: "Bleiben ohne Kalkulation" },
     narratives: {
-      A: "Weniger als ein Drittel hat sich für das eigene Überleben entschieden. Die meisten haben das für falsch gehalten — und dennoch ist es die einzige Entscheidung, die niemanden schlechter stellt.",
+      A: "Sich für das eigene Überleben zu entscheiden — die einzige Wahl, die niemanden schlechter stellt, auch wenn die meisten sie für falsch halten würden.",
       B: "Den Lautesten zu retten ist keine gerechte Wahl — aber in jenem Moment die menschlichste. Man rettet, was greifbar ist.",
-      C: "Ein Drittel hat nicht kalkuliert. Hat einfach nicht eingestiegen. Ob das Opfer, Würde oder Erstarrung war — das wussten nicht einmal sie selbst."
+      C: "Nicht zu kalkulieren. Einfach nicht einzusteigen. Ob das Opfer, Würde oder Erstarrung war — das wussten nicht einmal die Betroffenen selbst."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm 14.4.1912 · Nacht 1: A (52% ✓) · Wer entscheidet, wenn der Kapitän schläft?", B: "Histogramm 14.4.1912 · Nacht 1: B (31%) · Gegen den Strom der Mehrheit.", C: "Histogramm 14.4.1912 · Nacht 1: C (17%) · In der Minderheit — aber vorausdenkend." },
-  2: { A: "Histogramm 14.4.1912 · Nacht 2: A (41%) · Protokoll oder Menschlichkeit?", B: "Histogramm 14.4.1912 · Nacht 2: B (44% ✓) · Knapp mit der Mehrheit.", C: "Histogramm 14.4.1912 · Nacht 2: C (15%) · Das Pragmatische und das Unmögliche." },
-  3: { A: "Histogramm 14.4.1912 · Nacht 3: A (29%) · Überleben ohne Schuldgefühl?", B: "Histogramm 14.4.1912 · Nacht 3: B (38% ✓) · Den Nächsten retten.", C: "Histogramm 14.4.1912 · Nacht 3: C (33%) · Bleiben ohne Grund." }
+const sceneNames = { 1: "Nacht 1", 2: "Nacht 2", 3: "Nacht 3" };
+const scenarioTitle = "Histogramm 14.4.1912";
+const taglines = {
+  1: { A: "Wer entscheidet, wenn der Kapitän schläft?", B: "Abwarten in der ersten Nacht.", C: "Vorausdenken, bevor es jemand verlangt." },
+  2: { A: "Protokoll oder Menschlichkeit?", B: "Die informieren, die niemand informiert hat.", C: "Das Pragmatische und das Unmögliche." },
+  3: { A: "Überleben ohne Schuldgefühl?", B: "Den Nächsten retten.", C: "Bleiben ohne Grund." }
 };
+
+function buildShareText(day, letter, pct, isMajority) {
+  const info = results[day][letter];
+  const tag = isMajority ? " ✓" : "";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%${tag}) · ${taglines[day][letter]}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -877,7 +885,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter], isMajority);
 
   const panel = document.getElementById('result' + day);
   panel.classList.add('visible');

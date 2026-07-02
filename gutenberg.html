@@ -260,39 +260,46 @@ const results = {
     A: { pct: 44, label: "Zugesagt" },
     B: { pct: 39, label: "Mittelweg vorgeschlagen" },
     C: { pct: 17, label: "Offen widersprochen" },
+    historical: 'A',
     narratives: {
-      A: "Fast die Hälfte sagt zu — ohne Kapital keine Erfindung. Pragmatismus, der historisch genau das war, was geschah.",
-      B: "Knapp dahinter: der Versuch, beides zu vereinen. Diese Mittelweg-Haltung ist menschlich naheliegend — und in starren Verträgen oft schwer durchzuhalten.",
-      C: "Nur wenige widersprechen offen. Mutig — aber ohne Fusts Geld hätte es die Druckpresse möglicherweise nie gegeben."
+      A: "Ohne Kapital keine Erfindung — Pragmatismus, der historisch genau das war, was geschah.",
+      B: "Der Versuch, beides zu vereinen, ist menschlich naheliegend — und in starren Verträgen oft schwer durchzuhalten.",
+      C: "Mutig, offen zu widersprechen — aber ohne Fusts Geld hätte es die Druckpresse möglicherweise nie gegeben."
     }
   },
   2: {
     A: { pct: 27, label: "Abgelehnt" },
     B: { pct: 35, label: "Heimlich gedruckt" },
     C: { pct: 38, label: "Offen versucht zu überzeugen" },
+    historical: 'B',
     narratives: {
-      A: "Über ein Viertel hält den Vertrag für bindend — Loyalität gegenüber der Abmachung wiegt schwerer als die eigene Vision.",
-      B: "Mehr als ein Drittel wählt den heimlichen Weg — riskant, aber oft die einzige Möglichkeit, etwas Neues neben einer rigiden Vorgabe zu erschaffen.",
-      C: "Die knappe Mehrheit sucht das offene Gespräch. Der ehrlichste Weg — und historisch wohl der, der am wenigsten genutzt wurde."
+      A: "Den Vertrag für bindend zu halten wiegt Loyalität gegenüber der Abmachung schwerer als die eigene Vision.",
+      B: "Der heimliche Weg ist riskant, aber historisch wohl am nächsten dran: Gutenberg nutzte Zeit und Mittel für die Bibel, mehr als im ursprünglichen Vertrag mit Fust vorgesehen war.",
+      C: "Das offene Gespräch wäre der ehrlichste Weg gewesen — aber historisch wohl der, der am wenigsten genutzt wurde."
     }
   },
   3: {
     A: { pct: 31, label: "Bis zum Ende gekämpft" },
     B: { pct: 49, label: "Vergleich gesucht" },
     C: { pct: 20, label: "Alles überlassen" },
+    historical: 'B',
     narratives: {
-      A: "Fast ein Drittel kämpft weiter — Idealismus gegen wirtschaftliche Realität. Historisch verlor Gutenberg trotzdem.",
-      B: "Die Mehrheit wählt den Vergleich — pragmatisch, und tatsächlich nah an dem, was in der Realität geschah: Gutenberg verlor die große Werkstatt, baute aber andernorts weiter.",
-      C: "Ein Fünftel gibt vollständig auf. Die seltenste Wahl — und historisch nicht das, was Gutenberg am Ende tat."
+      A: "Idealismus gegen wirtschaftliche Realität — historisch verlor Gutenberg den Rechtsstreit trotzdem.",
+      B: "Nah an dem, was in der Realität geschah: Gutenberg verlor die große Werkstatt an Fust, baute aber mit neuer Unterstützung andernorts weiter.",
+      C: "Die seltenste Wahl — und historisch nicht das, was Gutenberg am Ende tat. Er druckte bis zu seinem Tod weiter."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Gutenberg 1450 · Gespräch 1: A (44% ✓) · Zugesagt.", B: "Histogramm Gutenberg 1450 · Gespräch 1: B (39%) · Mittelweg vorgeschlagen.", C: "Histogramm Gutenberg 1450 · Gespräch 1: C (17%) · Offen widersprochen." },
-  2: { A: "Histogramm Gutenberg 1450 · Ein Jahr später: A (27%) · Abgelehnt.", B: "Histogramm Gutenberg 1450 · Ein Jahr später: B (35%) · Heimlich gedruckt.", C: "Histogramm Gutenberg 1450 · Ein Jahr später: C (38% ✓) · Offen überzeugt." },
-  3: { A: "Histogramm Gutenberg 1450 · Rechtsstreit: A (31%) · Bis zum Ende gekämpft.", B: "Histogramm Gutenberg 1450 · Rechtsstreit: B (49% ✓) · Vergleich gesucht — wie real geschehen.", C: "Histogramm Gutenberg 1450 · Rechtsstreit: C (20%) · Alles überlassen." }
-};
+const sceneNames = { 1: "Gespräch 1", 2: "Ein Jahr später", 3: "Rechtsstreit" };
+const scenarioTitle = "Histogramm Gutenberg 1450";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie real geschehen." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -355,7 +362,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';
