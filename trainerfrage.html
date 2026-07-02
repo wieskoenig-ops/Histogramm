@@ -263,9 +263,9 @@ const results = {
     B: { pct: 35, label: "Herausforderer" },
     C: { pct: 17, label: "Ausgewichen" },
     narratives: {
-      A: "Fast die Hälfte wählt Vertrauen und Kontinuität — die Legende spielt. Das ist die konservative, sichere Wahl, und im Sport meistens die richtige.",
-      B: "Über ein Drittel setzt auf Frische. Riskant, mutig, und manchmal genau richtig — weil niemand die Last der Erwartung trägt.",
-      C: "Nur wenige weichen aus. Führungsstärke bedeutet oft: Entscheidungen treffen die wehtun, nicht Entscheidungen verschieben."
+      A: "Vertrauen und Kontinuität — die Legende spielt. Das ist die konservative, sichere Wahl, und im Sport meistens die richtige.",
+      B: "Auf Frische zu setzen ist riskant, mutig, und manchmal genau richtig — weil niemand die Last der Erwartung trägt.",
+      C: "Auszuweichen ist selten Führungsstärke. Die bedeutet oft: Entscheidungen treffen, die wehtun, statt sie zu verschieben."
     }
   },
   2: {
@@ -273,9 +273,9 @@ const results = {
     B: { pct: 38, label: "Ehrlich gezweifelt" },
     C: { pct: 21, label: "Vertraut — aber ausgewechselt" },
     narratives: {
-      A: "Fast die Hälfte sagt ja, klar, ohne Einschränkung. Das gibt Sicherheit — aber ist es ehrlich?",
-      B: "Ehrlichkeit über Zweifel ist selten im professionellen Sport. Knapp dahinter — und vielleicht die menschlichste Antwort.",
-      C: "Ein Fünftel sagt: ich vertraue dir, aber der andere spielt. Das ist schwer zu sagen — und noch schwerer zu hören."
+      A: "Ja, klar, ohne Einschränkung zu sagen gibt Sicherheit — aber ist es ehrlich?",
+      B: "Ehrlichkeit über Zweifel ist selten im professionellen Sport — und vielleicht die menschlichste Antwort.",
+      C: "'Ich vertraue dir, aber der andere spielt' ist schwer zu sagen — und noch schwerer zu hören."
     }
   },
   3: {
@@ -283,18 +283,21 @@ const results = {
     B: { pct: 31, label: "Offen gelassen" },
     C: { pct: 17, label: "Tränen erwähnt" },
     narratives: {
-      A: "Die Mehrheit lobt — das ist die einfachste, freundlichste, und oft richtige Wahl nach einem Sieg.",
-      B: "Ein Drittel lässt bewusst offen. Das ist Führungsstärke oder Feigheit, je nach Perspektive.",
-      C: "Nur wenige sprechen die Tränen an. Das wäre das ehrlichste Statement — und das riskanteste."
+      A: "Loben ist die einfachste, freundlichste, und oft richtige Wahl nach einem Sieg.",
+      B: "Bewusst offen zu lassen ist Führungsstärke oder Feigheit, je nach Perspektive.",
+      C: "Die Tränen anzusprechen wäre das ehrlichste Statement gewesen — und das riskanteste."
     }
   }
 };
 
-const shareTexts = {
-  1: { A: "Histogramm Trainerfrage 2026 · Aufstellung: A (48% ✓) · Stammtorwart.", B: "Histogramm Trainerfrage 2026 · Aufstellung: B (35%) · Herausforderer.", C: "Histogramm Trainerfrage 2026 · Aufstellung: C (17%) · Ausgewichen." },
-  2: { A: "Histogramm Trainerfrage 2026 · Gespräch: A (41% ✓) · Vertrauen ausgesprochen.", B: "Histogramm Trainerfrage 2026 · Gespräch: B (38%) · Ehrlich gezweifelt.", C: "Histogramm Trainerfrage 2026 · Gespräch: C (21%) · Vertraut, aber ausgewechselt." },
-  3: { A: "Histogramm Trainerfrage 2026 · Nach dem Spiel: A (52% ✓) · Öffentlich gelobt.", B: "Histogramm Trainerfrage 2026 · Nach dem Spiel: B (31%) · Offen gelassen.", C: "Histogramm Trainerfrage 2026 · Nach dem Spiel: C (17%) · Tränen erwähnt." }
-};
+const sceneNames = { 1: "Aufstellung", 2: "Gespräch", 3: "Nach dem Spiel" };
+const scenarioTitle = "Histogramm Trainerfrage 2026";
+
+function buildShareText(day, letter, pct, isMajority) {
+  const info = results[day][letter];
+  const tag = isMajority ? " ✓" : "";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%${tag}) · ${info.label}.`;
+}
 
 function selectOption(day, letter, btn) {
   const options = btn.parentElement.querySelectorAll('.decision-option');
@@ -357,7 +360,7 @@ async function submitDay(day) {
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
   document.getElementById('narrative' + day).textContent = narratives[letter];
-  document.getElementById('shareText' + day).textContent = shareTexts[day][letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter], isMajority);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   submitBtn.textContent = 'Entscheiden →';
