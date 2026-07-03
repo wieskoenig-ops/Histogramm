@@ -102,6 +102,30 @@
     border-bottom-color: var(--rostrot-hover);
   }
 
+  .surprise-row {
+    text-align: center;
+    margin-top: 1.75rem;
+  }
+
+  .btn-surprise {
+    background: none;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 0.7rem 1.6rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .btn-surprise:hover {
+    border-color: var(--amber);
+    color: var(--amber-dark);
+    background: var(--amber-light);
+  }
+
   main {
     position: relative;
     z-index: 1;
@@ -215,6 +239,60 @@
     letter-spacing: 0.04em;
   }
 
+  /* Kompakte Chip-Darstellung für Platzhalter ("In Vorbereitung") */
+  .chip-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 2rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem 0.4rem 0.55rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .chip:hover {
+    border-color: var(--amber);
+    transform: translateY(-1px);
+  }
+
+  .chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .chip-dot.fuehrung     { background: #b89a5a; }
+  .chip-dot.krieg        { background: #8fa3b1; }
+  .chip-dot.zivilcourage { background: #c4846a; }
+  .chip-dot.wissenschaft { background: #7a9e8e; }
+  .chip-dot.gewissen     { background: #9a8fb0; }
+  .chip-dot.sport        { background: #b07a5a; }
+  .chip-dot.kunst        { background: #a08070; }
+  .chip-dot.musik        { background: #8a7a9e; }
+  .chip-dot.literatur    { background: #7a9070; }
+  .chip-dot.wirtschaft   { background: #8a7256; }
+
+  .chip-title {
+    font-family: 'Georgia', serif;
+    color: var(--ink);
+  }
+
+  .chip-date {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
   footer {
     position: relative;
     z-index: 1;
@@ -248,6 +326,9 @@
   <p class="hero-sub" style="margin-top:1.25rem; font-style: normal; font-size: 0.92rem; opacity: 0.85;">
     Jedes <a href="ueber.html" class="hero-word">Histogramm</a> versetzt dich in einen echten oder erfundenen Moment der Geschichte — als Person, die entscheiden muss, ohne zu wissen, wie es ausgeht. Drei kurze Entscheidungen, keine richtige Antwort. Am Ende siehst du, wie alle anderen gewählt haben.
   </p>
+  <div class="surprise-row">
+    <button class="btn-surprise" onclick="surpriseMe()">Überrasch mich →</button>
+  </div>
 </div>
 
 <main>
@@ -272,6 +353,42 @@
     <div class="card-body">
       <div class="card-title">Willy Brandt</div>
       <p class="card-teaser">Eine Rede ist vorbereitet, ein Kranz liegt bereit. Du kniest stattdessen nieder — ungeplant.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="gagarin.html" data-tags="Wissenschaft, Mut, Kalter Krieg, UdSSR">
+    <div class="card-header">
+      <span class="card-date">Baikonur, 1961</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Gagarin</div>
+      <p class="card-teaser">Niemand weiß, ob ein Mensch das hier überlebt. Du bist der Erste, der es herausfindet.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="rosa-luxemburg.html" data-tags="Gewissen, Führung, Deutschland, Revolution">
+    <div class="card-header">
+      <span class="card-date">Berlin, 1919</span>
+      <span class="card-category gewissen">Gewissen</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Rosa Luxemburg</div>
+      <p class="card-teaser">Du glaubst, der Moment ist noch nicht reif. Die Arbeiter glauben etwas anderes — und wollen dich an ihrer Seite.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+
+  <a class="card" href="frida-kahlo.html" data-tags="Kunst, Mexiko, Körper, Mut">
+    <div class="card-header">
+      <span class="card-date">Mexiko-Stadt, 1925</span>
+      <span class="card-category kunst">Kunst</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Frida Kahlo</div>
+      <p class="card-teaser">Ein Unfall hat deinen Körper für immer verändert. Was machst du mit der Zeit, die dir jetzt bleibt?</p>
       <div class="card-cta">3 Entscheidungen →</div>
     </div>
   </a>
@@ -434,199 +551,26 @@
 
   <div class="section-label">In Vorbereitung</div>
 
-
-  <a class="card" href="petrov.html" data-tags="Gewissen, Krieg, Kalter Krieg, Gehorsam">
-    <div class="card-header">
-      <span class="card-date">Sowjetunion, 1983</span>
-      <span class="card-category gewissen">Gewissen</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Stanislav Petrov</div>
-      <p class="card-teaser">Die Frühwarnanlage meldet einen amerikanischen Atomraketenangriff. Protokoll verlangt: melden, weiterleiten. Du hältst es für einen Fehlalarm.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="wangari-maathai.html" data-tags="Zivilcourage, Umwelt, Afrika, Frauen">
-    <div class="card-header">
-      <span class="card-date">Kenia, 1970er–2000er</span>
-      <span class="card-category zivilcourage">Zivilcourage</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Wangari Maathai</div>
-      <p class="card-teaser">Du forderst Frauen auf, Bäume zu pflanzen gegen Bodenerosion. Die Regierung sieht darin plötzlich einen politischen Angriff.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="alan-turing.html" data-tags="Wissenschaft, Gewissen, Identität, Krieg">
-    <div class="card-header">
-      <span class="card-date">Bletchley Park / UK, 1952</span>
-      <span class="card-category wissenschaft">Wissenschaft</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Alan Turing</div>
-      <p class="card-teaser">Du hast im Krieg den Code geknackt, der Millionen gerettet haben soll. Jahre später klagt man dich wegen deiner sexuellen Orientierung an.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="semmelweis.html" data-tags="Wissenschaft, Medizin, Zivilcourage">
-    <div class="card-header">
-      <span class="card-date">Wien, 1847</span>
-      <span class="card-category wissenschaft">Wissenschaft</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Semmelweis</div>
-      <p class="card-teaser">Du weißt: Ärzte töten Wöchnerinnen, weil sie sich nicht die Hände waschen. Niemand glaubt dir. Schweigst du oder riskierst du deine Karriere?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="mauerfall.html" data-tags="Führung, Kalter Krieg, Gewissen, Deutschland">
-    <div class="card-header">
-      <span class="card-date">Ost-Berlin, 9. Nov. 1989</span>
-      <span class="card-category fuehrung">Führung</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Der Grenzoffizier</div>
-      <p class="card-teaser">Tausende stehen am Tor. Kein Befehl von oben, keine Anweisung. Du entscheidest, ob die Schlagbäume aufgehen.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="jesse-owens.html" data-tags="Sport, Gesellschaft, Mut, USA">
-    <div class="card-header">
-      <span class="card-date">Berlin, 1936</span>
-      <span class="card-category sport">Sport</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Jesse Owens</div>
-      <p class="card-teaser">Olympia unter Hitler. Boykottieren, um das Regime nicht zu legitimieren — oder antreten und die Propaganda live widerlegen?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="kindertransporte.html" data-tags="Zivilcourage, Familie, Krieg, Verlust">
-    <div class="card-header">
-      <span class="card-date">Wien, 1938</span>
-      <span class="card-category zivilcourage">Zivilcourage</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Die Kindertransporte</div>
-      <p class="card-teaser">Dein Kind darf allein nach England. Du nicht. Lässt du es gehen, wissend, dass ihr euch vielleicht nie wiederseht?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="whistleblower.html" data-tags="Gewissen, Arbeit, Loyalität, Immer">
-    <div class="card-header">
-      <span class="card-date">Ohne Ort und Zeit</span>
-      <span class="card-category gewissen">Gewissen</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Der Whistleblower</div>
-      <p class="card-teaser">Du siehst: dein Arbeitgeber vertuscht etwas Gefährliches. Meldest du es — auf Kosten deines Jobs?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="bankangestellte.html" data-tags="Wirtschaft, Gewissen, Krise, USA">
-    <div class="card-header">
-      <span class="card-date">New York, 2008</span>
-      <span class="card-category wirtschaft">Wirtschaft</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Die Bankangestellte</div>
-      <p class="card-teaser">Du siehst faule Kredite, die als sicher verkauft werden. Meldest du es — bevor alles zusammenbricht?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="oppenheimer.html" data-tags="Wissenschaft, Krieg, Gewissen, USA">
-    <div class="card-header">
-      <span class="card-date">New Mexico, 16. Juli 1945</span>
-      <span class="card-category gewissen">Gewissen</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Oppenheimer</div>
-      <p class="card-teaser">Der erste Atomtest gelingt. Du hast es gebaut. Jetzt weißt du was es kann. Was sagst du morgen früh beim Briefing?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-
-  <a class="card" href="michelangelo.html" data-tags="Kunst, Führung, Loyalität">
-    <div class="card-header">
-      <span class="card-date">Rom, 1508</span>
-      <span class="card-category kunst">Kunst</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Michelangelo</div>
-      <p class="card-teaser">Der Papst befiehlt: die Sixtinische Kapelle. Du willst Skulpturen. Er bezahlt. Er wartet. Er droht.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="caravaggio.html" data-tags="Kunst, Gewissen, Flucht">
-    <div class="card-header">
-      <span class="card-date">Rom, 1606</span>
-      <span class="card-category kunst">Kunst</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Caravaggio</div>
-      <p class="card-teaser">Du hast einen Mann getötet. Die Kirche will deine Bilder. Du bist auf der Flucht. Malst du weiter?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="beethoven.html" data-tags="Musik, Gewissen, Mut">
-    <div class="card-header">
-      <span class="card-date">Wien, 1802</span>
-      <span class="card-category musik">Musik</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Beethoven</div>
-      <p class="card-teaser">Du merkst: du wirst taub. Dein Leben ist Musik. Sagst du es — oder komponierst du weiter, als wäre nichts?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="beatles.html" data-tags="Musik, Führung, Konflikt">
-    <div class="card-header">
-      <span class="card-date">London, 1969</span>
-      <span class="card-category musik">Musik</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Die Beatles</div>
-      <p class="card-teaser">Du bist Ringo. John, Paul und George streiten. Niemand hört dir zu. Du könntest die Band retten — oder gehen lassen.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="max-brod.html" data-tags="Literatur, Gewissen, Freundschaft">
-    <div class="card-header">
-      <span class="card-date">Prag, 1924</span>
-      <span class="card-category literatur">Literatur</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Max Brod</div>
-      <p class="card-teaser">Kafka ist gestorben. Er hat dich gebeten, alles zu verbrennen — Das Schloss, Der Prozess, alles. Was tust du?</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
-
-  <a class="card" href="duerrenmatt.html" data-tags="Literatur, Moral, Gerechtigkeit">
-    <div class="card-header">
-      <span class="card-date">Güllen, 1956</span>
-      <span class="card-category literatur">Literatur</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Der Besuch der alten Dame</div>
-      <p class="card-teaser">Claire Zachanassian bietet der Stadt eine Milliarde. Die Bedingung: der Tod eines Mannes. Du bist Bürgermeister.</p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
-    </div>
-  </a>
+  <div class="chip-cloud">
+    <a class="chip" href="semmelweis.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Semmelweis</span><span class="chip-date">Wien, 1847</span></a>
+    <a class="chip" href="mauerfall.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Der Grenzoffizier</span><span class="chip-date">Ost-Berlin, 1989</span></a>
+    <a class="chip" href="jesse-owens.html"><span class="chip-dot sport"></span><span class="chip-title">Jesse Owens</span><span class="chip-date">Berlin, 1936</span></a>
+    <a class="chip" href="kindertransporte.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Die Kindertransporte</span><span class="chip-date">Wien, 1938</span></a>
+    <a class="chip" href="whistleblower.html"><span class="chip-dot gewissen"></span><span class="chip-title">Der Whistleblower</span><span class="chip-date">ohne Ort/Zeit</span></a>
+    <a class="chip" href="bankangestellte.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">Die Bankangestellte</span><span class="chip-date">New York, 2008</span></a>
+    <a class="chip" href="oppenheimer.html"><span class="chip-dot gewissen"></span><span class="chip-title">Oppenheimer</span><span class="chip-date">New Mexico, 1945</span></a>
+    <a class="chip" href="michelangelo.html"><span class="chip-dot kunst"></span><span class="chip-title">Michelangelo</span><span class="chip-date">Rom, 1508</span></a>
+    <a class="chip" href="caravaggio.html"><span class="chip-dot kunst"></span><span class="chip-title">Caravaggio</span><span class="chip-date">Rom, 1606</span></a>
+    <a class="chip" href="beethoven.html"><span class="chip-dot musik"></span><span class="chip-title">Beethoven</span><span class="chip-date">Wien, 1802</span></a>
+    <a class="chip" href="beatles.html"><span class="chip-dot musik"></span><span class="chip-title">Die Beatles</span><span class="chip-date">London, 1969</span></a>
+    <a class="chip" href="max-brod.html"><span class="chip-dot literatur"></span><span class="chip-title">Max Brod</span><span class="chip-date">Prag, 1924</span></a>
+    <a class="chip" href="duerrenmatt.html"><span class="chip-dot literatur"></span><span class="chip-title">Der Besuch der alten Dame</span><span class="chip-date">Güllen, 1956</span></a>
+    <a class="chip" href="petrov.html"><span class="chip-dot gewissen"></span><span class="chip-title">Stanislav Petrov</span><span class="chip-date">Sowjetunion, 1983</span></a>
+    <a class="chip" href="wangari-maathai.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Wangari Maathai</span><span class="chip-date">Kenia, 1970er–2000er</span></a>
+    <a class="chip" href="alan-turing.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Alan Turing</span><span class="chip-date">UK, 1952</span></a>
+    <a class="chip" href="gandhi.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Mahatma Gandhi</span><span class="chip-date">Indien, 1930</span></a>
+    <a class="chip" href="norman-borlaug.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">Norman Borlaug</span><span class="chip-date">Mexiko/Indien, 1960er</span></a>
+  </div>
 
   <a class="card" href="folgt.html">
     <div class="card-header">
@@ -651,6 +595,32 @@
     Streak.markPlayedCards();
     Streak.renderHeaderStreak('headerStreak');
   });
+
+  // "Überrasch mich" — wählt zufällig ein aktives, noch nicht gespieltes Histogramm.
+  // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
+  // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
+  // Die Kontakt-Kachel (folgt.html) wird ausgeschlossen, da sie kein Szenario ist.
+  function surpriseMe() {
+    const cards = document.querySelectorAll('a.card[href]');
+    const ids = [];
+    cards.forEach(function(card) {
+      const href = card.getAttribute('href');
+      if (href && href !== 'folgt.html') {
+        ids.push(href.replace('.html', ''));
+      }
+    });
+
+    if (ids.length === 0) return;
+
+    const played = Streak.getPlayedIds();
+    const unplayed = ids.filter(function(id) { return played.indexOf(id) === -1; });
+
+    // Falls schon alles gespielt wurde: einfach nochmal aus allen wählen,
+    // statt den Knopf ins Leere laufen zu lassen.
+    const pool = unplayed.length > 0 ? unplayed : ids;
+    const choice = pool[Math.floor(Math.random() * pool.length)];
+    window.location.href = choice + '.html';
+  }
 </script>
 </body>
 </html>
