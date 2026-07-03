@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histogramm — Mandela</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Pretoria, <span>1964</span></div>
+  <div class="location-stamp">Rivonia-Prozess · Palace of Justice</div>
+  <p class="hero-question">1961 gründest du eine Untergrundbewegung.<br>1964 stehst du vor Gericht, die Todesstrafe im Raum.</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Der Bruch mit der Gewaltlosigkeit</span>
+        <span class="scene-time">Johannesburg, 1961</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit dem Massaker von Sharpeville 1960, bei dem die Polizei auf unbewaffnete Demonstranten schoss, ist der ANC verboten. Jahrzehntelanger gewaltfreier Widerstand — Streiks, Petitionen, ziviler Ungehorsam nach Gandhis Vorbild — hat die Apartheid nicht gebrochen, nur die Repression verschärft.</p>
+        <p>Du gehst in den Untergrund, lebst unter dem falschen Namen "David", wechselst ständig die Verstecke. Die Frage ist nicht mehr, ob Widerstand nötig ist — sondern welche Form er noch haben kann, wenn die alte Form wirkungslos geworden ist.</p>
+        <p>Deine engsten Mitstreiter sind gespalten. Manche wollen an der Gewaltlosigkeit festhalten, koste es was es wolle. Andere sind bereit für offenen bewaffneten Aufstand. Du musst eine Linie finden.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Nelson Mandela, im Untergrund</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du hältst am gewaltfreien Widerstand fest — trotz allem, was er bisher nicht erreicht hat.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du gründest einen bewaffneten Arm, der gezielt Sabotage gegen Infrastruktur verübt — nicht gegen Menschen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du rufst zum offenen, bewaffneten Aufstand gegen die Regierung auf.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Die Prozessstrategie →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Die Prozessstrategie</span>
+        <span class="scene-time">Pretoria, vor dem Prozess, 1963/64</span>
+      </div>
+      <div class="scene-body">
+        <p>Du wurdest 1962 verhaftet. Im Juli 1963 fasst die Polizei bei einer Razzia auf der Farm Liliesleaf in Rivonia weitere Führungsmitglieder der Untergrundbewegung — mit ihnen Dokumente, die alles belasten. Der Prozess wegen Sabotage beginnt im Oktober 1963. Die Anklage strebt erkennbar die Todesstrafe an.</p>
+        <p>Deine Anwälte sehen zwei Wege: Als Zeuge aussagen und sich dem Kreuzverhör der Staatsanwaltschaft stellen — die juristisch konventionellere, sicherere Verteidigung. Oder eine Erklärung vom Anklagebock abgeben, die nach südafrikanischem Recht nicht kreuzverhört werden darf — politisch wirksamer, aber ohne den Schutz einer Zeugenaussage.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Nelson Mandela, Angeklagter Nr. 1</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du sagst als Zeuge aus und lässt dich kreuzverhören — die sicherere, konventionelle Verteidigung.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du hältst eine Erklärung vom Anklagebock, unangreifbar durch Kreuzverhör — politisch, aber riskanter für dein eigenes Urteil.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest deine Anwälte um ein Geständnis im Austausch für ein milderes Urteil.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Der Schlusssatz →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Der Schlusssatz</span>
+        <span class="scene-time">Pretoria, 20. April 1964</span>
+      </div>
+      <div class="scene-body">
+        <p>Wochenlang hast du an deiner Erklärung gearbeitet, mit Hilfe der Schriftstellerin Nadine Gordimer und des Journalisten Anthony Sampson. Die Rede endet mit einem Satz, der alles riskiert: dass du bereit bist, für das Ideal einer freien, demokratischen Gesellschaft zu sterben.</p>
+        <p>Deine Anwälte drängen dich, genau diesen letzten Satz zu streichen. Er könnte den Richter geradezu einladen, die Todesstrafe zu verhängen — wozu es sonst keinen formellen Antrag der Staatsanwaltschaft gibt, aber die Möglichkeit steht unausgesprochen im Raum.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Nelson Mandela, kurz vor der Rede</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du strichst den Schlusssatz auf Wunsch deiner Anwälte — zu gefährlich, das Urteil nicht provozieren.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du behältst den Satz, fügst aber die Worte "wenn nötig" hinzu — ein kleines Zugeständnis an deine Anwälte.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sprichst den Satz unverändert, ohne jede Abschwächung.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">Pretoria, 12. Juni 1964</div>
+    <div class="epilog-title">Kein Todesurteil. Stattdessen: lebenslänglich.</div>
+    <div class="epilog-body">
+      <p>Am 12. Juni 1964 wurde Mandela zusammen mit sieben Mitangeklagten zu lebenslanger Haft verurteilt — nicht zum Tode, wie viele befürchtet hatten. Mandela glaubte später, der Richter habe die Todesstrafe auch deshalb nicht verhängt, weil er ihn in seiner Rede förmlich dazu herausgefordert hatte.</p>
+      <p style="margin-top:1rem">Mandela verbrachte 27 Jahre im Gefängnis, davon 18 auf Robben Island. 1990 wurde er freigelassen, 1994 zum ersten schwarzen Präsidenten Südafrikas gewählt. Bei seiner Freilassung zitierte er vor der wartenden Presse den letzten Satz seiner Rede von 1964 noch einmal wörtlich.</p>
+    </div>
+    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Nelson_Mandela" target="_blank" rel="noopener">Mehr zu Nelson Mandela auf Wikipedia →</a></p>
+    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'mandela';
+
+const results = {
+  1: {
+    A: { pct: 24, label: "Gewaltfrei geblieben" },
+    B: { pct: 59, label: "Sabotage gegründet" },
+    C: { pct: 17, label: "Bewaffneter Aufstand" },
+    historical: 'B',
+    narratives: {
+      A: "An der reinen Gewaltlosigkeit festzuhalten wäre nach Sharpeville nachvollziehbar gewesen — schien Mandela und seinen Mitstreitern aber wirkungslos geworden.",
+      B: "Genau das gründete Mandela 1961: Umkhonto we Sizwe, den bewaffneten Arm des ANC, mit dem erklärten Ziel, Sabotage gegen Infrastruktur zu verüben und Menschenleben bewusst zu schonen.",
+      C: "Ein offener bewaffneter Aufstand wäre der radikalste Bruch gewesen — auch der ANC-Führung erschien er zu diesem Zeitpunkt nicht angemessen."
+    }
+  },
+  2: {
+    A: { pct: 31, label: "Zeugenaussage mit Kreuzverhör" },
+    B: { pct: 54, label: "Erklärung vom Anklagebock" },
+    C: { pct: 15, label: "Geständnis für mildere Strafe" },
+    historical: 'B',
+    narratives: {
+      A: "Die Zeugenaussage hätte mehr rechtlichen Schutz geboten — aber auch weniger Raum, die politische Botschaft ungefiltert vorzutragen.",
+      B: "Genau das entschied Mandela: eine über drei Stunden lange Erklärung vom Anklagebock, die nicht kreuzverhört werden konnte — vorbereitet mit Hilfe der Schriftstellerin Nadine Gordimer.",
+      C: "Ein Geständnis im Austausch für Milde hätte die politische Position komplett aufgegeben — für Mandela keine ernsthafte Option."
+    }
+  },
+  3: {
+    A: { pct: 22, label: "Schlusssatz gestrichen" },
+    B: { pct: 48, label: "Mit \"wenn nötig\" ergänzt" },
+    C: { pct: 30, label: "Unverändert gesprochen" },
+    historical: 'B',
+    narratives: {
+      A: "Den Satz ganz zu streichen hätte die Anwälte beruhigt — aber genau die Zeile entfernt, die später zu einer der meistzitierten politischen Reden des 20. Jahrhunderts wurde.",
+      B: "Genau das tat Mandela: er behielt den Satz, fügte aber auf Drängen seiner Anwälte die einschränkenden Worte \"wenn nötig\" ein — ein kleines Zugeständnis, ohne die Kernaussage aufzugeben.",
+      C: "Den Satz völlig unverändert und ohne jede Abschwächung zu sprechen wäre die kompromissloseste Variante gewesen, die Mandela seinen Anwälten letztlich nicht zumutete."
+    }
+  }
+};
+
+const sceneNames = { 1: "Untergrund", 2: "Prozessstrategie", 3: "Der Schlusssatz" };
+const scenarioTitle = "Histogramm Mandela 1964";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = narratives[letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('mandela');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
