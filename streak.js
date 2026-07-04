@@ -171,35 +171,6 @@ const Streak = (() => {
     }, 6000);
   }
 
-  // Beim Laden: Badge zeigen wenn schon Streak vorhanden
-  function init() {
-    const streak = parseInt(localStorage.getItem(KEY_STREAK) || '0', 10);
-    const last   = localStorage.getItem(KEY_LAST_PLAYED);
-    const played = getPlayedIds().length;
-
-    // Nur anzeigen wenn heute oder gestern gespielt wurde
-    if (streak > 0 && (last === today() || last === yesterday()) && played > 0) {
-      // Kleiner, passiver Badge — kein Feuerelement beim reinen Besuch
-      const badge = document.createElement('div');
-      badge.id = 'streak-badge';
-      badge.innerHTML = `
-        <div class="streak-inner">
-          <span class="streak-flame">🔥</span>
-          <div class="streak-text">
-            <span class="streak-count">${streak}</span>
-            <span class="streak-label">${streak === 1 ? 'Tag' : 'Tage'}</span>
-          </div>
-          <div class="streak-divider"></div>
-          <div class="streak-text">
-            <span class="streak-count">${played}</span>
-            <span class="streak-label">gespielt</span>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(badge);
-    }
-  }
-
   // Kleine, dezente Streak-Anzeige im Header — nur für Rückkehrer sichtbar
   // Aufruf: Streak.renderHeaderStreak('elementId') in der jeweiligen Seite
   function renderHeaderStreak(elementId) {
@@ -233,13 +204,6 @@ const Streak = (() => {
         card.classList.add('played');
       }
     });
-  }
-
-  // Auto-init wenn DOM bereit
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
   }
 
   return { markPlayed, getPlayedIds, markPlayedCards, renderHeaderStreak };
