@@ -855,7 +855,7 @@ async function submitDay(day) {
     await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
 
     // 2. Aktuelle Ergebnisse holen
-    const res = await fetch(`${API_BASE}/results?prefix=${prefix}`);
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
     const data = await res.json();
     counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
   } catch (err) {
