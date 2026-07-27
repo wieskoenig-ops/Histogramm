@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — Histogramm</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  main { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; padding: 4.5rem 2rem 6rem; }
+  .page-title { font-size: clamp(1.7rem, 5vw, 2.2rem); line-height: 1.25; margin-bottom: 2.5rem; }
+  .block { margin-bottom: 2rem; }
+  .block-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
+  .block-body { font-size: 1rem; line-height: 1.8; color: var(--ink); }
+  .block-body a { color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); }
+  .block-body a:hover { opacity: 0.75; }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } main { padding: 3rem 1.25rem 4rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<main>
+  <div class="page-title">Impressum</div>
+
+  <div class="block">
+    <div class="block-label">Angaben gemäß § 5 TMG</div>
+    <div class="block-body">
+      Michael Könighaus
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Kontakt</div>
+    <div class="block-body">
+      E-Mail: <a href="mailto:read.me@web.de">read.me@web.de</a>
+    </div>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+</body>
+</html>

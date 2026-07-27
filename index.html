@@ -140,6 +140,21 @@
     background: var(--amber-light);
   }
 
+  .impressum-link {
+    position: fixed;
+    bottom: 1rem;
+    right: 1.25rem;
+    z-index: 5;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .impressum-link:hover {
+    color: var(--amber-dark);
+  }
+
   main {
     position: relative;
     z-index: 1;
@@ -860,5 +875,7 @@
     window.location.href = choice + '.html';
   }
 </script>
+<a class="impressum-link" href="impressum.html">Impressum</a>
+
 </body>
 </html>
