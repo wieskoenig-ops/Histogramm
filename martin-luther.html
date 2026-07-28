@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst deine 95 Thesen öffentlich und schickst sie an die kirchliche Führung.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du hältst deine Kritik intern, nur im akademischen Kreis der Universität.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verzichtest ganz darauf, den Ablasshandel öffentlich infrage zu stellen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du forderst zunächst eine akademische Disputation innerhalb der Universität, um die Frage unter Gelehrten zu klären.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du veröffentlichst deine 95 Thesen öffentlich und schickst sie zugleich an die kirchliche Führung.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wendest dich in einem persönlichen Brief direkt an den Papst, in der Hoffnung auf eine stille Reform von oben.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du weigerst dich zu widerrufen, solange man dich nicht mit der Schrift oder klaren Gründen widerlegt.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du widerrufst, um dein Leben zu retten.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bietest einen abgeschwächten, teilweisen Widerruf an.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du weigerst dich vollständig zu widerrufen, solange man dich nicht mit der Schrift oder klaren Gründen widerlegt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bittest zunächst um einen Tag Bedenkzeit, um deine Antwort sorgfältig vorzubereiten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du widerrufst formal die umstrittensten Einzelpassagen, hältst aber an der Grundaussage über den Ablasshandel fest.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du übersetzt in der Verborgenheit das Neue Testament ins Deutsche, damit es jeder selbst lesen kann.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du hältst dich still und untätig, um keine weitere Provokation zu riskieren.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du organisierst im Verborgenen politischen oder bewaffneten Widerstand.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wartest ab, ob sich die politische Lage von selbst beruhigt, bevor du wieder aktiv wirst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nutzt die Verborgenheit, um heimlich Kontakte zu sympathisierenden Fürsten zu knüpfen und politischen Rückhalt zu sichern.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du übersetzt in der Verborgenheit das Neue Testament ins Deutsche, damit es jeder selbst lesen kann.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -265,36 +265,36 @@ const SCENARIO_PREFIX = 'martin-luther';
 
 const results = {
   1: {
-    A: { pct: 61, label: "Öffentlich veröffentlicht" },
-    B: { pct: 24, label: "Intern gehalten" },
-    C: { pct: 15, label: "Auf Kritik verzichtet" },
-    historical: 'A',
+    A: { pct: 34, label: "Akademische Disputation gefordert" },
+    B: { pct: 41, label: "Öffentlich veröffentlicht" },
+    C: { pct: 25, label: "Brief an den Papst" },
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Luther: Er machte seine Kritik am Ablasshandel öffentlich und schickte die Thesen formell an seinen Erzbischof — der genaue Vorgang der öffentlichen Anschlagung an der Wittenberger Schlosskirche wird von Historikern bis heute diskutiert.",
-      B: "Die Kritik nur intern zu halten, hätte die spätere reichsweite Wirkung der Thesen von vornherein verhindert.",
-      C: "Ganz auf die Kritik zu verzichten, entspricht nicht dem Mann, der wenige Jahre später vor Kaiser und Reichstag standhielt."
+      A: "Eine interne akademische Disputation zu fordern wäre der vorsichtigere, traditionellere Weg gewesen, um die Frage unter Gelehrten zu klären, bevor sie öffentlich eskaliert.",
+      B: "Genau das tat Luther: Er machte seine Kritik öffentlich und schickte die Thesen zugleich formell an seinen Erzbischof — der genaue Vorgang der öffentlichen Anschlagung an der Wittenberger Schlosskirche wird von Historikern bis heute diskutiert.",
+      C: "Ein persönlicher Brief an den Papst mit der Hoffnung auf stille Reform von oben war ein Weg, den manche Zeitgenossen tatsächlich einschlugen — aber nicht der, den Luther wählte."
     }
   },
   2: {
-    A: { pct: 68, label: "Standgehalten" },
-    B: { pct: 17, label: "Widerrufen" },
-    C: { pct: 15, label: "Teilweise widerrufen" },
+    A: { pct: 39, label: "Standgehalten" },
+    B: { pct: 33, label: "Bedenkzeit erbeten" },
+    C: { pct: 28, label: "Teilweise widerrufen" },
     historical: 'A',
     narratives: {
-      A: "Genau das tat Luther: Er weigerte sich zu widerrufen, solange man ihn nicht mit der Schrift oder klarer Vernunft widerlegte — eine Haltung, die ihn in Lebensgefahr brachte.",
-      B: "Zu widerrufen, um das eigene Leben zu retten, wäre die naheliegende, aber nicht Luthers historische Entscheidung gewesen.",
-      C: "Ein abgeschwächter Teilwiderruf hätte seiner kompromisslosen Position in Worms widersprochen."
+      A: "Genau das tat Luther am Ende: Er weigerte sich zu widerrufen, solange man ihn nicht mit der Schrift oder klarer Vernunft widerlegte.",
+      B: "Tatsächlich bat Luther zunächst um einen Tag Bedenkzeit, bevor er seine endgültige Antwort gab — ein realer Zwischenschritt, der seiner letztlichen Weigerung voranging.",
+      C: "Ein formaler Teilwiderruf hätte einen gesichtswahrenden Ausweg geboten — nicht der Weg, den Luther am Ende ging."
     }
   },
   3: {
-    A: { pct: 64, label: "Bibel übersetzt" },
-    B: { pct: 21, label: "Still geblieben" },
-    C: { pct: 15, label: "Widerstand organisiert" },
-    historical: 'A',
+    A: { pct: 27, label: "Abgewartet" },
+    B: { pct: 31, label: "Politische Kontakte geknüpft" },
+    C: { pct: 42, label: "Bibel übersetzt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Luther: In der erzwungenen Isolation auf der Wartburg übersetzte er das Neue Testament ins Deutsche — eine der folgenreichsten literarischen Leistungen der deutschen Geschichte.",
-      B: "Sich still und untätig zu verhalten, hätte die erzwungene Zeit ungenutzt gelassen — nicht das, was historisch geschah.",
-      C: "Bewaffneten Widerstand zu organisieren, entspricht nicht Luthers eigenem Vorgehen, auch wenn spätere Bauernaufstände sich teils auf seine Ideen beriefen — was er selbst später scharf verurteilte."
+      A: "Abzuwarten, bis sich die Lage beruhigt, wäre für einen zum Vogelfreien Erklärten eine nachvollziehbare Vorsichtsmaßnahme gewesen.",
+      B: "Politische Kontakte zu sympathisierenden Fürsten zu knüpfen, war durchaus Teil der Realität — sein Schutz durch Friedrich den Weisen beruhte genau darauf. Aber es war nicht die Hauptbeschäftigung dieser Monate.",
+      C: "Genau das tat Luther: In der erzwungenen Isolation übersetzte er das Neue Testament ins Deutsche — eine der folgenreichsten literarischen Leistungen der deutschen Geschichte."
     }
   }
 };

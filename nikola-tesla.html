@@ -178,8 +178,8 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lizenzierst deine Patente an Westinghouse gegen eine großzügige laufende Lizenzgebühr pro verkaufter Pferdestärke.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du verkaufst die Patente für eine einmalige Pauschalsumme.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du verkaufst die Patente für eine einmalige Pauschalsumme.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lizenzierst deine Patente an Westinghouse gegen eine großzügige laufende Lizenzgebühr pro verkaufter Pferdestärke.</button>
     <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du versuchst, selbst eine eigene Fertigungsfirma aufzubauen.</button>
 
     <div class="cta-row">
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du zerreißt den Vertrag und verzichtest vollständig auf die Lizenzgebühren, um Westinghouse zu retten.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bestehst auf den ursprünglichen Vertragsbedingungen, unabhängig von Westinghouses finanzieller Lage.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du handelst eine deutlich reduzierte, aber weiterhin bedeutende Lizenzgebühr aus.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bestehst auf den ursprünglichen Vertragsbedingungen, unabhängig von Westinghouses finanzieller Lage.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du handelst eine deutlich reduzierte, aber weiterhin bedeutende Lizenzgebühr aus.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du zerreißt den Vertrag und verzichtest vollständig auf die Lizenzgebühren, um Westinghouse zu retten.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -265,9 +265,9 @@ const SCENARIO_PREFIX = 'nikola-tesla';
 
 const results = {
   1: {
-    A: { pct: 61, label: "Gekündigt" },
-    B: { pct: 22, label: "Auf Zahlung geklagt" },
-    C: { pct: 17, label: "Erhöhung akzeptiert" },
+    A: { pct: 42, label: "Gekündigt" },
+    B: { pct: 29, label: "Auf Zahlung geklagt" },
+    C: { pct: 29, label: "Erhöhung akzeptiert" },
     historical: 'A',
     narratives: {
       A: "Genau das tat Tesla: Er kündigte bei Edison und ging seinen eigenen Weg — ein Bruch, der letztlich zur Entwicklung seines Wechselstromsystems führte.",
@@ -276,25 +276,25 @@ const results = {
     }
   },
   2: {
-    A: { pct: 69, label: "Laufende Lizenzgebühr vereinbart" },
-    B: { pct: 16, label: "Pauschalsumme verkauft" },
-    C: { pct: 15, label: "Eigene Firma versucht" },
-    historical: 'A',
+    A: { pct: 24, label: "Pauschalsumme verkauft" },
+    B: { pct: 45, label: "Laufende Lizenzgebühr vereinbart" },
+    C: { pct: 31, label: "Eigene Firma versucht" },
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Tesla: Er einigte sich mit Westinghouse auf eine großzügige laufende Lizenzgebühr pro Pferdestärke — ein Vertrag, der ihn bei vollständiger Erfüllung zu einem der reichsten Männer der USA gemacht hätte.",
-      B: "Eine einmalige Pauschalsumme zu nehmen, wäre die sicherere, aber deutlich weniger lukrative Wahl gewesen.",
-      C: "Eine eigene Fertigungsfirma aufzubauen, hätte enormes Kapital vorausgesetzt, über das Tesla zu diesem Zeitpunkt nicht verfügte."
+      A: "Eine einmalige Pauschalsumme zu nehmen wäre die sicherere, aber deutlich weniger lukrative Wahl gewesen.",
+      B: "Genau das tat Tesla: Er einigte sich mit Westinghouse auf eine großzügige laufende Lizenzgebühr pro Pferdestärke — ein Vertrag, der ihn bei vollständiger Erfüllung zu einem der reichsten Männer der USA gemacht hätte.",
+      C: "Eine eigene Fertigungsfirma aufzubauen hätte enormes Kapital vorausgesetzt, über das Tesla zu diesem Zeitpunkt nicht verfügte."
     }
   },
   3: {
-    A: { pct: 58, label: "Vertrag zerrissen" },
-    B: { pct: 24, label: "Auf Bedingungen bestanden" },
-    C: { pct: 18, label: "Reduzierte Gebühr ausgehandelt" },
-    historical: 'A',
+    A: { pct: 30, label: "Auf Bedingungen bestanden" },
+    B: { pct: 28, label: "Reduzierte Gebühr ausgehandelt" },
+    C: { pct: 42, label: "Vertrag zerrissen" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Tesla: Er zerriss den Vertrag und verzichtete auf sämtliche Lizenzgebühren, um Westinghouse vor dem Bankrott zu retten — eine Entscheidung, die den Sieg der Wechselstromtechnik sicherte, ihn selbst aber ein mögliches Vermögen kostete.",
-      B: "Auf den ursprünglichen Bedingungen zu bestehen, hätte Westinghouses Firma möglicherweise in den Ruin getrieben — und damit das gesamte Wechselstromsystem gefährdet.",
-      C: "Eine reduzierte, aber weiterhin bedeutende Gebühr auszuhandeln, wäre ein Kompromiss gewesen — nicht der radikale Verzicht, den Tesla tatsächlich wählte."
+      A: "Auf den ursprünglichen Bedingungen zu bestehen hätte Westinghouses Firma möglicherweise in den Ruin getrieben — und damit das gesamte Wechselstromsystem gefährdet.",
+      B: "Eine reduzierte, aber weiterhin bedeutende Gebühr auszuhandeln wäre ein Kompromiss gewesen — nicht der radikale Verzicht, den Tesla tatsächlich wählte.",
+      C: "Genau das tat Tesla: Er zerriss den Vertrag und verzichtete auf sämtliche Lizenzgebühren, um Westinghouse vor dem Bankrott zu retten — eine Entscheidung, die den Sieg der Wechselstromtechnik sicherte, ihn selbst aber ein mögliches Vermögen kostete."
     }
   }
 };

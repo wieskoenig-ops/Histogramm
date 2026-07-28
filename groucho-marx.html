@@ -137,8 +137,8 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du akzeptierst Thalbergs Vorgaben für mehr Handlung und weniger Anarchie, um wieder einen Vertrag zu bekommen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bestehst auf dem ursprünglichen, chaotischen Stil, auch auf die Gefahr hin, keinen neuen Vertrag zu bekommen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bestehst auf dem ursprünglichen, chaotischen Stil, auch auf die Gefahr hin, keinen neuen Vertrag zu bekommen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du akzeptierst Thalbergs Vorgaben für mehr Handlung und weniger Anarchie, um wieder einen Vertrag zu bekommen.</button>
     <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versuchst, allein ohne deine Brüder weiterzumachen.</button>
 
     <div class="cta-row">
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du machst mit, auch mit kleinerer Rolle und Zweifeln am Drehbuch, um deinen Brüdern finanziell zu helfen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lehnst das Projekt ab, weil du das Material für zu schwach hältst.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bestehst auf einer größeren, deiner Bekanntheit entsprechenden Rolle.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst das Projekt ab, weil du das Material für zu schwach hältst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bestehst auf einer größeren, deiner Bekanntheit entsprechenden Rolle.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du machst mit, auch mit kleinerer Rolle und Zweifeln am Drehbuch, um deinen Brüdern finanziell zu helfen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -265,36 +265,36 @@ const SCENARIO_PREFIX = 'groucho-marx';
 
 const results = {
   1: {
-    A: { pct: 61, label: "Vorgaben akzeptiert" },
-    B: { pct: 24, label: "Auf altem Stil bestanden" },
-    C: { pct: 15, label: "Allein weitergemacht" },
-    historical: 'A',
+    A: { pct: 31, label: "Auf altem Stil bestanden" },
+    B: { pct: 40, label: "Vorgaben akzeptiert" },
+    C: { pct: 29, label: "Allein weitergemacht" },
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: Die Brüder akzeptierten Thalbergs Vorgaben für \"Die Marx Brothers in der Oper\" (1935) — mehr Handlung, romantische Nebenstränge, weniger reine Anarchie. Der Film wurde ein kommerzieller Erfolg und rettete ihre Karriere.",
-      B: "Auf dem ursprünglichen Stil zu bestehen, hätte nach dem Kassenflop wohl das Ende ihrer Filmkarriere bedeutet.",
-      C: "Allein ohne die Brüder weiterzumachen, hätte das Markenzeichen der Gruppe komplett aufgegeben."
+      A: "Auf dem ursprünglichen Stil zu bestehen hätte nach dem Kassenflop wohl das Ende ihrer Filmkarriere bedeutet.",
+      B: "Genau das geschah: Die Brüder akzeptierten Thalbergs Vorgaben für \"Die Marx Brothers in der Oper\" (1935) — mehr Handlung, romantische Nebenstränge, weniger reine Anarchie. Der Film wurde ein kommerzieller Erfolg und rettete ihre Karriere.",
+      C: "Allein ohne die Brüder weiterzumachen hätte das Markenzeichen der Gruppe komplett aufgegeben."
     }
   },
   2: {
-    A: { pct: 57, label: "Mitgemacht, um zu helfen" },
-    B: { pct: 25, label: "Abgelehnt" },
-    C: { pct: 18, label: "Größere Rolle gefordert" },
-    historical: 'A',
+    A: { pct: 31, label: "Abgelehnt" },
+    B: { pct: 27, label: "Größere Rolle gefordert" },
+    C: { pct: 42, label: "Mitgemacht, um zu helfen" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Groucho: Er wirkte 1949 in \"Love Happy\" mit kleinerer Rolle mit, hauptsächlich um Chico finanziell zu helfen, trotz eigener Zweifel an der Qualität des Drehbuchs.",
-      B: "Das Projekt aus Qualitätsgründen abzulehnen, hätte seinen Bruder in einer finanziell ernsten Lage im Stich gelassen.",
-      C: "Auf einer größeren Rolle zu bestehen, hätte dem eigentlichen Zweck des Projekts — Chico zu helfen — widersprochen."
+      A: "Das Projekt aus Qualitätsgründen abzulehnen hätte seinen Bruder in einer finanziell ernsten Lage im Stich gelassen.",
+      B: "Auf einer größeren Rolle zu bestehen hätte dem eigentlichen Zweck des Projekts — Chico zu helfen — widersprochen.",
+      C: "Genau das tat Groucho: Er wirkte 1949 in \"Love Happy\" mit kleinerer Rolle mit, hauptsächlich um Chico finanziell zu helfen, trotz eigener Zweifel an der Qualität des Drehbuchs."
     }
   },
   3: {
-    A: { pct: 64, label: "Zum Quizformat gewechselt" },
-    B: { pct: 21, label: "An Filmkarriere festgehalten" },
-    C: { pct: 15, label: "Zurückgezogen" },
+    A: { pct: 38, label: "Zum Quizformat gewechselt" },
+    B: { pct: 33, label: "An Filmkarriere festgehalten" },
+    C: { pct: 29, label: "Zurückgezogen" },
     historical: 'A',
     narratives: {
       A: "Genau das tat Groucho: Er nahm die Radio- und spätere Fernsehsendung an — sie wurde zu seinem größten und langlebigsten kommerziellen Erfolg, größer als seine späten Filme.",
-      B: "Weiter auf Filmrollen zu setzen, hätte den kommerziellen Realitäten seiner alternden Filmkarriere widersprochen.",
-      C: "Sich zurückzuziehen, hätte über ein Jahrzehnt an Karriere und Popularität ungenutzt gelassen."
+      B: "Weiter auf Filmrollen zu setzen hätte den kommerziellen Realitäten seiner alternden Filmkarriere widersprochen.",
+      C: "Sich zurückzuziehen hätte über ein Jahrzehnt an Karriere und Popularität ungenutzt gelassen."
     }
   }
 };

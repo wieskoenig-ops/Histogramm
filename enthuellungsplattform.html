@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du arbeitest mit Medienpartnern an einer Schwärzung von Informantennamen und veröffentlichst im vereinbarten Zeitrahmen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du veröffentlichst den vollständigen, ungeschwärzten Datensatz sofort.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du verzögerst die Veröffentlichung monatelang, bis jedes einzelne Dokument manuell geprüft ist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du verzögerst die Veröffentlichung monatelang, bis jedes einzelne Dokument manuell geprüft ist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du arbeitest mit Medienpartnern an einer Schwärzung von Informantennamen und veröffentlichst im vereinbarten Zeitrahmen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du veröffentlichst den vollständigen, ungeschwärzten Datensatz sofort.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst den vollständigen, ungeschwärzten Datensatz offiziell selbst, da er ohnehin schon zirkuliert.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du versuchst, die weitere Verbreitung so gut wie möglich einzudämmen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du warnst öffentlich vor der Gefahr für betroffene Quellen, ohne selbst erneut zu veröffentlichen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du versuchst, die weitere Verbreitung so gut wie möglich einzudämmen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du warnst öffentlich vor der Gefahr für betroffene Quellen, ohne selbst erneut zu veröffentlichen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du veröffentlichst den vollständigen, ungeschwärzten Datensatz offiziell selbst, da er ohnehin schon zirkuliert.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -265,36 +265,36 @@ const SCENARIO_PREFIX = 'enthuellungsplattform';
 
 const results = {
   1: {
-    A: { pct: 61, label: "Mit eigener Einordnung veröffentlicht" },
-    B: { pct: 21, label: "Nur Rohfassung veröffentlicht" },
-    C: { pct: 18, label: "An Medienpartner übergeben" },
+    A: { pct: 39, label: "Mit eigener Einordnung veröffentlicht" },
+    B: { pct: 30, label: "Nur Rohfassung veröffentlicht" },
+    C: { pct: 31, label: "An Medienpartner übergeben" },
     historical: 'A',
     narratives: {
       A: "Genau das geschah 2010: Das Video wurde mit eigenem Titel und redaktioneller Rahmung veröffentlicht, zusätzlich zur vollständigen Rohfassung — ein Ansatz, der später als zu stark eingeordnet kritisiert wurde.",
-      B: "Nur die Rohfassung ohne jede Einordnung zu veröffentlichen, hätte das Video für viele schwerer verständlich gemacht.",
-      C: "Die Veröffentlichung komplett abzugeben, hätte der Plattform die eigene journalistische Rolle in diesem Fall genommen."
+      B: "Nur die Rohfassung ohne jede Einordnung zu veröffentlichen hätte das Video für viele schwerer verständlich gemacht.",
+      C: "Die Veröffentlichung komplett abzugeben hätte der Plattform die eigene journalistische Rolle in diesem Fall genommen."
     }
   },
   2: {
-    A: { pct: 57, label: "Mit Schwärzung veröffentlicht" },
-    B: { pct: 24, label: "Sofort ungeschwärzt veröffentlicht" },
-    C: { pct: 19, label: "Monatelang verzögert" },
-    historical: 'A',
+    A: { pct: 28, label: "Monatelang verzögert" },
+    B: { pct: 40, label: "Mit Schwärzung veröffentlicht" },
+    C: { pct: 32, label: "Sofort ungeschwärzt veröffentlicht" },
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: In Zusammenarbeit mit Medienpartnern erfolgte eine Schwärzung vor der Veröffentlichung — später kritisiert als nicht gründlich genug, aber grundsätzlich der gewählte Weg.",
-      B: "Den vollständigen, ungeschwärzten Datensatz sofort zu veröffentlichen, hätte Informanten unmittelbar gefährdet — nicht der Weg der ersten großen Veröffentlichung.",
-      C: "Eine monatelange, vollständig manuelle Prüfung hätte die journalistische Aktualität des Materials erheblich untergraben."
+      A: "Eine monatelange, vollständig manuelle Prüfung hätte die journalistische Aktualität des Materials erheblich untergraben.",
+      B: "Genau das geschah: In Zusammenarbeit mit Medienpartnern erfolgte eine Schwärzung vor der Veröffentlichung — später kritisiert als nicht gründlich genug, aber grundsätzlich der gewählte Weg.",
+      C: "Den vollständigen, ungeschwärzten Datensatz sofort zu veröffentlichen hätte Informanten unmittelbar gefährdet — nicht der Weg der ersten großen Veröffentlichung."
     }
   },
   3: {
-    A: { pct: 54, label: "Selbst offiziell veröffentlicht" },
-    B: { pct: 27, label: "Verbreitung eingedämmt" },
-    C: { pct: 19, label: "Öffentlich gewarnt" },
-    historical: 'A',
+    A: { pct: 33, label: "Verbreitung eingedämmt" },
+    B: { pct: 27, label: "Öffentlich gewarnt" },
+    C: { pct: 40, label: "Selbst offiziell veröffentlicht" },
+    historical: 'C',
     narratives: {
-      A: "Genau das geschah 2011: Das vollständige, ungeschwärzte Archiv wurde offiziell selbst veröffentlicht, mit der Begründung, es zirkuliere ohnehin bereits — eine Entscheidung, die von Presseschutzorganisationen scharf kritisiert wurde.",
-      B: "Die weitere Verbreitung einzudämmen, wäre angesichts des bereits öffentlichen Passworts kaum wirksam durchsetzbar gewesen.",
-      C: "Nur öffentlich zu warnen, ohne selbst zu veröffentlichen, hätte das Kontrollproblem nicht gelöst, aber auch keine offizielle zweite Veröffentlichung geschaffen — nicht der tatsächlich gewählte Weg."
+      A: "Die weitere Verbreitung einzudämmen wäre angesichts des bereits öffentlichen Passworts kaum wirksam durchsetzbar gewesen.",
+      B: "Nur öffentlich zu warnen, ohne selbst zu veröffentlichen, hätte das Kontrollproblem nicht gelöst — aber auch keine offizielle zweite Veröffentlichung geschaffen.",
+      C: "Genau das geschah 2011: Das vollständige, ungeschwärzte Archiv wurde offiziell selbst veröffentlicht, mit der Begründung, es zirkuliere ohnehin bereits — eine Entscheidung, die von Presseschutzorganisationen scharf kritisiert wurde."
     }
   }
 };
