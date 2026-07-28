@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dein anarchischer Filmstil floppt an der Kasse. Ein Produzent bietet dir einen neuen Vertrag — unter einer Bedingung.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Histogramm">
+<meta property="og:title" content="Histogramm — Groucho Marx">
+<meta property="og:description" content="Dein anarchischer Filmstil floppt an der Kasse. Ein Produzent bietet dir einen neuen Vertrag — unter einer Bedingung.">
+<meta property="og:url" content="https://histogramm.me/groucho-marx.html">
+<meta property="og:image" content="https://histogramm.me/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Histogramm — Groucho Marx">
+<meta name="twitter:description" content="Dein anarchischer Filmstil floppt an der Kasse. Ein Produzent bietet dir einen neuen Vertrag — unter einer Bedingung.">
+<meta name="twitter:image" content="https://histogramm.me/og-image.png">
+<title>Histogramm — Groucho Marx</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Hollywood, <span>1935</span></div>
+  <div class="location-stamp">Komiker</div>
+  <p class="hero-question">Dein anarchischer Filmstil floppt an der Kasse.<br>Ein Produzent bietet dir einen neuen Vertrag — unter einer Bedingung.</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Der neue Vertrag</span>
+        <span class="scene-time">Hollywood, 1934/35</span>
+      </div>
+      <div class="scene-body">
+        <p>Euer Film "Die Marx Brothers im Krieg" — reine, chaotische Anarchie ohne viel Handlung — floppte an der Kasse. Paramount hat euren Vertrag nicht verlängert. Jetzt bietet der MGM-Produzent Irving Thalberg einen neuen Deal an — aber er will mehr Handlung, romantische Nebenstränge, weniger reines Chaos.</p>
+        <p>Das würde bedeuten, den Stil zu ändern, der euch überhaupt bekannt gemacht hat.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Groucho Marx, Komiker</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du akzeptierst Thalbergs Vorgaben für mehr Handlung und weniger Anarchie, um wieder einen Vertrag zu bekommen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bestehst auf dem ursprünglichen, chaotischen Stil, auch auf die Gefahr hin, keinen neuen Vertrag zu bekommen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versuchst, allein ohne deine Brüder weiterzumachen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Der letzte Film →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Der letzte Film</span>
+        <span class="scene-time">Hollywood, 1949</span>
+      </div>
+      <div class="scene-body">
+        <p>Dein Bruder Chico hat sich durch Glücksspiel hoch verschuldet. Ein neues Filmprojekt könnte das nötige Geld bringen — aber das Drehbuch ist schwach, und deine eigene Rolle darin klein. Du bist längst der bekannteste der Brüder.</p>
+        <p>Du könntest trotzdem mitmachen, um deinen Brüdern zu helfen — oder ablehnen, weil das Material einfach nicht gut genug ist.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Groucho, gefragt für ein neues Projekt</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du machst mit, auch mit kleinerer Rolle und Zweifeln am Drehbuch, um deinen Brüdern finanziell zu helfen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lehnst das Projekt ab, weil du das Material für zu schwach hältst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bestehst auf einer größeren, deiner Bekanntheit entsprechenden Rolle.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Das Quiz-Format →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Das Quiz-Format</span>
+        <span class="scene-time">1947</span>
+      </div>
+      <div class="scene-body">
+        <p>Deine Filmkarriere läuft langsam aus. Man bietet dir an, eine Radio-Quizsendung zu moderieren — ein Format, das damals als deutlich weniger prestigeträchtig gilt als das Kino. Für einen Filmstar wie dich könnte das wie ein Abstieg wirken.</p>
+        <p>Du könntest den Sprung wagen — oder weiter auf neue Filmrollen hoffen.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Groucho, mit dem Angebot einer Quizsendung</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wagst den Wechsel zum neuen Format einer Quizsendung im Radio.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du versuchst weiter, an deine frühere Filmkarriere anzuknüpfen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich weitgehend aus dem Showgeschäft zurück.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">1947–1961 · 1974</div>
+    <div class="epilog-title">Die Quizsendung wurde sein längster Erfolg.</div>
+    <div class="epilog-body">
+      <p>"You Bet Your Life" lief elf Jahre lang, erst im Radio, dann im Fernsehen, und wurde zu einem der erfolgreichsten Quizformate seiner Zeit — kommerziell erfolgreicher als seine letzten Filme. 1974 erhielt Groucho Marx einen Ehrenoscar für sein Lebenswerk.</p>
+      <p style="margin-top:1rem">Die Anpassung des chaotischen Frühstils an MGMs handlungsorientiertere Vorgaben ab "Die Marx Brothers im Kaufhaus" wird von manchen Filmhistorikern bis heute als Verlust komödiantischer Schärfe gesehen — von anderen als kluger, überlebensnotwendiger Kompromiss.</p>
+    </div>
+    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Groucho_Marx" target="_blank" rel="noopener">Mehr zu Groucho Marx auf Wikipedia →</a></p>
+    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'groucho-marx';
+
+const results = {
+  1: {
+    A: { pct: 61, label: "Vorgaben akzeptiert" },
+    B: { pct: 24, label: "Auf altem Stil bestanden" },
+    C: { pct: 15, label: "Allein weitergemacht" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das geschah: Die Brüder akzeptierten Thalbergs Vorgaben für \"Die Marx Brothers in der Oper\" (1935) — mehr Handlung, romantische Nebenstränge, weniger reine Anarchie. Der Film wurde ein kommerzieller Erfolg und rettete ihre Karriere.",
+      B: "Auf dem ursprünglichen Stil zu bestehen, hätte nach dem Kassenflop wohl das Ende ihrer Filmkarriere bedeutet.",
+      C: "Allein ohne die Brüder weiterzumachen, hätte das Markenzeichen der Gruppe komplett aufgegeben."
+    }
+  },
+  2: {
+    A: { pct: 57, label: "Mitgemacht, um zu helfen" },
+    B: { pct: 25, label: "Abgelehnt" },
+    C: { pct: 18, label: "Größere Rolle gefordert" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Groucho: Er wirkte 1949 in \"Love Happy\" mit kleinerer Rolle mit, hauptsächlich um Chico finanziell zu helfen, trotz eigener Zweifel an der Qualität des Drehbuchs.",
+      B: "Das Projekt aus Qualitätsgründen abzulehnen, hätte seinen Bruder in einer finanziell ernsten Lage im Stich gelassen.",
+      C: "Auf einer größeren Rolle zu bestehen, hätte dem eigentlichen Zweck des Projekts — Chico zu helfen — widersprochen."
+    }
+  },
+  3: {
+    A: { pct: 64, label: "Zum Quizformat gewechselt" },
+    B: { pct: 21, label: "An Filmkarriere festgehalten" },
+    C: { pct: 15, label: "Zurückgezogen" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Groucho: Er nahm die Radio- und spätere Fernsehsendung an — sie wurde zu seinem größten und langlebigsten kommerziellen Erfolg, größer als seine späten Filme.",
+      B: "Weiter auf Filmrollen zu setzen, hätte den kommerziellen Realitäten seiner alternden Filmkarriere widersprochen.",
+      C: "Sich zurückzuziehen, hätte über ein Jahrzehnt an Karriere und Popularität ungenutzt gelassen."
+    }
+  }
+};
+
+const sceneNames = { 1: "Der neue Vertrag", 2: "Der letzte Film", 3: "Das Quiz-Format" };
+const scenarioTitle = "Histogramm Groucho Marx";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = narratives[letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('groucho-marx');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
