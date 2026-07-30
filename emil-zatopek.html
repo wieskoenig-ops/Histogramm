@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Du bist dreifacher Olympiasieger und Oberst der Armee. Ein Reformmanifest kursiert, das die Mächtigen wütend macht. Unterschreibst du unter deinem eigenen Namen?">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Histogramm">
+<meta property="og:title" content="Histogramm — Emil Zátopek">
+<meta property="og:description" content="Du bist dreifacher Olympiasieger und Oberst der Armee. Ein Reformmanifest kursiert, das die Mächtigen wütend macht. Unterschreibst du unter deinem eigenen Namen?">
+<meta property="og:url" content="https://histogramm.me/emil-zatopek.html">
+<meta property="og:image" content="https://histogramm.me/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Histogramm — Emil Zátopek">
+<meta name="twitter:description" content="Du bist dreifacher Olympiasieger und Oberst der Armee. Ein Reformmanifest kursiert, das die Mächtigen wütend macht. Unterschreibst du unter deinem eigenen Namen?">
+<meta name="twitter:image" content="https://histogramm.me/og-image.png">
+<title>Histogramm — Emil Zátopek</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Prag, <span>1968</span></div>
+  <div class="location-stamp">Prager Frühling · Läufer und Offizier</div>
+  <p class="hero-question">Du bist dreifacher Olympiasieger und Oberst der Armee.<br>Ein Reformmanifest kursiert, das die Mächtigen wütend macht. Unterschreibst du unter deinem eigenen Namen?</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Kapitel</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Das Manifest</span>
+        <span class="scene-time">Prag, Juni 1968</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit deinem legendären dreifachen Olympiasieg 1952 in Helsinki bist du in der Tschechoslowakei ein Volksheld — und inzwischen Oberst der Armee mit einflussreicher Stellung in der Kommunistischen Partei. Der "Prager Frühling" hat in den letzten Monaten Hoffnung auf einen "Sozialismus mit menschlichem Antlitz" geweckt.</p>
+        <p>Ein Manifest kursiert, verfasst von Intellektuellen und unterschrieben von prominenten Persönlichkeiten: das "Manifest der 2000 Worte". Es fordert eine rasche, konsequente Demokratisierung und warnt vor konservativen Kräften, die die Reformen rückgängig machen wollen. Die Parteiführung reagiert alarmiert.</p>
+        <p>Als einer von nur wenigen Spitzensportlern wirst du gefragt, ob du unterschreiben willst.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Emil Zátopek, Oberst und Läufer</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterschreibst das Manifest öffentlich, unter deinem vollen Namen und Titel.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nicht, um deine Stellung in Armee und Partei nicht zu gefährden.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du unterstützt die Ideen des Manifests privat, hältst deinen Namen aber aus der öffentlichen Unterschriftenliste heraus.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Die Panzer →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Die Panzer</span>
+        <span class="scene-time">Prag, 21. August 1968</span>
+      </div>
+      <div class="scene-body">
+        <p>Kurz nach Mitternacht rollen Panzer der Warschauer-Pakt-Staaten in Prag ein — die Reformbewegung soll gewaltsam beendet werden. Du bist auf dem Heimweg von einer Feier, als die ersten Truppen die Stadt erreichen. Tausende Menschen strömen auf den Wenzelsplatz, um sich den Panzern in den Weg zu stellen.</p>
+        <p>Du könntest ruhig nach Hause gehen. Stattdessen überlegst du, ob und wie du dich der Menge zeigst — als bekannter Armeeoffizier trägst du eine Uniform, die sofort Aufmerksamkeit erregen würde, in einer Situation, in der niemand weiß, wie die sowjetischen Soldaten reagieren.</p>
+        <p>Der Wenzelsplatz ist nur wenige Minuten entfernt.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Emil Zátopek, auf dem Heimweg</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bleibst zu Hause, um kein unnötiges Risiko einzugehen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gehst in Zivilkleidung zum Wenzelsplatz, um dich der Menge anzuschließen, ohne aufzufallen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du kletterst in deiner Armeeuniform auf einen sowjetischen Panzer und forderst die Soldaten auf, nach Hause zu fahren.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Das Interview →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Das Interview</span>
+        <span class="scene-time">Prag, 26. August 1968</span>
+      </div>
+      <div class="scene-body">
+        <p>Fünf Tage nach dem Einmarsch verhandeln tschechoslowakische Politiker in Moskau über die Zukunft des Landes — mit absehbarem Ausgang. Ein französisches Filmteam bittet dich um ein Interview. Du hast in den letzten Tagen bereits mehrfach öffentlich die Souveränität deines Landes verteidigt und die sowjetische Intervention verurteilt.</p>
+        <p>Die Zeichen stehen auf Rückzug der Reformen. Ein weiteres, unmissverständliches Interview jetzt würde dich noch enger mit der niedergeschlagenen Bewegung verbinden — genau in dem Moment, in dem die Konsequenzen für Regimekritiker absehbar werden.</p>
+        <p>Das Filmteam wartet mit laufender Kamera.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Emil Zátopek, Volksheld</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst das Interview ab, jetzt, wo sich die Lage erkennbar zum Schlechteren wendet.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du gibst das Interview und sprichst offen von der Souveränität deines Landes und deiner Verurteilung der sowjetischen Intervention.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du nutzt die Gelegenheit, um das Land zu verlassen, solange es noch möglich ist.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">Prag, 1974 · Prag, 21. November 2000</div>
+    <div class="epilog-title">Zátopek arbeitete jahrelang unter Tage im Uranbergwerk —<br>bevor er als Volksheld rehabilitiert wurde.</div>
+    <div class="epilog-body">
+      <p>Nach der Niederschlagung des Prager Frühlings wurde Zátopek aus Armee und Partei ausgeschlossen, öffentlich diskreditiert und musste sich als Zwangsarbeiter im Uranbergwerk von Jáchymov sowie später als Müllmann und Brunnenbohrer durchschlagen — Tätigkeiten, für die der einstige dreifache Olympiasieger von Helsinki nun anonym und unter widrigsten Bedingungen arbeitete. Erst ab 1974 wurde er schrittweise rehabilitiert, erhielt eine Anstellung im Prager Sport-Dokumentationszentrum und durfte wieder reisen.</p>
+      <p style="margin-top:1rem">Erst nach der Samtenen Revolution 1990 erfolgte seine vollständige politische Rehabilitierung. Sein einzigartiges läuferisches Erbe blieb davon unberührt: Er ist bis heute der einzige Läufer, der bei denselben Olympischen Spielen die 5000 Meter, die 10.000 Meter und den Marathon gewann, allesamt mit neuen Rekorden. Sein Prinzip des intensiven Intervalltrainings prägt den Laufsport bis heute — weit über seine politische Geschichte hinaus.</p>
+    </div>
+    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Emil_Z%C3%A1topek" target="_blank" rel="noopener">Mehr zu Emil Zátopek auf Wikipedia →</a></p>
+    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'emil-zatopek';
+
+const results = {
+  1: {
+    A: { pct: 55, label: "Öffentlich unterschrieben" },
+    B: { pct: 21, label: "Nicht unterschrieben" },
+    C: { pct: 24, label: "Privat unterstützt" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Zátopek. Als einer von nur vier Olympiasiegern unterzeichnete er im Juni 1968 offen das 'Manifest der 2000 Worte' — obwohl er als Oberst der Armee und einflussreiches Parteimitglied besonders viel zu verlieren hatte.",
+      B: "Nicht zu unterschreiben, um die eigene Stellung zu schützen, wäre die vorsichtigere Wahl für einen hochrangigen Armeeoffizier gewesen. Zátopek entschied sich dagegen.",
+      C: "Die Ideen des Manifests nur privat zu unterstützen, ohne den eigenen Namen öffentlich zu riskieren, hätte ihn geschützt — aber genau diese Art von halber Zurückhaltung war nie seine Art."
+    }
+  },
+  2: {
+    A: { pct: 11, label: "Zu Hause geblieben" },
+    B: { pct: 19, label: "Unauffällig in Zivil" },
+    C: { pct: 70, label: "Auf den Panzer geklettert" },
+    historical: 'C',
+    narratives: {
+      A: "Zu Hause zu bleiben, um kein Risiko einzugehen, hätte in dieser Nacht viele Menschen geschützt. Zátopek gehörte nicht zu ihnen — er war auf dem Heimweg von einer Feier, als die Panzer einrollten, und lief sofort in Richtung Wenzelsplatz.",
+      B: "In Zivil zur Menge zu gehen, ohne aufzufallen, wäre die unauffälligere Geste gewesen. Zátopek entschied sich für das genaue Gegenteil.",
+      C: "Genau das tat Zátopek. In seiner Armeeuniform kletterte er auf einen sowjetischen Panzer und forderte die Soldaten auf, nach Hause zu fahren. Das Bild ging um die Welt — der sozialistische Vorzeigesportler, der offen gegen die Invasion protestierte."
+    }
+  },
+  3: {
+    A: { pct: 13, label: "Interview abgesagt" },
+    B: { pct: 66, label: "Interview gegeben" },
+    C: { pct: 21, label: "Land verlassen" },
+    historical: 'B',
+    narratives: {
+      A: "Das Interview kurzfristig abzusagen, wäre angesichts der sich abzeichnenden Repressionen die vorsichtigere Wahl gewesen. Zátopek sagte es nicht ab.",
+      B: "Genau das tat Zátopek. Er gab das Interview und verurteilte die sowjetische Intervention scharf, während am selben Tag das Moskauer Protokoll unterzeichnet wurde, das den Prager Frühling faktisch beendete. Wenige Monate später verlor er alle Ämter und wurde öffentlich diskreditiert.",
+      C: "Das Land zu verlassen, solange es noch ging, wählten in diesen Wochen manche prominente Tschechoslowaken. Zátopek blieb — und zahlte den Preis dafür in den folgenden Jahren."
+    }
+  }
+};
+
+const sceneNames = { 1: "Das Manifest", 2: "Die Panzer", 3: "Das Interview" };
+const scenarioTitle = "Histogramm Emil Zátopek";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = narratives[letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('emil-zatopek');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
