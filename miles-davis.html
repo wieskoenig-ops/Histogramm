@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Heroin hat deine Karriere fast zerstört. Du schließt dich im Farmhaus deines Vaters ein. Suchst du Hilfe — oder machst du das allein durch?">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Histogramm">
+<meta property="og:title" content="Histogramm — Miles Davis">
+<meta property="og:description" content="Heroin hat deine Karriere fast zerstört. Du schließt dich im Farmhaus deines Vaters ein. Suchst du Hilfe — oder machst du das allein durch?">
+<meta property="og:url" content="https://histogramm.me/miles-davis.html">
+<meta property="og:image" content="https://histogramm.me/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Histogramm — Miles Davis">
+<meta name="twitter:description" content="Heroin hat deine Karriere fast zerstört. Du schließt dich im Farmhaus deines Vaters ein. Suchst du Hilfe — oder machst du das allein durch?">
+<meta name="twitter:image" content="https://histogramm.me/og-image.png">
+<title>Histogramm — Miles Davis</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="site-name">Histogramm</span>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">East St. Louis, <span>1953</span></div>
+  <div class="location-stamp">Illinois · Trompeter</div>
+  <p class="hero-question">Heroin hat deine Karriere fast zerstört.<br>Du schließt dich im Farmhaus deines Vaters ein. Suchst du Hilfe — oder machst du das allein durch?</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Kapitel</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Der Entzug</span>
+        <span class="scene-time">Illinois, 1953/54</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit Jahren bist du heroinabhängig — angefangen in den späten 1940ern, als du mit Charlie Parker spieltest und die Droge in der Bebop-Szene allgegenwärtig war. Verpasste Auftritte, unzuverlässige Studiosessions, eine Verhaftung wegen Drogenbesitzes in Los Angeles: Deine Karriere ist davon schwer beschädigt.</p>
+        <p>Du bist zurück bei deinem Vater in Illinois, in der Nähe von St. Louis. Zwei frühere Versuche, auf seiner Farm clean zu werden, sind bereits gescheitert. Diesmal willst du es anders angehen — oder es ganz anders versuchen.</p>
+        <p>Ein Zimmer im Farmhaus wartet.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Miles Davis, Trompeter</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du suchst eine medizinisch begleitete Entzugsklinik auf.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schließt dich allein im Farmhaus deines Vaters ein und entziehst kalt, ohne jede Hilfe.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versuchst, die Sucht neben deiner Karriere weiter zu managen, ohne sie ganz aufzugeben.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Die Sessions →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Die Sessions</span>
+        <span class="scene-time">New York, 19.–21. August 1969</span>
+      </div>
+      <div class="scene-body">
+        <p>Fünfzehn Jahre und mehrere legendäre Alben später — darunter "Kind of Blue", das meistverkaufte Jazzalbum aller Zeiten — bist du ein etablierter Name des akustischen Jazz. Rock und Funk erobern die Charts, deine Clubs leeren sich, jüngere Hörer wenden sich anderer Musik zu.</p>
+        <p>Du hast ein erweitertes Ensemble versammelt — unter anderem Joe Zawinul, John McLaughlin, Wayne Shorter — mit elektrisch verstärkten Instrumenten. Die Aufnahmen könnten deinen bisherigen Ruf als Jazzpurist komplett infrage stellen.</p>
+        <p>Die Bänder laufen.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Miles Davis, Bandleader</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bleibst bei deinem etablierten akustischen Quintett-Sound, der dich berühmt gemacht hat.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du experimentierst vorsichtig mit einzelnen elektrischen Elementen, ohne den Gesamtsound radikal zu ändern.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du gehst mit elektrisch verstärkten Instrumenten, Rock- und Funkeinflüssen und stundenlangen Jam-Sessions komplett neue Wege.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Der Rückzug →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Der Rückzug</span>
+        <span class="scene-time">New York, 1975</span>
+      </div>
+      <div class="scene-body">
+        <p>Ein Autounfall, eine missglückte Hüftoperation, chronische Schmerzen. Du greifst zunehmend zu Schmerzmitteln und Kokain. Die Auftritte werden seltener, unzuverlässiger. Deine Plattenfirma Columbia drängt auf neues Material, dein Körper und Kopf ziehen in eine andere Richtung.</p>
+        <p>Du könntest versuchen, trotz allem weiterzumachen. Du könntest gezielt Hilfe suchen. Oder du könntest die Trompete für unbestimmte Zeit ganz aus der Hand legen.</p>
+        <p>Draußen wartet niemand mehr auf ein neues Album.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Miles Davis, gesundheitlich angeschlagen</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du ziehst dich vollständig zurück — keine Auftritte, kein Üben, monatelang das Haus nicht verlassen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du kämpfst dich trotz starker Schmerzen zurück auf die Bühne, um den Kontakt zum Publikum nicht zu verlieren.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du suchst gezielt medizinische und therapeutische Hilfe, um schneller wieder auftreten zu können.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-date">New York, 1981 · New York, 28. September 1991</div>
+    <div class="epilog-title">Davis kehrte 1981 auf die Bühne zurück —<br>und blieb bis zu seinem Tod zehn Jahre später einer der einflussreichsten Musiker seiner Zeit.</div>
+    <div class="epilog-body">
+      <p>Das Comeback-Album "The Man with the Horn" (1981) markierte den Anfang eines zweiten Spätwerks, das erneut zwischen Anerkennung und Kontroverse schwankte — Davis experimentierte weiter, unter anderem mit Pop- und Hip-Hop-Einflüssen, bis zu seinem Tod 1991. Rückblickend gilt gerade die von vielen Zeitgenossen als "Verrat" empfundene Bitches-Brew-Phase heute als eine der einflussreichsten Perioden der Jazzgeschichte — Musiker von Prince bis zu Hip-Hop-Produzenten der 1990er beriefen sich später ausdrücklich auf sie.</p>
+      <p style="margin-top:1rem">Sein Leben blieb von Suchtproblemen begleitet — nach dem Heroin der 1950er Jahre kam in den 1970ern Kokain hinzu. Gleichzeitig zählt Davis bis heute zu den wenigen Musikern, die gleich mehrere Jahrzehnte und Genres des Jazz maßgeblich mitprägten: Bebop, Cool Jazz, Modal Jazz, Fusion.</p>
+    </div>
+    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Miles_Davis" target="_blank" rel="noopener">Mehr zu Miles Davis auf Wikipedia →</a></p>
+    <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'miles-davis';
+
+const results = {
+  1: {
+    A: { pct: 33, label: "Klinik aufgesucht" },
+    B: { pct: 46, label: "Allein kalt entzogen" },
+    C: { pct: 21, label: "Sucht weiter gemanagt" },
+    historical: 'B',
+    narratives: {
+      A: "Eine medizinisch begleitete Entzugsklinik aufzusuchen, wäre der institutionelle Weg gewesen. Davis wählte einen radikaleren, einsameren.",
+      B: "Genau das tat Davis. Er schloss sich im Farmhaus seines Vaters in Illinois ein und entzog kalt, ohne medizinische Hilfe — tagelang schweißgebadet, bis er, wie er selbst später sagte, wieder wie neu roch. Im Februar 1954 kehrte er clean nach New York zurück.",
+      C: "Die Sucht neben der Karriere weiter zu managen, hätte bedeutet, weiter verpasste Auftritte und unzuverlässige Studiosessions zu riskieren — genau das Muster, das seine Karriere in den Jahren zuvor beschädigt hatte."
+    }
+  },
+  2: {
+    A: { pct: 17, label: "Beim akustischen Sound geblieben" },
+    B: { pct: 27, label: "Vorsichtig experimentiert" },
+    C: { pct: 56, label: "Komplett elektrisch gegangen" },
+    historical: 'C',
+    narratives: {
+      A: "Beim etablierten akustischen Sound zu bleiben, hätte weniger Risiko bedeutet — sein Quintett der frühen 1960er war gerade erst nach fünf Jahren auseinandergegangen. Davis suchte stattdessen etwas komplett Neues.",
+      B: "Vorsichtig mit einzelnen elektrischen Elementen zu experimentieren, ohne den Gesamtsound radikal zu verändern, hatte er mit 'In a Silent Way' bereits ausprobiert. Bei den Bitches-Brew-Sessions ging er einen entscheidenden Schritt weiter.",
+      C: "Genau das tat Davis. Über drei Tage im August 1969 nahm er mit einem erweiterten Ensemble — unter anderem Joe Zawinul, John McLaughlin und Wayne Shorter — stundenlange Jam-Sessions auf, die zu 'Bitches Brew' wurden. Jazzpuristen warfen ihm Verrat vor; gleichzeitig gewann er ein jüngeres, rock- und funkgeprägtes Publikum und wurde zum Wegbereiter der Fusion-Bewegung."
+    }
+  },
+  3: {
+    A: { pct: 51, label: "Vollständig zurückgezogen" },
+    B: { pct: 22, label: "Trotz Schmerzen aufgetreten" },
+    C: { pct: 27, label: "Hilfe gesucht" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Davis. Nach einem Autounfall und einer missglückten Hüftoperation verlor er sich in Schmerzmitteln und Kokain. Fünf Jahre lang, von 1975 bis 1980, nahm er nach eigenen Angaben keine Trompete mehr in die Hand und verließ monatelang das Haus nicht.",
+      B: "Sich trotz starker Schmerzen zurück auf die Bühne zu kämpfen, hätte den Kontakt zum Publikum gehalten — aber auch das Risiko weiterer gesundheitlicher Schäden erhöht.",
+      C: "Gezielt medizinische und therapeutische Hilfe zu suchen, um schneller zurückzukehren, wäre der strukturiertere Weg gewesen. Diesen Weg beschritt Davis in dieser Phase seines Lebens nicht."
+    }
+  }
+};
+
+const sceneNames = { 1: "Der Entzug", 2: "Die Sessions", 3: "Der Rückzug" };
+const scenarioTitle = "Histogramm Miles Davis";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  document.getElementById('narrative' + day).textContent = narratives[letter];
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('miles-davis');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
