@@ -377,7 +377,21 @@ async function submitDay(day) {
 
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
-  document.getElementById('narrative' + day).textContent = narratives[letter];
+  const narrEl = document.getElementById('narrative' + day);
+  narrEl.textContent = narratives[letter];
+  // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
+  const hist = results[day].historical;
+  if (hist && hist !== letter && narratives[hist]) {
+    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    const p = document.createElement('p');
+    p.style.marginTop = '0.9rem';
+    const b = document.createElement('strong');
+    b.textContent = 'Was tatsächlich geschah: ';
+    p.appendChild(b);
+    p.appendChild(document.createTextNode(t));
+    narrEl.appendChild(p);
+  }
   document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);

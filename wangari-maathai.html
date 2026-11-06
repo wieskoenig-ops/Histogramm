@@ -273,9 +273,9 @@ const results = {
     C: { pct: 28, label: "Sparsame Kochherde" },
     historical: 'B',
     narratives: {
-      A: "Staatliche Aufforstung war der naheliegende Weg. Sie hätte die Frauen aber zu Zuschauerinnen gemacht und ganz von den Mitteln und Prioritäten der Behörde abgehangen.",
+      A: "Staatliche Aufforstung war der naheliegende Weg: Die Forstverwaltung hätte Setzlinge, Land und Personal stellen können. Die Frauen auf dem Land wären damit aber Zuschauerinnen geblieben, abhängig davon, wo, wann und ob die Behörde pflanzte. Maathai wollte, dass die Frauen selbst handeln und dafür auch Geld bekommen. Diese Idee wurde zum Kern ihrer Bewegung.",
       B: "Genau das tat Maathai: Am 5. Juni 1977, dem Weltumwelttag, pflanzte der Frauenrat in Nairobi die ersten sieben Bäume. Daraus wurde das Green Belt Movement. Frauen zogen Setzlinge in eigenen Baumschulen und erhielten für jeden, der anwuchs, eine kleine Vergütung.",
-      C: "Sparsame Herde hätten den Holzverbrauch gesenkt, aber weder die Böden noch die Bäche geschützt. Maathai setzte auf Bäume, die Brennholz liefern und zugleich die Erosion bremsen."
+      C: "Sparsame Herde waren eine echte Antwort auf die Brennholznot und wurden in Kenia in den 1980er-Jahren auch verbreitet. Sie hätten den Verbrauch gesenkt, aber keinen einzigen Baum wachsen lassen: Die kahlen Hänge, die verschlammten Bäche und der Mangel an Futter wären geblieben. Maathai sah die Ursache im verschwundenen Wald und setzte deshalb auf Bäume, die Brennholz liefern und zugleich die Erosion bremsen."
     }
   },
   2: {
@@ -284,8 +284,8 @@ const results = {
     C: { pct: 48, label: "Briefe und Klage" },
     historical: 'C',
     narratives: {
-      A: "Eine Massenaktion hätte starke Bilder erzeugt, im Einparteienstaat aber Festnahmen riskiert, bevor das Projekt im In- und Ausland überhaupt bekannt war.",
-      B: "Ein Kompromiss hätte die Bewegung womöglich geschont. Doch der Turm sollte ein Prestigebau der Regierungspartei werden, und ob sie über den Standort verhandelt hätte, ist fraglich.",
+      A: "Eine Massenaktion hätte starke Bilder erzeugt. Doch Kenia war seit 1982 per Gesetz ein Einparteienstaat. Kundgebungen ohne Genehmigung löste die Polizei auf, Kritiker kamen in Haft. Zudem wusste die Öffentlichkeit kaum etwas von dem Bauvorhaben. Eine Demonstration hätte die Regierung leicht als Unruhestiftung abtun können, bevor überhaupt jemand verstand, worum es ging. Maathai machte den Plan deshalb erst mit Briefen und vor Gericht bekannt, und das war schwerer zu verbieten.",
+      B: "Ein Kompromiss, etwa ein anderer Bauplatz, hätte die Bewegung womöglich vor Angriffen geschont. Doch der Turm sollte ein Prestigebau der Regierungspartei KANU werden: ein Hochhauskomplex mit rund 60 Stockwerken mitten in Nairobi, dazu eine Statue von Präsident Moi. Ob die Partei über den Standort verhandelt hätte, ist fraglich. Und wer den Bau grundsätzlich hinnahm, hätte es schwer gehabt, später noch gegen ihn zu kämpfen.",
       C: "Genau das tat Maathai: Sie schrieb an Regierungsstellen, an UNEP, UNESCO und den britischen Hochkommissar und zog vor Gericht. Das Parlament verhöhnte sie, ihre Klage wurde abgewiesen, ihr Büro musste sie räumen. Doch im Januar 1990 zogen sich die ausländischen Geldgeber zurück, der Turm wurde nie gebaut."
     }
   },
@@ -296,8 +296,8 @@ const results = {
     historical: 'A',
     narratives: {
       A: "Genau das tat Maathai: Noch gegen Kaution frei, schloss sie sich dem Hungerstreik an der „Freedom Corner“ an. Am 3. März 1992 räumte die Polizei die Ecke, Maathai wurde bewusstlos geschlagen und kam ins Krankenhaus. Die Mütter setzten den Protest in der All Saints Cathedral fort, Anfang 1993 waren die Gefangenen frei.",
-      B: "Druck aus dem Ausland wirkte in jenen Jahren tatsächlich: Er trug dazu bei, dass die Anklage gegen Maathai im November 1992 fallen gelassen wurde. Den Müttern hätte im Park aber eine bekannte Stimme gefehlt.",
-      C: "Der Rechtsweg war naheliegend, aber unsicher: Kenias Gerichte hatten schon ihre Klage gegen den Turm im Uhuru Park abgewiesen, und politische Verfahren zogen sich oft lange hin."
+      B: "Druck aus dem Ausland wirkte in jenen Jahren tatsächlich: Ende 1991 froren westliche Geberländer ihre Hilfe ein, kurz darauf ließ Kenia wieder mehrere Parteien zu. Auch die Anklage gegen Maathai wurde im November 1992 fallen gelassen, nachdem sich unter anderem US-Senatoren für sie eingesetzt hatten. Den Müttern im Park hätten Briefe aus dem Ausland aber wenig geholfen: Ihnen hätte vor Ort eine bekannte Stimme gefehlt, die Aufmerksamkeit auf ihren Streik lenkt.",
+      C: "Der Rechtsweg war naheliegend: Die Mütter wollten ihre Söhne frei sehen, die sie als politische Gefangene betrachteten. Doch Kenias Gerichte hatten schon Maathais Klage gegen den Turm im Uhuru Park abgewiesen, und politische Verfahren zogen sich oft über Jahre hin. Maathai stand zudem selbst unter Anklage und war nur gegen Kaution frei. Ein Prozess hätte den Gefangenen kaum schnell geholfen."
     }
   }
 };
@@ -372,7 +372,21 @@ async function submitDay(day) {
 
   document.getElementById('result' + day + 'Title').textContent = titleText;
   document.getElementById('bars' + day).innerHTML = barsHtml;
-  document.getElementById('narrative' + day).textContent = narratives[letter];
+  const narrEl = document.getElementById('narrative' + day);
+  narrEl.textContent = narratives[letter];
+  // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
+  const hist = results[day].historical;
+  if (hist && hist !== letter && narratives[hist]) {
+    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    const p = document.createElement('p');
+    p.style.marginTop = '0.9rem';
+    const b = document.createElement('strong');
+    b.textContent = 'Was tatsächlich geschah: ';
+    p.appendChild(b);
+    p.appendChild(document.createTextNode(t));
+    narrEl.appendChild(p);
+  }
   document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
   document.getElementById('result' + day).classList.add('visible');
   setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
