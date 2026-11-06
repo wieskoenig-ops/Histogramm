@@ -263,6 +263,9 @@
   .daily .card-title { font-size: 1.45rem; }
   .daily .card-cta { font-weight: bold; }
   .daily-note { font-size: 0.82rem; color: var(--ink-muted); font-style: italic; margin: 0 0 0.25rem; }
+  .daily-reason { font-size: 0.95rem; font-style: italic; color: var(--ink); margin: 0 0 0.6rem; }
+  .daily-also { font-size: 0.82rem; color: var(--ink-muted); margin: 0 0 0.4rem; line-height: 1.6; }
+  .daily-also a { color: var(--amber-dark); }
   .daily-note.done { color: var(--amber-dark); font-style: normal; }
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
@@ -357,6 +360,8 @@
   }
 </style>
 <script src="streak.js"></script>
+<script src="kalender-daten.js"></script>
+<script src="kalender.js"></script>
 </head>
 <body>
 
@@ -379,7 +384,9 @@
 <main>
   <section class="daily" id="daily" hidden>
     <div class="section-label" id="dailyLabel">Histogramm des Tages</div>
+    <p class="daily-reason" id="dailyReason" hidden></p>
     <div id="dailyCard"></div>
+    <p class="daily-also" id="dailyAlso" hidden></p>
     <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
     <div class="section-label">Alle Histogramme</div>
   </section>
@@ -1206,9 +1213,7 @@
     for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
     return h >>> 0;
   }
-  function dailyPick(cards, day) {
-    const fresh = cards.filter(function(c) { return c.getAttribute('data-added') === day; });
-    if (fresh.length) return fresh[0];
+  function dailyRotation(cards, day) {
     const sorted = cards.slice().sort(function(a, b) {
       const ka = a.getAttribute('href'), kb = b.getAttribute('href');
       return (dailyHash(ka) - dailyHash(kb)) || (ka < kb ? -1 : 1);
@@ -1217,12 +1222,55 @@
     const n = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2026, 0, 1)) / 86400000);
     return sorted[((n % sorted.length) + sorted.length) % sorted.length];
   }
+  // Reihenfolge: neues Szenario von heute > stärkster Anlass aus dem Kalender > feste Rotation.
+  function dailyPick(cards, day) {
+    const bySlug = {};
+    cards.forEach(function(c) { bySlug[c.getAttribute('href').replace('.html', '')] = c; });
+    let anl = [];
+    try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
+    const fresh = cards.filter(function(c) { return c.getAttribute('data-added') === day; });
+    let card, reason = null;
+    if (fresh.length) {
+      card = fresh[0];
+      const own = anl.filter(function(a) { return bySlug[a.s] === card; })[0];
+      reason = own ? own.text : 'Neu: heute erschienen.';
+    } else if (anl.length) {
+      card = bySlug[anl[0].s];
+      reason = anl[0].text;
+    } else {
+      card = dailyRotation(cards, day);
+    }
+    const also = anl.filter(function(a) { return bySlug[a.s] !== card; }).slice(0, 2);
+    return { card: card, reason: reason, also: also, bySlug: bySlug };
+  }
   function renderDaily() {
     const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
       .filter(function(c) { return c.getAttribute('href') !== 'folgt.html'; });
     if (!cards.length) return;
-    const day = Streak.localDay();
-    const pick = dailyPick(cards, day);
+    // ?tag=JJJJ-MM-TT zeigt zum Ausprobieren die Auswahl eines anderen Tages.
+    const testTag = (location.search.match(/[?&]tag=(\d{4}-\d{2}-\d{2})/) || [])[1];
+    const day = testTag || Streak.localDay();
+    const result = dailyPick(cards, day);
+    const pick = result.card;
+    if (result.reason) {
+      const r = document.getElementById('dailyReason');
+      r.textContent = result.reason;
+      r.hidden = false;
+    }
+    if (result.also.length) {
+      const box = document.getElementById('dailyAlso');
+      box.appendChild(document.createTextNode('Außerdem heute: '));
+      result.also.forEach(function(a, i) {
+        if (i) box.appendChild(document.createTextNode(' · '));
+        const link = document.createElement('a');
+        link.href = a.s + '.html';
+        const t = result.bySlug[a.s].querySelector('.card-title');
+        link.textContent = t ? t.textContent.trim() : a.s;
+        box.appendChild(link);
+        if (a.text !== result.reason) box.appendChild(document.createTextNode(' – ' + a.text.replace(/\.$/, '')));
+      });
+      box.hidden = false;
+    }
     const clone = pick.cloneNode(true);
     clone.classList.remove('played');
     clone.removeAttribute('id');
@@ -1232,7 +1280,7 @@
     document.getElementById('dailyCard').appendChild(clone);
     // Die Originalkarte in der Liste ausblenden, damit sie nicht doppelt erscheint.
     pick.style.display = 'none';
-    const d = new Date();
+    const d = testTag ? new Date(day + 'T12:00:00') : new Date();
     document.getElementById('dailyLabel').textContent = 'Histogramm des Tages · ' +
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
     const note = document.getElementById('dailyNote');
