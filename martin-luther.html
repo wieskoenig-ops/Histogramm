@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du forderst zunächst eine akademische Disputation innerhalb der Universität, um die Frage unter Gelehrten zu klären.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du veröffentlichst deine 95 Thesen öffentlich und schickst sie zugleich an die kirchliche Führung.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wendest dich in einem persönlichen Brief direkt an den Papst, in der Hoffnung auf eine stille Reform von oben.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lädst zu einer akademischen Disputation in Wittenberg ein, um die Frage unter Gelehrten zu klären.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schickst die Thesen an den Erzbischof von Mainz und lässt sie zugleich unter Gelehrten verbreiten.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schreibst dem Papst persönlich und hoffst, dass er den Missbrauch von oben abstellt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du weigerst dich vollständig zu widerrufen, solange man dich nicht mit der Schrift oder klaren Gründen widerlegt.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bittest zunächst um einen Tag Bedenkzeit, um deine Antwort sorgfältig vorzubereiten.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du widerrufst formal die umstrittensten Einzelpassagen, hältst aber an der Grundaussage über den Ablasshandel fest.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bittest um ein allgemeines Konzil, das deine Schriften unabhängig prüft, statt dich hier zu richten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du widerrufst nicht, solange man dich nicht mit der Schrift oder klaren Gründen widerlegt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du widerrufst die schärfsten Polemiken, hältst aber an deiner Kritik am Ablass fest.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -210,7 +210,7 @@
       </div>
       <div class="scene-body">
         <p>Du bist zum Vogelfreien erklärt worden — jeder dürfte dich ohne Konsequenzen töten. Friedrich der Weise lässt dich heimlich auf die Wartburg bringen, wo du unter falschem Namen versteckt lebst.</p>
-        <p>Die erzwungene Isolation gibt dir Zeit. Du könntest sie nutzen, um das Neue Testament aus dem Griechischen ins Deutsche zu übersetzen — damit es jeder Mensch selbst lesen kann, nicht nur der lateinkundige Klerus.</p>
+        <p>Die erzwungene Isolation gibt dir Zeit — und draußen geht die Bewegung ohne dich weiter.</p>
       </div>
       <div class="scene-role">
         <span class="role-label">Deine Rolle</span>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wartest ab, ob sich die politische Lage von selbst beruhigt, bevor du wieder aktiv wirst.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nutzt die Verborgenheit, um heimlich Kontakte zu sympathisierenden Fürsten zu knüpfen und politischen Rückhalt zu sichern.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du übersetzt in der Verborgenheit das Neue Testament ins Deutsche, damit es jeder selbst lesen kann.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hältst still, bis sich die Lage beruhigt. Ein toter Reformator nützt niemandem.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du übersetzt das Neue Testament aus dem Griechischen ins Deutsche, damit es jeder selbst lesen kann.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du schreibst heimlich Briefe an Fürsten und Städte, um politischen Rückhalt für die Reform zu sichern.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,7 +261,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'martin-luther';
+const SCENARIO_PREFIX = 'martin-luther-v2';
 
 const results = {
   1: {
@@ -276,25 +276,25 @@ const results = {
     }
   },
   2: {
-    A: { pct: 39, label: "Standgehalten" },
-    B: { pct: 33, label: "Bedenkzeit erbeten" },
+    A: { pct: 22, label: "Konzil verlangt" },
+    B: { pct: 50, label: "Standgehalten" },
     C: { pct: 28, label: "Teilweise widerrufen" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Luther am Ende: Er weigerte sich zu widerrufen, solange man ihn nicht mit der Schrift oder klarer Vernunft widerlegte.",
-      B: "Tatsächlich bat Luther zunächst um einen Tag Bedenkzeit, bevor er seine endgültige Antwort gab — ein realer Zwischenschritt, der seiner letztlichen Weigerung voranging.",
+      A: "Ein allgemeines Konzil hatte Luther früher schon gefordert. In Worms aber verlangte der Kaiser eine Antwort, kein Verfahren — und Luther gab sie: Er widerrief nicht.",
+      B: "Genau das tat Luther am Ende: Er weigerte sich zu widerrufen, solange man ihn nicht mit der Schrift oder klarer Vernunft widerlegte.",
       C: "Ein formaler Teilwiderruf hätte einen gesichtswahrenden Ausweg geboten — nicht der Weg, den Luther am Ende ging."
     }
   },
   3: {
     A: { pct: 27, label: "Abgewartet" },
-    B: { pct: 31, label: "Politische Kontakte geknüpft" },
-    C: { pct: 42, label: "Bibel übersetzt" },
-    historical: 'C',
+    B: { pct: 42, label: "Bibel übersetzt" },
+    C: { pct: 31, label: "Politische Kontakte geknüpft" },
+    historical: 'B',
     narratives: {
       A: "Abzuwarten, bis sich die Lage beruhigt, wäre für einen zum Vogelfreien Erklärten eine nachvollziehbare Vorsichtsmaßnahme gewesen.",
-      B: "Politische Kontakte zu sympathisierenden Fürsten zu knüpfen, war durchaus Teil der Realität — sein Schutz durch Friedrich den Weisen beruhte genau darauf. Aber es war nicht die Hauptbeschäftigung dieser Monate.",
-      C: "Genau das tat Luther: In der erzwungenen Isolation übersetzte er das Neue Testament ins Deutsche — eine der folgenreichsten literarischen Leistungen der deutschen Geschichte."
+      B: "Genau das tat Luther: In der erzwungenen Isolation übersetzte er das Neue Testament ins Deutsche — eine der folgenreichsten literarischen Leistungen der deutschen Geschichte.",
+      C: "Politische Kontakte zu sympathisierenden Fürsten zu knüpfen, war durchaus Teil der Realität — sein Schutz durch Friedrich den Weisen beruhte genau darauf. Aber es war nicht die Hauptbeschäftigung dieser Monate."
     }
   }
 };

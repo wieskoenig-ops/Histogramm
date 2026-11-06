@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du gibst das ursprüngliche Ziel — die Durchquerung der Antarktis — komplett auf und erklärst das bloße Überleben aller Männer zur einzigen Priorität.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du versuchst, zumindest einen Teil der Expeditionsziele zu retten, etwa wissenschaftliche Aufzeichnungen um jeden Preis mitzunehmen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du hältst vorerst am ursprünglichen Plan fest, in der Hoffnung, das Eis werde sich rechtzeitig öffnen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lässt Tagebücher, Messdaten und Fotoplatten bergen — ohne sie war die ganze Reise umsonst.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du lässt ein Lager auf dem Eis errichten und hoffst, im Frühjahr doch noch zur Landung zu kommen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du erklärst die Expedition für beendet: Ab jetzt zählt nur, dass alle 28 Männer lebend nach Hause kommen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bleibst mit der gesamten Gruppe auf Elephant Island und wartet gemeinsam auf zufällige Rettung.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schickst eine kleine Gruppe ohne dich selbst mit dem Rettungsboot los, während du bei der Mehrheit bleibst.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du brichst selbst mit fünf Männern in dem winzigen offenen Boot zu der 1300 Kilometer langen Fahrt auf.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr bleibt alle zusammen auf der Insel und wartet auf die Walfangsaison, wenn vielleicht Schiffe vorbeikommen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du fährst selbst mit fünf Männern in der James Caird los und überlässt Frank Wild das Lager.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schickst deinen Kapitän Worsley mit fünf Männern los und bleibst als Anführer bei der großen Gruppe.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du versuchst, mit dem beschädigten Boot um die Insel herum direkt zur Walfangstation zu segeln.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du überquerst mit zwei Begleitern zu Fuß das ungekartete, vergletscherte Gebirge der Insel.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du lässt die Mannschaft sich erst länger erholen, bevor ihr irgendetwas weiter unternehmt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Ihr flickt das Boot und segelt an der Küste entlang um die Insel, auch wenn das Wochen dauern kann.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du steigst mit Crean und Worsley über das unkartierte Gebirge, mit einem Seil, einer Axt und kaum Proviant.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Ihr erholt euch einige Wochen in der Bucht, jagt Robben und Albatrosse und wartet auf besseres Wetter.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,29 +264,29 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'ernest-shackleton';
+const SCENARIO_PREFIX = 'ernest-shackleton-v2';
 
 const results = {
   1: {
-    A: { pct: 74, label: "Überleben zur Priorität erklärt" },
-    B: { pct: 15, label: "Expeditionsziele gerettet" },
-    C: { pct: 11, label: "Am Plan festgehalten" },
-    historical: 'A',
+    A: { pct: 15, label: "Expeditionsziele gerettet" },
+    B: { pct: 11, label: "Am Plan festgehalten" },
+    C: { pct: 74, label: "Überleben zur Priorität erklärt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Shackleton. Als klar wurde, dass die Endurance verloren war, gab er die ursprüngliche Durchquerung der Antarktis vollständig auf und erklärte das Überleben aller 28 Männer zur einzigen Priorität — eine Umstellung, die er bemerkenswert schnell und klar traf.",
-      B: "Wissenschaftliche Aufzeichnungen um jeden Preis zu retten, hätte den ursprünglichen Expeditionszweck gewürdigt. Shackleton ordnete stattdessen an, fast alles Überflüssige wegzuwerfen — sogar sein eigenes goldenes Zigarettenetui —, während Banjo und Maskottchen für die Moral der Mannschaft blieben.",
-      C: "Am ursprünglichen Plan festzuhalten, in der Hoffnung, das Eis öffne sich rechtzeitig, hätte wertvolle Zeit gekostet. Shackleton erkannte die Lage schneller als das."
+      A: "Wissenschaftliche Aufzeichnungen um jeden Preis zu retten, hätte den ursprünglichen Expeditionszweck gewürdigt. Shackleton ordnete stattdessen an, fast alles Überflüssige wegzuwerfen — sogar sein eigenes goldenes Zigarettenetui —, während Banjo und Maskottchen für die Moral der Mannschaft blieben.",
+      B: "Am ursprünglichen Plan festzuhalten, in der Hoffnung, das Eis öffne sich rechtzeitig, hätte wertvolle Zeit gekostet. Shackleton erkannte die Lage schneller als das.",
+      C: "Genau das tat Shackleton. Als klar wurde, dass die Endurance verloren war, gab er die ursprüngliche Durchquerung der Antarktis vollständig auf und erklärte das Überleben aller 28 Männer zur einzigen Priorität — eine Umstellung, die er bemerkenswert schnell und klar traf."
     }
   },
   2: {
     A: { pct: 9, label: "Gemeinsam gewartet" },
-    B: { pct: 14, label: "Andere geschickt" },
-    C: { pct: 77, label: "Selbst aufgebrochen" },
-    historical: 'C',
+    B: { pct: 77, label: "Selbst aufgebrochen" },
+    C: { pct: 14, label: "Andere geschickt" },
+    historical: 'B',
     narratives: {
       A: "Mit der gesamten Gruppe auf Elephant Island zu bleiben und auf zufällige Rettung zu warten, hätte auf eine abgelegene, von Schiffsrouten weit entfernte Insel gesetzt — eine sehr unsichere Hoffnung.",
-      B: "Eine kleine Gruppe ohne sich selbst loszuschicken, hätte das persönliche Risiko vermieden. Shackleton überließ diese lebensgefährliche Fahrt nicht anderen.",
-      C: "Genau das tat Shackleton. Mit fünf Männern brach er am 24. April 1916 in der siebeneinhalb Meter langen James Caird zu einer gut zweiwöchigen, 1300 Kilometer langen Fahrt durch die stürmischste See der Welt auf — und ließ 22 Männer auf einer unbewohnten Insel zurück, ohne zu wissen, ob oder wann er zurückkehren würde."
+      B: "Genau das tat Shackleton. Mit fünf Männern brach er am 24. April 1916 in der siebeneinhalb Meter langen James Caird zu einer gut zweiwöchigen, 1300 Kilometer langen Fahrt durch die stürmischste See der Welt auf — und ließ 22 Männer auf einer unbewohnten Insel zurück, ohne zu wissen, ob oder wann er zurückkehren würde.",
+      C: "Eine kleine Gruppe ohne sich selbst loszuschicken, hätte das persönliche Risiko vermieden. Shackleton überließ diese lebensgefährliche Fahrt nicht anderen."
     }
   },
   3: {

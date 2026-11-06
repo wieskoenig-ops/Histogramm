@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bleibst diplomatisch, bietest Kompromisse an — etwa gedruckte Songtexte statt Warnaufkleber.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bleibst der Anhörung fern und reichst nur eine schriftliche Stellungnahme ein.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du trittst scharf und konfrontativ auf — nennst die Sache offen einen Angriff auf die Redefreiheit, ohne diplomatische Zugeständnisse.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du nennst den Vorschlag vor dem Ausschuss offen Unsinn und einen Angriff auf die Redefreiheit.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bleibst sachlich und bietest einen Kompromiss an: abgedruckte Songtexte statt Warnaufkleber.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schickst nur eine schriftliche Stellungnahme. Einen Zirkus vor Kameras willst du nicht.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -170,7 +170,7 @@
       </div>
       <div class="scene-body">
         <p>Die Mothers of Invention sind seit fünf Jahren deine Band — neun Musiker, kritisch gefeiert, kommerziell ein Verlustgeschäft. Du zahlst jedem Mitglied 200 Dollar die Woche, ob Auftritt, Aufnahme oder nur Probe. Die Schulden wachsen: Zehntausend Dollar, die du selbst vorgestreckt hast.</p>
-        <p>Ein Auftritt in North Carolina, gebucht als Lockvogel für ein jugendliches Publikum bei einem Jazzkonzert, bringt das Fass zum Überlaufen. Du bist es leid, für Leute zu spielen, die aus den falschen Gründen klatschen.</p>
+        <p>Ein Auftritt in North Carolina, gebucht als Lockvogel für ein jugendliches Publikum bei einem Jazzkonzert, bringt das Fass zum Überlaufen. Die Band ist müde, und du bist es auch.</p>
         <p>Du könntest weiterzahlen, in der Hoffnung auf einen künftigen Plattenvertrag. Du könntest die Band verkleinern. Oder du beendest es ganz — und musst es den Musikern selbst mitteilen.</p>
       </div>
       <div class="scene-role">
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du löst die Band komplett auf und stellst die Zahlungen sofort ein — die Musiker sollen selbst weiterziehen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du verkleinerst die Band auf wenige Kernmitglieder, um die Kosten zu senken.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du zahlst weiter aus eigener Tasche und hoffst auf einen Plattenvertrag, der die Schulden ausgleicht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du behältst nur drei, vier Musiker und arbeitest mit kleinerer Besetzung weiter.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du zahlst weiter und hoffst, dass das nächste Album endlich die Schulden einspielt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du löst die Band auf und stellst die Zahlungen ein. Jeder muss jetzt seinen eigenen Weg gehen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du nimmst eine informelle, kulturelle Rolle an — Berater, aber ohne offiziellen Titel.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst die Rolle begeistert an und beginnst sofort, mit Investoren über Handelsfragen zu sprechen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du lehnst dankend ab, um Havel nicht in Konflikt mit Washington zu bringen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst zu und triffst gleich in Prag die ersten Geschäftsleute, um über Investitionen zu reden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst eine informelle Rolle an — Berater für Kultur, ohne offiziellen Titel.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du lehnst dankend ab, damit Havel keinen Ärger mit Washington bekommt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,39 +264,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'zappa';
+const SCENARIO_PREFIX = 'zappa-v2';
 
 const results = {
   1: {
-    A: { pct: 26, label: "Diplomatisch geblieben" },
-    B: { pct: 10, label: "Ferngeblieben" },
-    C: { pct: 64, label: "Konfrontativ aufgetreten" },
-    historical: 'C',
+    A: { pct: 64, label: "Konfrontativ aufgetreten" },
+    B: { pct: 26, label: "Diplomatisch geblieben" },
+    C: { pct: 10, label: "Ferngeblieben" },
+    historical: 'A',
     narratives: {
-      A: "Diplomatisch zu bleiben und Kompromisse anzubieten, hätte auch zur Sache gepasst — Zappa erwähnte in seiner Aussage tatsächlich den Vorschlag, Songtexte abzudrucken. Sein grundsätzlicher Ton blieb dabei aber scharf, nicht versöhnlich.",
-      B: "Der Anhörung fernzubleiben und nur eine schriftliche Stellungnahme einzureichen, wäre die zurückhaltendste Option gewesen. Zappa reiste eigens nach Washington, weil er den öffentlichen Auftritt für entscheidend hielt — Bilder und Zitate aus dem Sitzungssaal, nicht Papier, sollten die Debatte prägen.",
-      C: "Genau das tat Zappa. Er bezeichnete den Vorschlag der PMRC als schlecht durchdacht und als Eingriff in die Bürgerrechte von Menschen, die keine Kinder sind. Sein Auftritt machte ihn über Nacht zu einer Symbolfigur der Zensurdebatte — bis heute wird seine Aussage in Debatten über Kunstfreiheit zitiert."
+      A: "Genau das tat Zappa. Er bezeichnete den Vorschlag der PMRC als schlecht durchdacht und als Eingriff in die Bürgerrechte von Menschen, die keine Kinder sind. Sein Auftritt machte ihn über Nacht zu einer Symbolfigur der Zensurdebatte — bis heute wird seine Aussage in Debatten über Kunstfreiheit zitiert.",
+      B: "Diplomatisch zu bleiben und Kompromisse anzubieten, hätte auch zur Sache gepasst — Zappa erwähnte in seiner Aussage tatsächlich den Vorschlag, Songtexte abzudrucken. Sein grundsätzlicher Ton blieb dabei aber scharf, nicht versöhnlich.",
+      C: "Der Anhörung fernzubleiben und nur eine schriftliche Stellungnahme einzureichen, wäre die zurückhaltendste Option gewesen. Zappa reiste eigens nach Washington, weil er den öffentlichen Auftritt für entscheidend hielt — Bilder und Zitate aus dem Sitzungssaal, nicht Papier, sollten die Debatte prägen."
     }
   },
   2: {
-    A: { pct: 51, label: "Komplett aufgelöst" },
-    B: { pct: 33, label: "Verkleinert" },
-    C: { pct: 16, label: "Weiter aus eigener Tasche gezahlt" },
-    historical: 'A',
+    A: { pct: 33, label: "Verkleinert" },
+    B: { pct: 16, label: "Weiter aus eigener Tasche gezahlt" },
+    C: { pct: 51, label: "Komplett aufgelöst" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Zappa. Am 18. August 1969 spielten die Mothers ihren letzten Auftritt in der Originalbesetzung, zwei Tage später teilte er den Musikern die Auflösung mit. Der Schlagzeuger Jimmy Carl Black gründete daraufhin sofort eine eigene Band; die Trennung verlief nicht ohne Verbitterung auf beiden Seiten.",
-      B: "Die Band zu verkleinern statt sie ganz aufzulösen, hätte die Kernbesetzung zusammengehalten. Zappa entschied sich stattdessen für den kompletten Schnitt — eine neue Mothers-Besetzung entstand erst ein Jahr später, mit fast durchweg neuen Musikern.",
-      C: "Weiter aus eigener Tasche zu zahlen und auf einen rettenden Plattenvertrag zu hoffen, hätte das finanzielle Risiko weiter erhöht. Zappa war zu diesem Zeitpunkt bereits gut zehntausend Dollar im Minus — für ihn war die Grenze erreicht."
+      A: "Die Band zu verkleinern statt sie ganz aufzulösen, hätte die Kernbesetzung zusammengehalten. Zappa entschied sich stattdessen für den kompletten Schnitt — eine neue Mothers-Besetzung entstand erst ein Jahr später, mit fast durchweg neuen Musikern.",
+      B: "Weiter aus eigener Tasche zu zahlen und auf einen rettenden Plattenvertrag zu hoffen, hätte das finanzielle Risiko weiter erhöht. Zappa war zu diesem Zeitpunkt bereits gut zehntausend Dollar im Minus — für ihn war die Grenze erreicht.",
+      C: "Genau das tat Zappa. Am 18. August 1969 spielten die Mothers ihren letzten Auftritt in der Originalbesetzung, zwei Tage später teilte er den Musikern die Auflösung mit. Der Schlagzeuger Jimmy Carl Black gründete daraufhin sofort eine eigene Band; die Trennung verlief nicht ohne Verbitterung auf beiden Seiten."
     }
   },
   3: {
-    A: { pct: 29, label: "Informell angenommen" },
-    B: { pct: 59, label: "Begeistert angenommen" },
+    A: { pct: 59, label: "Begeistert angenommen" },
+    B: { pct: 29, label: "Informell angenommen" },
     C: { pct: 12, label: "Abgelehnt" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Von Anfang an nur eine informelle, kulturelle Rolle ohne offiziellen Titel anzunehmen, wäre die vorsichtigere Variante gewesen. Zappa griff stattdessen offener zu — die Vorsicht kam am Ende von außen, durch den Druck aus Washington, nicht von ihm selbst.",
-      B: "Genau das tat Zappa. Er begann sofort, mit Firmenvertretern über Investitionen in der Tschechoslowakei zu sprechen. Wenige Wochen später zog Washington unter Druck von Außenminister Baker die Ernennung faktisch zurück — Havel machte ihn stattdessen zum inoffiziellen Kulturbeauftragten, ein Titel ohne diplomatisches Gewicht, aber mit ungebrochener Symbolkraft.",
+      A: "Genau das tat Zappa. Er begann sofort, mit Firmenvertretern über Investitionen in der Tschechoslowakei zu sprechen. Wenige Wochen später zog Washington unter Druck von Außenminister Baker die Ernennung faktisch zurück — Havel machte ihn stattdessen zum inoffiziellen Kulturbeauftragten, ein Titel ohne diplomatisches Gewicht, aber mit ungebrochener Symbolkraft.",
+      B: "Von Anfang an nur eine informelle, kulturelle Rolle ohne offiziellen Titel anzunehmen, wäre die vorsichtigere Variante gewesen. Zappa griff stattdessen offener zu — die Vorsicht kam am Ende von außen, durch den Druck aus Washington, nicht von ihm selbst.",
       C: "Dankend abzulehnen, um Havel nicht in Konflikt mit Washington zu bringen, wäre die selbstlosere Option gewesen. Für Zappa war die Symbolik — ein von der eigenen Regierung einst unerwünschter Musiker wird Botschafter einer jungen Demokratie — aber zu reizvoll, um sie auszuschlagen."
     }
   }

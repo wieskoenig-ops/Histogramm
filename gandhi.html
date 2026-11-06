@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du brichst die gesamte landesweite Bewegung ab, um sie nicht durch Gewalt beflecken zu lassen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du verurteilst den Vorfall scharf, lässt die landesweite Bewegung aber ansonsten weiterlaufen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du überlässt es den örtlichen Führern, ob sie in ihrer Region weitermachen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du brichst die landesweite Kampagne ab. Eine Bewegung, die tötet, ist nicht mehr deine Bewegung.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du verurteilst die Tat, fastest zur Buße und lässt die Kampagne andernorts weiterlaufen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du stoppst die Kampagne nur im Bezirk Gorakhpur und überlässt den anderen Provinzen die Entscheidung.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du wählst das Salzmonopol als Ziel und kündigst dem Vizekönig deinen Plan vorab schriftlich an.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du planst die Aktion geheim, um den Überraschungseffekt zu nutzen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du unterstützt stattdessen die radikaleren Kräfte, die zu bewaffnetem Widerstand aufrufen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bereitest alles im Stillen vor. Wenn die Briten früh davon wissen, verhaften sie dich vor dem ersten Schritt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du wählst statt Salz ein klassisches Ziel: einen Boykott britischer Stoffe, angekündigt über die Kongresspartei.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schreibst dem Vizekönig einen Brief, kündigst den Marsch zum Meer an und nennst ihm Ziel und Tag.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du gibst die Anweisung, den gewaltfreien Widerstand ohne jede Gegenwehr fortzusetzen — koste es, was es wolle.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erlaubst begrenzte Selbstverteidigung, falls die Polizei gewalttätig wird.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du weist an, die Aktion vorerst auszusetzen, bis Verhandlungen möglich sind.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Die Anweisung lautet: keine Angriffe, aber wer geschlagen wird, darf sich schützen und Verletzte bergen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Die Anweisung lautet: Aktion aussetzen. Ohne dich vor Ort ist das Risiko eines Massakers zu groß.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Die Anweisung lautet: weitergehen, keine Hand heben, auch nicht zum Schutz des eigenen Kopfes.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,7 +261,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'gandhi';
+const SCENARIO_PREFIX = 'gandhi-v2';
 
 const results = {
   1: {
@@ -276,25 +276,25 @@ const results = {
     }
   },
   2: {
-    A: { pct: 64, label: "Vorab angekündigt" },
-    B: { pct: 19, label: "Geheim geplant" },
-    C: { pct: 17, label: "Radikale unterstützt" },
-    historical: 'A',
+    A: { pct: 19, label: "Geheim geplant" },
+    B: { pct: 17, label: "Radikale unterstützt" },
+    C: { pct: 64, label: "Vorab angekündigt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Gandhi: Er kündigte seinen Plan dem Vizekönig Lord Irwin in einem Brief vorab an — Transparenz als Prinzip, nicht als Taktik.",
-      B: "Geheime Planung hätte dem Prinzip der Satyagraha widersprochen, das offenes, gewaltfreies Handeln ohne Täuschung verlangt.",
-      C: "Radikalere, gewaltbereite Kräfte zu unterstützen, widerspricht allem, wofür Gandhi zeitlebens stand."
+      A: "Geheime Planung hätte dem Prinzip der Satyagraha widersprochen, das offenes, gewaltfreies Handeln ohne Täuschung verlangt.",
+      B: "Radikalere, gewaltbereite Kräfte zu unterstützen, widerspricht allem, wofür Gandhi zeitlebens stand.",
+      C: "Genau das tat Gandhi: Er kündigte seinen Plan dem Vizekönig Lord Irwin in einem Brief vorab an — Transparenz als Prinzip, nicht als Taktik."
     }
   },
   3: {
-    A: { pct: 57, label: "Ohne Gegenwehr fortgesetzt" },
-    B: { pct: 26, label: "Begrenzte Selbstverteidigung erlaubt" },
-    C: { pct: 17, label: "Ausgesetzt" },
-    historical: 'A',
+    A: { pct: 26, label: "Begrenzte Selbstverteidigung erlaubt" },
+    B: { pct: 17, label: "Ausgesetzt" },
+    C: { pct: 57, label: "Ohne Gegenwehr fortgesetzt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das geschah: Auf Gandhis Anweisung ließen sich hunderte Demonstrierende in Dharasana ohne jede Gegenwehr schlagen — ein Bild, das um die Welt ging.",
-      B: "Begrenzte Selbstverteidigung zuzulassen, hätte dem Kernprinzip der absoluten Gewaltfreiheit widersprochen.",
-      C: "Die Aktion auszusetzen, hätte den symbolischen Moment verstreichen lassen, auf den die Bewegung monatelang hingearbeitet hatte."
+      A: "Begrenzte Selbstverteidigung zuzulassen, hätte dem Kernprinzip der absoluten Gewaltfreiheit widersprochen.",
+      B: "Die Aktion auszusetzen, hätte den symbolischen Moment verstreichen lassen, auf den die Bewegung monatelang hingearbeitet hatte.",
+      C: "Genau das geschah: Auf Gandhis Anweisung ließen sich hunderte Demonstrierende in Dharasana ohne jede Gegenwehr schlagen — ein Bild, das um die Welt ging."
     }
   }
 };

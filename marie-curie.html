@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du gehst an die Presse und dementierst die Vorwürfe öffentlich.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bringst deine Töchter zu Freunden in Sicherheit, ohne dich öffentlich zu äußern.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst zu Hause und arbeitest weiter, als wäre nichts geschehen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bringst die Mädchen zu Freunden in Sicherheit und sagst öffentlich kein Wort.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du gibst den Zeitungen eine knappe Erklärung ab und drohst mit Klagen gegen jede weitere Veröffentlichung.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst mit den Töchtern im Haus und gehst morgen ins Labor, als wäre nichts geschehen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -179,9 +179,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du reist trotzdem nach Stockholm und nimmst den Preis persönlich entgegen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du sagst zu, den Preis in Abwesenheit verleihen zu lassen, um den Skandal nicht zusätzlich anzuheizen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest um eine Verschiebung der Zeremonie, bis der Prozess gegen Langevin vorbei ist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du antwortest Arrhenius, der Preis gelte deiner Forschung, nicht deinem Privatleben, und reist nach Stockholm.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst in Paris und lässt den Preis in deiner Abwesenheit verleihen, wie das Komitee es wünscht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest, die Verleihung um ein Jahr zu verschieben, bis der Prozess der Langevins vorbei ist.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -220,9 +220,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du ziehst dich vollständig zurück, lebst unter falschem Namen fernab von Paris, um dich zu erholen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du gibst die Institutsleitung vorübergehend an Kollegen ab, bleibst aber offiziell im Amt und in Kontakt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du arbeitest trotz des Zusammenbruchs unvermindert weiter im Labor.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du übergibst die Leitung vorübergehend an Kollegen, bleibst aber im Amt und lässt dir täglich berichten.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du arbeitest weiter, wenn auch langsamer. Die Arbeit hat dich immer gerettet.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich zurück, unter fremdem Namen, weit weg von Paris und den Zeitungen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -262,17 +262,17 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'marie-curie';
+const SCENARIO_PREFIX = 'marie-curie-v2';
 
 const results = {
   1: {
-    A: { pct: 19, label: "Presse dementiert" },
-    B: { pct: 61, label: "Töchter in Sicherheit gebracht" },
+    A: { pct: 61, label: "Töchter in Sicherheit gebracht" },
+    B: { pct: 19, label: "Presse dementiert" },
     C: { pct: 20, label: "Zu Hause weitergearbeitet" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Curie äußerte sich zwar zunächst knapp gegenüber der Presse, aber ein umfassendes öffentliches Dementi war nicht ihr Weg — sie zog sich weitgehend aus der direkten Auseinandersetzung zurück.",
-      B: "Genau das geschah: Als die Menge vor ihrem Haus in Sceaux zusammenkam, brachte Curie ihre Töchter zu Freunden — unter anderem zum Mathematiker Émile Borel — in Sicherheit.",
+      A: "Genau das geschah: Als die Menge vor ihrem Haus in Sceaux zusammenkam, brachte Curie ihre Töchter zu Freunden — unter anderem zum Mathematiker Émile Borel — in Sicherheit.",
+      B: "Curie äußerte sich zwar zunächst knapp gegenüber der Presse, aber ein umfassendes öffentliches Dementi war nicht ihr Weg — sie zog sich weitgehend aus der direkten Auseinandersetzung zurück.",
       C: "Weiterzuarbeiten, als wäre nichts geschehen, wäre angesichts einer Menschenmenge vor der eigenen Haustür kaum durchzuhalten gewesen."
     }
   },
@@ -288,14 +288,14 @@ const results = {
     }
   },
   3: {
-    A: { pct: 58, label: "Vollständig zurückgezogen" },
-    B: { pct: 27, label: "Leitung abgegeben, im Amt geblieben" },
-    C: { pct: 15, label: "Unvermindert weitergearbeitet" },
-    historical: 'A',
+    A: { pct: 27, label: "Leitung abgegeben, im Amt geblieben" },
+    B: { pct: 15, label: "Unvermindert weitergearbeitet" },
+    C: { pct: 58, label: "Vollständig zurückgezogen" },
+    historical: 'C',
     narratives: {
-      A: "Genau das geschah: Curie zog sich über ein Jahr fast vollständig zurück, zeitweise unter ihrem Mädchennamen, bevor sie 1913 an ihr Institut zurückkehrte.",
-      B: "Die Leitung formal zu behalten, aber operativ abzugeben, wäre ein Mittelweg gewesen — Curie entschied sich für den vollständigeren Rückzug.",
-      C: "Unvermindert weiterzuarbeiten hätte den Zusammenbruch mit hoher Wahrscheinlichkeit nur verschlimmert."
+      A: "Die Leitung formal zu behalten, aber operativ abzugeben, wäre ein Mittelweg gewesen — Curie entschied sich für den vollständigeren Rückzug.",
+      B: "Unvermindert weiterzuarbeiten hätte den Zusammenbruch mit hoher Wahrscheinlichkeit nur verschlimmert.",
+      C: "Genau das geschah: Curie zog sich über ein Jahr fast vollständig zurück, zeitweise unter ihrem Mädchennamen, bevor sie 1913 an ihr Institut zurückkehrte."
     }
   }
 };

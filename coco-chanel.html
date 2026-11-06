@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du reichst eine offizielle Petition ein und forderst unter Berufung auf die Arisierungsgesetze die Übertragung der Firmenanteile auf dich.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du versuchst stattdessen, die Wertheimers direkt zu einer besseren Gewinnbeteiligung zu bewegen, ohne die Rassengesetze zu bemühen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wartest ab, wie sich der Krieg entwickelt, bevor du in der Eigentumsfrage aktiv wirst.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schreibst den Wertheimers über Mittelsleute nach New York und forderst einen größeren Anteil am Gewinn.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du beantragst bei den Besatzungsbehörden, dir die Anteile der Wertheimers zu übertragen — gestützt auf die neuen Gesetze.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wartest ab. Wer weiß, wer diesen Krieg gewinnt — und wer danach Rechenschaft verlangt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst die Zusammenarbeit mit der deutschen Abwehr ab und suchst andere Wege, deinen Neffen freizubekommen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du nimmst die angebotene Rolle als Agentin der deutschen Abwehr an, um die Freilassung deines Neffen zu erwirken.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du versuchst, seine Freilassung allein durch Bestechung zu erreichen, ohne dich formell an die Abwehr zu binden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du nimmst an: Deckname, Nummer, Aufträge. Dafür soll André schnell aus dem Lager kommen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lehnst ab und setzt auf Fürsprecher im Vichy-Regime, die André über das Rote Kreuz freibekommen sollen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du lässt Dincklage Geld an die richtigen Stellen bringen, unterschreibst aber nichts und übernimmst keine Aufträge.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bleibst in Paris und stellst dich möglichen weiteren Ermittlungen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du trennst dich von Dincklage, um dich selbst von den Kollaborationsvorwürfen reinzuwaschen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du fliehst mit Dincklage in die Schweiz, sobald du freikommst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du gehst mit Dincklage in die Schweiz, sobald es möglich ist, und wartest dort ab, bis sich die Lage beruhigt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst in Paris, öffnest deine Boutique wie gewohnt und stellst dich weiteren Fragen der Ermittler.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du trennst dich von Dincklage und erzählst überall, du hättest nur deinen Neffen retten wollen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,40 +264,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'coco-chanel';
+const SCENARIO_PREFIX = 'coco-chanel-v2';
 
 const results = {
   1: {
-    A: { pct: 46, label: "Petition eingereicht" },
-    B: { pct: 31, label: "Direkt verhandelt" },
+    A: { pct: 31, label: "Direkt verhandelt" },
+    B: { pct: 46, label: "Petition eingereicht" },
     C: { pct: 23, label: "Abgewartet" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Chanel. Am 5. Mai 1941 stellte sie eine offizielle Petition an die deutschen Behörden, um die Firmenanteile der geflohenen jüdischen Familie Wertheimer per Arisierungsgesetz auf sich übertragen zu lassen. Die Wertheimers hatten jedoch bereits vorgesorgt: Kurz vor dem Einmarsch der Wehrmacht hatten sie ihre Anteile treuhänderisch an einen nichtjüdischen Geschäftsmann übertragen.",
-      B: "Direkt mit den Wertheimers über eine bessere Gewinnbeteiligung zu verhandeln, hätte den üblichen geschäftlichen Weg genommen. Chanel, die ihre 10-Prozent-Beteiligung seit 1924 als Betrug empfand, wählte stattdessen den Weg über die Rassengesetze der Besatzer.",
+      A: "Direkt mit den Wertheimers über eine bessere Gewinnbeteiligung zu verhandeln, hätte den üblichen geschäftlichen Weg genommen. Chanel, die ihre 10-Prozent-Beteiligung seit 1924 als Betrug empfand, wählte stattdessen den Weg über die Rassengesetze der Besatzer.",
+      B: "Genau das tat Chanel. Am 5. Mai 1941 stellte sie eine offizielle Petition an die deutschen Behörden, um die Firmenanteile der geflohenen jüdischen Familie Wertheimer per Arisierungsgesetz auf sich übertragen zu lassen. Die Wertheimers hatten jedoch bereits vorgesorgt: Kurz vor dem Einmarsch der Wehrmacht hatten sie ihre Anteile treuhänderisch an einen nichtjüdischen Geschäftsmann übertragen.",
       C: "Abzuwarten, bevor sie in der Eigentumsfrage aktiv wurde, hätte bedeutet, eine seltene Gelegenheit verstreichen zu lassen. Chanel handelte, sobald sich die Chance bot."
     }
   },
   2: {
-    A: { pct: 17, label: "Zusammenarbeit abgelehnt" },
-    B: { pct: 61, label: "Als Agentin angenommen" },
+    A: { pct: 61, label: "Als Agentin angenommen" },
+    B: { pct: 17, label: "Zusammenarbeit abgelehnt" },
     C: { pct: 22, label: "Nur mit Bestechung versucht" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Die Zusammenarbeit mit der Abwehr abzulehnen und andere Wege zu suchen, hätte die Freilassung ihres Neffen weniger sicher gemacht. Chanel entschied sich für den direkteren, wenn auch politisch belastenderen Weg.",
-      B: "Genau das tat Chanel. Sie wurde 1941 als Agentin der deutschen Abwehr registriert, Tarnname 'Westminster' — benannt nach ihrem langjährigen Geliebten, dem Duke of Westminster. Im Gegenzug kam ihr Neffe André Palasse aus deutscher Kriegsgefangenschaft frei.",
+      A: "Genau das tat Chanel. Sie wurde 1941 als Agentin der deutschen Abwehr registriert, Tarnname 'Westminster' — benannt nach ihrem langjährigen Geliebten, dem Duke of Westminster. Im Gegenzug kam ihr Neffe André Palasse aus deutscher Kriegsgefangenschaft frei.",
+      B: "Die Zusammenarbeit mit der Abwehr abzulehnen und andere Wege zu suchen, hätte die Freilassung ihres Neffen weniger sicher gemacht. Chanel entschied sich für den direkteren, wenn auch politisch belastenderen Weg.",
       C: "Es allein über Bestechung zu versuchen, ohne sich formell zu binden, hätte weniger politische Kompromittierung bedeutet. Chanel ging über diese Vorsicht hinaus."
     }
   },
   3: {
-    A: { pct: 13, label: "In Paris geblieben" },
-    B: { pct: 18, label: "Von Dincklage getrennt" },
-    C: { pct: 69, label: "In die Schweiz geflohen" },
-    historical: 'C',
+    A: { pct: 69, label: "In die Schweiz geflohen" },
+    B: { pct: 13, label: "In Paris geblieben" },
+    C: { pct: 18, label: "Von Dincklage getrennt" },
+    historical: 'A',
     narratives: {
-      A: "In Paris zu bleiben und sich möglichen weiteren Ermittlungen zu stellen, hätte ein erhebliches rechtliches Risiko bedeutet. Chanel wählte diesen Weg nicht.",
-      B: "Sich von Dincklage zu trennen, um sich selbst reinzuwaschen, hätte ihre Verbindung zur Kollaboration gekappt. Chanel tat das nicht — die beiden blieben noch Jahre zusammen.",
-      C: "Genau das tat Chanel. Nach kurzzeitiger Festnahme und Verhör wegen Kollaboration floh sie mit Dincklage in die Schweiz — manche Historiker vermuten, dass Verbindungen zu Winston Churchill, mit dem sie seit den 1920er Jahren befreundet war, zu ihrer schnellen Freilassung beitrugen."
+      A: "Genau das tat Chanel. Nach kurzzeitiger Festnahme und Verhör wegen Kollaboration floh sie mit Dincklage in die Schweiz — manche Historiker vermuten, dass Verbindungen zu Winston Churchill, mit dem sie seit den 1920er Jahren befreundet war, zu ihrer schnellen Freilassung beitrugen.",
+      B: "In Paris zu bleiben und sich möglichen weiteren Ermittlungen zu stellen, hätte ein erhebliches rechtliches Risiko bedeutet. Chanel wählte diesen Weg nicht.",
+      C: "Sich von Dincklage zu trennen, um sich selbst reinzuwaschen, hätte ihre Verbindung zur Kollaboration gekappt. Chanel tat das nicht — die beiden blieben noch Jahre zusammen."
     }
   }
 };

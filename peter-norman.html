@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du trägst den Anstecker, ohne lange zu überlegen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du lehnst höflich ab, um deine eigene Olympia-Zukunft nicht zu gefährden.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du sagst ihnen deine private Unterstützung zu, ohne ein sichtbares Zeichen zu setzen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sagst Ja und steckst dir den Anstecker an die Brust.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du lehnst freundlich ab. Australien hat eigene Probleme, und dein Verband sieht so etwas nicht gern.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wünschst ihnen Glück und sagst, du stehst hinter ihnen — aber auf dem Podium bleibst du neutral.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du sagst nichts und lässt die beiden das Problem selbst lösen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du hältst dich zurück, jetzt, wo die Geste sichtbar politischer wird, als du erwartet hattest.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schlägst vor, sich die Handschuhe zu teilen, damit beide je eine Faust erheben können.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du hältst dich heraus. Es ist ihre Geste, und sie werden selbst eine Lösung finden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schlägst vor, dass sich die beiden das Paar teilen: einer links, einer rechts.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du gehst auf Abstand. Mit der Faust wird die Sache politischer, als du zugesagt hast.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du drückst öffentlich Bedauern aus, den Anstecker getragen zu haben, um deine Olympia-Zukunft zu retten.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du stehst zu deiner Entscheidung, ohne sie öffentlich zu bereuen — auch wenn dich das die Teilnahme kosten könnte.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du kämpfst aktiv und öffentlich gegen deinen Ausschluss aus der Olympiamannschaft.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bereust nichts und sagst das auch — selbst wenn es dich die Spiele in München kostet.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erklärst, du hättest die Folgen damals nicht überblickt, und bittest, dich wieder zu berücksichtigen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst gegen den Verband vor Gericht und machst die Nichtnominierung öffentlich.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'peter-norman';
+const SCENARIO_PREFIX = 'peter-norman-v2';
 
 const results = {
   1: {
@@ -280,23 +280,23 @@ const results = {
   },
   2: {
     A: { pct: 14, label: "Nichts gesagt" },
-    B: { pct: 11, label: "Zurückgehalten" },
-    C: { pct: 75, label: "Handschuhe teilen vorgeschlagen" },
-    historical: 'C',
+    B: { pct: 75, label: "Handschuhe teilen vorgeschlagen" },
+    C: { pct: 11, label: "Zurückgehalten" },
+    historical: 'B',
     narratives: {
       A: "Nichts zu sagen und die beiden das Problem selbst lösen zu lassen, wäre die zurückhaltendste Option gewesen. Norman mischte sich stattdessen aktiv ein.",
-      B: "Sich zurückzuhalten, weil die Geste politischer wurde als erwartet, hätte bedeutet, im letzten Moment auszusteigen. Norman tat das nicht.",
-      C: "Genau das tat Norman. Als Carlos bemerkte, dass er seine eigenen Handschuhe im Olympischen Dorf vergessen hatte, war es Norman, der vorschlug, sich Smiths Paar zu teilen — ein Handschuh links, einer rechts. So entstand das inzwischen ikonische Bild zweier symmetrisch erhobener Fäuste."
+      B: "Genau das tat Norman. Als Carlos bemerkte, dass er seine eigenen Handschuhe im Olympischen Dorf vergessen hatte, war es Norman, der vorschlug, sich Smiths Paar zu teilen — ein Handschuh links, einer rechts. So entstand das inzwischen ikonische Bild zweier symmetrisch erhobener Fäuste.",
+      C: "Sich zurückzuhalten, weil die Geste politischer wurde als erwartet, hätte bedeutet, im letzten Moment auszusteigen. Norman tat das nicht."
     }
   },
   3: {
-    A: { pct: 9, label: "Bedauern geäußert" },
-    B: { pct: 68, label: "Zu seiner Entscheidung gestanden" },
+    A: { pct: 68, label: "Zu seiner Entscheidung gestanden" },
+    B: { pct: 9, label: "Bedauern geäußert" },
     C: { pct: 23, label: "Aktiv gekämpft" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Öffentlich zu bedauern, den Anstecker getragen zu haben, hätte seine sportliche Karriere retten können. Norman tat das nie, auch nicht Jahrzehnte später.",
-      B: "Genau das tat Norman. Trotz einer Zeit, die für die Olympischen Spiele 1972 in München qualifiziert hätte, wurde er nicht ins australische Team berufen — vermutlich eine indirekte Strafe für Mexiko-Stadt. Selbst bei den Olympischen Spielen 2000 in Sydney, im eigenen Land, wurde er nicht offiziell eingeladen. Norman bereute seine Entscheidung nie.",
+      A: "Genau das tat Norman. Trotz einer Zeit, die für die Olympischen Spiele 1972 in München qualifiziert hätte, wurde er nicht ins australische Team berufen — vermutlich eine indirekte Strafe für Mexiko-Stadt. Selbst bei den Olympischen Spielen 2000 in Sydney, im eigenen Land, wurde er nicht offiziell eingeladen. Norman bereute seine Entscheidung nie.",
+      B: "Öffentlich zu bedauern, den Anstecker getragen zu haben, hätte seine sportliche Karriere retten können. Norman tat das nie, auch nicht Jahrzehnte später.",
       C: "Aktiv und öffentlich gegen seinen Ausschluss zu kämpfen, hätte weitere Konfrontation mit dem australischen Verband bedeutet. Norman zog sich stattdessen weitgehend aus der offiziellen Sportwelt zurück, ohne lautstark zu protestieren."
     }
   }

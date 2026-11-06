@@ -144,9 +144,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du nimmst das Angebot an. Dein Leben ist wichtiger als ein Prinzip.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du lehnst ab — vorerst. Du willst erst wissen, ob es noch andere Wege gibt.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du lehnst sofort ab. Wer dem Gesetz gehorcht wenn es bequem ist, und flieht wenn es unbequem wird, hat nie wirklich gehorcht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Wer dem Gesetz nur gehorcht, wenn es bequem ist, hat ihm nie wirklich gehorcht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du nimmst das Angebot an. Ein Urteil, das falsch ist, verdient keinen Gehorsam.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du lehnst vorerst ab, willst aber hören, welche anderen Wege es noch gibt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -186,9 +186,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Kriton hat dich überzeugt. Die Verantwortung gegenüber deinen Kindern wiegt schwerer als das Prinzip.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du widersprichst: Nicht die Länge des Lebens zählt, sondern wie man gelebt hat. Flucht wäre Verrat an allem was du gelehrt hast.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du stellst Kriton eine Gegenfrage: <em>"Wenn das Gesetz Unrecht ist — warum hast du nie dagegen gekämpft, solange es mich nicht betraf?"</em></button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Kriton hat recht. Die Pflicht gegenüber deinen Kindern wiegt schwerer als jedes Prinzip.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du fragst zurück: <em>„Wenn das Gesetz Unrecht ist — warum hast du nie dagegen gekämpft, solange es mich nicht betraf?“</em></button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du widersprichst: Nicht wie lange man lebt, zählt, sondern wie. Flucht verriete alles, was du gelehrt hast.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -228,9 +228,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span><em>"Ja. Aber Angst ist kein Argument."</em></button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span><em>"Nein. Wer gut gelebt hat, hat keinen Grund, den Tod zu fürchten."</em></button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du antwortest nicht. Du trinkst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span><em>„Ja. Aber Angst ist kein Argument.“</em></button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du antwortest nicht. Du trinkst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span><em>„Nein. Wer gut gelebt hat, hat keinen Grund, den Tod zu fürchten.“</em></button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -271,40 +271,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'sokrates';
+const SCENARIO_PREFIX = 'sokrates-v2';
 
 const results = {
   1: {
-    A: { pct: 43, label: "Flucht angenommen" },
-    B: { pct: 31, label: "Abgewartet" },
-    C: { pct: 26, label: "Sofort abgelehnt" },
-    historical: 'C',
+    A: { pct: 26, label: "Sofort abgelehnt" },
+    B: { pct: 43, label: "Flucht angenommen" },
+    C: { pct: 31, label: "Abgewartet" },
+    historical: 'A',
     narratives: {
-      A: "Leben ist Leben, und ein ungerechtes Urteil verdient keinen Gehorsam. Das ist ein starkes Argument. Sokrates folgte ihm nicht.",
-      B: "Abzuwarten und noch einen anderen Weg zu suchen, ohne sofort Nein zu sagen, ist menschlich — aber in Sokrates' Fall wäre es wohl nur ein Aufschub gewesen.",
-      C: "Das Prinzip steht über dem Leben. Genau das lehrte Sokrates sein ganzes Leben. Und genau das tat er."
+      A: "Das Prinzip steht über dem Leben. Genau das lehrte Sokrates sein ganzes Leben. Und genau das tat er.",
+      B: "Leben ist Leben, und ein ungerechtes Urteil verdient keinen Gehorsam. Das ist ein starkes Argument. Sokrates folgte ihm nicht.",
+      C: "Abzuwarten und noch einen anderen Weg zu suchen, ohne sofort Nein zu sagen, ist menschlich — aber in Sokrates' Fall wäre es wohl nur ein Aufschub gewesen."
     }
   },
   2: {
     A: { pct: 29, label: "Kriton überzeugt" },
-    B: { pct: 51, label: "Widerspruch: Prinzip" },
-    C: { pct: 20, label: "Gegenfrage gestellt" },
-    historical: 'B',
+    B: { pct: 20, label: "Gegenfrage gestellt" },
+    C: { pct: 51, label: "Widerspruch: Prinzip" },
+    historical: 'C',
     narratives: {
       A: "Sich von Kritons Argument überzeugen zu lassen — die Verantwortung gegenüber Kindern und Schülern wiegt schwer. Sokrates sah das anders.",
-      B: "Wer nur dann dem Gesetz gehorcht, wenn es bequem ist, hat dem Gesetz nie wirklich gehorcht. Das ist die sokratische Antwort.",
-      C: "Den Spieß umzudrehen und die unbequeme Frage zurückzustellen ist typisch für Sokrates — auch wenn er es hier wohl nicht tat."
+      B: "Den Spieß umzudrehen und die unbequeme Frage zurückzustellen ist typisch für Sokrates — auch wenn er es hier wohl nicht tat.",
+      C: "Wer nur dann dem Gesetz gehorcht, wenn es bequem ist, hat dem Gesetz nie wirklich gehorcht. Das ist die sokratische Antwort."
     }
   },
   3: {
     A: { pct: 38, label: "Ja, Angst — kein Argument" },
-    B: { pct: 44, label: "Nein, kein Grund zur Angst" },
-    C: { pct: 18, label: "Schweigen, trinken" },
-    historical: 'B',
+    B: { pct: 18, label: "Schweigen, trinken" },
+    C: { pct: 44, label: "Nein, kein Grund zur Angst" },
+    historical: 'C',
     narratives: {
       A: "Ja zur Angst zu sagen, ohne daraus ein Argument zu machen, ist vielleicht die ehrlichste Antwort.",
-      B: "Die klassisch sokratische Haltung: wer gut gelebt hat, hat keinen Grund, den Tod zu fürchten. Das ist nah an dem, was Platon überliefert.",
-      C: "Schweigen als letzte Antwort wäre die radikalste Wahl gewesen, und vielleicht die würdevollste. Aber Sokrates sprach bis zuletzt."
+      B: "Schweigen als letzte Antwort wäre die radikalste Wahl gewesen, und vielleicht die würdevollste. Aber Sokrates sprach bis zuletzt.",
+      C: "Die klassisch sokratische Haltung: wer gut gelebt hat, hat keinen Grund, den Tod zu fürchten. Das ist nah an dem, was Platon überliefert."
     }
   }
 };

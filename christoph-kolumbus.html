@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du versprichst der Mannschaft noch drei Tage — dann werdet ihr umkehren, falls kein Land in Sicht kommt.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du gibst dem Druck nach und befiehlst sofort die Umkehr nach Spanien.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du lässt die Anführer der Meuterei-Pläne hart bestrafen, um jeden weiteren Widerstand im Keim zu ersticken.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lässt umkehren. Lieber mit leeren Händen nach Spanien als mit einer meuternden Mannschaft auf offener See.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du handelst eine Frist aus: noch drei Tage nach Westen, dann Umkehr, falls bis dahin kein Land in Sicht ist.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du lässt die Rädelsführer in Ketten legen und kürzt ihre Rationen, um ein Exempel zu statuieren.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du handelst nur mit ihnen, ohne jemanden gefangen zu nehmen oder das Land offiziell zu beanspruchen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du beanspruchst die Insel für die spanische Krone und nimmst mehrere Taíno gefangen, um sie als Beweis mit nach Spanien zu bringen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du hältst dich zurück und segelst weiter, ohne mit den Bewohnern in Kontakt zu treten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du tauschst Glasperlen und Mützen gegen Baumwolle und Papageien, ohne jemanden mitzunehmen oder Besitz zu ergreifen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gehst gar nicht erst an Land, kartierst die Küste und segelst weiter, um zuerst den Hof des Großkhans zu finden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du nimmst die Insel für die Krone in Besitz und lässt einige Taíno an Bord bringen, als Beweis und künftige Dolmetscher.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du milderst dein Vorgehen und suchst den Ausgleich mit aufständischen Kolonisten und der einheimischen Bevölkerung.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bittest die spanische Krone, dich von deinem Amt als Statthalter zu entbinden.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verschärfst die Strafen gegen Aufständische und Kritiker, um deine Autorität durchzusetzen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du milderst die Strafen und suchst den Ausgleich mit Kolonisten und Taíno, um Ruhe zu schaffen, bevor der Kommissar kommt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du lässt Aufständische hängen und Kritiker auspeitschen — wer den Vizekönig angreift, greift die Krone an.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du schreibst der Krone, ein Admiral sei kein Verwalter, und bittest um einen erfahrenen Statthalter an deiner Seite.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,40 +264,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'christoph-kolumbus';
+const SCENARIO_PREFIX = 'christoph-kolumbus-v2';
 
 const results = {
   1: {
-    A: { pct: 62, label: "Drei Tage versprochen" },
-    B: { pct: 17, label: "Sofort umgekehrt" },
+    A: { pct: 17, label: "Sofort umgekehrt" },
+    B: { pct: 62, label: "Drei Tage versprochen" },
     C: { pct: 21, label: "Anführer bestraft" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Kolumbus. Als die Stimmung an Bord zu kippen drohte, versprach er seiner Mannschaft, nach drei weiteren Tagen ohne Landsicht umzukehren. Am 12. Oktober, kurz vor Ablauf dieser Frist, wurde tatsächlich Land gesichtet — eine Insel der Bahamas, die er San Salvador nannte.",
-      B: "Sofort umzukehren hätte die Expedition vorzeitig beendet, wenige Tage bevor tatsächlich Land in Sicht kam. Kolumbus war zu diesem Zeitpunkt überzeugt, kurz vor dem Ziel zu stehen.",
+      A: "Sofort umzukehren hätte die Expedition vorzeitig beendet, wenige Tage bevor tatsächlich Land in Sicht kam. Kolumbus war zu diesem Zeitpunkt überzeugt, kurz vor dem Ziel zu stehen.",
+      B: "Genau das tat Kolumbus. Als die Stimmung an Bord zu kippen drohte, versprach er seiner Mannschaft, nach drei weiteren Tagen ohne Landsicht umzukehren. Am 12. Oktober, kurz vor Ablauf dieser Frist, wurde tatsächlich Land gesichtet — eine Insel der Bahamas, die er San Salvador nannte.",
       C: "Die Anführer hart zu bestrafen, hätte die Spannungen an Bord eher verschärft als gelöst — bei einer wochenlangen Überfahrt ohne Landsicht war die Mannschaft ohnehin am Rand der Verzweiflung."
     }
   },
   2: {
     A: { pct: 24, label: "Nur gehandelt" },
-    B: { pct: 61, label: "Beansprucht und gefangen genommen" },
-    C: { pct: 15, label: "Zurückgehalten" },
-    historical: 'B',
+    B: { pct: 15, label: "Zurückgehalten" },
+    C: { pct: 61, label: "Beansprucht und gefangen genommen" },
+    historical: 'C',
     narratives: {
       A: "Nur zu handeln, ohne jemanden gefangen zu nehmen, wäre eine Möglichkeit des ersten Kontakts gewesen. Kolumbus wählte einen anderen Weg.",
-      B: "Genau das tat Kolumbus. Er beanspruchte die Insel offiziell für die spanische Krone und nahm mehrere Taíno gefangen, um sie als Beweis seiner Entdeckung nach Spanien zu bringen. In seinem Logbuch notierte er bereits am ersten Tag, wie leicht sich die freundlichen, unbewaffneten Inselbewohner unterwerfen ließen.",
-      C: "Sich zurückzuhalten und ohne Kontakt weiterzusegeln, hätte dem eigentlichen Auftrag der Expedition — Land für die spanische Krone zu beanspruchen — widersprochen."
+      B: "Sich zurückzuhalten und ohne Kontakt weiterzusegeln, hätte dem eigentlichen Auftrag der Expedition — Land für die spanische Krone zu beanspruchen — widersprochen.",
+      C: "Genau das tat Kolumbus. Er beanspruchte die Insel offiziell für die spanische Krone und nahm mehrere Taíno gefangen, um sie als Beweis seiner Entdeckung nach Spanien zu bringen. In seinem Logbuch notierte er bereits am ersten Tag, wie leicht sich die freundlichen, unbewaffneten Inselbewohner unterwerfen ließen."
     }
   },
   3: {
     A: { pct: 26, label: "Ausgeglichen" },
-    B: { pct: 14, label: "Amt abgegeben" },
-    C: { pct: 60, label: "Strafen verschärft" },
-    historical: 'C',
+    B: { pct: 60, label: "Strafen verschärft" },
+    C: { pct: 14, label: "Amt abgegeben" },
+    historical: 'B',
     narratives: {
       A: "Das eigene Vorgehen zu mildern und den Ausgleich mit Kolonisten und einheimischer Bevölkerung zu suchen, hätte seine Herrschaft möglicherweise stabilisiert. Kolumbus wählte den entgegengesetzten Weg.",
-      B: "Die Krone um Entbindung vom Amt zu bitten, hätte sein Scheitern eingestanden. Kolumbus hielt an der ihm verliehenen Vizekönigswürde fest, bis sie ihm entzogen wurde.",
-      C: "Genau das tat Kolumbus. Er verschärfte die Strafen gegen Aufständische und Kritiker seiner Herrschaft — Berichte über Verstümmelungen und Hinrichtungen häuften sich. 1500 schickte die spanische Krone einen königlichen Kommissar, Francisco de Bobadilla, der Kolumbus verhaften und in Ketten nach Spanien zurückschicken ließ."
+      B: "Genau das tat Kolumbus. Er verschärfte die Strafen gegen Aufständische und Kritiker seiner Herrschaft — Berichte über Verstümmelungen und Hinrichtungen häuften sich. 1500 schickte die spanische Krone einen königlichen Kommissar, Francisco de Bobadilla, der Kolumbus verhaften und in Ketten nach Spanien zurückschicken ließ.",
+      C: "Die Krone um Entbindung vom Amt zu bitten, hätte sein Scheitern eingestanden. Kolumbus hielt an der ihm verliehenen Vizekönigswürde fest, bis sie ihm entzogen wurde."
     }
   }
 };

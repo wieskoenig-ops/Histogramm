@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du erklärst Privatinsolvenz und lässt die Schulden weitgehend hinter dir.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du verpflichtest dich, alle Gläubiger vollständig zurückzuzahlen, notfalls über Jahre durch anstrengende Vortragsreisen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verhandelst mit den Gläubigern einen Teilerlass der Schulden.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du meldest Insolvenz an. Es ist legal, alle tun es, und mit fast 60 fängst du nicht mehr von vorn an.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bietest den Gläubigern die Hälfte an, sofort und bar, gegen einen Erlass des Rests.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versprichst, jeden Cent zurückzuzahlen, und gehst dafür auf eine Vortragsreise um die Welt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du schreibst die Geschichte in der rauen, zeitgenössisch-authentischen Sprache der Südstaaten-Ära.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du milderst die Sprache und die Darstellung ab, um das Buch weniger anstößig zu machen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du lässt die Sklaverei-Thematik weitgehend im Hintergrund, um Kontroversen zu vermeiden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du entschärfst Wörter und Szenen, damit das Buch in Schulen und Familien gelesen werden kann.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schreibst, wie die Menschen damals wirklich sprachen, mit allen Wörtern, die heute schmerzen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du machst eine Abenteuergeschichte daraus und lässt die Sklaverei als Kulisse im Hintergrund.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sprichst dich öffentlich und scharf gegen die amerikanische Kriegsführung auf den Philippinen aus.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du hältst dich aus Rücksicht auf deine Popularität aus der politischen Debatte heraus.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du äußerst nur vorsichtige, stark abgeschwächte Kritik, um niemanden zu verprellen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du schreibst scharfe Essays gegen den Krieg und die amerikanische Politik auf den Philippinen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du hältst dich heraus. Deine Leser wollen lachen, nicht über Politik belehrt werden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du kritisierst den Krieg nur in einer Satire, so verpackt, dass sich niemand direkt angegriffen fühlt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,28 +261,28 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'mark-twain';
+const SCENARIO_PREFIX = 'mark-twain-v2';
 
 const results = {
   1: {
     A: { pct: 21, label: "Insolvenz erklärt" },
-    B: { pct: 64, label: "Vollständig zurückgezahlt" },
-    C: { pct: 15, label: "Teilerlass verhandelt" },
-    historical: 'B',
+    B: { pct: 15, label: "Teilerlass verhandelt" },
+    C: { pct: 64, label: "Vollständig zurückgezahlt" },
+    historical: 'C',
     narratives: {
       A: "Privatinsolvenz zu erklären, wäre rechtlich möglich und gesellschaftlich akzeptiert gewesen — Twain wählte diesen einfacheren Weg nicht.",
-      B: "Genau das tat Twain: Er verpflichtete sich, alle Gläubiger vollständig zurückzuzahlen, und finanzierte das über Jahre durch eine anstrengende Weltvortragsreise — ohne gesetzliche Verpflichtung dazu.",
-      C: "Einen Teilerlass auszuhandeln, wäre ein üblicher Mittelweg gewesen — nicht der, den Twain historisch wählte."
+      B: "Einen Teilerlass auszuhandeln, wäre ein üblicher Mittelweg gewesen — nicht der, den Twain historisch wählte.",
+      C: "Genau das tat Twain: Er verpflichtete sich, alle Gläubiger vollständig zurückzuzahlen, und finanzierte das über Jahre durch eine anstrengende Weltvortragsreise — ohne gesetzliche Verpflichtung dazu."
     }
   },
   2: {
-    A: { pct: 59, label: "Authentische Sprache gewählt" },
-    B: { pct: 24, label: "Abgemildert" },
+    A: { pct: 24, label: "Abgemildert" },
+    B: { pct: 59, label: "Authentische Sprache gewählt" },
     C: { pct: 17, label: "Thema zurückgestellt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Twain: Er schrieb \"Huckleberry Finn\" in der rauen, dialektgetreuen Sprache der Südstaaten-Ära, einschließlich der damals alltäglichen rassistischen Ausdrücke — als bewusstes Stilmittel der Gesellschaftskritik.",
-      B: "Eine mildere Sprache hätte das Buch zugänglicher gemacht, aber genau die schonungslose Authentizität genommen, für die es später berühmt wurde.",
+      A: "Eine mildere Sprache hätte das Buch zugänglicher gemacht, aber genau die schonungslose Authentizität genommen, für die es später berühmt wurde.",
+      B: "Genau das tat Twain: Er schrieb \"Huckleberry Finn\" in der rauen, dialektgetreuen Sprache der Südstaaten-Ära, einschließlich der damals alltäglichen rassistischen Ausdrücke — als bewusstes Stilmittel der Gesellschaftskritik.",
       C: "Die Sklaverei-Thematik zurückzustellen, hätte den moralischen Kern der Geschichte — Hucks Entscheidung, seinem Freund zu helfen — untergraben."
     }
   },

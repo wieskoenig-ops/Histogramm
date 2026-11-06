@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du versuchst zu fliehen, solange es noch möglich ist — wie es Einstein, Haber und Meitner vor dir taten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du erscheinst wie gefordert, verhältst dich unauffällig und hoffst, dass man dich übersieht.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du erscheinst und bestehst selbstbewusst auf der Bedeutung deiner Krebsforschung — ohne dich einschüchtern zu lassen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du versuchst, mit Hilfe ausländischer Kollegen das Land zu verlassen, solange es noch geht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du erscheinst, bleibst höflich und unauffällig und hoffst, dass man dich einfach weiterarbeiten lässt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du erscheinst und erklärst, deine Krebsforschung sei für das Reich zu wichtig, um sie zu stören.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du trennst dich von Jacob Heiss, um niemanden von euch beiden zu gefährden.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lässt ihn offiziell als deinen Sekretär auftreten und lebt weiter mit ihm zusammen — unausgesprochen, aber ungetrennt.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du lebst offen mit ihm zusammen, ungeachtet der Konsequenzen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Jacob bleibt bei dir — offiziell als dein Sekretär und Assistent, über alles andere wird geschwiegen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du trennst dich von Jacob, um euch beide zu schützen, und hoffst auf bessere Zeiten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr lebt weiter offen zusammen. Wer dich braucht, wird darüber hinwegsehen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du beantragst offiziell die Gleichstellung mit "arischen" Bürgern.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du lehnst einen solchen Antrag aus Prinzip ab, auch wenn das deine Position weiter gefährdet.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du nutzt deinen Einfluss stattdessen, um anderen verfolgten jüdischen Kollegen zu helfen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du stellst den Antrag auf Gleichstellung. Es geht um dein Institut, nicht um deine Überzeugung.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du stellst keinen Antrag. Du wirst die Logik dieser Gesetze nicht für dich selbst anerkennen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du stellst keinen Antrag, nutzt deinen Einfluss aber, um gefährdete Mitarbeiter zu schützen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'otto-warburg';
+const SCENARIO_PREFIX = 'otto-warburg-v2';
 
 const results = {
   1: {
@@ -279,13 +279,13 @@ const results = {
     }
   },
   2: {
-    A: { pct: 12, label: "Getrennt" },
-    B: { pct: 68, label: "Als Sekretär getarnt, zusammengeblieben" },
+    A: { pct: 68, label: "Als Sekretär getarnt, zusammengeblieben" },
+    B: { pct: 12, label: "Getrennt" },
     C: { pct: 20, label: "Offen zusammengelebt" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Sich von Jacob Heiss zu trennen, um beide zu schützen, wäre die vorsichtigere Wahl gewesen. Warburg tat das nicht.",
-      B: "Genau das tat Warburg. Jacob Heiss lebte offiziell als sein Sekretär und persönlicher Assistent in der gemeinsamen Villa in Dahlem — eine Tarnung, die es dem Paar erlaubte, über Jahrzehnte zusammenzubleiben, während Paragraf 175 homosexuelle Beziehungen unter Strafe stellte.",
+      A: "Genau das tat Warburg. Jacob Heiss lebte offiziell als sein Sekretär und persönlicher Assistent in der gemeinsamen Villa in Dahlem — eine Tarnung, die es dem Paar erlaubte, über Jahrzehnte zusammenzubleiben, während Paragraf 175 homosexuelle Beziehungen unter Strafe stellte.",
+      B: "Sich von Jacob Heiss zu trennen, um beide zu schützen, wäre die vorsichtigere Wahl gewesen. Warburg tat das nicht.",
       C: "Offen zusammenzuleben, ungeachtet der Konsequenzen, hätte beide einem enormen zusätzlichen Risiko ausgesetzt — neben seinem 'Mischling'-Status wäre damit ein zweiter Grund für Verfolgung öffentlich sichtbar geworden."
     }
   },

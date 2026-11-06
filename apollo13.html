@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Sofortige Umkehr — mit dem beschädigten Triebwerk des Servicemoduls, um Zeit zu sparen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Die freie Rückkehrbahn — einmal um den Mond herum, mit dem Triebwerk der Mondlandefähre.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Erst abwarten und mehr Daten sammeln, bevor irgendeine Bahnkorrektur erfolgt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Direkte Umkehr mit dem großen Triebwerk des Servicemoduls — die Crew wäre rund anderthalb Tage früher zurück.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Erst eine Stunde Analyse: Die Ingenieure sollen klären, ob das Triebwerk des Servicemoduls noch zündet, bevor ihr euch festlegt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Einmal um den Mond, Kurskorrekturen mit dem kleinen Triebwerk der Mondfähre — langsamer, aber ohne das beschädigte Modul.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr gebt der Crew sofort die unerprobte Bastelanleitung durch — die einzige Chance, funktioniert oder nicht.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Ihr bittet die Crew, möglichst viel zu schlafen, um den CO2-Anstieg durch weniger Aktivität zu verlangsamen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr riskiert einen früheren Wiedereintritt, noch bevor die Rückkehrbahn abgeschlossen ist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr lasst die Crew ruhen und jede Bewegung meiden — das kauft Stunden, in denen ihr den Adapter am Boden testen könnt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Ihr lasst die Crew ins abgeschaltete Kommandomodul umziehen, wo die passenden Filter sitzen — auch wenn das Strom kostet.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr gebt die ungetestete Bauanleitung aus Plastiktüte, Pappe und Klebeband sofort durch, Schritt für Schritt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Radikal sparen — fast alles abschalten, Unterkühlung und Dehydrierung der Crew in Kauf nehmen, für genug Strom beim Neustart.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Moderate Reserven für Komfort und Sicherheit der Crew halten, auch wenn dadurch weniger Strom für den Neustart bleibt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Die verbleibende Energie vor allem für durchgehenden Funkkontakt nutzen, statt für die Wiederanlauf-Systeme zu sparen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Fast alles abschalten, auch die Heizung. Die Crew friert und dürstet, dafür reicht der Strom sicher für den Neustart.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Die Heizung auf kleiner Stufe laufen lassen — eine unterkühlte, erschöpfte Crew macht beim Wiedereintritt Fehler.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Funk und Telemetrie durchgehend halten, damit ihr jeden Wert seht, und beim Neustart mit knapperem Strom arbeiten.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,29 +264,29 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'apollo13';
+const SCENARIO_PREFIX = 'apollo13-v2';
 
 const results = {
   1: {
     A: { pct: 18, label: "Sofortige Umkehr" },
-    B: { pct: 71, label: "Freie Rückkehrbahn" },
-    C: { pct: 11, label: "Erst abwarten" },
-    historical: 'B',
+    B: { pct: 11, label: "Erst abwarten" },
+    C: { pct: 71, label: "Freie Rückkehrbahn" },
+    historical: 'C',
     narratives: {
       A: "Die direkte Umkehr hätte Zeit gespart — aber niemand wusste, wie stark das Triebwerk des Servicemoduls durch die Explosion beschädigt war. Das Kontrollzentrum vermied dieses Risiko bewusst.",
-      B: "Genau das entschied das Kontrollzentrum: den Mond umrunden und das Triebwerk der Mondlandefähre nutzen, langsamer, aber ohne das beschädigte Triebwerk zu riskieren.",
-      C: "Abzuwarten hätte in dieser Lage nur noch mehr Sauerstoff und Zeit gekostet, die ohnehin knapp wurden."
+      B: "Abzuwarten hätte in dieser Lage nur noch mehr Sauerstoff und Zeit gekostet, die ohnehin knapp wurden.",
+      C: "Genau das entschied das Kontrollzentrum: den Mond umrunden und das Triebwerk der Mondlandefähre nutzen, langsamer, aber ohne das beschädigte Triebwerk zu riskieren."
     }
   },
   2: {
-    A: { pct: 66, label: "Bastelanleitung durchgegeben" },
-    B: { pct: 21, label: "Crew schlafen lassen" },
-    C: { pct: 13, label: "Früherer Wiedereintritt riskiert" },
-    historical: 'A',
+    A: { pct: 21, label: "Crew schlafen lassen" },
+    B: { pct: 13, label: "Ins Kommandomodul umgezogen" },
+    C: { pct: 66, label: "Bastelanleitung durchgegeben" },
+    historical: 'C',
     narratives: {
-      A: "Genau das geschah: Ingenieur Ed Smylie und sein Team entwarfen den Adapter — später bekannt als die 'Mailbox' — aus Bordmaterial und gaben die Anleitung per Funk durch, während die Crew sie in Echtzeit nachbaute.",
-      B: "Weniger Aktivität hätte den CO2-Anstieg allenfalls verlangsamt, nicht gestoppt — die Filter mussten so oder so ersetzt werden.",
-      C: "Ein früherer Wiedereintritt ohne abgeschlossene Rückkehrbahn hätte ein neues, noch größeres Risiko geschaffen."
+      A: "Weniger Aktivität hätte den CO2-Anstieg allenfalls verlangsamt, nicht gestoppt — die Filter mussten so oder so ersetzt werden.",
+      B: "Das Kommandomodul wieder zu betreiben, hätte genau die Batterien geleert, die für den Wiedereintritt unverzichtbar waren. Deshalb blieb es abgeschaltet — und der Adapter musste her.",
+      C: "Genau das geschah: Ingenieur Ed Smylie und sein Team entwarfen den Adapter — später bekannt als die 'Mailbox' — aus Bordmaterial und gaben die Anleitung per Funk durch, während die Crew sie in Echtzeit nachbaute."
     }
   },
   3: {

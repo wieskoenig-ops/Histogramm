@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du verteidigst dich mit dem Argument der künstlerischen Freiheit — Träume kennen keine Politik, das Unbewusste darf alles zeigen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du entschuldigst dich, versprichst, politisch eindeutiger zu malen, und passt dich dem Kurs der Gruppe an.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verlässt die Gruppe von dir aus, bevor sie dich ausschließen kann.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du erscheinst und erklärst: Das Unbewusste kennt keine Moral, und ein Surrealist darf alles malen, auch Hitler.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du entschuldigst dich vor der Gruppe, versprichst politisch eindeutigere Bilder und bleibst dabei.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du erscheinst gar nicht erst, schreibst Breton einen höflichen Brief und gehst deinen eigenen Weg.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du kehrst zurück, hältst dich aber politisch komplett heraus — nur die Kunst, keine Nähe zur Macht.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du kehrst zurück und suchst die Nähe zum Regime — Glückwunschtelegramme an Franco, später eine Audienz.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst im US-Exil, solange Franco regiert.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du kehrst zurück und arrangierst dich offen mit dem Regime — mit Lob für Franco und Besuchen bei der Macht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du kehrst zurück, lebst in Port Lligat und hältst dich von Franco fern — keine Lobreden, keine Empfänge.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst in Amerika, wo dein Markt boomt, und kehrst erst zurück, wenn Spanien frei ist.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hörst auf zu unterschreiben, um deinen künstlerischen Ruf für die Nachwelt zu schützen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du unterschreibst weiter, bestehst aber auf Kontrolle — nummerierte, limitierte Auflagen, keine anonymen Blätter.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du unterschreibst weiter — Blatt für Blatt, ohne die späteren Drucke zu sehen. Das Geld und der Markt entscheiden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hörst auf. Lieber weniger Geld als ein Markt voller Blätter, für die du nicht geradestehen kannst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nur noch nummerierte Auflagen, deren Motive du vorher gesehen und freigegeben hast.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du unterschreibst weiter, Stapel um Stapel. Was später gedruckt wird, ist Sache der Händler und Galas.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'dali';
+const SCENARIO_PREFIX = 'dali-v2';
 
 const results = {
   1: {
@@ -279,13 +279,13 @@ const results = {
     }
   },
   2: {
-    A: { pct: 44, label: "Zurück, aber politisch zurückhaltend" },
-    B: { pct: 34, label: "Nähe zum Regime gesucht" },
+    A: { pct: 34, label: "Nähe zum Regime gesucht" },
+    B: { pct: 44, label: "Zurück, aber politisch zurückhaltend" },
     C: { pct: 22, label: "Im Exil geblieben" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Zurückzukehren und sich politisch komplett herauszuhalten, wäre eine naheliegende Option gewesen. Genau das tat Dalí nicht — seine öffentliche Nähe zu Franco ging weit über bloßes Schweigen hinaus.",
-      B: "Genau das tat Dalí. Er schickte Franco Glückwunschtelegramme, lobte ihn öffentlich, traf ihn persönlich und malte ein Porträt von dessen Enkelin. Viele ehemalige Weggefährten aus dem Exil sahen darin einen Verrat, den sie ihm nie verziehen.",
+      A: "Genau das tat Dalí. Er schickte Franco Glückwunschtelegramme, lobte ihn öffentlich, traf ihn persönlich und malte ein Porträt von dessen Enkelin. Viele ehemalige Weggefährten aus dem Exil sahen darin einen Verrat, den sie ihm nie verziehen.",
+      B: "Zurückzukehren und sich politisch komplett herauszuhalten, wäre eine naheliegende Option gewesen. Genau das tat Dalí nicht — seine öffentliche Nähe zu Franco ging weit über bloßes Schweigen hinaus.",
       C: "Im Exil zu bleiben, solange Franco regiert, hätte bedeutet, auf Port Lligat zu verzichten — das Haus am Meer, das Dalí über alles liebte. Genau diesen Verzicht wollte er nicht leisten."
     }
   },

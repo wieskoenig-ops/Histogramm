@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du trittst der geheimen Koalition bei, gemeinsam mit EU und USA — auch wenn das die Süd-Süd-Solidarität gefährdet.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bleibst im traditionellen Block der Entwicklungsländer, um dessen Geschlossenheit nicht zu gefährden.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versuchst, zwischen beiden Lagern zu vermitteln, ohne dich einem von beiden anzuschließen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bleibst im Block der Entwicklungsländer. Ohne seine Geschlossenheit verliert ihr jede Verhandlungsmacht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du trittst der Koalition mit EU und USA bei, auch wenn dir die Partner im Süden das übelnehmen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst offiziell im Block, verhandelst aber im Hintergrund mit der Koalition über die 1,5 Grad.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du akzeptierst die Änderung von "shall" zu "should" widerspruchslos, um das Abkommen nicht zu gefährden.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du widersetzt dich der Änderung und bestehst auf der bindenderen Formulierung, auch auf die Gefahr hin, dass die USA aussteigen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schlägst eine alternative Formulierung vor, die für beide Seiten tragbar wäre.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bestehst auf „shall“. Ohne bindende Pflichten ist das Abkommen für dein Land zu schwach.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schlägst eine Kompromissformel vor, mit der beide Seiten leben könnten, auch wenn das Stunden kostet.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du nimmst die Änderung hin. Ein Abkommen mit den USA ist mehr wert als ein starkes Wort ohne sie.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du versuchst gemeinsam mit Nicaragua, das Wort zu bekommen, bevor der Hammer fällt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du lässt den Moment ziehen und feierst den fertigen Konsens, auch ohne dass Nicaraguas Einwand ins Protokoll kommt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du forderst im Nachhinein, den Einwand nachträglich offiziell zu vermerken.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du meldest dich mit Nicaragua zu Wort, bevor der Hammer fällt — auch kleine Länder haben ein Recht auf Gehör.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du lässt den Moment vorbeigehen und feierst mit dem Saal, was ihr gemeinsam erreicht habt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du feierst mit, beantragst danach aber, Nicaraguas Einwand im Protokoll festzuhalten.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,29 +261,29 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'paris-2015';
+const SCENARIO_PREFIX = 'paris-2015-v2';
 
 const results = {
   1: {
-    A: { pct: 61, label: "Koalition beigetreten" },
-    B: { pct: 22, label: "Im Entwicklungsländer-Block geblieben" },
+    A: { pct: 22, label: "Im Entwicklungsländer-Block geblieben" },
+    B: { pct: 61, label: "Koalition beigetreten" },
     C: { pct: 17, label: "Vermittelt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: Kleine Inselstaaten gehörten zu den Gründungsmitgliedern der \"Koalition der hohen Ambition\" gemeinsam mit EU und USA — ein Schritt, der die traditionelle Süd-Süd-Blockbildung aufbrach.",
-      B: "Im traditionellen Block zu bleiben, hätte die Geschlossenheit mit großen Schwellenländern gewahrt — aber die eigene, dringlichere Position verwässert.",
+      A: "Im traditionellen Block zu bleiben, hätte die Geschlossenheit mit großen Schwellenländern gewahrt — aber die eigene, dringlichere Position verwässert.",
+      B: "Genau das geschah: Kleine Inselstaaten gehörten zu den Gründungsmitgliedern der \"Koalition der hohen Ambition\" gemeinsam mit EU und USA — ein Schritt, der die traditionelle Süd-Süd-Blockbildung aufbrach.",
       C: "Zwischen beiden Lagern zu vermitteln, ohne sich festzulegen, hätte in der entscheidenden Schlussphase Zeit gekostet, die kaum vorhanden war."
     }
   },
   2: {
-    A: { pct: 68, label: "Änderung akzeptiert" },
-    B: { pct: 19, label: "Widersetzt" },
-    C: { pct: 13, label: "Alternative vorgeschlagen" },
-    historical: 'A',
+    A: { pct: 19, label: "Widersetzt" },
+    B: { pct: 13, label: "Alternative vorgeschlagen" },
+    C: { pct: 68, label: "Änderung akzeptiert" },
+    historical: 'C',
     narratives: {
-      A: "Genau das geschah: Fast alle Delegationen, auch die der gefährdetsten Staaten, akzeptierten die Änderung von \"shall\" zu \"should\", um das gesamte Abkommen in letzter Minute nicht zu verlieren.",
-      B: "Auf der bindenderen Formulierung zu bestehen, hätte das gesamte Abkommen riskiert — ein Ausstieg der USA hätte den ganzen Prozess zum Scheitern bringen können.",
-      C: "Eine neue Formulierung in den verbleibenden Stunden auszuhandeln, war angesichts der Zeitnot praktisch nicht mehr möglich."
+      A: "Auf der bindenderen Formulierung zu bestehen, hätte das gesamte Abkommen riskiert — ein Ausstieg der USA hätte den ganzen Prozess zum Scheitern bringen können.",
+      B: "Eine neue Formulierung in den verbleibenden Stunden auszuhandeln, war angesichts der Zeitnot praktisch nicht mehr möglich.",
+      C: "Genau das geschah: Fast alle Delegationen, auch die der gefährdetsten Staaten, akzeptierten die Änderung von \"shall\" zu \"should\", um das gesamte Abkommen in letzter Minute nicht zu verlieren."
     }
   },
   3: {

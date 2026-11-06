@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schreibst deiner Frau einen ehrlichen Abschiedsbrief, für den Fall, dass du nicht zurückkehrst.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schreibst einen beruhigenden Brief, der die Gefahr herunterspielt, um sie nicht zu ängstigen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schreibst nichts — jeder Gedanke ans Scheitern könnte deine Konzentration stören.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schreibst Valentina einen Abschiedsbrief, ehrlich und zärtlich, und gibst ihn für den Ernstfall ab.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schreibst ihr einen heiteren Brief über die schöne Landschaft hier, ohne ein Wort über das Risiko.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du gibst das Papier zurück. Wer an einen Abschied denkt, ist morgen nicht ganz bei der Sache.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du nimmst den Code informell an, um im Notfall sofort reagieren zu können.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du hältst dich strikt ans Protokoll und lässt den Umschlag versiegelt.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest offiziell darum, den Code vorab zu erfahren, und lässt dir das schriftlich genehmigen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Die Regeln haben ihren Grund, und du willst niemandem Ärger bereiten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lässt dir den Code zuflüstern. Im Notfall zählt jede Sekunde, und niemand muss davon erfahren.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest den Chefkonstrukteur Koroljow selbst um den Code, damit alles offiziell seine Ordnung hat.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hältst dich an die offizielle Version — Landung in der Kapsel, wie es die Flugregeln verlangen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erzählst die Wahrheit über die Rettung mit dem Schleudersitz, koste es was es wolle.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du deutest die Wahrheit nur vage an, ohne sie offen zu widerlegen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bestätigst die offizielle Version: Landung in der Kapsel. Der Rekord gehört deinem Land.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erzählst, wie es war: Ausstieg mit dem Schleudersitz, Landung am Fallschirm. Der Flug bleibt trotzdem ein Rekord.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sprichst nur von der „Landung“ und lässt offen, wie sie genau war — lügen musst du so nicht.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,7 +261,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'gagarin';
+const SCENARIO_PREFIX = 'gagarin-v2';
 
 const results = {
   1: {
@@ -276,13 +276,13 @@ const results = {
     }
   },
   2: {
-    A: { pct: 44, label: "Code informell angenommen" },
-    B: { pct: 39, label: "Protokoll eingehalten" },
+    A: { pct: 39, label: "Protokoll eingehalten" },
+    B: { pct: 44, label: "Code informell angenommen" },
     C: { pct: 17, label: "Offizielle Genehmigung erbeten" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Nach mehreren Berichten wurde Gagarin der Code tatsächlich informell mitgeteilt, bevor er offiziell hätte bekannt sein dürfen — ein kleiner, menschlicher Vertrauensbruch im starren sowjetischen Raumfahrtprogramm.",
-      B: "Sich strikt ans Protokoll zu halten wäre die formal korrekte Entscheidung gewesen — mit dem Risiko, im echten Notfall wertvolle Sekunden zu verlieren.",
+      A: "Sich strikt ans Protokoll zu halten wäre die formal korrekte Entscheidung gewesen — mit dem Risiko, im echten Notfall wertvolle Sekunden zu verlieren.",
+      B: "Nach mehreren Berichten wurde Gagarin der Code tatsächlich informell mitgeteilt, bevor er offiziell hätte bekannt sein dürfen — ein kleiner, menschlicher Vertrauensbruch im starren sowjetischen Raumfahrtprogramm.",
       C: "Eine offizielle, schriftlich genehmigte Ausnahme zu verlangen, hätte den Zeitdruck vor dem Start kaum zugelassen."
     }
   },

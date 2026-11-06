@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du nimmst den Auftrag an und legst die Arbeit am Grabmal vorerst beiseite.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du weigerst dich und bestehst darauf, am Grabmal weiterzuarbeiten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schlägst vor, die Deckenmalerei an Assistenten zu delegieren, während du selbst am Grabmal bleibst.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lehnst ab und verlässt Rom, wie du es schon einmal getan hast, bis der Papst einlenkt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du nimmst an, lässt aber Florentiner Maler die Decke ausführen und arbeitest selbst am Grabmal weiter.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du nimmst den Auftrag an, widerwillig, und legst das Grabmal vorerst beiseite.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -169,8 +169,8 @@
         <span class="scene-time">Rom, Beginn der Arbeiten</span>
       </div>
       <div class="scene-body">
-        <p>Der ursprüngliche Plan war bescheiden: zwölf Apostel in den Zwickeln der Decke, ein überschaubares Programm. Du beginnst zu zeichnen — und merkst, wie eng dir dieser Entwurf plötzlich vorkommt.</p>
-        <p>Du hast Assistenten kommen lassen, die dir nach traditioneller Werkstattpraxis helfen sollten. Nach kurzer Zeit schickst du die meisten wieder weg — mit ihrer Arbeit unzufrieden, entscheidest du, fast alles allein zu machen.</p>
+        <p>Der ursprüngliche Plan war bescheiden: zwölf Apostel in den Zwickeln der Decke, ein überschaubares Programm. Du beginnst zu zeichnen.</p>
+        <p>Du hast Assistenten kommen lassen, die dir nach traditioneller Werkstattpraxis helfen sollten. Die Arbeit an der Decke wird Jahre dauern, so oder so.</p>
       </div>
       <div class="scene-role">
         <span class="role-label">Deine Rolle</span>
@@ -179,9 +179,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du hältst dich an den ursprünglichen, einfacheren Entwurf mit den zwölf Aposteln.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du erweiterst den Entwurf eigenmächtig zu einem viel komplexeren Programm mit hunderten Figuren.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schlägst dem Papst einen Mittelweg vor — mehr Figuren, aber deutlich weniger als am Ende entstand.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du malst die zwölf Apostel, wie vereinbart. Ein fremdes Handwerk ist kein Ort für Experimente.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst bei den Aposteln, bereicherst die Decke aber mit Ornamenten und gemalter Architektur.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du wirfst den Plan um und entwirfst ein Programm mit der Schöpfungsgeschichte und Hunderten Figuren.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -220,9 +220,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du arbeitest schneller und nimmst Qualitätseinbußen in Kauf, um den Papst zu besänftigen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst bei deinem eigenen Tempo, trotz wiederholter Drohungen des Papstes.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verhandelst um mehr Zeit und zusätzliche Mittel, ohne dein Tempo zu ändern.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du malst schneller und vereinfachst die letzten Felder, damit der Papst endlich seine Decke bekommt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du verlangst mehr Geld und Zeit und drohst, die Arbeit sonst niederzulegen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du arbeitest in deinem Tempo weiter und lässt die Drohungen über dich ergehen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -262,40 +262,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'michelangelo';
+const SCENARIO_PREFIX = 'michelangelo-v2';
 
 const results = {
   1: {
-    A: { pct: 58, label: "Auftrag angenommen" },
-    B: { pct: 24, label: "Verweigert, beim Grabmal geblieben" },
-    C: { pct: 18, label: "Delegation vorgeschlagen" },
-    historical: 'A',
+    A: { pct: 24, label: "Verweigert, beim Grabmal geblieben" },
+    B: { pct: 18, label: "Delegation vorgeschlagen" },
+    C: { pct: 58, label: "Auftrag angenommen" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Michelangelo: Er nahm den Auftrag widerwillig an und legte die Arbeit am Grabmal für Jahre beiseite — dem Papst offen zu widersprechen, wäre politisch riskant gewesen.",
-      B: "Sich zu weigern und auf dem Grabmal zu bestehen, hätte einen offenen Konflikt mit dem Papst bedeutet — ein Risiko, das Michelangelo nicht einging.",
-      C: "Die Malerei zu delegieren und selbst am Grabmal zu bleiben, hätte dem Wunsch des Papstes nach seiner persönlichen Handschrift widersprochen."
+      A: "Sich zu weigern und auf dem Grabmal zu bestehen, hätte einen offenen Konflikt mit dem Papst bedeutet — ein Risiko, das Michelangelo nicht einging.",
+      B: "Die Malerei zu delegieren und selbst am Grabmal zu bleiben, hätte dem Wunsch des Papstes nach seiner persönlichen Handschrift widersprochen.",
+      C: "Genau das tat Michelangelo: Er nahm den Auftrag widerwillig an und legte die Arbeit am Grabmal für Jahre beiseite — dem Papst offen zu widersprechen, wäre politisch riskant gewesen."
     }
   },
   2: {
     A: { pct: 21, label: "Beim einfachen Entwurf geblieben" },
-    B: { pct: 63, label: "Eigenmächtig stark erweitert" },
-    C: { pct: 16, label: "Mittelweg vorgeschlagen" },
-    historical: 'B',
+    B: { pct: 16, label: "Mittelweg vorgeschlagen" },
+    C: { pct: 63, label: "Eigenmächtig stark erweitert" },
+    historical: 'C',
     narratives: {
       A: "Beim ursprünglichen, überschaubaren Zwölf-Apostel-Programm zu bleiben, wäre die sicherere, aber auch die deutlich unspektakulärere Wahl gewesen.",
-      B: "Genau das geschah: Michelangelo erweiterte den Entwurf eigenmächtig zu dem komplexen Programm aus Genesis-Szenen, Propheten und Sibyllen, das die Decke bis heute prägt.",
-      C: "Ein Mittelweg wäre denkbar gewesen — historisch ist aber belegt, dass Michelangelo den Umfang drastisch und ohne Zwischenschritt ausweitete."
+      B: "Ein Mittelweg wäre denkbar gewesen — historisch ist aber belegt, dass Michelangelo den Umfang drastisch und ohne Zwischenschritt ausweitete.",
+      C: "Genau das geschah: Michelangelo erweiterte den Entwurf eigenmächtig zu dem komplexen Programm aus Genesis-Szenen, Propheten und Sibyllen, das die Decke bis heute prägt."
     }
   },
   3: {
     A: { pct: 19, label: "Tempo erhöht, Qualität geopfert" },
-    B: { pct: 61, label: "Eigenes Tempo beibehalten" },
-    C: { pct: 20, label: "Um mehr Zeit verhandelt" },
-    historical: 'B',
+    B: { pct: 20, label: "Um mehr Zeit verhandelt" },
+    C: { pct: 61, label: "Eigenes Tempo beibehalten" },
+    historical: 'C',
     narratives: {
       A: "Schneller zu arbeiten und dabei Qualität zu opfern, widerspricht allem, was über Michelangelos Arbeitsweise überliefert ist.",
-      B: "Berichten zufolge blieb Michelangelo trotz wiederholter Drohungen bei seinem eigenen, gründlichen Tempo — auf Kosten jahrelanger körperlicher Belastung.",
-      C: "Um mehr Zeit zu verhandeln, hätte eine diplomatischere Beziehung zum notorisch ungeduldigen Julius II. vorausgesetzt, als die beiden tatsächlich pflegten."
+      B: "Um mehr Zeit zu verhandeln, hätte eine diplomatischere Beziehung zum notorisch ungeduldigen Julius II. vorausgesetzt, als die beiden tatsächlich pflegten.",
+      C: "Berichten zufolge blieb Michelangelo trotz wiederholter Drohungen bei seinem eigenen, gründlichen Tempo — auf Kosten jahrelanger körperlicher Belastung."
     }
   }
 };

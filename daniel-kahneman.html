@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schweigst höflich und lässt die abweichende Einschätzung unkommentiert im Raum stehen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du sprichst deinen Widerspruch offen aus und schlägst vor, die Frage gemeinsam experimentell zu testen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du hältst an deiner eigenen Forschungsrichtung fest und gehst auf Tverskys These nicht weiter ein.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sagst vor allen, dass du kein Wort davon glaubst, und schlägst vor, es gemeinsam zu testen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du dankst Tversky höflich für den Vortrag und hebst dir deine Einwände für ein Gespräch unter vier Augen auf.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du stellst eine kritische Frage zur Methode der Studie und lässt es dann auf sich beruhen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du reichst die Arbeit bei einer psychologischen Fachzeitschrift ein, wo eure Reputation bereits etabliert ist.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du milderst die Kritik am ökonomischen Rationalitätsmodell ab, um Ökonomen nicht zu verprellen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du reichst die Arbeit bei der führenden ökonomischen Fachzeitschrift Econometrica ein — mitten ins Zentrum der Disziplin, die ihr infrage stellt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr reicht bei Econometrica ein, der führenden Zeitschrift der Ökonomen, deren Grundannahme ihr angreift.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Ihr reicht bei der Psychological Review ein, wo eure Arbeit verstanden und fair begutachtet wird.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr schreibt die Theorie als Ergänzung zum Rationalitätsmodell, nicht als Angriff, damit Ökonomen sie annehmen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hältst deine Rede und deine autobiografische Schrift so, dass die gemeinsame Arbeit mit Tversky im Zentrum steht — nicht dein Einzelbeitrag.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst den Preis entgegen, ohne die Zusammenarbeit mit Tversky besonders zu betonen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du versuchst, den Preis formell mit Tverskys Familie zu teilen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du dankst Tversky kurz und sprichst dann über deine eigenen neueren Arbeiten zum Glück und zur Intuition.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erzählst die Geschichte als gemeinsame: Ohne Amos gäbe es diesen Preis nicht, und das sagst du ausdrücklich.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du bittest das Komitee öffentlich, Tversky als Mitpreisträger zu nennen, und spendest das Preisgeld in seinem Namen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,39 +264,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'daniel-kahneman';
+const SCENARIO_PREFIX = 'daniel-kahneman-v2';
 
 const results = {
   1: {
-    A: { pct: 12, label: "Höflich geschwiegen" },
-    B: { pct: 71, label: "Offen widersprochen" },
+    A: { pct: 71, label: "Offen widersprochen" },
+    B: { pct: 12, label: "Höflich geschwiegen" },
     C: { pct: 17, label: "Eigene Richtung verfolgt" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Höflich zu schweigen und die Meinungsverschiedenheit unkommentiert zu lassen, wäre die kollegiale Standardreaktion gewesen. Kahneman tat das nicht — er widersprach offen, direkt in seinem eigenen Seminar.",
-      B: "Genau das tat Kahneman. Nach Tverskys Vortrag sagte er ihm unverblümt, er glaube kein Wort davon — Menschen seien keineswegs von Natur aus gute intuitive Statistiker. Aus diesem Widerspruch wurde noch im selben Sommer eine gemeinsame Untersuchung, aus der wiederum eine über zwanzig Jahre währende, außergewöhnlich enge Zusammenarbeit wurde. Tverskys eigene Frau beschrieb die Beziehung der beiden später als intensiver als eine Ehe.",
+      A: "Genau das tat Kahneman. Nach Tverskys Vortrag sagte er ihm unverblümt, er glaube kein Wort davon — Menschen seien keineswegs von Natur aus gute intuitive Statistiker. Aus diesem Widerspruch wurde noch im selben Sommer eine gemeinsame Untersuchung, aus der wiederum eine über zwanzig Jahre währende, außergewöhnlich enge Zusammenarbeit wurde. Tverskys eigene Frau beschrieb die Beziehung der beiden später als intensiver als eine Ehe.",
+      B: "Höflich zu schweigen und die Meinungsverschiedenheit unkommentiert zu lassen, wäre die kollegiale Standardreaktion gewesen. Kahneman tat das nicht — er widersprach offen, direkt in seinem eigenen Seminar.",
       C: "An der eigenen Forschungsrichtung festzuhalten und Tverskys These zu ignorieren, hätte die Begegnung folgenlos verpuffen lassen. Stattdessen wurde genau dieser Widerspruch zum Ausgangspunkt von über zweihundert gemeinsamen Veröffentlichungen."
     }
   },
   2: {
-    A: { pct: 19, label: "Psychologische Zeitschrift gewählt" },
-    B: { pct: 14, label: "Kritik abgemildert" },
-    C: { pct: 67, label: "Bei Econometrica eingereicht" },
-    historical: 'C',
+    A: { pct: 67, label: "Bei Econometrica eingereicht" },
+    B: { pct: 19, label: "Psychologische Zeitschrift gewählt" },
+    C: { pct: 14, label: "Kritik abgemildert" },
+    historical: 'A',
     narratives: {
-      A: "Bei einer psychologischen Fachzeitschrift einzureichen, wäre der sichere Weg gewesen — dort war ihre Reputation bereits etabliert. Kahneman und Tversky suchten sich jedoch bewusst ein schwierigeres Publikum.",
-      B: "Die Kritik am ökonomischen Rationalitätsmodell abzumildern, hätte die eigentliche Pointe der Arbeit verwässert — dass Menschen bei Entscheidungen unter Risiko systematisch von reiner Nutzenmaximierung abweichen.",
-      C: "Genau das taten Kahneman und Tversky. 1979 veröffentlichten sie 'Prospect Theory: An Analysis of Decision under Risk' in Econometrica, der führenden Fachzeitschrift der Wirtschaftswissenschaften — mitten im Kernland der Disziplin, deren Grundannahme vom rational handelnden Menschen sie damit infrage stellten. Der Aufsatz zählt heute zu den meistzitierten Arbeiten der gesamten Wirtschaftswissenschaft."
+      A: "Genau das taten Kahneman und Tversky. 1979 veröffentlichten sie 'Prospect Theory: An Analysis of Decision under Risk' in Econometrica, der führenden Fachzeitschrift der Wirtschaftswissenschaften — mitten im Kernland der Disziplin, deren Grundannahme vom rational handelnden Menschen sie damit infrage stellten. Der Aufsatz zählt heute zu den meistzitierten Arbeiten der gesamten Wirtschaftswissenschaft.",
+      B: "Bei einer psychologischen Fachzeitschrift einzureichen, wäre der sichere Weg gewesen — dort war ihre Reputation bereits etabliert. Kahneman und Tversky suchten sich jedoch bewusst ein schwierigeres Publikum.",
+      C: "Die Kritik am ökonomischen Rationalitätsmodell abzumildern, hätte die eigentliche Pointe der Arbeit verwässert — dass Menschen bei Entscheidungen unter Risiko systematisch von reiner Nutzenmaximierung abweichen."
     }
   },
   3: {
-    A: { pct: 74, label: "Zusammenarbeit betont" },
-    B: { pct: 15, label: "Ohne besondere Betonung angenommen" },
+    A: { pct: 15, label: "Ohne besondere Betonung angenommen" },
+    B: { pct: 74, label: "Zusammenarbeit betont" },
     C: { pct: 11, label: "Formell geteilt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Kahneman. In seiner Nobelvorlesung und in der autobiografischen Schrift, die er für das Nobelkomitee verfasste, stellte er die gemeinsame Arbeit mit Amos Tversky konsequent in den Mittelpunkt — nicht seinen eigenen, formal allein ausgezeichneten Beitrag. Tversky war 1996 an Hautkrebs gestorben; der Nobelpreis wird nicht posthum verliehen.",
-      B: "Den Preis entgegenzunehmen, ohne die Zusammenarbeit besonders zu betonen, hätte den formalen Regeln des Komitees entsprochen — schließlich stand nur Kahnemans Name auf der Urkunde. Er entschied sich, es anders zu halten.",
+      A: "Den Preis entgegenzunehmen, ohne die Zusammenarbeit besonders zu betonen, hätte den formalen Regeln des Komitees entsprochen — schließlich stand nur Kahnemans Name auf der Urkunde. Er entschied sich, es anders zu halten.",
+      B: "Genau das tat Kahneman. In seiner Nobelvorlesung und in der autobiografischen Schrift, die er für das Nobelkomitee verfasste, stellte er die gemeinsame Arbeit mit Amos Tversky konsequent in den Mittelpunkt — nicht seinen eigenen, formal allein ausgezeichneten Beitrag. Tversky war 1996 an Hautkrebs gestorben; der Nobelpreis wird nicht posthum verliehen.",
       C: "Formal ließ sich der Nobelpreis nicht mit einer bereits verstorbenen Person teilen — das Komitee vergibt ihn grundsätzlich nicht posthum. Kahneman fand stattdessen einen anderen Weg, Tverskys Anteil sichtbar zu machen: über die Sprache seiner eigenen Rede."
     }
   }

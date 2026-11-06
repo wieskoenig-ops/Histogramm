@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du beschließt aufzuhören — das Leben mit einem Leiden, das dich von deiner Kunst trennt, erscheint dir sinnlos.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du beschließt weiterzumachen, schreibst den Brief aber nur für dich — die Wahrheit über dein Gehör bleibt weiter geheim.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du beschließt, deine Taubheit öffentlich zu machen und offen um Rücksicht zu bitten.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schreibst einen Abschied. Ein Musiker, der nicht hört, ist nichts — du willst nicht mehr weiterleben.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schreibst dir die Verzweiflung von der Seele, beschließt weiterzuleben und schließt den Brief weg.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schickst den Brief ab und erzählst Freunden und Förderern von deinem Gehör — lieber Rücksicht als Versteckspiel.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lässt die Widmung wie sie ist — ein Kunstwerk sollte nicht von Tagespolitik abhängen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du änderst die Widmung still und ohne große Geste, bevor die Sinfonie gedruckt wird.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du radierst Napoleons Namen wütend vom Titelblatt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lässt die Widmung stehen. Die Musik feiert Ideale, nicht den Mann — und Napoleon könnte noch Förderer werden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du streichst Napoleons Namen in Wut vom Titelblatt und lässt jeden wissen, was du vom neuen Kaiser hältst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du änderst die Widmung still vor dem Druck, ohne ein Wort darüber zu verlieren.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du beantragst die alleinige Vormundschaft und nutzt Johannas Vorstrafe als Argument gegen sie.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du respektierst den letzten Willen deines Bruders und teilst dir die Vormundschaft mit Johanna.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich zurück und überlässt Johanna allein die Erziehung ihres Sohnes.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hältst dich an den letzten Willen deines Bruders und teilst die Vormundschaft mit Johanna, trotz allem Groll.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du klagst auf alleinige Vormundschaft und führst Johannas Verurteilung als Beweis an, dass sie ungeeignet ist.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du bezahlst dem Jungen eine gute Schule, überlässt Johanna aber die Erziehung — Streit schadet ihm am meisten.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'beethoven';
+const SCENARIO_PREFIX = 'beethoven-v2';
 
 const results = {
   1: {
@@ -280,24 +280,24 @@ const results = {
   },
   2: {
     A: { pct: 22, label: "Widmung belassen" },
-    B: { pct: 26, label: "Widmung still geändert" },
-    C: { pct: 52, label: "Napoleons Namen ausradiert" },
-    historical: 'C',
+    B: { pct: 52, label: "Napoleons Namen ausradiert" },
+    C: { pct: 26, label: "Widmung still geändert" },
+    historical: 'B',
     narratives: {
       A: "Eine Sinfonie ohne Rücksicht auf Tagespolitik zu behandeln, wäre eine mögliche Haltung gewesen. Beethoven selbst konnte sie nicht einnehmen — die Enttäuschung über Napoleon saß zu tief.",
-      B: "Eine stille Planänderung ohne Aufsehen wäre denkbar gewesen. Überliefert ist eine deutlich weniger stille Version des Vorgangs.",
-      C: "So erzählte es sein Schüler Ferdinand Ries Jahrzehnte später: Beethoven soll die Widmung wutentbrannt vom Titelblatt gerissen haben. Das erhaltene Manuskript zeigt tatsächlich eine so heftig ausradierte Stelle, dass ein Loch im Papier entstand — auch wenn Musikhistoriker bis heute darüber streiten, wie genau sich die Szene abgespielt hat. Die Sinfonie erhielt ihren bis heute bekannten Namen: Eroica."
+      B: "So erzählte es sein Schüler Ferdinand Ries Jahrzehnte später: Beethoven soll die Widmung wutentbrannt vom Titelblatt gerissen haben. Das erhaltene Manuskript zeigt tatsächlich eine so heftig ausradierte Stelle, dass ein Loch im Papier entstand — auch wenn Musikhistoriker bis heute darüber streiten, wie genau sich die Szene abgespielt hat. Die Sinfonie erhielt ihren bis heute bekannten Namen: Eroica.",
+      C: "Eine stille Planänderung ohne Aufsehen wäre denkbar gewesen. Überliefert ist eine deutlich weniger stille Version des Vorgangs."
     }
   },
   3: {
-    A: { pct: 48, label: "Alleinige Vormundschaft beantragt" },
-    B: { pct: 39, label: "Vormundschaft geteilt" },
-    C: { pct: 13, label: "Zurückgezogen" },
-    historical: 'A',
+    A: { pct: 39, label: "Vormundschaft geteilt" },
+    B: { pct: 47, label: "Alleinige Vormundschaft beantragt" },
+    C: { pct: 14, label: "Schule bezahlt, Erziehung überlassen" },
+    historical: 'B',
     narratives: {
-      A: "Beethoven beantragte tatsächlich die alleinige Vormundschaft und verwies dabei auf Johannas frühere Verurteilung. Im Januar 1816 sprach ihm das Landrecht das alleinige Sorgerecht zu — der Rechtsstreit um Karl sollte sich, mit wechselnden Wendungen, bis 1820 hinziehen.",
-      B: "Den gemeinsamen letzten Willen seines Bruders zu respektieren, wäre eine Möglichkeit gewesen. Beethoven wählte den entgegengesetzten Weg und focht um die alleinige Vormundschaft.",
-      C: "Sich ganz herauszuhalten, kam für Beethoven nicht infrage — er war überzeugt, den Jungen vor seiner eigenen Mutter beschützen zu müssen."
+      A: "Den gemeinsamen letzten Willen seines Bruders zu respektieren, wäre eine Möglichkeit gewesen. Beethoven wählte den entgegengesetzten Weg und focht um die alleinige Vormundschaft.",
+      B: "Beethoven beantragte tatsächlich die alleinige Vormundschaft und verwies dabei auf Johannas frühere Verurteilung. Im Januar 1816 sprach ihm das Landrecht das alleinige Sorgerecht zu — der Rechtsstreit um Karl sollte sich, mit wechselnden Wendungen, bis 1820 hinziehen.",
+      C: "Den Jungen finanziell zu unterstützen und sich sonst herauszuhalten, hätte ihm Jahre voller Gerichtsverfahren erspart. Beethoven wollte jedoch selbst über seine Erziehung bestimmen."
     }
   }
 };

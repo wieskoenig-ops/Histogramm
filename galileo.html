@@ -144,9 +144,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du gehst freiwillig. Kooperieren ist klüger als trotzen — und du vertraust auf deine Argumente.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du lässt dich für reiseunfähig erklären. Zeit ist eine Waffe — vielleicht ändert sich die Lage.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du weigerst dich offen. Sie sollen kommen und dich holen — vor den Augen der Welt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lässt dich für reiseunfähig erklären. Zeit ist eine Waffe — vielleicht ändert sich die Lage.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du weigerst dich. Sollen sie dich holen kommen — vor den Augen der ganzen gelehrten Welt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du reist nach Rom. Kooperieren ist klüger als trotzen — und du vertraust auf deine Argumente.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -186,9 +186,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du widerrufst. Vollständig, öffentlich, auf Knien. Leben und Zeit sind wertvoller als Märtyrertum.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du widerrufst die Form, nicht den Inhalt. Du sprichst die Worte — aber jeder der zuhört, versteht den Unterschied.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du weigerst dich. Die Wahrheit ist nicht verhandelbar — koste es, was es wolle.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du widerrufst vollständig und öffentlich. Leben und Zeit sind wertvoller als Märtyrertum.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du sprichst die Formel, aber so, dass jeder Kundige hört, dass du nichts davon glaubst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du weigerst dich. Die Wahrheit ist nicht verhandelbar, koste es, was es wolle.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -228,9 +228,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du erlaubst es. Das Werk muss überleben — auch wenn du es nicht mehr siehst.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du erlaubst es — aber ohne dein Wissen offiziell zu geben. Viviani handelt auf eigene Verantwortung.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verbietest es. Du hast genug riskiert — das Manuskript wartet auf bessere Zeiten.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du siehst weg und sagst nichts. Wenn Viviani handelt, dann auf eigene Verantwortung, ohne dein Wort.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du gibst Viviani das Manuskript. Das Werk muss überleben, auch wenn du es selbst nicht mehr siehst.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst Nein. Du hast genug riskiert — das Manuskript kann auf bessere Zeiten warten.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -270,18 +270,18 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'galileo';
+const SCENARIO_PREFIX = 'galileo-v2';
 
 const results = {
   1: {
-    A: { pct: 58, label: "Freiwillig nach Rom" },
-    B: { pct: 31, label: "Zeit kaufen" },
-    C: { pct: 11, label: "Offen verweigert" },
-    historical: 'A',
+    A: { pct: 31, label: "Zeit kaufen" },
+    B: { pct: 11, label: "Offen verweigert" },
+    C: { pct: 58, label: "Freiwillig nach Rom" },
+    historical: 'C',
     narratives: {
-      A: "Das ist auch das, was Galileo tat: er reiste nach Rom, weil er glaubte, seine Argumente würden überzeugen. Kooperation als Strategie, nicht als Kapitulation.",
-      B: "Zeit kaufen wäre klug gewesen — aber die Inquisition hatte Geduld, und der Sturm ging nicht vorbei.",
-      C: "Das wäre die mutigste, sichtbarste Wahl gewesen — und historisch die gefährlichste."
+      A: "Zeit kaufen wäre klug gewesen — aber die Inquisition hatte Geduld, und der Sturm ging nicht vorbei.",
+      B: "Das wäre die mutigste, sichtbarste Wahl gewesen — und historisch die gefährlichste.",
+      C: "Das ist auch das, was Galileo tat: er reiste nach Rom, weil er glaubte, seine Argumente würden überzeugen. Kooperation als Strategie, nicht als Kapitulation."
     }
   },
   2: {
@@ -296,13 +296,13 @@ const results = {
     }
   },
   3: {
-    A: { pct: 71, label: "Erlaubt" },
-    B: { pct: 22, label: "Stillschweigend erlaubt" },
+    A: { pct: 22, label: "Stillschweigend erlaubt" },
+    B: { pct: 71, label: "Erlaubt" },
     C: { pct: 7, label: "Verboten" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Das ist auch, was historisch geschah: die Discorsi erschienen 1638 in Leiden — geschmuggelt, während Galileo noch unter Hausarrest stand.",
-      B: "Der mittlere Weg: nicht verbieten, aber auch nicht offiziell erlauben, während Viviani die Verantwortung trägt. Eine Form von Feigheit — und von Klugheit.",
+      A: "Der mittlere Weg: nicht verbieten, aber auch nicht offiziell erlauben, während Viviani die Verantwortung trägt. Eine Form von Feigheit — und von Klugheit.",
+      B: "Das ist auch, was historisch geschah: die Discorsi erschienen 1638 in Leiden — geschmuggelt, während Galileo noch unter Hausarrest stand.",
       C: "Das wäre das Ende des Werkes gewesen. Galileo war 74, fast blind — aber er ließ das Manuskript ziehen."
     }
   }

@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du handelst allein, sofort — jede Verzögerung erhöht das Risiko, dass der Leichnam weiter verunstaltet wird.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du verschiebst den Plan — ohne Verbündete ist er kaum durchführbar, du suchst nach einem anderen Weg.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wartest und redest weiter auf Ismene ein — gemeinsam wäre es weniger riskant, und du willst sie nicht zurücklassen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du gehst noch heute Nacht allein hinaus und bedeckst den Leichnam mit Erde, so gut es eben geht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du wartest und suchst Verbündete — Haimon, Kreons Sohn und dein Verlobter, könnte den König umstimmen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du gehst noch einmal zu Ismene. Zu zweit ginge es schneller, und du willst nicht im Streit von ihr gehen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -179,9 +179,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bekennst dich offen zur Tat und rechtfertigst sie — ohne Ismene mit hineinzuziehen, obwohl sie es jetzt anbietet.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lässt zu, dass Ismene die Schuld mit dir teilt — gemeinsame Verantwortung, gemeinsames Risiko.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du leugnest die Tat, in der Hoffnung, dass die Beweise nicht ausreichen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du nimmst Ismenes Angebot an. Zwei Schwestern hinzurichten fällt Kreon vor der Stadt schwerer als eine.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schweigst vor Kreon und setzt darauf, dass Haimon und die Stimmung in der Stadt für dich sprechen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bekennst dich allein und weist Ismene zurück. Sie hat nicht mitgemacht, also soll sie nicht mitsterben.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -220,9 +220,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wartest in der Grabkammer, in der Hoffnung, dass sich noch etwas ändert.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst dir selbst das Leben, bevor irgendjemand noch einmal über dein Schicksal entscheiden kann.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du versuchst, einen Ausweg aus der Grabkammer zu finden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wartest. Die Stadt steht auf deiner Seite, Haimon wird kämpfen — vielleicht lenkt Kreon noch ein.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du tastest die Felswände nach Spalten ab und rufst, in der Hoffnung, dass dich draußen jemand hört.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du nimmst dir das Leben. Über dein Ende soll niemand mehr entscheiden als du selbst.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -262,7 +262,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'antigone';
+const SCENARIO_PREFIX = 'antigone-v2';
 
 const results = {
   1: {
@@ -277,25 +277,25 @@ const results = {
     }
   },
   2: {
-    A: { pct: 57, label: "Allein bekannt" },
-    B: { pct: 30, label: "Schuld geteilt" },
-    C: { pct: 13, label: "Geleugnet" },
-    historical: 'A',
+    A: { pct: 30, label: "Schuld geteilt" },
+    B: { pct: 14, label: "Geschwiegen, auf Haimon gesetzt" },
+    C: { pct: 56, label: "Allein bekannt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tut Antigone im Stück: sie bekennt sich offen zur Tat und weist Ismenes Angebot, die Schuld zu teilen, zurück.",
-      B: "Ismenes Schuld anzunehmen wäre ein Akt der Solidarität gewesen — Antigone lehnt genau das ab, was auch als Stolz gelesen werden kann, nicht nur als Prinzipientreue.",
-      C: "Zu leugnen hätte bedeutet, die eigene Tat zu verraten — im Stück nie ernsthaft erwogen."
+      A: "Ismenes Schuld anzunehmen wäre ein Akt der Solidarität gewesen — Antigone lehnt genau das ab, was auch als Stolz gelesen werden kann, nicht nur als Prinzipientreue.",
+      B: "Auf Haimons Fürsprache zu setzen, wäre eine kluge Taktik gewesen. Haimon tritt im Stück tatsächlich für Antigone ein — aber erst nach ihrem offenen Bekenntnis, und ohne Kreon umzustimmen.",
+      C: "Genau das tut Antigone im Stück: sie bekennt sich offen zur Tat und weist Ismenes Angebot, die Schuld zu teilen, zurück."
     }
   },
   3: {
     A: { pct: 45, label: "Gewartet" },
-    B: { pct: 34, label: "Selbst gehandelt" },
-    C: { pct: 21, label: "Ausweg gesucht" },
-    historical: 'B',
+    B: { pct: 21, label: "Ausweg gesucht" },
+    C: { pct: 34, label: "Selbst gehandelt" },
+    historical: 'C',
     narratives: {
       A: "Zu warten wäre im Nachhinein die klügere Wahl gewesen — Kreon war tatsächlich auf dem Weg, sie zu befreien, nur wusste Antigone das nicht.",
-      B: "Im Stück nimmt sich Antigone das Leben, bevor die Rettung eintrifft — eine Entscheidung, die gerade deshalb tragisch ist, weil sie sich als unnötig erweist.",
-      C: "Ein Fluchtversuch aus der Felsenkammer kommt im Stück nicht vor — aber angesichts der Ungewissheit wäre er kein unvernünftiger Gedanke gewesen."
+      B: "Ein Fluchtversuch aus der Felsenkammer kommt im Stück nicht vor — aber angesichts der Ungewissheit wäre er kein unvernünftiger Gedanke gewesen.",
+      C: "Im Stück nimmt sich Antigone das Leben, bevor die Rettung eintrifft — eine Entscheidung, die gerade deshalb tragisch ist, weil sie sich als unnötig erweist."
     }
   }
 };

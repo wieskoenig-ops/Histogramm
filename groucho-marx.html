@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bestehst auf dem ursprünglichen, chaotischen Stil, auch auf die Gefahr hin, keinen neuen Vertrag zu bekommen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du akzeptierst Thalbergs Vorgaben für mehr Handlung und weniger Anarchie, um wieder einen Vertrag zu bekommen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du versuchst, allein ohne deine Brüder weiterzumachen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lehnst ab und suchst ein kleineres Studio, das euch so machen lässt, wie ihr seid.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du trennst dich von den Brüdern und versuchst es allein am Broadway, wo du angefangen hast.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du nimmst Thalbergs Bedingungen an: mehr Handlung, eine Liebesgeschichte, weniger reines Chaos.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst das Projekt ab, weil du das Material für zu schwach hältst.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bestehst auf einer größeren, deiner Bekanntheit entsprechenden Rolle.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du machst mit, auch mit kleinerer Rolle und Zweifeln am Drehbuch, um deinen Brüdern finanziell zu helfen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du sagst zu, wie es ist, mit kleiner Rolle und schwachem Drehbuch — Chico braucht das Geld.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du lehnst ab. Ein schlechter Film schadet allen dreien, auch Chico, mehr als er ihm einbringt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du sagst zu, aber nur, wenn das Drehbuch umgeschrieben wird und deine Rolle mehr Gewicht bekommt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wagst den Wechsel zum neuen Format einer Quizsendung im Radio.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du versuchst weiter, an deine frühere Filmkarriere anzuknüpfen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich weitgehend aus dem Showgeschäft zurück.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du lehnst ab und wartest auf die nächste große Filmrolle. Ein Star moderiert keine Quizshows.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst die Quizsendung an. Wenn du improvisieren darfst, kann daraus etwas Eigenes werden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du lehnst ab und schreibst lieber Bücher und Kolumnen — damit hast du schon Erfolg gehabt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,39 +261,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'groucho-marx';
+const SCENARIO_PREFIX = 'groucho-marx-v2';
 
 const results = {
   1: {
     A: { pct: 31, label: "Auf altem Stil bestanden" },
-    B: { pct: 40, label: "Vorgaben akzeptiert" },
-    C: { pct: 29, label: "Allein weitergemacht" },
-    historical: 'B',
+    B: { pct: 29, label: "Allein weitergemacht" },
+    C: { pct: 40, label: "Vorgaben akzeptiert" },
+    historical: 'C',
     narratives: {
       A: "Auf dem ursprünglichen Stil zu bestehen hätte nach dem Kassenflop wohl das Ende ihrer Filmkarriere bedeutet.",
-      B: "Genau das geschah: Die Brüder akzeptierten Thalbergs Vorgaben für \"Die Marx Brothers in der Oper\" (1935) — mehr Handlung, romantische Nebenstränge, weniger reine Anarchie. Der Film wurde ein kommerzieller Erfolg und rettete ihre Karriere.",
-      C: "Allein ohne die Brüder weiterzumachen hätte das Markenzeichen der Gruppe komplett aufgegeben."
+      B: "Allein ohne die Brüder weiterzumachen hätte das Markenzeichen der Gruppe komplett aufgegeben.",
+      C: "Genau das geschah: Die Brüder akzeptierten Thalbergs Vorgaben für \"Die Marx Brothers in der Oper\" (1935) — mehr Handlung, romantische Nebenstränge, weniger reine Anarchie. Der Film wurde ein kommerzieller Erfolg und rettete ihre Karriere."
     }
   },
   2: {
-    A: { pct: 31, label: "Abgelehnt" },
-    B: { pct: 27, label: "Größere Rolle gefordert" },
-    C: { pct: 42, label: "Mitgemacht, um zu helfen" },
-    historical: 'C',
+    A: { pct: 42, label: "Mitgemacht, um zu helfen" },
+    B: { pct: 31, label: "Abgelehnt" },
+    C: { pct: 27, label: "Größere Rolle gefordert" },
+    historical: 'A',
     narratives: {
-      A: "Das Projekt aus Qualitätsgründen abzulehnen hätte seinen Bruder in einer finanziell ernsten Lage im Stich gelassen.",
-      B: "Auf einer größeren Rolle zu bestehen hätte dem eigentlichen Zweck des Projekts — Chico zu helfen — widersprochen.",
-      C: "Genau das tat Groucho: Er wirkte 1949 in \"Love Happy\" mit kleinerer Rolle mit, hauptsächlich um Chico finanziell zu helfen, trotz eigener Zweifel an der Qualität des Drehbuchs."
+      A: "Genau das tat Groucho: Er wirkte 1949 in \"Love Happy\" mit kleinerer Rolle mit, hauptsächlich um Chico finanziell zu helfen, trotz eigener Zweifel an der Qualität des Drehbuchs.",
+      B: "Das Projekt aus Qualitätsgründen abzulehnen hätte seinen Bruder in einer finanziell ernsten Lage im Stich gelassen.",
+      C: "Auf einer größeren Rolle zu bestehen hätte dem eigentlichen Zweck des Projekts — Chico zu helfen — widersprochen."
     }
   },
   3: {
-    A: { pct: 38, label: "Zum Quizformat gewechselt" },
-    B: { pct: 33, label: "An Filmkarriere festgehalten" },
+    A: { pct: 33, label: "An Filmkarriere festgehalten" },
+    B: { pct: 38, label: "Zum Quizformat gewechselt" },
     C: { pct: 29, label: "Zurückgezogen" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Groucho: Er nahm die Radio- und spätere Fernsehsendung an — sie wurde zu seinem größten und langlebigsten kommerziellen Erfolg, größer als seine späten Filme.",
-      B: "Weiter auf Filmrollen zu setzen hätte den kommerziellen Realitäten seiner alternden Filmkarriere widersprochen.",
+      A: "Weiter auf Filmrollen zu setzen hätte den kommerziellen Realitäten seiner alternden Filmkarriere widersprochen.",
+      B: "Genau das tat Groucho: Er nahm die Radio- und spätere Fernsehsendung an — sie wurde zu seinem größten und langlebigsten kommerziellen Erfolg, größer als seine späten Filme.",
       C: "Sich zurückzuziehen hätte über ein Jahrzehnt an Karriere und Popularität ungenutzt gelassen."
     }
   }

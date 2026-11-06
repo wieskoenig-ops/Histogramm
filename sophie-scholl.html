@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Ihr postet die Flugblätter wie zuvor anonym an Adressen in ganz Deutschland.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Ihr verteilt die Flugblätter direkt und offen in den Gängen der Universität.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Ihr pausiert die Aktion vorerst, angesichts der zunehmenden Gestapo-Aufmerksamkeit.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Ihr legt die Flugblätter in der Universität aus, vor den Hörsälen, solange die Vorlesungen laufen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Ihr verschickt das sechste Flugblatt wie die anderen anonym per Post an Adressen im ganzen Reich.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Ihr wartet, bis die Gestapo das Interesse verliert, und versteckt die Flugblätter vorerst.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du leugnest weiter, trotz der Beweise gegen dich.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du nennst weitere Mitglieder der Gruppe, um deine eigene Strafe zu mindern.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du übernimmst zusammen mit deinem Bruder die volle Verantwortung, um andere Mitglieder der Gruppe zu schützen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du leugnest weiter. Ein Entwurf in Hans’ Tasche beweist nicht, dass du ihn kanntest.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gibst alles zu und versuchst, die ganze Verantwortung auf dich und Hans zu nehmen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du nennst einige Namen von Leuten, die ohnehin bald entdeckt würden, um deine Lage zu verbessern.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -218,9 +218,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bleibst standhaft und stehst offen zu deinen Überzeugungen, obwohl das die härteste Strafe bedeutet.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bittest um Nachsicht und drückst Reue aus, um eine Chance auf Überleben zu wahren.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du schweigst komplett und bietest keinerlei Verteidigung an.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bittest um Gnade und erklärst, du seist jung gewesen und von deinem Bruder beeinflusst worden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du stehst zu dem, was du getan hast, und sagst Freisler ins Gesicht, dass viele so denken wie du.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du schweigst. Diesem Gericht schuldest du keine Antwort.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -260,39 +260,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'sophie-scholl';
+const SCENARIO_PREFIX = 'sophie-scholl-v2';
 
 const results = {
   1: {
-    A: { pct: 31, label: "Weiter per Post verteilt" },
-    B: { pct: 42, label: "Direkt an der Universität verteilt" },
+    A: { pct: 42, label: "Direkt an der Universität verteilt" },
+    B: { pct: 31, label: "Weiter per Post verteilt" },
     C: { pct: 27, label: "Aktion pausiert" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Bei der bisherigen, vorsichtigeren Postmethode zu bleiben wäre sicherer gewesen — aber nicht der Weg, den die Gruppe an diesem Tag wählte.",
-      B: "Genau das geschah: Die Gruppe verteilte die Flugblätter direkt in den Gängen der Universität — eine sichtbarere, aber riskantere Methode als die bisherige anonyme Post.",
+      A: "Genau das geschah: Die Gruppe verteilte die Flugblätter direkt in den Gängen der Universität — eine sichtbarere, aber riskantere Methode als die bisherige anonyme Post.",
+      B: "Bei der bisherigen, vorsichtigeren Postmethode zu bleiben wäre sicherer gewesen — aber nicht der Weg, den die Gruppe an diesem Tag wählte.",
       C: "Die Aktion zu pausieren wäre angesichts der wachsenden Gefahr nachvollziehbar gewesen — aber nicht die Entscheidung an diesem Tag."
     }
   },
   2: {
     A: { pct: 26, label: "Weitergeleugnet" },
-    B: { pct: 29, label: "Weitere Mitglieder genannt" },
-    C: { pct: 45, label: "Volle Verantwortung übernommen" },
-    historical: 'C',
+    B: { pct: 45, label: "Volle Verantwortung übernommen" },
+    C: { pct: 29, label: "Weitere Mitglieder genannt" },
+    historical: 'B',
     narratives: {
       A: "Angesichts der eindeutigen Beweislage war Weiterleugnen kaum noch eine tragfähige Strategie.",
-      B: "Weitere Mitglieder zu nennen, um die eigene Strafe zu mindern, hätte den Prinzipien der Gruppe fundamental widersprochen.",
-      C: "Genau das geschah: Sophie und Hans versuchten, die Verantwortung möglichst auf sich zu ziehen, um andere Mitglieder der Gruppe zu schützen."
+      B: "Genau das geschah: Sophie und Hans versuchten, die Verantwortung möglichst auf sich zu ziehen, um andere Mitglieder der Gruppe zu schützen.",
+      C: "Weitere Mitglieder zu nennen, um die eigene Strafe zu mindern, hätte den Prinzipien der Gruppe fundamental widersprochen."
     }
   },
   3: {
-    A: { pct: 44, label: "Standhaft geblieben" },
-    B: { pct: 30, label: "Um Nachsicht gebeten" },
+    A: { pct: 30, label: "Um Nachsicht gebeten" },
+    B: { pct: 44, label: "Standhaft geblieben" },
     C: { pct: 26, label: "Geschwiegen" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das ist überliefert: Sophie Scholl blieb im Prozess auffallend gefasst und stand offen zu ihren Überzeugungen, obwohl der Ausgang praktisch feststand.",
-      B: "Um Nachsicht zu bitten hätte bei einem Schauprozess dieser Art ohnehin kaum Aussicht auf Erfolg gehabt — und widerspricht dem, was überliefert ist.",
+      A: "Um Nachsicht zu bitten hätte bei einem Schauprozess dieser Art ohnehin kaum Aussicht auf Erfolg gehabt — und widerspricht dem, was überliefert ist.",
+      B: "Genau das ist überliefert: Sophie Scholl blieb im Prozess auffallend gefasst und stand offen zu ihren Überzeugungen, obwohl der Ausgang praktisch feststand.",
       C: "Komplettes Schweigen ist historisch nicht überliefert — im Gegenteil berichten Zeugen von ihrer bemerkenswerten Fassung."
     }
   }

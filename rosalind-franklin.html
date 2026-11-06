@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sprichst Wilkins direkt an, um die Aufgabenverteilung ein für alle Mal zu klären.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bittest den Institutsleiter Randall schriftlich um eine klare Zuständigkeitsregelung.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du ignorierst die Unklarheit und arbeitest eigenständig an deinem eigenen Projekt weiter.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du stellst Wilkins zur Rede und klärst unmissverständlich, wer hier für die DNA zuständig ist.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bittest den Institutsleiter Randall schriftlich um eine klare Regelung der Zuständigkeiten.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du arbeitest einfach an deinem Projekt weiter und überlässt Wilkins seinen Missverständnissen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du arbeitest die Daten vollständig und systematisch aus, bevor du dich auf ein Modell festlegst.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du veröffentlichst schnell ein vorläufiges Modell allein auf Basis der Aufnahme.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du teilst deine unveröffentlichten Daten proaktiv mit Watson und Crick, um gemeinsam schneller voranzukommen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst schnell eine Helix-Hypothese auf Grundlage des Bildes, um dir den Befund zu sichern.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du wertest die Daten mathematisch vollständig aus, bevor du dich auf ein Modell festlegst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schlägst Wilkins vor, mit Watson und Crick zusammenzuarbeiten — gemeinsam wärt ihr schneller.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du protestierst öffentlich gegen die Art, wie deine Daten verwendet wurden.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du wechselst wie geplant nach Birkbeck und widmest dich der Virusforschung.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du versuchst nachträglich, eine Mitautorschaft oder einen Prioritätsanspruch durchzusetzen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du wechselst nach Birkbeck und wendest dich ganz der Struktur von Viren zu.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du beschwerst dich bei Randall und in Cambridge darüber, wie deine Daten verwendet wurden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verlangst, als Mitautorin des Strukturmodells genannt zu werden, bevor es veröffentlicht wird.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,7 +261,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'rosalind-franklin';
+const SCENARIO_PREFIX = 'rosalind-franklin-v2';
 
 const results = {
   1: {
@@ -276,24 +276,24 @@ const results = {
     }
   },
   2: {
-    A: { pct: 61, label: "Systematisch ausgewertet" },
-    B: { pct: 17, label: "Schnell veröffentlicht" },
+    A: { pct: 17, label: "Schnell veröffentlicht" },
+    B: { pct: 61, label: "Systematisch ausgewertet" },
     C: { pct: 22, label: "Daten geteilt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das entspricht Franklins bekannter Arbeitsweise: gründlich, methodisch, mit mathematischer Analyse der Beugungsmuster, statt sich vorschnell auf ein Modell festzulegen.",
-      B: "Ein schnelles, vorläufiges Modell wäre nicht ihr Ansatz gewesen — sie war für ihre Sorgfalt und ihren Widerwillen gegen unbelegte Spekulation bekannt.",
+      A: "Ein schnelles, vorläufiges Modell wäre nicht ihr Ansatz gewesen — sie war für ihre Sorgfalt und ihren Widerwillen gegen unbelegte Spekulation bekannt.",
+      B: "Genau das entspricht Franklins bekannter Arbeitsweise: gründlich, methodisch, mit mathematischer Analyse der Beugungsmuster, statt sich vorschnell auf ein Modell festzulegen.",
       C: "Ihre unveröffentlichten Daten aktiv mit der Konkurrenz zu teilen, widerspricht allem, was über ihre Arbeitsweise und ihr Verhältnis zu Cambridge bekannt ist."
     }
   },
   3: {
-    A: { pct: 21, label: "Öffentlich protestiert" },
-    B: { pct: 64, label: "Nach Birkbeck gewechselt" },
+    A: { pct: 64, label: "Nach Birkbeck gewechselt" },
+    B: { pct: 21, label: "Öffentlich protestiert" },
     C: { pct: 15, label: "Mitautorschaft eingefordert" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Ein öffentlicher Protest ist historisch nicht belegt — nach vorherrschender Auffassung erfuhr Franklin die Details der Nutzung ihrer Daten ohnehin erst deutlich später.",
-      B: "Genau das geschah: Franklin wechselte wie geplant nach Birkbeck und widmete sich erfolgreich der Struktur des Tabakmosaikvirus.",
+      A: "Genau das geschah: Franklin wechselte wie geplant nach Birkbeck und widmete sich erfolgreich der Struktur des Tabakmosaikvirus.",
+      B: "Ein öffentlicher Protest ist historisch nicht belegt — nach vorherrschender Auffassung erfuhr Franklin die Details der Nutzung ihrer Daten ohnehin erst deutlich später.",
       C: "Eine nachträgliche Forderung nach Mitautorschaft ist historisch nicht überliefert — Franklin äußerte sich öffentlich nicht zu der Frage."
     }
   }

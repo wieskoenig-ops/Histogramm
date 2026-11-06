@@ -139,8 +139,8 @@
 
     <div class="decisions-heading">Deine Entscheidung</div>
     <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst jetzt, trotz Lücken in den Beweisen. Die Idee ist zu wichtig, um sie zurückzuhalten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du wartest weiter — sammelst mehr Beweise, baust ein Fundament, das niemand angreifen kann.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du vertraust dich einem einzigen Freund an, gehst aber noch nicht an die Öffentlichkeit.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du wartest und sammelst weiter Beweise, bis deine Theorie jedem Angriff standhält — egal, wie lange das dauert.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du veröffentlichst eine vorsichtige Kurzfassung, die über den Menschen kein Wort verliert.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -171,7 +171,7 @@
       <div class="scene-body">
         <p>Ein Umschlag aus Ternate, von den Molukken. Absender: Alfred Russel Wallace, ein junger Naturforscher, den du kaum persönlich kennst. Du öffnest ihn — und liest deine eigene Theorie. Unabhängig entwickelt, in wenigen Seiten, fieberhaft geschrieben auf einer Insel am anderen Ende der Welt.</p>
         <p>Vierzehn Jahre Arbeit, und ein Fremder hat in wenigen Wochen dasselbe gedacht. Wenn du jetzt schweigst, gehört die Entdeckung ihm. Wenn du sofort dein eigenes, älteres Manuskript veröffentlichst, sieht es aus, als hättest du seine Idee gestohlen — obwohl du sie zuerst hattest.</p>
-        <p>In derselben Woche stirbt dein jüngster Sohn Charles an Scharlach. Du bist nicht in der Verfassung, diese Entscheidung allein zu treffen.</p>
+        <p>In derselben Woche stirbt dein jüngster Sohn Charles an Scharlach. Deine Freunde Lyell und Hooker kennen deine Arbeit seit Jahren.</p>
       </div>
       <div class="scene-role">
         <span class="role-label">Deine Rolle</span>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst sofort dein älteres Manuskript, um deine Priorität zu sichern.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du überlässt Wallace den vollen Ruhm — er hat es unabhängig entdeckt, das reicht.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du überlässt die Entscheidung deinen Freunden Lyell und Hooker — sie sollen einen fairen Weg finden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst sofort dein älteres Manuskript und belegst mit Briefen, dass du die Idee zuerst hattest.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du schickst Wallaces Aufsatz zur Veröffentlichung weiter und trittst zurück — er hat es unabhängig gefunden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du legst alles in die Hände von Lyell und Hooker und überlässt ihnen, einen fairen Weg zu finden.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst das Buch wie geschrieben — ungeschönt, auch wenn es Emma verletzt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du milderst die religiösen Implikationen im Text, aus Rücksicht auf Emma und die Kirche.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du verzögerst die Veröffentlichung weiter, um mit Geistlichen und Kollegen zu sprechen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst das Buch, wie es ist, und vermeidest nur ausdrückliche Aussagen über den Menschen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du fügst ein Kapitel ein, das Schöpfer und Evolution versöhnt, aus Rücksicht auf Emma und die Kirche.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du lässt das Manuskript erst von befreundeten Geistlichen lesen und wartest auf deren Rat.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,18 +264,18 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'darwin';
+const SCENARIO_PREFIX = 'darwin-v2';
 
 const results = {
   1: {
     A: { pct: 9, label: "Sofort veröffentlicht" },
-    B: { pct: 63, label: "Weiter gewartet" },
-    C: { pct: 28, label: "Einem Freund anvertraut" },
+    B: { pct: 73, label: "Weiter gewartet" },
+    C: { pct: 18, label: "Vorsichtige Kurzfassung" },
     historical: 'B',
     narratives: {
       A: "Ein sofortiges Veröffentlichen 1844 hätte einen Unterschied gemacht: Darwin tat es nicht. Vierzehn Jahre später holte ihn genau das ein, was er befürchtet hatte — jemand anderes kam ihm zuvor.",
       B: "Das war Darwins tatsächlicher Weg: vierzehn weitere Jahre, in denen er unter anderem acht Jahre lang Rankenfüßer untersuchte, nur um seine Methode wasserdicht zu machen.",
-      C: "Auch das tat Darwin tatsächlich: Der Geologe Charles Lyell kannte die Theorie bereits seit 1844, Jahre bevor sie öffentlich wurde."
+      C: "Eine vorsichtige Kurzfassung hätte Darwins Priorität gesichert, ohne den großen Skandal auszulösen. Er verzichtete darauf und arbeitete im Stillen weiter — vierzehn Jahre lang."
     }
   },
   2: {

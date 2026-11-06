@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterschreibst die Petition und setzt dich für eine Demonstration statt eines Militäreinsatzes ein.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nicht und unterstützt im Beirat den direkten Einsatz gegen ein Ziel, ohne vorherige Demonstration.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du hältst dich komplett heraus, äußerst dich weder für noch gegen die Petition.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterschreibst Szilards Petition und plädierst im Beirat für eine Vorführung vor japanischen Beobachtern.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nicht und empfiehlst im Beirat den Einsatz gegen ein militärisch-städtisches Ziel ohne Vorwarnung.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du unterschreibst nicht und erklärst im Beirat, Wissenschaftler seien für diese Frage nicht zuständig.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -179,9 +179,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du schickst einen rein technischen Bericht — Erfolg bestätigt, keine weiteren Anmerkungen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du fügst dem Bericht eigene Bedenken gegen einen unmittelbaren Kriegseinsatz hinzu.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bittest um eine Verzögerung, um die Optionen noch einmal zu überdenken.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du meldest den Erfolg und fügst hinzu, dass du nach dem, was du gesehen hast, eine Warnung an Japan empfiehlst.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du meldest den Erfolg nüchtern: Test gelungen, Sprengkraft wie berechnet. Mehr gehört nicht in den Bericht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du meldest den Erfolg und bittest, vor jedem Einsatz noch einmal die beteiligten Wissenschaftler anzuhören.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -220,9 +220,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst Truman direkt, dass du das Gefühl hast, Blut an den Händen zu haben.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du hältst dich diplomatisch zurück und gratulierst nur zum erfolgreichen Kriegsende.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du schlägst stattdessen konkret eine internationale Kontrolle der Atomwaffen vor, ohne persönliche Schuldgefühle zu erwähnen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bedankst dich für den Empfang und sprichst nur über die Zukunft der Forschung in Los Alamos.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du sagst Truman, dass die Bombe unter internationale Kontrolle gehört, bevor die Sowjets sie haben.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst Truman, dass du das Gefühl hast, Blut an deinen Händen zu haben.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -262,7 +262,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'oppenheimer';
+const SCENARIO_PREFIX = 'oppenheimer-v2';
 
 const results = {
   1: {
@@ -277,25 +277,25 @@ const results = {
     }
   },
   2: {
-    A: { pct: 64, label: "Rein technischer Bericht" },
-    B: { pct: 24, label: "Bedenken hinzugefügt" },
+    A: { pct: 24, label: "Bedenken hinzugefügt" },
+    B: { pct: 64, label: "Rein technischer Bericht" },
     C: { pct: 12, label: "Verzögerung erbeten" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: Der Bericht nach Washington war sachlich und technisch, ohne Einwände — die Vorbereitungen für den Einsatz liefen ungebremst weiter.",
-      B: "Eigene Bedenken in den offiziellen Bericht aufzunehmen, hätte den Ablauf verzögern können — ein Schritt, den Oppenheimer zu diesem Zeitpunkt nicht ging.",
+      A: "Eigene Bedenken in den offiziellen Bericht aufzunehmen, hätte den Ablauf verzögern können — ein Schritt, den Oppenheimer zu diesem Zeitpunkt nicht ging.",
+      B: "Genau das geschah: Der Bericht nach Washington war sachlich und technisch, ohne Einwände — die Vorbereitungen für den Einsatz liefen ungebremst weiter.",
       C: "Um eine Verzögerung zu bitten, hätte bedeutet, sich gegen den bereits laufenden militärischen Zeitplan zu stellen."
     }
   },
   3: {
-    A: { pct: 57, label: "\"Blut an den Händen\" gesagt" },
-    B: { pct: 28, label: "Diplomatisch zurückgehalten" },
-    C: { pct: 15, label: "Internationale Kontrolle vorgeschlagen" },
-    historical: 'A',
+    A: { pct: 28, label: "Diplomatisch zurückgehalten" },
+    B: { pct: 15, label: "Internationale Kontrolle vorgeschlagen" },
+    C: { pct: 57, label: "\"Blut an den Händen\" gesagt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Oppenheimer — und Truman reagierte so verärgert darauf, dass er ihn danach nie wieder empfing.",
-      B: "Diplomatische Zurückhaltung wäre die politisch klügere Wahl gewesen — nicht der Weg, den Oppenheimer in diesem Moment ging.",
-      C: "Der Vorschlag internationaler Kontrolle kam von Oppenheimer tatsächlich — aber erst in späteren Jahren, nicht in diesem ersten Gespräch mit Truman."
+      A: "Diplomatische Zurückhaltung wäre die politisch klügere Wahl gewesen — nicht der Weg, den Oppenheimer in diesem Moment ging.",
+      B: "Der Vorschlag internationaler Kontrolle kam von Oppenheimer tatsächlich — aber erst in späteren Jahren, nicht in diesem ersten Gespräch mit Truman.",
+      C: "Genau das tat Oppenheimer — und Truman reagierte so verärgert darauf, dass er ihn danach nie wieder empfing."
     }
   }
 };

@@ -144,9 +144,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sagst zu. Ohne Fusts Geld gibt es keine Presse. Die Bibel zuerst, alles andere später.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schlägst einen Mittelweg vor: Bibeln für Fust, aber du druckst nebenbei eigene, kleinere Arbeiten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du widersprichst offen. Die Presse soll Wissen verbreiten — nicht nur das, was sich am schnellsten verkauft.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du sagst zu, druckst aber nebenbei kleinere Arbeiten auf eigene Rechnung, um unabhängiger zu werden.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du sagst zu. Ohne Fusts Geld gibt es keine Presse. Die Bibel zuerst, alles andere später.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du widersprichst: Die Presse soll Wissen verbreiten, nicht nur das, was sich am schnellsten verkauft.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -185,9 +185,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Ein Vertrag ist ein Vertrag — die Bibel hat Vorrang, alles andere wäre Vertrauensbruch.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du druckst die Fabeln heimlich, nachts, ohne Fust zu informieren.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du gehst offen zu Fust und versuchst, ihn zu überzeugen — auch auf das Risiko hin, dass er das Geld zurückzieht.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Ein Vertrag ist ein Vertrag, und die Bibel hat Vorrang vor allem anderen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du druckst die Fabeln nachts, wenn Fust nicht in der Werkstatt ist, und sagst ihm nichts davon.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du gehst zu Fust und rechnest ihm vor, was die Fabeln einbringen — auch wenn er dann das Geld zurückziehen könnte.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint2">Wähle eine Option</span>
@@ -226,9 +226,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du kämpfst bis zum Ende. Die Presse ist deine Erfindung — du gibst sie nicht kampflos her.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du suchst einen Vergleich. Du verlierst die große Werkstatt, behältst aber genug, um andernorts neu zu beginnen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du überlässt Fust und Schöffer alles — Werkstatt, Presse, Bibeln — und fängst mit nichts neu an.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du suchst einen Vergleich: Fust bekommt die große Werkstatt, du behältst genug, um neu anzufangen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du kämpfst bis zum Ende. Die Presse ist deine Erfindung, du gibst sie nicht kampflos her.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du überlässt Fust und Schöffer alles und suchst dir in einer anderen Stadt einen neuen Geldgeber.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint3">Wähle eine Option</span>
@@ -267,17 +267,17 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'gutenberg';
+const SCENARIO_PREFIX = 'gutenberg-v2';
 
 const results = {
   1: {
-    A: { pct: 44, label: "Zugesagt" },
-    B: { pct: 39, label: "Mittelweg vorgeschlagen" },
+    A: { pct: 39, label: "Mittelweg vorgeschlagen" },
+    B: { pct: 44, label: "Zugesagt" },
     C: { pct: 17, label: "Offen widersprochen" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Ohne Kapital keine Erfindung — Pragmatismus, der historisch genau das war, was geschah.",
-      B: "Der Versuch, beides zu vereinen, ist menschlich naheliegend — und in starren Verträgen oft schwer durchzuhalten.",
+      A: "Der Versuch, beides zu vereinen, ist menschlich naheliegend — und in starren Verträgen oft schwer durchzuhalten.",
+      B: "Ohne Kapital keine Erfindung — Pragmatismus, der historisch genau das war, was geschah.",
       C: "Mutig, offen zu widersprechen — aber ohne Fusts Geld hätte es die Druckpresse möglicherweise nie gegeben."
     }
   },
@@ -293,13 +293,13 @@ const results = {
     }
   },
   3: {
-    A: { pct: 31, label: "Bis zum Ende gekämpft" },
-    B: { pct: 49, label: "Vergleich gesucht" },
+    A: { pct: 49, label: "Vergleich gesucht" },
+    B: { pct: 31, label: "Bis zum Ende gekämpft" },
     C: { pct: 20, label: "Alles überlassen" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Idealismus gegen wirtschaftliche Realität — historisch verlor Gutenberg den Rechtsstreit trotzdem.",
-      B: "Nah an dem, was in der Realität geschah: Gutenberg verlor die große Werkstatt an Fust, baute aber mit neuer Unterstützung andernorts weiter.",
+      A: "Nah an dem, was in der Realität geschah: Gutenberg verlor die große Werkstatt an Fust, baute aber mit neuer Unterstützung andernorts weiter.",
+      B: "Idealismus gegen wirtschaftliche Realität — historisch verlor Gutenberg den Rechtsstreit trotzdem.",
       C: "Die seltenste Wahl — und historisch nicht das, was Gutenberg am Ende tat. Er druckte bis zu seinem Tod weiter."
     }
   }

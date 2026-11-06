@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterstützt den Aufstand öffentlich voll, trotz eigener Zweifel am Zeitpunkt — aus Solidarität mit den Arbeitern.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du warnst öffentlich vor dem Aufstand, weil du die Lage für nicht reif genug hältst.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du hältst dich komplett zurück, um die Bewegung nicht mit deinem Namen zu belasten.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du warnst öffentlich: Die Lage ist nicht reif, und ein verlorener Aufstand wirft die Bewegung um Jahre zurück.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du drängst intern auf Verhandlungen mit der Regierung, ohne dich öffentlich festzulegen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du stellst dich in der Roten Fahne hinter die Aufständischen, trotz deiner Zweifel am Zeitpunkt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du fliehst sofort ins Ausland, solange die Grenzen noch offen sind.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gehst in Berlin selbst unter, wechselst Verstecke, bleibst in der Nähe der Bewegung.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du stellst dich den Behörden, um einen offenen Prozess zu erzwingen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du gehst sofort ins Ausland, nach Holland oder in die Schweiz, solange die Grenzen offen sind.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du stellst dich mit Anwälten den Behörden und forderst einen öffentlichen Prozess.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst in Berlin, wechselst die Verstecke und schreibst weiter für die Rote Fahne.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bleibst ruhig und schweigst, gibst den Vernehmungsbeamten keine Angriffsfläche.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du verteidigst offen deine politischen Überzeugungen, ohne Rücksicht auf die eigene Sicherheit.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du versuchst, mit den einfachen Soldaten ins Gespräch zu kommen, in der Hoffnung auf ihre Klassensolidarität.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du verteidigst deine Überzeugungen offen — wenn es dein letztes Wort ist, dann soll es zählen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst ruhig und knapp. Diesen Offizieren gibst du keinen Anlass, keine Angriffsfläche.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sprichst die einfachen Soldaten an: Sie sind Arbeiter wie die, für die du kämpfst.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,39 +261,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'rosa-luxemburg';
+const SCENARIO_PREFIX = 'rosa-luxemburg-v2';
 
 const results = {
   1: {
-    A: { pct: 64, label: "Aufstand voll unterstützt" },
-    B: { pct: 21, label: "Öffentlich gewarnt" },
-    C: { pct: 15, label: "Komplett zurückgehalten" },
-    historical: 'A',
+    A: { pct: 21, label: "Öffentlich gewarnt" },
+    B: { pct: 15, label: "Intern auf Verhandlungen gedrängt" },
+    C: { pct: 64, label: "Aufstand voll unterstützt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Luxemburg: Trotz privater Zweifel am Zeitpunkt stellte sie sich öffentlich hinter den Aufstand, aus Solidarität mit den Arbeitern, die ihn begonnen hatten.",
-      B: "Öffentlich vor dem Aufstand zu warnen hätte ihrer eigenen Einschätzung der Lage entsprochen — aber die Bewegung, für die sie stand, offen infrage gestellt.",
-      C: "Sich komplett zurückzuhalten hätte die eigene Person geschützt, aber die politische Führungsrolle, die von ihr erwartet wurde, aufgegeben."
+      A: "Öffentlich vor dem Aufstand zu warnen hätte ihrer eigenen Einschätzung der Lage entsprochen — aber die Bewegung, für die sie stand, offen infrage gestellt.",
+      B: "Intern auf Verhandlungen zu drängen, hätte die Führung zusammengehalten — Luxemburg entschied sich aber, öffentlich an der Seite der Aufständischen zu stehen.",
+      C: "Genau das tat Luxemburg: Trotz privater Zweifel am Zeitpunkt stellte sie sich öffentlich hinter den Aufstand, aus Solidarität mit den Arbeitern, die ihn begonnen hatten."
     }
   },
   2: {
     A: { pct: 19, label: "Ins Ausland geflohen" },
-    B: { pct: 57, label: "In Berlin untergetaucht" },
-    C: { pct: 24, label: "Sich gestellt" },
-    historical: 'B',
+    B: { pct: 24, label: "Sich gestellt" },
+    C: { pct: 57, label: "In Berlin untergetaucht" },
+    historical: 'C',
     narratives: {
       A: "Sofort ins Ausland zu fliehen wäre der sicherste Weg gewesen — genau der Weg, den Luxemburg trotz der tödlichen Gefahr nicht wählte.",
-      B: "Genau das geschah: Luxemburg und Liebknecht blieben in Berlin, wechselten mehrfach die Verstecke, in der Nähe der Bewegung — was letztlich zu ihrer Entdeckung führte.",
-      C: "Sich den Behörden zu stellen hätte einen offenen Prozess erzwingen können — in der aufgeheizten Lage jener Tage jedoch keine realistische Aussicht auf ein faires Verfahren gehabt."
+      B: "Sich den Behörden zu stellen hätte einen offenen Prozess erzwingen können — in der aufgeheizten Lage jener Tage jedoch keine realistische Aussicht auf ein faires Verfahren gehabt.",
+      C: "Genau das geschah: Luxemburg und Liebknecht blieben in Berlin, wechselten mehrfach die Verstecke, in der Nähe der Bewegung — was letztlich zu ihrer Entdeckung führte."
     }
   },
   3: {
-    A: { pct: 48, label: "Ruhig geschwiegen" },
-    B: { pct: 33, label: "Offen verteidigt" },
+    A: { pct: 33, label: "Offen verteidigt" },
+    B: { pct: 48, label: "Ruhig geschwiegen" },
     C: { pct: 19, label: "Soldaten angesprochen" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Berichten zufolge blieb Luxemburg im Verhör weitgehend ruhig und zurückhaltend — was am Ausgang der Nacht nichts änderte: Die Entscheidung über ihr Schicksal war bereits gefallen.",
-      B: "Eine offene, kämpferische Verteidigung ihrer Überzeugungen hätte ihrem Ruf als Rednerin entsprochen — es gibt jedoch keine verlässlichen Berichte über eine große Rede in dieser konkreten Verhörsituation.",
+      A: "Eine offene, kämpferische Verteidigung ihrer Überzeugungen hätte ihrem Ruf als Rednerin entsprochen — es gibt jedoch keine verlässlichen Berichte über eine große Rede in dieser konkreten Verhörsituation.",
+      B: "Berichten zufolge blieb Luxemburg im Verhör weitgehend ruhig und zurückhaltend — was am Ausgang der Nacht nichts änderte: Die Entscheidung über ihr Schicksal war bereits gefallen.",
       C: "Ein Appell an die Klassensolidarität der einfachen Soldaten wäre denkbar gewesen — angesichts der Haltung der befehlshabenden Offiziere jedoch aussichtslos."
     }
   }

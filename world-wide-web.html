@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du wartest mit der Umsetzung, bis du eine klare offizielle Rückendeckung hast.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du gibst die Idee zugunsten eines eindeutig genehmigten Projekts auf.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du entwickelst das Projekt trotz der zurückhaltenden Reaktion deines Vorgesetzten eigenständig weiter.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du entwickelst die Idee neben deiner eigentlichen Arbeit auf eigene Faust weiter.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du legst die Idee auf Eis, bis du eine klare Zusage und ein Budget hast.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du konzentrierst dich auf deine eigentlichen Aufgaben und reichst die Idee später noch einmal ein.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du gestaltest die Grundstandards bewusst offen und einfach, damit jeder sie frei implementieren kann.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du entwickelst ein komplexeres System, das sich später kommerziell lizenzieren ließe.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du beschränkst das System zunächst auf die interne Nutzung am CERN.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du baust ein ausgefeilteres System mit Rechteverwaltung, das sich später an Firmen lizenzieren lässt.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du hältst die Standards so einfach und offen, dass jeder sie ohne Erlaubnis nachbauen kann.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du nutzt das System erst einmal nur am CERN und öffnest es, wenn es ausgereift ist.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du strebst eine Patentierung und kommerzielle Lizenzierung an, um CERN Einnahmen zu sichern.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du setzt dich dafür ein, dass CERN die gesamte Technologie kostenlos und patentfrei der Öffentlichkeit zur Verfügung stellt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du gründest eine private Firma, um die Technologie selbst zu kontrollieren und zu vermarkten.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du empfiehlst CERN, die Technik zu patentieren und Lizenzen zu verkaufen, um die Forschung zu finanzieren.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du gründest mit Kollegen eine Firma, die das Web weiterentwickelt und vermarktet.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du setzt dich dafür ein, dass CERN die Technik ohne Gebühren und Patente für alle freigibt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,40 +261,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'world-wide-web';
+const SCENARIO_PREFIX = 'world-wide-web-v2';
 
 const results = {
   1: {
-    A: { pct: 32, label: "Auf offizielle Rückendeckung gewartet" },
-    B: { pct: 26, label: "Idee aufgegeben" },
-    C: { pct: 42, label: "Eigenständig weiterentwickelt" },
-    historical: 'C',
+    A: { pct: 42, label: "Eigenständig weiterentwickelt" },
+    B: { pct: 32, label: "Auf offizielle Rückendeckung gewartet" },
+    C: { pct: 26, label: "Idee aufgegeben" },
+    historical: 'A',
     narratives: {
-      A: "Auf eine eindeutige offizielle Rückendeckung zu warten hätte angesichts der zweideutigen ersten Reaktion vermutlich sehr lange gedauert.",
-      B: "Die Idee komplett aufzugeben hätte eine der folgenreichsten Erfindungen der Informationstechnologie verhindert.",
-      C: "Genau das geschah: Trotz der unklaren, zweideutigen Reaktion ('vage, aber spannend') wurde die Idee eigenständig weiterentwickelt und im eigenen Freiraum umgesetzt."
+      A: "Genau das geschah: Trotz der unklaren, zweideutigen Reaktion ('vage, aber spannend') wurde die Idee eigenständig weiterentwickelt und im eigenen Freiraum umgesetzt.",
+      B: "Auf eine eindeutige offizielle Rückendeckung zu warten hätte angesichts der zweideutigen ersten Reaktion vermutlich sehr lange gedauert.",
+      C: "Die Idee komplett aufzugeben hätte eine der folgenreichsten Erfindungen der Informationstechnologie verhindert."
     }
   },
   2: {
-    A: { pct: 44, label: "Offen und einfach gestaltet" },
-    B: { pct: 28, label: "Komplexer, lizenzierbar gestaltet" },
+    A: { pct: 28, label: "Komplexer, lizenzierbar gestaltet" },
+    B: { pct: 44, label: "Offen und einfach gestaltet" },
     C: { pct: 28, label: "Auf internen Gebrauch beschränkt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: Die Grundstandards — Adressform, Auszeichnungssprache, Übertragungsprotokoll — wurden bewusst einfach und offen gestaltet, sodass sie ohne Lizenz von jedem implementiert werden konnten.",
-      B: "Ein komplexeres, potenziell lizenzierbares System zu entwickeln hätte die spätere schnelle, freie Verbreitung erheblich erschwert.",
+      A: "Ein komplexeres, potenziell lizenzierbares System zu entwickeln hätte die spätere schnelle, freie Verbreitung erheblich erschwert.",
+      B: "Genau das geschah: Die Grundstandards — Adressform, Auszeichnungssprache, Übertragungsprotokoll — wurden bewusst einfach und offen gestaltet, sodass sie ohne Lizenz von jedem implementiert werden konnten.",
       C: "Das System nur intern am CERN zu nutzen hätte die globale Wirkung, die es später entfaltete, von vornherein ausgeschlossen."
     }
   },
   3: {
     A: { pct: 27, label: "Patentiert und lizenziert" },
-    B: { pct: 46, label: "Kostenlos freigegeben" },
-    C: { pct: 27, label: "Private Firma gegründet" },
-    historical: 'B',
+    B: { pct: 27, label: "Private Firma gegründet" },
+    C: { pct: 46, label: "Kostenlos freigegeben" },
+    historical: 'C',
     narratives: {
       A: "Eine Patentierung und kommerzielle Lizenzierung hätte kurzfristig Einnahmen gebracht, aber die offene, schnelle Verbreitung des Systems wahrscheinlich stark gebremst.",
-      B: "Genau das geschah: Am 30. April 1993 gab CERN die gesamte Web-Technologie kostenlos und patentfrei in die Öffentlichkeit — eine Entscheidung, die als entscheidend für die explosionsartige weltweite Verbreitung des Webs gilt.",
-      C: "Eine private Firma zur Kontrolle der Technologie zu gründen hätte dem offenen, unkontrollierten Wachstum widersprochen, das das Web tatsächlich prägte."
+      B: "Eine private Firma zur Kontrolle der Technologie zu gründen hätte dem offenen, unkontrollierten Wachstum widersprochen, das das Web tatsächlich prägte.",
+      C: "Genau das geschah: Am 30. April 1993 gab CERN die gesamte Web-Technologie kostenlos und patentfrei in die Öffentlichkeit — eine Entscheidung, die als entscheidend für die explosionsartige weltweite Verbreitung des Webs gilt."
     }
   }
 };

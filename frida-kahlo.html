@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du beginnst zu malen, mit der Staffelei über dem Bett — der Spiegel wird dein einziges verfügbares Motiv.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du konzentrierst dich ganz auf die körperliche Genesung, das Malen kann warten.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du beginnst stattdessen ein geschriebenes Tagebuch, ohne zu malen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schonst dich ganz. Erst wieder laufen, dann zurück zum Medizinstudium, von dem du immer geträumt hast.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du schreibst lange Briefe an Freunde und Zeichnungen für sie hinein, statt dich an die Leinwand zu wagen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du malst — mit der Staffelei über dem Bett und dem Spiegel als einzigem Modell: dich selbst.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du malst die Fehlgeburt direkt und ungeschönt — ein Thema, das Künstlerinnen bis dahin öffentlich nicht zeigten.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du wählst ein versöhnlicheres, weniger konfrontatives Motiv für dieses Bild.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du verzichtest ganz darauf, das Thema in deiner Kunst zu verarbeiten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du verarbeitest den Verlust in einem stillen Stillleben voller Früchte und Blumen, das man auch anders lesen kann.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du malst dich im Krankenbett, blutend, umgeben von Sinnbildern deines Verlusts — ohne jede Beschönigung.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du malst weiter die Landschaften Detroits und behältst das Thema für dich und dein Tagebuch.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du lässt es bei der Scheidung von 1939 bewenden und beendest die Ehe endgültig.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Ihr versöhnt euch vollständig, ohne die Bedingungen der alten Ehe zu ändern.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du heiratest ihn erneut, aber unter neuen, selbst gewählten Bedingungen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du heiratest Diego erneut, aber zu deinen Bedingungen: getrennte Kassen und keine Intimität.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst geschieden. Ihr könnt Freunde sein, aber eure Ehe hat euch beide zu viel gekostet.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Ihr kommt wieder zusammen wie früher — ihr wisst, wer ihr seid, und habt euch so geliebt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,40 +261,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'frida-kahlo';
+const SCENARIO_PREFIX = 'frida-kahlo-v2';
 
 const results = {
   1: {
-    A: { pct: 55, label: "Mit dem Spiegel gemalt" },
-    B: { pct: 28, label: "Nur auf Genesung konzentriert" },
-    C: { pct: 17, label: "Tagebuch statt Malerei" },
-    historical: 'A',
+    A: { pct: 28, label: "Nur auf Genesung konzentriert" },
+    B: { pct: 17, label: "Tagebuch statt Malerei" },
+    C: { pct: 55, label: "Mit dem Spiegel gemalt" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Kahlo: Sie begann in dieser Zeit zu malen, mit dem Spiegel über dem Bett als Ausgangspunkt — der Ursprung ihrer lebenslangen Auseinandersetzung mit dem Selbstporträt.",
-      B: "Sich ganz auf die körperliche Genesung zu konzentrieren wäre die naheliegende, aber auch die passivere Wahl gewesen.",
-      C: "Ein reines Tagebuch statt Malerei hätte einen anderen kreativen Weg eröffnet — nicht den, der Kahlo später bekannt machte."
+      A: "Sich ganz auf die körperliche Genesung zu konzentrieren wäre die naheliegende, aber auch die passivere Wahl gewesen.",
+      B: "Ein reines Tagebuch statt Malerei hätte einen anderen kreativen Weg eröffnet — nicht den, der Kahlo später bekannt machte.",
+      C: "Genau das tat Kahlo: Sie begann in dieser Zeit zu malen, mit dem Spiegel über dem Bett als Ausgangspunkt — der Ursprung ihrer lebenslangen Auseinandersetzung mit dem Selbstporträt."
     }
   },
   2: {
-    A: { pct: 62, label: "Fehlgeburt direkt gemalt" },
-    B: { pct: 24, label: "Versöhnlicheres Motiv gewählt" },
+    A: { pct: 24, label: "Versöhnlicheres Motiv gewählt" },
+    B: { pct: 62, label: "Fehlgeburt direkt gemalt" },
     C: { pct: 14, label: "Thema ausgespart" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Kahlo mit dem Gemälde \"Henry Ford Hospital\" von 1932 — eine direkte, ungeschönte Darstellung der Fehlgeburt, ein radikaler Bruch mit dem, was von Künstlerinnen erwartet wurde.",
-      B: "Ein versöhnlicheres Motiv hätte weniger Widerstand ausgelöst — aber auch weniger von dem gezeigt, was Kahlos Werk später auszeichnete.",
+      A: "Ein versöhnlicheres Motiv hätte weniger Widerstand ausgelöst — aber auch weniger von dem gezeigt, was Kahlos Werk später auszeichnete.",
+      B: "Genau das tat Kahlo mit dem Gemälde \"Henry Ford Hospital\" von 1932 — eine direkte, ungeschönte Darstellung der Fehlgeburt, ein radikaler Bruch mit dem, was von Künstlerinnen erwartet wurde.",
       C: "Das Thema ganz auszusparen wäre die sicherste Wahl gewesen, näher an den Konventionen ihrer Zeit."
     }
   },
   3: {
-    A: { pct: 29, label: "Endgültig geschieden geblieben" },
-    B: { pct: 24, label: "Unverändert versöhnt" },
-    C: { pct: 47, label: "Unter neuen Bedingungen erneut geheiratet" },
-    historical: 'C',
+    A: { pct: 47, label: "Unter neuen Bedingungen erneut geheiratet" },
+    B: { pct: 29, label: "Endgültig geschieden geblieben" },
+    C: { pct: 24, label: "Unverändert versöhnt" },
+    historical: 'A',
     narratives: {
-      A: "Bei der Scheidung zu bleiben wäre der konsequenteste Schnitt gewesen — nicht der Weg, den Kahlo am Ende ging.",
-      B: "Sich ohne veränderte Bedingungen zu versöhnen hätte dieselben Probleme wiederholt, die zur Scheidung geführt hatten.",
-      C: "Genau das geschah: Kahlo und Rivera heirateten 1940 erneut, unter neu ausgehandelten Bedingungen — finanzielle Unabhängigkeit und stillschweigende Akzeptanz beiderseitiger Affären eingeschlossen."
+      A: "Genau das geschah: Kahlo und Rivera heirateten 1940 erneut, unter neu ausgehandelten Bedingungen — finanzielle Unabhängigkeit und stillschweigende Akzeptanz beiderseitiger Affären eingeschlossen.",
+      B: "Bei der Scheidung zu bleiben wäre der konsequenteste Schnitt gewesen — nicht der Weg, den Kahlo am Ende ging.",
+      C: "Sich ohne veränderte Bedingungen zu versöhnen hätte dieselben Probleme wiederholt, die zur Scheidung geführt hatten."
     }
   }
 };

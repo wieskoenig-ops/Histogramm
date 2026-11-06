@@ -143,9 +143,9 @@
       </div>
     </div>
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du stehst auf. Heute nicht — der Kampf wird an einem anderen Tag geführt.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du bleibst sitzen und schaust Blake direkt an. Kein Wort.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst sitzen und sagst ruhig: <em>"Nein."</em></button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bleibst sitzen und sagst ruhig: <em>„Nein.“</em></button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du stehst auf. Heute nicht — der Kampf wird an einem anderen Tag geführt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du bleibst sitzen und schaust Blake an, ohne ein Wort zu sagen.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -183,9 +183,9 @@
       </div>
     </div>
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du stehst jetzt auf. Die Verhaftung vermeiden — und den Kampf auf anderem Weg führen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst ruhig sitzen, sagst nichts mehr und lässt dich widerstandslos verhaften.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du sprichst laut, damit alle Fahrgäste hören: <em>"Ich sitze, wo ich sitze."</em></button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du stehst jetzt auf. Eine Verhaftung hilft niemandem, der Kampf geht auf anderem Weg weiter.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du sagst laut, damit es alle hören: <em>„Ich sitze, wo ich sitze.“</em></button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst sitzen, sagst nichts mehr und lässt dich ohne Widerstand abführen.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint2">Wähle eine Option</span>
@@ -224,8 +224,8 @@
     </div>
     <div class="decisions-heading">Deine Entscheidung</div>
     <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du lehnst ab. Was heute passiert ist, war genug — du willst dein Leben nicht zur Bühne machen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bittest um Bedenkzeit — du willst mit deinem Mann sprechen, bevor du entscheidest.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst sofort ja. Wenn nicht jetzt, wann dann — und wenn nicht du, wer dann?</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bittest um eine Nacht Bedenkzeit, bis du mit deinem Mann gesprochen hast.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst Ja. Wenn nicht jetzt, wann dann — und wenn nicht du, wer dann?</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint3">Wähle eine Option</span>
@@ -264,29 +264,29 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'rosa-parks';
+const SCENARIO_PREFIX = 'rosa-parks-v2';
 
 const results = {
   1: {
-    A: { pct: 31, label: "Aufgestanden" },
-    B: { pct: 28, label: "Sitzen geblieben, geschwiegen" },
-    C: { pct: 41, label: "Nein gesagt" },
-    historical: 'C',
+    A: { pct: 41, label: "Nein gesagt" },
+    B: { pct: 31, label: "Aufgestanden" },
+    C: { pct: 28, label: "Sitzen geblieben, geschwiegen" },
+    historical: 'A',
     narratives: {
-      A: "Nachgeben wäre vernünftig und sicher gewesen — die Entscheidung, die viele Menschen in diesem Moment getroffen hätten. Historisch war das nicht die Entscheidung von Rosa Parks.",
-      B: "Schweigendes Sitzen ist eine eigene Form des Widerstands — gewaltlos, eindeutig, ohne Konfrontation.",
-      C: "Ein kurzes, ruhiges Wort — und damit einer der bekanntesten Momente der Bürgerrechtsbewegung."
+      A: "Ein kurzes, ruhiges Wort — und damit einer der bekanntesten Momente der Bürgerrechtsbewegung.",
+      B: "Nachgeben wäre vernünftig und sicher gewesen — die Entscheidung, die viele Menschen in diesem Moment getroffen hätten. Historisch war das nicht die Entscheidung von Rosa Parks.",
+      C: "Schweigendes Sitzen ist eine eigene Form des Widerstands — gewaltlos, eindeutig, ohne Konfrontation."
     }
   },
   2: {
     A: { pct: 18, label: "Doch aufgestanden" },
-    B: { pct: 54, label: "Ruhig sitzen geblieben" },
-    C: { pct: 28, label: "Laut gesprochen" },
-    historical: 'B',
+    B: { pct: 28, label: "Laut gesprochen" },
+    C: { pct: 54, label: "Ruhig sitzen geblieben" },
+    historical: 'C',
     narratives: {
       A: "In letzter Minute zurückzuziehen wäre unter dem Druck der Verhaftung eine nachvollziehbare, aber seltene Reaktion.",
-      B: "Das ist nah an dem, was Rosa Parks selbst beschrieben hat. Keine Dramatik, keine Provokation. Nur die stille Weigerung.",
-      C: "Laut zu sprechen ist historisch schwerer zu belegen — Parks war bekannt für ihre Stille, nicht für Konfrontation."
+      B: "Laut zu sprechen ist historisch schwerer zu belegen — Parks war bekannt für ihre Stille, nicht für Konfrontation.",
+      C: "Das ist nah an dem, was Rosa Parks selbst beschrieben hat. Keine Dramatik, keine Provokation. Nur die stille Weigerung."
     }
   },
   3: {

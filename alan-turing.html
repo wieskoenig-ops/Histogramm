@@ -129,7 +129,7 @@
       <div class="scene-body">
         <p>Anfang Januar bricht jemand in deine Wohnung ein. Du meldest es der Polizei — und erwähnst dabei beiläufig, dass du den Täter über einen Bekannten identifizieren könntest: einen jungen Mann namens Arnold Murray, mit dem du eine Beziehung hattest. Die Polizei interessiert sich sofort mehr für diesen Nebensatz als für den Einbruch selbst.</p>
         <p>Im Verhör fragen sie gezielt nach. Nach geltendem Recht ist jede sexuelle Handlung zwischen Männern strafbar — "grobe Unsittlichkeit", dasselbe Gesetz von 1885, unter dem einst Oscar Wilde verurteilt wurde. Du hast als Kryptoanalytiker im Krieg maßgeblich zur Entzifferung der deutschen Enigma-Maschine beigetragen; davon weiß hier niemand etwas, es ist Staatsgeheimnis.</p>
-        <p>Du glaubst, es gäbe bald eine Reform — vielleicht eine königliche Kommission, die das Gesetz ändert. Was sagst du den Beamten?</p>
+        <p>In liberalen Kreisen wird über eine Reform gesprochen, vielleicht über eine königliche Kommission — beschlossen ist nichts. Was sagst du den Beamten?</p>
       </div>
       <div class="scene-role">
         <span class="role-label">Deine Rolle</span>
@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bestreitest jede Beziehung zu Murray und lässt es auf Aussage gegen Aussage ankommen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du verlangst einen Anwalt, bevor du überhaupt etwas sagst.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du erzählst offen von der Beziehung — du siehst darin nichts Unrechtes und rechnest mit einer baldigen Gesetzesänderung.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bestreitest jede Beziehung zu Murray. Ohne Geständnis steht Aussage gegen Aussage, und das reicht kaum für eine Anklage.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du erzählst offen von der Beziehung. Du hältst sie nicht für Unrecht und erwartest, dass das Gesetz ohnehin bald fällt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du sagst zur Sache nichts mehr, bis ein Anwalt dabei ist, und bestehst darauf, dass es hier um einen Einbruch geht.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bekennst dich schuldig — die Fakten sind ohnehin nicht zu bestreiten, ein Prozess würde nur mehr Aufmerksamkeit bringen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bekennst dich nicht schuldig und lässt es auf eine öffentliche Verhandlung ankommen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Dein Bruder versucht, eine stille außergerichtliche Lösung zu erwirken.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bekennst dich schuldig. Die Fakten sind bekannt, und ein kurzer Prozess erspart dir die öffentliche Ausbreitung jedes Details.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du plädierst auf nicht schuldig und erzwingst eine Verhandlung — vielleicht hält eine Jury das Gesetz selbst für falsch.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du folgst deinem Bruder John und lässt ihn über seine Kontakte eine stille Einigung suchen, bevor verhandelt wird.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du legst gegen das Urteil Berufung ein, in der Hoffnung auf ein milderes Ergebnis.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du akzeptierst die Bewährungsauflage mit Hormonbehandlung, um dem Gefängnis zu entgehen und weiterarbeiten zu können.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du nimmst die Gefängnisstrafe in Kauf, um die Hormonbehandlung zu vermeiden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du legst Berufung ein und hoffst auf einen Richter, dem eine Geldstrafe genügt — der Rechtsweg kostet Monate.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nimmst die Bewährung mit Hormonbehandlung an: ein Jahr Spritzen, aber du bleibst frei und arbeitest weiter.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du gehst ins Gefängnis. Ein Jahr ohne Forschung ist hart, aber niemand greift in deinen Körper ein.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,18 +264,18 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'alan-turing';
+const SCENARIO_PREFIX = 'alan-turing-v2';
 
 const results = {
   1: {
     A: { pct: 18, label: "Beziehung bestritten" },
-    B: { pct: 25, label: "Anwalt verlangt" },
-    C: { pct: 57, label: "Offen erzählt" },
-    historical: 'C',
+    B: { pct: 57, label: "Offen erzählt" },
+    C: { pct: 25, label: "Anwalt verlangt" },
+    historical: 'B',
     narratives: {
       A: "Turing bestritt nichts dergleichen — im Gegenteil, er erzählte der Polizei bereitwillig von der Beziehung. Er hielt sein Verhalten für moralisch unproblematisch und rechnete offenbar nicht mit den Konsequenzen eines ehrlichen Geständnisses.",
-      B: "Ein Anwalt hätte vermutlich zur Zurückhaltung geraten. Turing tat das Gegenteil — er sah in seiner Offenheit gegenüber der Polizei kein Risiko, sondern schlicht die Wahrheit.",
-      C: "Genau das tat Turing. Er erzählte den Beamten offen von der Beziehung zu Arnold Murray und fragte sie sogar, ob nicht bald eine königliche Kommission das Gesetz ändern werde. Die Antwort kam erst 1967 — dreizehn Jahre nach seinem Tod."
+      B: "Genau das tat Turing. Er erzählte den Beamten offen von der Beziehung zu Arnold Murray und fragte sie sogar, ob nicht bald eine königliche Kommission das Gesetz ändern werde. Die Antwort kam erst 1967 — dreizehn Jahre nach seinem Tod.",
+      C: "Ein Anwalt hätte vermutlich zur Zurückhaltung geraten. Turing tat das Gegenteil — er sah in seiner Offenheit gegenüber der Polizei kein Risiko, sondern schlicht die Wahrheit."
     }
   },
   2: {

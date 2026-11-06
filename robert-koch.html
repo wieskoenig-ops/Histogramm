@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst erst nach umfassender, wiederholter Bestätigung deiner Ergebnisse.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du veröffentlichst schnell, um sicherzugehen, dass dir niemand zuvorkommt.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du teilst deine vorläufigen Ergebnisse zunächst nur informell mit ausgewählten Kollegen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du schickst eine kurze Mitteilung an eine Fachzeitschrift, um dir die Entdeckung zu sichern.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du prüfst weiter, an vielen Tieren und Gewebeproben, bis jeder Schritt deines Nachweises sitzt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du zeigst die Präparate erst einigen Kollegen im Labor und hörst dir ihre Einwände an.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst das Mittel öffentlich als vielversprechende Behandlung, bevor unabhängige Tests abgeschlossen sind.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du wartest mit der Veröffentlichung, bis unabhängige Kliniken das Mittel ausführlich getestet haben.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du hältst die Ergebnisse zunächst ganz zurück, bis du selbst absolut sicher bist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du sprichst nur über die Bazillenforschung und wartest mit dem Mittel, bis Kliniken es geprüft haben.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gibst das Mittel einigen ausgewählten Kliniken zur stillen Prüfung, ohne es öffentlich zu nennen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du stellst das Mittel auf dem Kongress als mögliche Heilung vor, auch wenn die Tests noch laufen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du räumst den Fehlschlag öffentlich ein und veröffentlichst deine vollständigen Methoden zur unabhängigen Prüfung.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du verteidigst das Mittel weiter und spielst die schädlichen Nebenwirkungen herunter.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich still zurück, ohne öffentlich Stellung zu beziehen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du räumst den Fehlschlag ein und legst deine Herstellungsmethode offen, damit andere sie prüfen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du verteidigst das Mittel: Die Ärzte haben es falsch dosiert, nicht das Mittel hat versagt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du sagst öffentlich nichts mehr dazu und widmest dich einem neuen Forschungsprojekt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,29 +261,29 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'robert-koch';
+const SCENARIO_PREFIX = 'robert-koch-v2';
 
 const results = {
   1: {
-    A: { pct: 71, label: "Erst gründlich bestätigt" },
-    B: { pct: 16, label: "Schnell veröffentlicht" },
+    A: { pct: 16, label: "Schnell veröffentlicht" },
+    B: { pct: 71, label: "Erst gründlich bestätigt" },
     C: { pct: 13, label: "Informell geteilt" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das entspricht Kochs Vorgehen bei der Tuberkulose-Entdeckung von 1882: methodisch, mehrfach überprüft, mit klaren Kriterien für den Erregernachweis — später als \"Koch'sche Postulate\" bekannt.",
-      B: "Vorschnelle Veröffentlichung hätte dem sorgfältigen Vorgehen widersprochen, das diese Entdeckung tatsächlich auszeichnete.",
+      A: "Vorschnelle Veröffentlichung hätte dem sorgfältigen Vorgehen widersprochen, das diese Entdeckung tatsächlich auszeichnete.",
+      B: "Genau das entspricht Kochs Vorgehen bei der Tuberkulose-Entdeckung von 1882: methodisch, mehrfach überprüft, mit klaren Kriterien für den Erregernachweis — später als \"Koch'sche Postulate\" bekannt.",
       C: "Rein informelles Teilen unter Kollegen hätte keine belastbare, überprüfbare Grundlage für eine wissenschaftliche Entdeckung dieser Tragweite geschaffen."
     }
   },
   2: {
-    A: { pct: 54, label: "Öffentlich präsentiert" },
-    B: { pct: 31, label: "Auf Tests gewartet" },
-    C: { pct: 15, label: "Ganz zurückgehalten" },
-    historical: 'A',
+    A: { pct: 31, label: "Auf Tests gewartet" },
+    B: { pct: 15, label: "Ganz zurückgehalten" },
+    C: { pct: 54, label: "Öffentlich präsentiert" },
+    historical: 'C',
     narratives: {
-      A: "Genau das tat Koch: Er präsentierte Tuberkulin 1890 öffentlich als vielversprechende Behandlung, bevor es unabhängig ausreichend getestet war — ein Schritt, der teils mit nationalem Prestige und eigenem finanziellem Interesse zusammenhing.",
-      B: "Auf unabhängige Tests zu warten, wäre der vorsichtigere, im Rückblick klügere Weg gewesen — nicht der, den Koch 1890 wählte.",
-      C: "Die Ergebnisse ganz zurückzuhalten hätte dem öffentlichen und politischen Druck widersprochen, unter dem die Präsentation tatsächlich erfolgte."
+      A: "Auf unabhängige Tests zu warten, wäre der vorsichtigere, im Rückblick klügere Weg gewesen — nicht der, den Koch 1890 wählte.",
+      B: "Die Ergebnisse ganz zurückzuhalten hätte dem öffentlichen und politischen Druck widersprochen, unter dem die Präsentation tatsächlich erfolgte.",
+      C: "Genau das tat Koch: Er präsentierte Tuberkulin 1890 öffentlich als vielversprechende Behandlung, bevor es unabhängig ausreichend getestet war — ein Schritt, der teils mit nationalem Prestige und eigenem finanziellem Interesse zusammenhing."
     }
   },
   3: {

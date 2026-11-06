@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lehnst ab und kehrst zum unpolitischen Spielfilm zurück, der dich berühmt gemacht hat.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du nimmst den Auftrag an.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du nimmst an, bestehst aber darauf, nur eine neutrale Dokumentation ohne jede Propaganda-Absicht zu drehen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du lehnst ab und drehst den nächsten Bergfilm. Politik ist nicht dein Fach, und das soll so bleiben.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du nimmst an, verlangst aber, nur das Ereignis abzubilden, ohne Reden und Parolen in den Mittelpunkt zu stellen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du nimmst an, mit eigenem Team, freier Hand und Mitteln, wie sie kein Regisseur je hatte.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du beschwerst dich beim Militär über die chaotischen Zustände und lässt dich von weiteren Dreharbeiten in Polen entbinden.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du drehst wie geplant weiter, ohne das Geschehene zu kommentieren.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du nutzt deinen direkten Zugang zu Hitler, um das Massaker öffentlich zur Sprache zu bringen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du drehst die Trauerfeier zu Ende, wie es dein Auftrag ist, und schweigst über das Geschehene.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du beschwerst dich bei der Heeresführung über die Zustände und lässt dich von weiteren Dreharbeiten in Polen entbinden.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du verlangst bei Hitler persönlich, dass die verantwortlichen Soldaten vor ein Kriegsgericht kommen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du gibst öffentlich zu, dass du wissentlich Propaganda für ein verbrecherisches Regime gemacht hast, und übernimmst Verantwortung.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du räumst politische Naivität ein und entschuldigst dich für den entstandenen Eindruck, bestreitest aber tiefere Kenntnis der Verbrechen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du bestehst darauf, immer nur unpolitische Künstlerin gewesen zu sein, die reine Dokumentarfilme ohne jede politische Absicht gedreht hat.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst: Ich habe Propaganda gemacht, für ein verbrecherisches Regime, und das wusste ich.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst dabei: Du warst Künstlerin, deine Filme waren Dokumente, keine Propaganda.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du gibst zu, politisch naiv gewesen zu sein, bestreitest aber, von den Verbrechen gewusst zu haben.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,40 +264,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'leni-riefenstahl';
+const SCENARIO_PREFIX = 'leni-riefenstahl-v2';
 
 const results = {
   1: {
     A: { pct: 14, label: "Abgelehnt" },
-    B: { pct: 61, label: "Angenommen" },
-    C: { pct: 25, label: "Mit Bedingung angenommen" },
-    historical: 'B',
+    B: { pct: 25, label: "Mit Bedingung angenommen" },
+    C: { pct: 61, label: "Angenommen" },
+    historical: 'C',
     narratives: {
       A: "Abzulehnen und zum unpolitischen Spielfilm zurückzukehren, hätte Riefenstahls Karriere in eine andere Richtung gelenkt. Sie tat das nicht — die Nähe zur Macht und die künstlerischen Möglichkeiten, die ihr das Regime bot, waren zu verlockend.",
-      B: "Genau das tat Riefenstahl. Sie nahm Hitlers Auftrag an und drehte 'Triumph des Willens', ihren Film über den Reichsparteitag 1934 in Nürnberg. Mit neuartigen Kameratechniken und ungewöhnlichen Perspektiven schuf sie eines der einflussreichsten und meistdiskutierten Propagandawerke der Filmgeschichte.",
-      C: "Auf eine rein neutrale Dokumentation ohne Propaganda-Absicht zu bestehen, wäre angesichts von Hitlers offenem Interesse am fertigen Produkt kaum durchsetzbar gewesen — genau diese Behauptung sollte Riefenstahl allerdings noch Jahrzehnte später über den fertigen Film aufstellen."
+      B: "Auf eine rein neutrale Dokumentation ohne Propaganda-Absicht zu bestehen, wäre angesichts von Hitlers offenem Interesse am fertigen Produkt kaum durchsetzbar gewesen — genau diese Behauptung sollte Riefenstahl allerdings noch Jahrzehnte später über den fertigen Film aufstellen.",
+      C: "Genau das tat Riefenstahl. Sie nahm Hitlers Auftrag an und drehte 'Triumph des Willens', ihren Film über den Reichsparteitag 1934 in Nürnberg. Mit neuartigen Kameratechniken und ungewöhnlichen Perspektiven schuf sie eines der einflussreichsten und meistdiskutierten Propagandawerke der Filmgeschichte."
     }
   },
   2: {
-    A: { pct: 42, label: "Beschwert und entbunden" },
-    B: { pct: 18, label: "Ungerührt weitergedreht" },
+    A: { pct: 18, label: "Ungerührt weitergedreht" },
+    B: { pct: 42, label: "Beschwert und entbunden" },
     C: { pct: 40, label: "Bei Hitler vorstellig geworden" },
-    historical: 'A',
+    historical: 'B',
     narratives: {
-      A: "Genau das tat Riefenstahl. Nach dem Massaker beschwerte sie sich beim Militär — allerdings vor allem über die chaotischen Arbeitsbedingungen während der Dreharbeiten, nicht über die Tötung der Zivilisten selbst. Sie ließ sich daraufhin von weiteren Filmarbeiten in Polen entbinden. Ein 1952 aufgetauchter Brief eines Augenzeugen legt sogar nahe, dass ihre eigene Regieanweisung zur Panik beigetragen haben könnte, die dem Massaker voranging — ein bis heute umstrittener Punkt.",
-      B: "Ungerührt weiterzudrehen, hätte bedeutet, das Geschehene komplett auszublenden. Selbst Riefenstahl, die sich später stets als unpolitisch beschrieb, tat genau das nicht — ein erhaltenes Foto zeigt sie sichtlich erschüttert.",
+      A: "Ungerührt weiterzudrehen, hätte bedeutet, das Geschehene komplett auszublenden. Selbst Riefenstahl, die sich später stets als unpolitisch beschrieb, tat genau das nicht — ein erhaltenes Foto zeigt sie sichtlich erschüttert.",
+      B: "Genau das tat Riefenstahl. Nach dem Massaker beschwerte sie sich beim Militär — allerdings vor allem über die chaotischen Arbeitsbedingungen während der Dreharbeiten, nicht über die Tötung der Zivilisten selbst. Sie ließ sich daraufhin von weiteren Filmarbeiten in Polen entbinden. Ein 1952 aufgetauchter Brief eines Augenzeugen legt sogar nahe, dass ihre eigene Regieanweisung zur Panik beigetragen haben könnte, die dem Massaker voranging — ein bis heute umstrittener Punkt.",
       C: "Ihren direkten Zugang zu Hitler zu nutzen, um das Massaker öffentlich anzuprangern, hätte einen offenen Bruch mit dem Regime bedeutet, dem sie ihre gesamte Karriere verdankte. Diesen Bruch vollzog sie zu keinem Zeitpunkt ihres Lebens."
     }
   },
   3: {
     A: { pct: 11, label: "Verantwortung übernommen" },
-    B: { pct: 27, label: "Naivität eingeräumt" },
-    C: { pct: 62, label: "Unpolitische Künstlerin behauptet" },
-    historical: 'C',
+    B: { pct: 62, label: "Unpolitische Künstlerin behauptet" },
+    C: { pct: 27, label: "Naivität eingeräumt" },
+    historical: 'B',
     narratives: {
       A: "Wissentliche Propaganda für ein verbrecherisches Regime öffentlich einzugestehen, hätte Riefenstahls gesamtes Nachkriegs-Selbstbild zerstört. Sie tat das zu keinem Zeitpunkt ihres langen Lebens.",
-      B: "Politische Naivität einzuräumen, ohne tiefere Kenntnis zu bestreiten, wäre ein Mittelweg gewesen. Riefenstahl wählte stattdessen den entschiedeneren, kompromissloseren Weg der vollständigen Bestreitung.",
-      C: "Genau das tat Riefenstahl. In einem ihrer letzten Interviews, kurz vor ihrem Tod 2003, bezeichnete sie 'Triumph des Willens' als reinen Dokumentarfilm ohne jede Verbindung zur Politik. Mehrere Nachkriegs-Spruchkammern stuften sie lediglich als 'Mitläuferin' ein — eine strafrechtliche Verurteilung für ihre Rolle im NS-Propagandaapparat gab es nie."
+      B: "Genau das tat Riefenstahl. In einem ihrer letzten Interviews, kurz vor ihrem Tod 2003, bezeichnete sie 'Triumph des Willens' als reinen Dokumentarfilm ohne jede Verbindung zur Politik. Mehrere Nachkriegs-Spruchkammern stuften sie lediglich als 'Mitläuferin' ein — eine strafrechtliche Verurteilung für ihre Rolle im NS-Propagandaapparat gab es nie.",
+      C: "Politische Naivität einzuräumen, ohne tiefere Kenntnis zu bestreiten, wäre ein Mittelweg gewesen. Riefenstahl wählte stattdessen den entschiedeneren, kompromissloseren Weg der vollständigen Bestreitung."
     }
   }
 };

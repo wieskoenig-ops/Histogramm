@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst deine Ergebnisse sofort, ohne sie mit den Engländern zu teilen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du korrespondierst offen mit der Royal Society über deine Ideen, bevor du veröffentlichst.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wartest mit der Veröffentlichung, bis du ganz sicher bist, dass niemand dasselbe schon publiziert hat.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du veröffentlichst deine Methode in den Leipziger Acta Eruditorum, ohne sie vorher mit London zu besprechen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du hältst die Methode zurück und baust sie erst zu einem vollständigen Lehrbuch aus, das keine Fragen offenlässt.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schreibst über Oldenburg an die Engländer und tauschst dich offen über deine Ideen aus, bevor du veröffentlichst.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du nimmst aktiv am Verfahren der Royal Society teil und verteidigst dich dort ausführlich.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du verfasst eine eigene Verteidigungsschrift und verbreitest sie auf dem Kontinent, statt dich auf das Londoner Verfahren einzulassen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du ziehst dich ganz zurück und überlässt die Sache den Historikern.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du ignorierst das Londoner Verfahren und lässt eine eigene Streitschrift auf dem Kontinent verbreiten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du reichst beim Komitee eine ausführliche Verteidigung mit deinen Briefen und Manuskripten ein.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du schweigst öffentlich und bittest befreundete Mathematiker wie Bernoulli, für dich Partei zu ergreifen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du kämpfst energisch um eine Einladung nach London und eine Rolle am neuen Hof.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du bleibst in Hannover und widmest dich weiter deiner wissenschaftlichen und historischen Arbeit.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du suchst dir einen neuen, einflussreicheren Gönner an einem anderen europäischen Hof.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du bleibst in Hannover und arbeitest an der Geschichte des Welfenhauses weiter, die du dem König schuldest.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du reist dem König hinterher und bittest um eine Stelle als Hofhistoriker in London.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du suchst einen neuen Dienstherrn — in Wien beim Kaiser oder in St. Petersburg beim Zaren.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,39 +261,39 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'leibniz';
+const SCENARIO_PREFIX = 'leibniz-v2';
 
 const results = {
   1: {
     A: { pct: 17, label: "Sofort veröffentlicht" },
-    B: { pct: 63, label: "Offen korrespondiert" },
-    C: { pct: 20, label: "Abgewartet" },
-    historical: 'B',
+    B: { pct: 20, label: "Abgewartet" },
+    C: { pct: 63, label: "Offen korrespondiert" },
+    historical: 'C',
     narratives: {
       A: "Sofort und ohne jeden Austausch zu veröffentlichen, entsprach nicht der wissenschaftlichen Praxis der Zeit — Briefwechsel vor Publikation war üblich.",
-      B: "Genau das entspricht der historischen Praxis: Leibniz korrespondierte über Oldenburg und die Royal Society mit englischen Gelehrten, Jahre bevor er seine Ergebnisse 1684 veröffentlichte — was später zum Nährboden für die Plagiatsvorwürfe wurde.",
-      C: "Endlos abzuwarten hätte die eigene Priorität eher geschwächt als gestärkt."
+      B: "Endlos abzuwarten hätte die eigene Priorität eher geschwächt als gestärkt.",
+      C: "Genau das entspricht der historischen Praxis: Leibniz korrespondierte über Oldenburg und die Royal Society mit englischen Gelehrten, Jahre bevor er seine Ergebnisse 1684 veröffentlichte — was später zum Nährboden für die Plagiatsvorwürfe wurde."
     }
   },
   2: {
-    A: { pct: 19, label: "Aktiv teilgenommen" },
-    B: { pct: 61, label: "Eigene Verteidigungsschrift verbreitet" },
-    C: { pct: 20, label: "Zurückgezogen" },
-    historical: 'B',
+    A: { pct: 61, label: "Eigene Verteidigungsschrift verbreitet" },
+    B: { pct: 19, label: "Aktiv teilgenommen" },
+    C: { pct: 20, label: "Freunde vorgeschickt" },
+    historical: 'A',
     narratives: {
-      A: "Sich auf ein Verfahren einzulassen, das im Kern von der Gegenseite kontrolliert wurde, hätte kaum Aussicht auf ein faires Ergebnis gehabt.",
-      B: "Genau das tat Leibniz: Mit der Streitschrift \"Charta Volans\" (1713) verteidigte er sich auf dem europäischen Kontinent, statt sich auf das Londoner Verfahren einzulassen, dessen Befangenheit er zumindest ahnte.",
-      C: "Sich völlig zurückzuziehen, hätte den öffentlichen Vorwürfen kampflos das Feld überlassen."
+      A: "Genau das tat Leibniz: Mit der Streitschrift \"Charta Volans\" (1713) verteidigte er sich auf dem europäischen Kontinent, statt sich auf das Londoner Verfahren einzulassen, dessen Befangenheit er zumindest ahnte.",
+      B: "Sich auf ein Verfahren einzulassen, das im Kern von der Gegenseite kontrolliert wurde, hätte kaum Aussicht auf ein faires Ergebnis gehabt.",
+      C: "Andere für sich sprechen zu lassen, hätte Leibniz aus der Schusslinie genommen. Er griff aber selbst zur Feder — wenn auch anonym, mit einem Urteil Johann Bernoullis als Stütze."
     }
   },
   3: {
-    A: { pct: 24, label: "Um Rolle in London gekämpft" },
-    B: { pct: 58, label: "In Hannover geblieben" },
+    A: { pct: 58, label: "In Hannover geblieben" },
+    B: { pct: 24, label: "Um Rolle in London gekämpft" },
     C: { pct: 18, label: "Neuen Gönner gesucht" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Energisch um eine Rolle in London zu kämpfen, hätte eine direkte Konfrontation mit dem am englischen Hof einflussreichen Newton bedeutet — Leibniz vermied diesen Weg.",
-      B: "Genau das geschah: Leibniz blieb bis zu seinem Tod 1716 in Hannover und setzte seine historische und wissenschaftliche Arbeit fort, ohne je an den neuen Königshof in London berufen zu werden.",
+      A: "Genau das geschah: Leibniz blieb bis zu seinem Tod 1716 in Hannover und setzte seine historische und wissenschaftliche Arbeit fort, ohne je an den neuen Königshof in London berufen zu werden.",
+      B: "Energisch um eine Rolle in London zu kämpfen, hätte eine direkte Konfrontation mit dem am englischen Hof einflussreichen Newton bedeutet — Leibniz vermied diesen Weg.",
       C: "Einen neuen Gönner zu suchen wäre denkbar gewesen, entspricht aber nicht dem, was historisch über seine letzten Lebensjahre überliefert ist."
     }
   }

@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du berichtest deinem Vorgesetzten Johann Klein von deinem Verdacht und wartest dessen Erlaubnis ab, bevor du etwas änderst.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du ordnest sofort an, dass sich jeder Arzt und Student vor der Untersuchung die Hände mit Chlorkalklösung waschen muss — auch wenn das bedeutet, den eigenen Kollegen die Schuld an Todesfällen zu geben.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du testest die Methode zunächst still bei dir selbst, ohne eine offizielle Anweisung zu erlassen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du legst deinem Chef Johann Klein den Verdacht vor und wartest auf seine Erlaubnis.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du ordnest an, dass sich jeder vor der Untersuchung die Hände in Chlorkalklösung wäscht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du wäschst dir zuerst selbst die Hände und zählst still, ob bei deinen Patientinnen weniger sterben.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du akzeptierst die eingeschränkte Lehrbefugnis und bleibst vorerst in Wien.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du legst gegen die Einschränkung offiziell Widerspruch ein und forderst die vollen Lehrrechte.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du kehrst kurz darauf nach Budapest zurück, ohne weiter um eine bessere Stelle in Wien zu kämpfen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du nimmst die eingeschränkte Lehrbefugnis an und bleibst in Wien, um weiter für deine Methode zu werben.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du legst offiziell Widerspruch ein und forderst die vollen Lehrrechte.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du verlässt Wien bald darauf ohne Abschied und kehrst nach Pest zurück.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du intensivierst deine öffentliche Kampagne — offene Briefe, die widersprechende Kollegen scharf angreifen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du milderst deinen Ton, um durch geduldige Überzeugungsarbeit langfristig Akzeptanz zu erreichen.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du ziehst dich aus der öffentlichen Debatte zurück und konzentrierst dich nur noch auf deine eigene Klinik.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du schreibst offene Briefe an die führenden Geburtshelfer und nennst sie Mörder.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du schreibst geduldig Fachartikel, sammelst Zahlen und hoffst auf die nächste Generation.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du konzentrierst dich ganz auf deine Klinik in Pest und lässt die Zahlen für dich sprechen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'semmelweis';
+const SCENARIO_PREFIX = 'semmelweis-v2';
 
 const results = {
   1: {

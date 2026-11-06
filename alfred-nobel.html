@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du gibst die Arbeit mit Nitroglyzerin komplett auf — zu gefährlich, nach dem Tod deines Bruders.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du machst unverändert weiter, ohne die Herstellungsweise zu ändern.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du suchst gezielt nach einem Weg, den Sprengstoff sicherer zu machen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du forschst weiter, mit einem Ziel: eine Mischung, die sich transportieren lässt, ohne bei jedem Stoß zu explodieren.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du gibst Nitroglyzerin auf. Ein toter Bruder ist genug, und mit Schwarzpulver lässt sich auch Geld verdienen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verkaufst deine Patente an einen Konkurrenten und ziehst dich mit dem Erlös aus dem gefährlichen Geschäft zurück.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du tust es als Zeitungsirrtum ab und denkst nicht weiter darüber nach.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du beginnst, ernsthaft darüber nachzudenken, wie du stattdessen in Erinnerung bleiben willst.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du forderst eine öffentliche Richtigstellung von der Zeitung.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du lachst über den Irrtum, lässt telegrafieren, dass du lebst, und kümmerst dich um die Beerdigung deines Bruders.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du liest den Artikel wieder und wieder. Wenn die Welt dich so sieht, musst du entscheiden, was von dir bleiben soll.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du verlangst eine Richtigstellung und lässt deinen Anwalt prüfen, ob der „Händler des Todes“ rufschädigend ist.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du hinterlässt dein Vermögen wie erwartet hauptsächlich deiner Familie.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du hinterlässt den überwiegenden Teil einer neuen Stiftung, die jährliche Preise vergeben soll — auch einen Friedenspreis.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du teilst das Vermögen etwa hälftig zwischen Familie und wohltätigen Zwecken auf.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du vererbst das Vermögen an Neffen und Nichten, wie es Brauch ist — sie führen die Firmen weiter, die du aufgebaut hast.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du vermachst fast alles einer Stiftung, die jedes Jahr Preise vergibt — für Wissenschaft, Literatur und Frieden.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du teilst: Die Familie erhält die Hälfte, die andere Hälfte geht an Bertha von Suttners Friedensbewegung.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,18 +261,18 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'alfred-nobel';
+const SCENARIO_PREFIX = 'alfred-nobel-v2';
 
 const results = {
   1: {
-    A: { pct: 17, label: "Arbeit aufgegeben" },
-    B: { pct: 21, label: "Unverändert weitergemacht" },
-    C: { pct: 62, label: "Nach sicherem Weg gesucht" },
-    historical: 'C',
+    A: { pct: 65, label: "Nach sicherem Weg gesucht" },
+    B: { pct: 17, label: "Arbeit aufgegeben" },
+    C: { pct: 18, label: "Patente verkauft" },
+    historical: 'A',
     narratives: {
-      A: "Die Arbeit ganz aufzugeben wäre nach einer solchen Tragödie nachvollziehbar gewesen — Nobel entschied sich dagegen.",
-      B: "Unverändert weiterzumachen hätte weitere Unfälle wahrscheinlich gemacht — genau das Risiko, das zur Katastrophe von 1864 geführt hatte.",
-      C: "Genau das tat Nobel: Er suchte gezielt nach einer stabileren Form des Sprengstoffs — ein Weg, der 1867 zur Erfindung des Dynamits führte."
+      A: "Genau das tat Nobel: Er suchte gezielt nach einer stabileren Form des Sprengstoffs — ein Weg, der 1867 zur Erfindung des Dynamits führte.",
+      B: "Die Arbeit ganz aufzugeben wäre nach einer solchen Tragödie nachvollziehbar gewesen — Nobel entschied sich dagegen.",
+      C: "Die Patente zu verkaufen, hätte Nobel finanziell abgesichert und das Risiko anderen überlassen. Er wählte den entgegengesetzten Weg und forschte selbst weiter — bis zum Dynamit."
     }
   },
   2: {

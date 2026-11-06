@@ -137,9 +137,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Ihr verschiebt den Test auf die Tagschicht, die eigentlich dafür vorbereitet war.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Ihr brecht den Test komplett ab und plant eine Wiederholung zu einem sichereren Zeitpunkt.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Ihr führt den Test wie angeordnet durch, trotz des ungünstigen Reaktorzustands.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Ihr fahrt den Test wie angeordnet. Kiew will Strom, und der Test ist seit Monaten geplant.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Ihr verschiebt den Test auf die nächste Tagschicht, die ihn vorbereitet hat.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Ihr brecht ab und meldet nach oben, dass der Reaktorzustand den Test nicht erlaubt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -178,9 +178,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr zieht die Steuerstäbe weit über das zulässige Limit hinaus heraus, um den Test fortzusetzen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Ihr haltet euch strikt an die Sicherheitsgrenzen, auch wenn das den Test scheitern lässt.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr sucht nach einer technischen Zwischenlösung, um die Reaktorleistung schonender zu stabilisieren.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Ihr haltet euch an die Grenzen und lasst den Test scheitern, auch gegen den Chefingenieur.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Ihr zieht die Steuerstäbe heraus, weit über das Limit, um die Leistung wieder hochzubringen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Ihr wartet, bis sich die Leistung von selbst erholt, und fahrt dann mit dem Test fort.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -219,9 +219,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Ihr versucht zuerst, die Leistung durch andere Korrekturmaßnahmen zu senken, bevor ihr die Notabschaltung auslöst.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Ihr drückt den Not-Aus-Knopf AZ-5, wie es die Vorschrift für diesen Moment verlangt.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Ihr evakuiert sofort den Kontrollraum, ohne eine Abschaltung zu versuchen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Ihr versucht erst, die Leistung mit einzelnen Steuerstäben und Pumpen abzufangen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Ihr verlasst den Kontrollraum und löst den Alarm für das ganze Kraftwerk aus.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Ihr drückt AZ-5, wie es die Vorschrift für diesen Moment verlangt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -261,40 +261,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'tschernobyl';
+const SCENARIO_PREFIX = 'tschernobyl-v2';
 
 const results = {
   1: {
-    A: { pct: 31, label: "Auf Tagschicht verschoben" },
-    B: { pct: 28, label: "Test abgebrochen" },
-    C: { pct: 41, label: "Test durchgeführt" },
-    historical: 'C',
+    A: { pct: 41, label: "Test durchgeführt" },
+    B: { pct: 31, label: "Auf Tagschicht verschoben" },
+    C: { pct: 28, label: "Test abgebrochen" },
+    historical: 'A',
     narratives: {
-      A: "Den Test auf die vorbereitete Tagschicht zu verschieben wäre die sicherere Wahl gewesen — nicht die, die in dieser Nacht getroffen wurde.",
-      B: "Den Test komplett abzubrechen und neu zu planen hätte den seit Monaten vorbereiteten Sicherheitsversuch erneut verzögert.",
-      C: "Genau das geschah: Der Test wurde trotz der zehnstündigen Verzögerung und des ungünstigen Reaktorzustands von der Nachtschicht durchgeführt."
+      A: "Genau das geschah: Der Test wurde trotz der zehnstündigen Verzögerung und des ungünstigen Reaktorzustands von der Nachtschicht durchgeführt.",
+      B: "Den Test auf die vorbereitete Tagschicht zu verschieben wäre die sicherere Wahl gewesen — nicht die, die in dieser Nacht getroffen wurde.",
+      C: "Den Test komplett abzubrechen und neu zu planen hätte den seit Monaten vorbereiteten Sicherheitsversuch erneut verzögert."
     }
   },
   2: {
-    A: { pct: 44, label: "Steuerstäbe über das Limit hinaus gezogen" },
-    B: { pct: 31, label: "Sicherheitsgrenzen eingehalten" },
-    C: { pct: 25, label: "Andere Lösung gesucht" },
-    historical: 'A',
+    A: { pct: 31, label: "Sicherheitsgrenzen eingehalten" },
+    B: { pct: 44, label: "Steuerstäbe über das Limit hinaus gezogen" },
+    C: { pct: 25, label: "Abgewartet" },
+    historical: 'B',
     narratives: {
-      A: "Genau das geschah: Die Steuerstäbe wurden weit über das vorschriftsmäßige Limit hinaus herausgezogen, um den Test unter Druck fortzusetzen — ein klarer Verstoß gegen die Betriebsvorschriften.",
-      B: "Sich strikt an die Sicherheitsgrenzen zu halten hätte den Test scheitern lassen — aber die folgende Kettenreaktion von Ereignissen verhindert.",
-      C: "Eine technische Zwischenlösung zu suchen hätte mehr Zeit gekostet, als in der angespannten Situation zur Verfügung stand."
+      A: "Sich strikt an die Sicherheitsgrenzen zu halten hätte den Test scheitern lassen — aber die folgende Kettenreaktion von Ereignissen verhindert.",
+      B: "Genau das geschah: Die Steuerstäbe wurden weit über das vorschriftsmäßige Limit hinaus herausgezogen, um den Test unter Druck fortzusetzen — ein klarer Verstoß gegen die Betriebsvorschriften.",
+      C: "Abzuwarten hätte bei diesem Reaktortyp nicht geholfen: Die sich aufbauende Xenonvergiftung drückte die Leistung weiter. Der Chefingenieur bestand auf sofortigem Handeln."
     }
   },
   3: {
     A: { pct: 29, label: "Andere Maßnahmen zuerst versucht" },
-    B: { pct: 42, label: "AZ-5 gedrückt" },
-    C: { pct: 29, label: "Sofort evakuiert" },
-    historical: 'B',
+    B: { pct: 29, label: "Sofort evakuiert" },
+    C: { pct: 42, label: "AZ-5 gedrückt" },
+    historical: 'C',
     narratives: {
       A: "Andere Maßnahmen zuerst zu versuchen hätte wertvolle Sekunden gekostet — in der eskalierenden Lage praktisch keine Option.",
-      B: "Genau das geschah — und genau das löste durch den unbekannten Konstruktionsfehler den fatalen Leistungsanstieg aus. Die vorschriftsmäßig richtige Reaktion wurde durch einen niemandem im Kontrollraum bekannten Designfehler zur unmittelbaren Ursache der Explosion.",
-      C: "Sofort zu evakuieren, ohne die vorgeschriebene Notabschaltung überhaupt zu versuchen, widerspricht jedem damaligen Sicherheitsprotokoll für diese Situation."
+      B: "Sofort zu evakuieren, ohne die vorgeschriebene Notabschaltung überhaupt zu versuchen, widerspricht jedem damaligen Sicherheitsprotokoll für diese Situation.",
+      C: "Genau das geschah — und genau das löste durch den unbekannten Konstruktionsfehler den fatalen Leistungsanstieg aus. Die vorschriftsmäßig richtige Reaktion wurde durch einen niemandem im Kontrollraum bekannten Designfehler zur unmittelbaren Ursache der Explosion."
     }
   }
 };

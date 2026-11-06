@@ -144,9 +144,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du stimmst dem Kapitän zu. Wenn Krieg ist, zählt jede Minute.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du forderst, vor jeder Entscheidung aufzutauchen — und nach echten Informationen zu suchen.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verweigerst deine Zustimmung. Ohne Gewissheit kein Abschuss.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du verlangst, vor jeder Entscheidung aufzutauchen, um zu erfahren, was oben wirklich geschieht.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du stimmst dem Kapitän zu. Wenn Krieg ist, zählt jede Minute.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du verweigerst deine Zustimmung. Ohne Befehl aus Moskau gibt es keinen Abschuss.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint1">Wähle eine Option</span>
@@ -176,7 +176,7 @@
       <div class="scene-body">
         <p>Der Kapitän gibt nicht nach. Er sagt, die Wasserbomben seien eindeutig: Angriff. Der Politoffizier stimmt ihm zu. Zwei von drei Stimmen sind jetzt für den Abschuss.</p>
         <p>Du erinnerst dich: dieselben Bomben werden manchmal als Signal benutzt — "auftauchen zum Identifizieren", keine Kriegshandlung. Aber sicher weißt du es nicht.</p>
-        <p>Der Vizekapitän, Wassili Archipow, schweigt noch. Alle warten.</p>
+        <p>Alle sehen dich an. Du bist die dritte Stimme.</p>
       </div>
       <div class="scene-role">
         <span class="role-label">Deine Rolle</span>
@@ -185,9 +185,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du änderst deine Meinung. Die Mehrheit hat recht — handeln statt zögern.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst bei deiner Position, aber schlägst einen letzten Kompromiss vor: kurz auftauchen, dann entscheiden.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst hart. Ohne meine Zustimmung — kein Abschuss. Auch gegen den Kapitän.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du gibst nach, verlangst aber, vor dem Abschuss auf Sehrohrtiefe zu gehen und einen Blick nach oben zu werfen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du bleibst hart. Ohne deine Zustimmung kein Abschuss — auch gegen den Kapitän.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du bleibst bei deinem Nein und schlägst vor, aufzutauchen und dann zu entscheiden.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint2">Wähle eine Option</span>
@@ -226,9 +226,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>"Wir feuern." Du gibst nach. Lieber handeln als untergehen ohne Antwort.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>"Wir tauchen auf. Jetzt." Du erzwingst die einzige Möglichkeit, die Wahrheit zu erfahren.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>"Ich verweigere die Zustimmung. Endgültig." Ohne Gewissheit gibt es keinen Abschuss — koste es, was es wolle.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>„Wir feuern.“ Du gibst nach. Lieber handeln als untergehen ohne Antwort.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>„Wir tauchen auf. Jetzt.“ Nur so erfahrt ihr, was oben wirklich vorgeht.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>„Wir gehen auf Funktiefe und hören Moskau ab.“ Erst eine Nachricht, dann eine Entscheidung.</button>
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
       <span class="cta-hint" id="hint3">Wähle eine Option</span>
@@ -267,40 +267,40 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'kuba';
+const SCENARIO_PREFIX = 'kuba-v2';
 
 const results = {
   1: {
-    A: { pct: 38, label: "Zustimmung zum Kapitän" },
-    B: { pct: 41, label: "Auftauchen vor Entscheidung" },
+    A: { pct: 41, label: "Auftauchen vor Entscheidung" },
+    B: { pct: 38, label: "Zustimmung zum Kapitän" },
     C: { pct: 21, label: "Verweigerung" },
-    historical: 'B',
+    historical: 'A',
     narratives: {
-      A: "Diese Logik — keine Zeit, keine Information, also handeln — ist genau die Logik, die fast zum Atomkrieg geführt hätte.",
-      B: "Der dritte Weg — weder gehorchen noch verweigern, sondern zuerst wissen wollen — ist genau das, was in der echten Geschichte der Offizier Wassili Archipow tat.",
+      A: "Der dritte Weg — weder gehorchen noch verweigern, sondern zuerst wissen wollen — ist genau das, was in der echten Geschichte der Offizier Wassili Archipow tat.",
+      B: "Diese Logik — keine Zeit, keine Information, also handeln — ist genau die Logik, die fast zum Atomkrieg geführt hätte.",
       C: "Sofortige Verweigerung wäre mutig gewesen — und in jenem Moment kaum durchsetzbar gegen einen entschlossenen Kapitän."
     }
   },
   2: {
-    A: { pct: 22, label: "Meinung geändert" },
-    B: { pct: 46, label: "Kompromiss: Auftauchen" },
-    C: { pct: 32, label: "Hart geblieben" },
-    historical: 'B',
+    A: { pct: 22, label: "Nachgegeben, Sehrohrtiefe" },
+    B: { pct: 32, label: "Hart geblieben" },
+    C: { pct: 46, label: "Kompromiss: Auftauchen" },
+    historical: 'C',
     narratives: {
-      A: "Gruppendruck wirkt — selbst unter Lebensgefahr ändert sich Position oft um der Einigkeit willen.",
-      B: "Der Mittelweg blieb bestehen. Genau diese Hartnäckigkeit eines Einzelnen hat die echte Geschichte verändert.",
-      C: "Vollständig stur zu bleiben — historisch betrachtet hat genau diese Sturheit möglicherweise die Welt gerettet."
+      A: "Auf Sehrohrtiefe zu gehen, hätte vielleicht Klarheit gebracht — aber den Abschuss grundsätzlich freigegeben. Archipow gab seine Zustimmung nicht.",
+      B: "Vollständig stur zu bleiben — historisch betrachtet hat genau diese Sturheit möglicherweise die Welt gerettet.",
+      C: "Der Mittelweg blieb bestehen. Genau diese Hartnäckigkeit eines Einzelnen hat die echte Geschichte verändert."
     }
   },
   3: {
     A: { pct: 14, label: "Feuer freigeben" },
     B: { pct: 51, label: "Auftauchen erzwingen" },
-    C: { pct: 35, label: "Endgültig verweigert" },
+    C: { pct: 35, label: "Funktiefe verlangt" },
     historical: 'B',
     narratives: {
       A: "Unter extremem Druck bleibt der Reflex zur Zurückhaltung oft stärker als gedacht — Feuer freizugeben wäre der seltenere Ausgang gewesen.",
       B: "Genau das geschah real: Auftauchen statt Schießen. Archipows Weigerung, dem Angriffsbefehl zuzustimmen, verhinderte mitten in der Kubakrise einen Atomtorpedo-Abschuss.",
-      C: "Bis zum Ende kompromisslos zu verweigern wäre die konsequenteste, aber auch seltenste Haltung gewesen."
+      C: "Auf Funktiefe zu gehen, hätte vielleicht Nachrichten aus Moskau gebracht — aber die erschöpfte Besatzung brauchte Luft. Am Ende tauchte B-59 auf."
     }
   }
 };

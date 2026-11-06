@@ -138,9 +138,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterschreibst das Manifest öffentlich, unter deinem vollen Namen und Titel.</button>
-    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nicht, um deine Stellung in Armee und Partei nicht zu gefährden.</button>
-    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du unterstützt die Ideen des Manifests privat, hältst deinen Namen aber aus der öffentlichen Unterschriftenliste heraus.</button>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du unterschreibst mit vollem Namen und Dienstgrad — als Volksheld kannst du den Reformern Rückendeckung geben.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du unterschreibst nicht. Als Oberst bist du der Armee verpflichtet, und Manifeste sind Sache der Intellektuellen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du lässt dich nicht auf die Liste setzen, sagst aber in Interviews, dass du die Reformen unterstützt.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
@@ -170,7 +170,7 @@
       </div>
       <div class="scene-body">
         <p>Kurz nach Mitternacht rollen Panzer der Warschauer-Pakt-Staaten in Prag ein — die Reformbewegung soll gewaltsam beendet werden. Du bist auf dem Heimweg von einer Feier, als die ersten Truppen die Stadt erreichen. Tausende Menschen strömen auf den Wenzelsplatz, um sich den Panzern in den Weg zu stellen.</p>
-        <p>Du könntest ruhig nach Hause gehen. Stattdessen überlegst du, ob und wie du dich der Menge zeigst — als bekannter Armeeoffizier trägst du eine Uniform, die sofort Aufmerksamkeit erregen würde, in einer Situation, in der niemand weiß, wie die sowjetischen Soldaten reagieren.</p>
+        <p>Du könntest ruhig nach Hause gehen. Oder du zeigst dich der Menge — als Armeeoffizier und Volksheld, den jeder erkennt, in einer Lage, in der niemand weiß, wie die sowjetischen Soldaten reagieren.</p>
         <p>Der Wenzelsplatz ist nur wenige Minuten entfernt.</p>
       </div>
       <div class="scene-role">
@@ -180,9 +180,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du bleibst zu Hause, um kein unnötiges Risiko einzugehen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gehst in Zivilkleidung zum Wenzelsplatz, um dich der Menge anzuschließen, ohne aufzufallen.</button>
-    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du kletterst in deiner Armeeuniform auf einen sowjetischen Panzer und forderst die Soldaten auf, nach Hause zu fahren.</button>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du gehst nach Hause zu deiner Frau. Ein Volksheld, der verhaftet wird, nützt niemandem.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gehst in Uniform zu den Panzern und redest auf die sowjetischen Soldaten ein, nach Hause zu fahren.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du ziehst dich um und gehst in Zivil zum Wenzelsplatz, um mit der Menge zu protestieren, ohne erkannt zu werden.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst das Interview ab, jetzt, wo sich die Lage erkennbar zum Schlechteren wendet.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du gibst das Interview und sprichst offen von der Souveränität deines Landes und deiner Verurteilung der sowjetischen Intervention.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du nutzt die Gelegenheit, um das Land zu verlassen, solange es noch möglich ist.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du sagst ab. Was du sagen wolltest, hast du gesagt — jetzt geht es darum, deine Familie zu schützen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du nutzt den Kontakt zum Filmteam, um mit deiner Frau über Frankreich ins Exil zu gehen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du gibst das Interview und verurteilst die Besatzung erneut, mit Namen und Dienstgrad, vor laufender Kamera.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -264,7 +264,7 @@
 <script>
 const state = { selections: {}, justifications: {} };
 const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
-const SCENARIO_PREFIX = 'emil-zatopek';
+const SCENARIO_PREFIX = 'emil-zatopek-v2';
 
 const results = {
   1: {
@@ -280,24 +280,24 @@ const results = {
   },
   2: {
     A: { pct: 11, label: "Zu Hause geblieben" },
-    B: { pct: 19, label: "Unauffällig in Zivil" },
-    C: { pct: 70, label: "Auf den Panzer geklettert" },
-    historical: 'C',
+    B: { pct: 70, label: "Auf den Panzer geklettert" },
+    C: { pct: 19, label: "Unauffällig in Zivil" },
+    historical: 'B',
     narratives: {
       A: "Zu Hause zu bleiben, um kein Risiko einzugehen, hätte in dieser Nacht viele Menschen geschützt. Zátopek gehörte nicht zu ihnen — er war auf dem Heimweg von einer Feier, als die Panzer einrollten, und lief sofort in Richtung Wenzelsplatz.",
-      B: "In Zivil zur Menge zu gehen, ohne aufzufallen, wäre die unauffälligere Geste gewesen. Zátopek entschied sich für das genaue Gegenteil.",
-      C: "Genau das tat Zátopek. In seiner Armeeuniform kletterte er auf einen sowjetischen Panzer und forderte die Soldaten auf, nach Hause zu fahren. Das Bild ging um die Welt — der sozialistische Vorzeigesportler, der offen gegen die Invasion protestierte."
+      B: "Genau das tat Zátopek. In seiner Armeeuniform kletterte er auf einen sowjetischen Panzer und forderte die Soldaten auf, nach Hause zu fahren. Das Bild ging um die Welt — der sozialistische Vorzeigesportler, der offen gegen die Invasion protestierte.",
+      C: "In Zivil zur Menge zu gehen, ohne aufzufallen, wäre die unauffälligere Geste gewesen. Zátopek entschied sich für das genaue Gegenteil."
     }
   },
   3: {
     A: { pct: 13, label: "Interview abgesagt" },
-    B: { pct: 66, label: "Interview gegeben" },
-    C: { pct: 21, label: "Land verlassen" },
-    historical: 'B',
+    B: { pct: 21, label: "Land verlassen" },
+    C: { pct: 66, label: "Interview gegeben" },
+    historical: 'C',
     narratives: {
       A: "Das Interview kurzfristig abzusagen, wäre angesichts der sich abzeichnenden Repressionen die vorsichtigere Wahl gewesen. Zátopek sagte es nicht ab.",
-      B: "Genau das tat Zátopek. Er gab das Interview und verurteilte die sowjetische Intervention scharf, während am selben Tag das Moskauer Protokoll unterzeichnet wurde, das den Prager Frühling faktisch beendete. Wenige Monate später verlor er alle Ämter und wurde öffentlich diskreditiert.",
-      C: "Das Land zu verlassen, solange es noch ging, wählten in diesen Wochen manche prominente Tschechoslowaken. Zátopek blieb — und zahlte den Preis dafür in den folgenden Jahren."
+      B: "Das Land zu verlassen, solange es noch ging, wählten in diesen Wochen manche prominente Tschechoslowaken. Zátopek blieb — und zahlte den Preis dafür in den folgenden Jahren.",
+      C: "Genau das tat Zátopek. Er gab das Interview und verurteilte die sowjetische Intervention scharf, während am selben Tag das Moskauer Protokoll unterzeichnet wurde, das den Prager Frühling faktisch beendete. Wenige Monate später verlor er alle Ämter und wurde öffentlich diskreditiert."
     }
   }
 };
