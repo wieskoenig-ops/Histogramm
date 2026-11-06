@@ -253,6 +253,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Leiden, 1638 · Arcetri, 8. Januar 1642</div>
     <div class="epilog-title">Die Discorsi erschienen in Holland.<br>Galileo starb blind, unter Hausarrest.</div>
     <div class="epilog-body">
@@ -421,5 +422,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Galileo Galilei, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

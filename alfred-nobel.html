@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Sanremo, 10. Dezember 1896 · Stockholm, 1901</div>
     <div class="epilog-title">Die Familie war entsetzt. Die Welt erinnert sich anders.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Alfred Nobel, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Wilmslow, 7. Juni 1954 · London, 24. Dezember 2013</div>
     <div class="epilog-title">Alan Turing starb mit 41 Jahren.<br>Fast sechzig Jahre später wurde er von der Krone begnadigt.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Alan Turing, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

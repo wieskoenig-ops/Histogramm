@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Wien, 13. August 1865</div>
     <div class="epilog-title">Semmelweis starb an einer Blutvergiftung —<br>derselben Krankheit, die er sein Leben lang bekämpft hatte.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Ignaz Semmelweis, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

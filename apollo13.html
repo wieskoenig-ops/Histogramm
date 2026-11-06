@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Pazifik, 17. April 1970</div>
     <div class="epilog-title">Vier Minuten Funkstille. Dann: Fallschirme.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du die Geschichte von Apollo 13, bevor du gespielt hast?', story: true });</script>
 </body>
 </html>

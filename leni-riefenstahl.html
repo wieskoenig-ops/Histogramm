@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Pöcking, 8. September 2003</div>
     <div class="epilog-title">Riefenstahl starb mit 101 Jahren —<br>ohne je strafrechtlich für ihre Rolle im NS-Regime belangt worden zu sein.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Leni Riefenstahl, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

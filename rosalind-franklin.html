@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">London, 1958 · Stockholm, 1962</div>
     <div class="epilog-title">Der Nobelpreis kam vier Jahre nach ihrem Tod.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Rosalind Franklin, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

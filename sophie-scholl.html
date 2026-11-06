@@ -243,6 +243,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">München, 22. Februar 1943, 17 Uhr</div>
     <div class="epilog-title">Wenige Stunden nach dem Urteil war sie tot.</div>
     <div class="epilog-body">
@@ -411,5 +412,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Sophie Scholl, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

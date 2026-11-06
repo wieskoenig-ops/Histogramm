@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Lausanne, 1944–1953 · Paris, 10. Januar 1971</div>
     <div class="epilog-title">Chanel kehrte nach acht Jahren Schweizer Exil zurück —<br>und musste am Ende ausgerechnet die Wertheimers um Hilfe bitten.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Coco Chanel, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

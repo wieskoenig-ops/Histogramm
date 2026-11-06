@@ -750,6 +750,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">15. April 1912 · 02:20 Uhr</div>
     <div class="epilog-title">Die Titanic sinkt.<br>1.517 Menschen sterben.</div>
     <div class="epilog-body">
@@ -952,5 +953,7 @@ function restartDemo() {
   location.reload();
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: 'titanic', q: 'Kanntest du die Geschichte der Offiziere in dieser Nacht, bevor du gespielt hast?', story: true });</script>
 </body>
 </html>

@@ -243,6 +243,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Wien, 1781–1791</div>
     <div class="epilog-title">Zehn freie Jahre — bis zum Ende.</div>
     <div class="epilog-body">
@@ -411,5 +412,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Wolfgang Amadeus Mozart, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Prag, 1974 · Prag, 21. November 2000</div>
     <div class="epilog-title">Zátopek arbeitete jahrelang unter Tage im Uranbergwerk —<br>bevor er als Volksheld rehabilitiert wurde.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Emil Zátopek, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

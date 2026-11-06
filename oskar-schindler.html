@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Brünnlitz, 8. Mai 1945 · Hildesheim, 9. Oktober 1974</div>
     <div class="epilog-title">Über 1.200 von Schindlers Arbeitern überlebten den Krieg.<br>Er selbst starb verarmt in Deutschland.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Oskar Schindler, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

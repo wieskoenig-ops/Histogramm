@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">New York, 1981 · New York, 28. September 1991</div>
     <div class="epilog-title">Davis kehrte 1981 auf die Bühne zurück —<br>und blieb bis zu seinem Tod zehn Jahre später einer der einflussreichsten Musiker seiner Zeit.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Miles Davis, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

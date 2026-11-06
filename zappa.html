@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Los Angeles, 4. Dezember 1993</div>
     <div class="epilog-title">Frank Zappa starb an Krebs,<br>elf Monate nach seiner letzten Prager Reise.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Frank Zappa, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

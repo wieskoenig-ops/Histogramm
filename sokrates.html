@@ -253,6 +253,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Athen, 399 v. Chr.</div>
     <div class="epilog-title">Er trank.<br>Und schrieb kein einziges Wort.</div>
     <div class="epilog-body">
@@ -422,5 +423,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Sokrates, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

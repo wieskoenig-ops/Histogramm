@@ -250,6 +250,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">27. Oktober 1962 · später am selben Tag</div>
     <div class="epilog-title">Es war kein Krieg.<br>Die Bomben waren ein Signal.</div>
     <div class="epilog-body">
@@ -418,5 +419,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Wassili Archipow, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

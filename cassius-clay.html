@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Washington, D.C., 28. Juni 1971 · Louisville, 3. Juni 2016</div>
     <div class="epilog-title">Der Oberste Gerichtshof hob Alis Verurteilung einstimmig auf.<br>Er starb als einer der meistverehrten Sportler der Geschichte.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Muhammad Ali, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

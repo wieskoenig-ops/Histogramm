@@ -250,6 +250,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Mainz, 1455 und danach</div>
     <div class="epilog-title">Gutenberg verlor den Prozess.<br>Seine Erfindung verlor er nicht.</div>
     <div class="epilog-body">
@@ -418,5 +419,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Johannes Gutenberg, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

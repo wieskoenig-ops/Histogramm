@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Mexiko-Stadt, 1953 · 1954</div>
     <div class="epilog-title">"Ich male mich selbst, weil ich so oft allein bin."</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Frida Kahlo, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

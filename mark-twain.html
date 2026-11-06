@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">USA, 1898 · 1901 · 1910</div>
     <div class="epilog-title">Er zahlte jeden Cent zurück.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Mark Twain, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">London, 23. September 1939</div>
     <div class="epilog-title">Freud starb eineinhalb Jahre nach seiner Flucht im Londoner Exil —<br>an den Folgen seines Krebsleidens, auf eigenen Wunsch.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Sigmund Freud, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

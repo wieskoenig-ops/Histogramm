@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Cádiz, November 1500 · Valladolid, 20. Mai 1506</div>
     <div class="epilog-title">Kolumbus wurde als Gefangener nach Spanien zurückgeschickt —<br>und starb, ohne zu wissen, dass er einen neuen Kontinent entdeckt hatte.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Christoph Kolumbus, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

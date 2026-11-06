@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Paris, 12. Dezember 2015 · heute</div>
     <div class="epilog-title">Der Saal jubelte. Die Kurve tat es nicht.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du die Geschichte der Pariser Klimaverhandlungen, bevor du gespielt hast?', story: true });</script>
 </body>
 </html>

@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Prypjat, 26. April 1986, 1:23:44 Uhr</div>
     <div class="epilog-title">Die vorschriftsmäßige Reaktion löste die Explosion aus.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du den Ablauf dieser Nacht in Tschernobyl, bevor du gespielt hast?', story: true });</script>
 </body>
 </html>

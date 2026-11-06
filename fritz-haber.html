@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Basel, 29. Januar 1934</div>
     <div class="epilog-title">Haber starb im Schweizer Exil —<br>auf dem Weg zu einem neuen Forschungsinstitut in Palästina.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Fritz Haber, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

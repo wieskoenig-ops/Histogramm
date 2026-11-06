@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Nunningen, 27. März 2024</div>
     <div class="epilog-title">Kahneman starb mit 90 Jahren —<br>durch assistierten Suizid in der Schweiz, aus freiem Entschluss.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Daniel Kahneman, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

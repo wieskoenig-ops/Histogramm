@@ -245,6 +245,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Paris, 1913 · 1934</div>
     <div class="epilog-title">Sie kehrte zurück. Bis heute die Einzige.</div>
     <div class="epilog-body">
@@ -413,5 +414,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Marie Curie, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Elephant Island, 30. August 1916 · Grytviken, 5. Januar 1922</div>
     <div class="epilog-title">Alle 28 Männer der Endurance-Expedition überlebten.<br>Shackleton selbst starb auf seiner nächsten Antarktis-Reise.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Ernest Shackleton, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

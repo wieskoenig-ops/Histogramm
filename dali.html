@@ -247,6 +247,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Figueres, 23. Januar 1989</div>
     <div class="epilog-title">Dalí starb in seiner Geburtsstadt Figueres —<br>in einem Museum, das er selbst entworfen hatte.</div>
     <div class="epilog-body">
@@ -415,5 +416,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Salvador Dalí, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

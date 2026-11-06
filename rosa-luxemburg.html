@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Berlin, Nacht vom 15. auf den 16. Januar 1919</div>
     <div class="epilog-title">Ihre Entscheidung im Verhör änderte am Ausgang nichts.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Rosa Luxemburg, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>

@@ -244,6 +244,7 @@
 
   <!-- EPILOG -->
   <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
     <div class="epilog-date">Kealakekua Bay, 14. Februar 1779</div>
     <div class="epilog-title">Die Taktik, die immer funktioniert hatte, tat es diesmal nicht.</div>
     <div class="epilog-body">
@@ -412,5 +413,7 @@ function copyShare(day) {
   });
 }
 </script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du James Cook, bevor du gespielt hast?', story: false });</script>
 </body>
 </html>
