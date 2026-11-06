@@ -15,6 +15,20 @@ const Streak = (() => {
   const KEY_STREAK      = 'histogramm_streak';
   const KEY_PLAYED      = 'histogramm_played_ids';
   const KEY_TOTAL       = 'histogramm_total_played';
+  const KEY_PLAYED_ON   = 'histogramm_played_on';   // { id: 'JJJJ-MM-TT' } letzter Spieltag je Szenario (lokales Datum)
+
+  function localDay() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function playedToday(id) {
+    try {
+      return (JSON.parse(localStorage.getItem(KEY_PLAYED_ON) || '{}'))[id] === localDay();
+    } catch {
+      return false;
+    }
+  }
 
   // Datum als YYYY-MM-DD String
   function today() {
@@ -64,6 +78,11 @@ const Streak = (() => {
       played.push(id);
       localStorage.setItem(KEY_PLAYED, JSON.stringify(played));
     }
+    try {
+      const on = JSON.parse(localStorage.getItem(KEY_PLAYED_ON) || '{}');
+      on[id] = localDay();
+      localStorage.setItem(KEY_PLAYED_ON, JSON.stringify(on));
+    } catch { /* egal */ }
     const total = (parseInt(localStorage.getItem(KEY_TOTAL) || '0', 10)) + 1;
     localStorage.setItem(KEY_TOTAL, total.toString());
   }
@@ -206,6 +225,6 @@ const Streak = (() => {
     });
   }
 
-  return { markPlayed, getPlayedIds, markPlayedCards, renderHeaderStreak };
+  return { markPlayed, getPlayedIds, markPlayedCards, renderHeaderStreak, playedToday, localDay };
 
 })();

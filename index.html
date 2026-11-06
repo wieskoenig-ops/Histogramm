@@ -256,6 +256,15 @@
     font-style: italic;
   }
 
+  /* Histogramm des Tages */
+  .daily { margin-bottom: 0.5rem; }
+  .daily .card { border: 2px solid var(--amber); margin-bottom: 0.6rem; }
+  .daily .card:hover { border-color: var(--amber-dark); }
+  .daily .card-title { font-size: 1.45rem; }
+  .daily .card-cta { font-weight: bold; }
+  .daily-note { font-size: 0.82rem; color: var(--ink-muted); font-style: italic; margin: 0 0 0.25rem; }
+  .daily-note.done { color: var(--amber-dark); font-style: normal; }
+
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
   .card.played {
     border-color: rgba(196, 120, 10, 0.4);
@@ -368,6 +377,12 @@
 </div>
 
 <main>
+  <section class="daily" id="daily" hidden>
+    <div class="section-label" id="dailyLabel">Histogramm des Tages</div>
+    <div id="dailyCard"></div>
+    <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
+    <div class="section-label">Alle Histogramme</div>
+  </section>
 
   <a class="card" href="christoph-kolumbus.html" data-tags="Führung, Gewissen, Zivilisationsgeschichte">
     <div class="card-header">
@@ -1163,16 +1178,60 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    renderDaily();
     Streak.markPlayedCards();
     Streak.renderHeaderStreak('headerStreak');
   });
+
+
+  // ---- Histogramm des Tages ----
+  // Alle sehen am selben (lokalen) Tag dasselbe Szenario. Grundlage sind die Kacheln (a.card[href]).
+  // Reihenfolge: fest gemischt über einen Hash des Dateinamens, damit sie nicht von der Position
+  // auf der Seite abhängt. Eine Kachel mit data-added="JJJJ-MM-TT" ist an diesem Tag immer dran
+  // (neue Szenarien der Woche).
+  function dailyHash(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function dailyPick(cards, day) {
+    const fresh = cards.filter(function(c) { return c.getAttribute('data-added') === day; });
+    if (fresh.length) return fresh[0];
+    const sorted = cards.slice().sort(function(a, b) {
+      const ka = a.getAttribute('href'), kb = b.getAttribute('href');
+      return (dailyHash(ka) - dailyHash(kb)) || (ka < kb ? -1 : 1);
+    });
+    const p = day.split('-').map(Number);
+    const n = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2026, 0, 1)) / 86400000);
+    return sorted[((n % sorted.length) + sorted.length) % sorted.length];
+  }
+  function renderDaily() {
+    const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
+      .filter(function(c) { return c.getAttribute('href') !== 'folgt.html'; });
+    if (!cards.length) return;
+    const day = Streak.localDay();
+    const pick = dailyPick(cards, day);
+    const clone = pick.cloneNode(true);
+    clone.classList.remove('played');
+    clone.removeAttribute('id');
+    const id = pick.getAttribute('href').replace('.html', '');
+    const done = Streak.playedToday(id);
+    clone.querySelector('.card-cta').textContent = done ? 'Nochmal ansehen →' : 'Jetzt spielen →';
+    document.getElementById('dailyCard').appendChild(clone);
+    const d = new Date();
+    document.getElementById('dailyLabel').textContent = 'Histogramm des Tages · ' +
+      d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+    const note = document.getElementById('dailyNote');
+    if (done) { note.textContent = '✓ Heute gespielt. Morgen kommt das nächste.'; note.classList.add('done'); }
+    document.getElementById('daily').hidden = false;
+  }
 
   // "Überrasch mich" — wählt zufällig ein aktives, noch nicht gespieltes Histogramm.
   // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
   // Die Kontakt-Kachel (folgt.html) wird ausgeschlossen, da sie kein Szenario ist.
   function surpriseMe() {
-    const cards = document.querySelectorAll('a.card[href]');
+    const cards = document.querySelectorAll('main > a.card[href]');
     const ids = [];
     cards.forEach(function(card) {
       const href = card.getAttribute('href');
