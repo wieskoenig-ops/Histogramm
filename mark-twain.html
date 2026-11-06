@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -250,7 +250,8 @@
       <p>Mark Twain zahlte bis 1898 alle Gläubiger vollständig zurück — eine anstrengende Weltvortragsreise, zu der ihn kein Gesetz verpflichtet hätte. "Huckleberry Finn" gehört bis heute zu den meistgelesenen und zugleich meistgebannten Büchern amerikanischer Schulen — wegen genau der Sprache, in der er es bewusst schrieb.</p>
       <p style="margin-top:1rem">Als Vizepräsident der American Anti-Imperialist League wurde er zu einem der schärfsten öffentlichen Kritiker amerikanischer Kolonialpolitik, unter anderem mit dem Essay "An die Person, die im Dunkeln sitzt" (1901). Er starb 1910 — dieser Teil seines Werks ist bis heute deutlich weniger bekannt als seine Romane.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Mark_Twain" target="_blank" rel="noopener">Mehr zu Mark Twain auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

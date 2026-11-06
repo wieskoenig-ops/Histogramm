@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -250,7 +250,8 @@
       <p>Gagarins Abschiedsbrief an seine Frau wurde nicht gebraucht — er überlebte den Flug, wurde weltberühmt, "Poechali!" ("Auf geht's!"), sein Ausruf beim Start, ist bis heute eine feste Redewendung der russischen Raumfahrt. Die wahre Landemethode per Schleudersitz wurde erst Jahrzehnte später offiziell bestätigt.</p>
       <p style="margin-top:1rem">Die sowjetische Führung hielt Gagarin danach für zu wertvoll als Symbol, um ihn erneut ins All zu schicken. Er drängte trotzdem zurück in den aktiven Flugdienst. 1968 starb er bei einem Trainingsflug mit einer MiG-15 — die genaue Ursache des Absturzes ist bis heute umstritten. Sein Abschiedsbrief von 1961 wurde erst nach seinem tatsächlichen Tod an seine Frau übergeben.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Juri_Gagarin" target="_blank" rel="noopener">Mehr zu Juri Gagarin auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

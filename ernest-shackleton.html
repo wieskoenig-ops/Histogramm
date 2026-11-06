@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -253,7 +253,8 @@
       <p>Erst beim vierten Rettungsversuch — die ersten drei scheiterten am Packeis — erreichte die geliehene chilenische "Yelcho" am 30. August 1916 Elephant Island und rettete die 22 zurückgebliebenen Männer, nach mehr als drei Monaten Wartezeit unter kaum mehr als zwei umgedrehten Rettungsbooten als Behausung. Kein einziges Mitglied der Endurance-Expedition kam ums Leben — ein bis heute außergewöhnliches Ergebnis angesichts der Umstände.</p>
       <p style="margin-top:1rem">Shackleton selbst kehrte 1921 mit der "Quest" noch einmal in die Antarktis zurück, starb aber am 5. Januar 1922, kurz nach der Ankunft, an einem Herzinfarkt vor der Insel Südgeorgien — derselben Insel, die er sechs Jahre zuvor zu Fuß überquert hatte, um seine Mannschaft zu retten. Auf Wunsch seiner Witwe wurde er dort begraben, nicht in England. Seine Fähigkeit, unter extremem Druck kühl umzuplanen, gilt bis heute in Führungslehre und Managementliteratur als Fallstudie für Krisenführung.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Ernest_Shackleton" target="_blank" rel="noopener">Mehr zu Ernest Shackleton auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

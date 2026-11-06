@@ -1192,6 +1192,12 @@
     const choice = pool[Math.floor(Math.random() * pool.length)];
     window.location.href = choice + '.html';
   }
+
+  // Vom Epilog-Knopf „Nächstes Histogramm“ (index.html#weiter): direkt ein noch nicht gespieltes Szenario öffnen
+  if (location.hash === '#weiter') {
+    history.replaceState(null, '', location.pathname);
+    surpriseMe();
+  }
 </script>
 <a class="impressum-link" href="impressum.html">Impressum</a>
 

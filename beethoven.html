@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -253,7 +253,8 @@
       <p>Der Streit um Karl zog sich über fünf Jahre und mehrere Gerichtsinstanzen, geprägt von gegenseitigen Anschuldigungen. Karl selbst stand zwischen den Fronten; mit neunzehn Jahren unternahm er 1826 einen Selbstmordversuch, den viele Biografen auch als Reaktion auf den Erziehungsdruck seines berühmten Onkels deuten. Beethoven war zu diesem Zeitpunkt vollständig ertaubt und kommunizierte nur noch über sogenannte Konversationshefte, in die seine Besucher schrieben, statt mit ihm zu sprechen.</p>
       <p style="margin-top:1rem">Der Brief aus Heiligenstadt wurde nie abgeschickt. Erst nach Beethovens Tod 1827 fanden ihn Freunde in einem geheimen Fach seines Schreibtisches — zusammen mit einem Liebesbrief an eine bis heute nicht sicher identifizierte "Unsterbliche Geliebte". Was 1802 beinahe das Ende gewesen wäre, wurde stattdessen der Auftakt zu den Werken, für die er bis heute bekannt ist: sieben der neun Sinfonien, sämtliche späten Klaviersonaten und Streichquartette entstanden erst nach dem Jahr, in dem er beinahe aufgegeben hätte.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Ludwig_van_Beethoven" target="_blank" rel="noopener">Mehr zu Ludwig van Beethoven auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

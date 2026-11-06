@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -253,7 +253,8 @@
       <p>Warburgs Fall bleibt einer der ungewöhnlichsten der NS-Wissenschaftsgeschichte: Während Kollegen wie Einstein, Haber und Meitner fliehen mussten, um ihr Leben zu retten, blieb er unbehelligt in seinem Institut in Berlin-Dahlem — geschützt von Hitlers persönlicher Furcht vor Krebs, einer Krankheit, an der auch dessen eigene Mutter gelitten hatte. Sein Lebensgefährte Jacob Heiss blieb bis zu Warburgs Tod 1970 an seiner Seite.</p>
       <p style="margin-top:1rem">Wissenschaftlich bleibt sein Vermächtnis bedeutend: Der nach ihm benannte "Warburg-Effekt" — die Beobachtung, dass Krebszellen Energie bevorzugt durch Gärung statt durch Zellatmung gewinnen, selbst wenn Sauerstoff vorhanden ist — gilt bis heute als zentraler Ausgangspunkt der modernen Krebsstoffwechselforschung. Moralisch bleibt sein Fall unbequem: Er verdankte sein Überleben nicht dem Widerstand gegen das Regime, sondern dem eigenen unverzichtbaren Nutzen für dessen mächtigsten Repräsentanten.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Otto_Warburg_(Biochemiker)" target="_blank" rel="noopener">Mehr zu Otto Warburg auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

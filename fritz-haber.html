@@ -51,7 +51,7 @@
   .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
   .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
   .scene-body p + p { margin-top: 1rem; }
-  .scene-role { background: var(--amber-light); padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--amber-dark); display: flex; align-items: center; gap: 0.5rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
   .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
   .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
   .wiki-link:hover { opacity: 0.75; }
@@ -253,7 +253,8 @@
       <p>Nach seinem Rücktritt emigrierte Haber im Spätherbst 1933 zunächst nach Cambridge. Auf der Reise zu einem geplanten Besuch des im Aufbau befindlichen Forschungsinstituts in Rehovot — dem späteren Weizmann-Institut — starb er, herzkrank, in Basel. Er hatte Deutschland als hochdekorierter Patriot und Kriegsheld gedient und wurde am Ende doch nur als Jude wahrgenommen.</p>
       <p style="margin-top:1rem">Die bitterste Ironie kam erst später: Eine von seinem Institut mitentwickelte Blausäureverbindung, ursprünglich als Schädlingsbekämpfungsmittel gedacht, wurde unter dem Namen Zyklon B von den Nationalsozialisten in den Gaskammern der Vernichtungslager eingesetzt — unter anderem gegen Verwandte Habers, die in Deutschland zurückgeblieben waren. Gleichzeitig gilt das nach ihm benannte Haber-Bosch-Verfahren zur Ammoniak-Synthese bis heute als eine der folgenreichsten Erfindungen der Menschheitsgeschichte: Schätzungen zufolge ernährt der damit hergestellte Kunstdünger heute nahezu die Hälfte der Weltbevölkerung.</p>
     </div>
-    <button class="btn-primary" onclick="location.reload()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Fritz_Haber" target="_blank" rel="noopener">Mehr zu Fritz Haber auf Wikipedia →</a></p>
     <p class="epilog-cta">Weitere Histogramme → <a href="index.html">Übersicht</a></p>
   </div>

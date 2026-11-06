@@ -205,12 +205,13 @@
 
   .scene-role {
     background: var(--amber-light);
-    padding: 0.75rem 1.25rem;
-    font-size: 0.85rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.15rem;
     color: var(--amber-dark);
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.75rem;
   }
 
   .role-label {
@@ -756,7 +757,8 @@
       <p style="margin-top:1rem">Es gibt keine richtige Antwort. Nur deine — und die aller anderen.</p>
       <p style="margin-top:1rem">Morgen: ein neuer Moment. Eine andere Frage.</p>
     </div>
-    <button class="btn-primary" onclick="restartDemo()" style="margin: 0 auto; display:block">Nochmal spielen</button>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="#" onclick="location.reload(); return false;" style="font-size:0.8rem; color:var(--ink-faint)">oder dieses nochmal spielen</a></p>
     <p style="margin-top:1.5rem"><a href="https://de.wikipedia.org/wiki/Titanic" target="_blank" rel="noopener" style="font-size:0.82rem; color:var(--amber-dark); text-decoration:none; border-bottom:1px solid var(--amber); padding-bottom:1px;">Mehr zur Titanic auf Wikipedia →</a></p>
     <p class="epilog-cta">
       Weitere Histogramme → <a href="index.html">Übersicht</a>
