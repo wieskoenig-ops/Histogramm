@@ -636,7 +636,7 @@
     </div>
   </a>
 
-  <a class="card" href="world-wide-web.html" data-tags="Wissenschaft, Technologie, Schweiz" data-year="1989" data-region="europa" data-country="CH" data-kind="rolle" data-gender="-" data-wikidata="Q466" data-added="2026-07-28">
+  <a class="card" href="world-wide-web.html" data-tags="Wissenschaft, Technologie, Schweiz" data-year="1989" data-region="europa" data-country="CH" data-kind="person" data-gender="m" data-wikidata="Q80" data-added="2026-07-28">
     <div class="card-header">
       <span class="card-date">Genf, 1989</span>
       <span class="card-category wissenschaft">Wissenschaft</span>
@@ -1230,6 +1230,8 @@
     const done = Streak.playedToday(id);
     clone.querySelector('.card-cta').textContent = done ? 'Nochmal ansehen →' : 'Jetzt spielen →';
     document.getElementById('dailyCard').appendChild(clone);
+    // Die Originalkarte in der Liste ausblenden, damit sie nicht doppelt erscheint.
+    pick.style.display = 'none';
     const d = new Date();
     document.getElementById('dailyLabel').textContent = 'Histogramm des Tages · ' +
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
