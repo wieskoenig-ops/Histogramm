@@ -212,7 +212,7 @@
       </div>
       <div class="scene-body">
         <p>Kurz vor der Erde muss das Kommandomodul "Odyssey" wieder hochgefahren werden — komplett heruntergefahren, um Strom zu sparen, ein Zustand, für den es nie gebaut wurde. Niemand hat je getestet, ob ein vollständig ausgeschaltetes Apollo-Kommandomodul mitten im Flug wieder starten kann.</p>
-        <p>Um genug Strom für diesen Neustart zu haben, müsst ihr fast alles andere abschalten. Das bedeutet: Temperaturen nahe dem Gefrierpunkt in der Kabine, extremer Wassermangel, erschöpfte, unterkühlte Astronauten für die kritischsten Minuten der Mission.</p>
+        <p>Der Strom ist knapp. Für den Neustart müssen die Batterien des Kommandomoduls reichen, und alles, was bis dahin läuft, fehlt später. Zugleich harren drei Männer seit Tagen in einem Raumschiff aus, das für diesen Notbetrieb nie gedacht war, und müssen in den letzten Stunden präzise arbeiten. Du musst festlegen, wofür der restliche Strom verwendet wird.</p>
         <p>Der Wiedereintritt selbst bringt vier Minuten Funkstille, in denen niemand weiß, ob der Hitzeschild die Explosion überstanden hat.</p>
       </div>
       <div class="scene-role">
@@ -222,9 +222,9 @@
     </div>
 
     <div class="decisions-heading">Deine Entscheidung</div>
-    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Fast alles abschalten, auch die Heizung. Die Crew friert und dürstet, dafür reicht der Strom sicher für den Neustart.</button>
-    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Die Heizung auf kleiner Stufe laufen lassen — eine unterkühlte, erschöpfte Crew macht beim Wiedereintritt Fehler.</button>
-    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Funk und Telemetrie durchgehend halten, damit ihr jeden Wert seht, und beim Neustart mit knapperem Strom arbeiten.</button>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Fast alles abschalten, auch die Heizung. Jedes gesparte Ampere fließt in die Reserve für den Neustart.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Die Heizung auf kleiner Stufe laufen lassen. Eine unterkühlte, erschöpfte Crew macht beim Wiedereintritt Fehler.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Funk und Telemetrie durchgehend halten, damit ihr jeden Wert seht, und den Neustart knapper planen.</button>
 
     <div class="cta-row">
       <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
@@ -297,9 +297,9 @@ const results = {
     C: { pct: 13, label: "Energie für Funkkontakt genutzt" },
     historical: 'A',
     narratives: {
-      A: "Genau das tat das Kontrollzentrum: fast alles wurde abgeschaltet, die Crew fror, war dehydriert und erschöpft — aber es blieb genug Strom für den nie zuvor getesteten Neustart des Kommandomoduls.",
-      B: "Mehr Komfort für die Crew zu erhalten wäre menschlich naheliegend gewesen — hätte aber den Strom riskiert, der für den Wiedereintritt selbst gebraucht wurde.",
-      C: "Durchgehender Funkkontakt hätte Sicherheit gegeben, aber genau die Energie verbraucht, die für die Wiederanlauf-Systeme reserviert werden musste."
+      A: "Genau das tat das Kontrollzentrum: Fast alles wurde abgeschaltet, auch die Heizung. In der Kabine fiel die Temperatur auf wenige Grad über null, das Wasser wurde streng rationiert, Fred Haise bekam eine Harnwegsinfektion. Aber der Strom reichte: Mit einer Abfolge, die der Ingenieur John Aaron und sein Team Ampere für Ampere geplant hatten, ließ sich die Odyssey wieder hochfahren, zum ersten Mal überhaupt im Flug.",
+      B: "Eine kleine Heizstufe war gut begründbar: Kälte, Kondenswasser auf den Instrumenten und Schlafmangel setzten der Crew zu, und müde Menschen machen Fehler. Aber eine Heizung zieht dauerhaft Strom, und die Reserve für den Neustart war ohnehin knapp berechnet. Hätten am Ende ein paar Ampere gefehlt, wären womöglich nicht alle Systeme für den Wiedereintritt hochgekommen, und dann hätte auch eine ausgeruhte Crew wenig ausrichten können.",
+      C: "Durchgehende Daten wären ein echter Gewinn gewesen: Nach der Explosion wusste niemand genau, welche Teile des Raumschiffs beschädigt waren, und Telemetrie ist das wichtigste Werkzeug eines Flugleiters. Doch Funk und Datenübertragung verbrauchen ständig Strom. Wer beim Neustart knapper plant, muss darauf hoffen, dass genau im entscheidenden Moment nichts fehlt, und eine zweite Chance für den Neustart gab es nicht."
     }
   }
 };
