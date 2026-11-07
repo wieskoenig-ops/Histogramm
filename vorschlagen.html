@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histogramm vorschlagen — Histogramm</title>
+<meta name="description" content="Welche Entscheidung fehlt? Schlag ein neues Histogramm vor: eine Person, ein Moment, ein offenes Dilemma.">
+<link rel="canonical" href="https://histogramm.me/vorschlagen.html">
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  main { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: normal; line-height: 1.25; margin-bottom: 1.25rem; }
+  .intro { font-size: 1.05rem; line-height: 1.75; color: var(--ink-muted); font-style: italic; margin-bottom: 2.25rem; }
+  .hints { background: var(--paper-warm); border-left: 3px solid var(--amber); padding: 1rem 1.25rem; font-size: 0.9rem; line-height: 1.7; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hints strong { color: var(--ink); font-weight: normal; }
+  form { display: flex; flex-direction: column; gap: 0.35rem; }
+  label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 1rem; }
+  .opt { text-transform: none; letter-spacing: 0; color: var(--ink-faint); font-style: italic; }
+  input, textarea { font: inherit; font-size: 1rem; color: var(--ink); background: #fff; border: 1px solid var(--border-strong); padding: 0.7rem 0.85rem; width: 100%; }
+  input:focus, textarea:focus { outline: 2px solid var(--amber); outline-offset: 1px; border-color: var(--amber); }
+  textarea { min-height: 9rem; resize: vertical; line-height: 1.6; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .btn { font-family: inherit; font-size: 0.95rem; padding: 0.75rem 1.4rem; cursor: pointer; text-decoration: none; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
+  .btn:hover { background: var(--amber-dark); border-color: var(--amber-dark); }
+  .btn.secondary { background: transparent; color: var(--ink); border-color: var(--border-strong); }
+  .btn.secondary:hover { border-color: var(--amber); color: var(--amber-dark); background: var(--amber-light); }
+  .btn.ok { background: var(--amber-light); color: var(--amber-dark); border-color: var(--amber); }
+  .address { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink-muted); }
+  .address .mail { font-size: 1.05rem; color: var(--ink); margin-right: 0.75rem; }
+  .address .btn { font-size: 0.8rem; padding: 0.4rem 0.9rem; vertical-align: middle; }
+  .small { margin-top: 1.5rem; font-size: 0.8rem; line-height: 1.65; color: var(--ink-faint); }
+  .small a { color: var(--ink-muted); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  footer a { color: var(--ink-faint); }
+  @media (max-width: 600px) { header { padding: 1rem; } main { padding: 3rem 1.25rem 4rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="site-name" href="index.html">Histogramm</a>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<main>
+  <div class="section-label">Dein Vorschlag</div>
+  <h1>Welche Entscheidung fehlt hier?</h1>
+  <p class="intro">Eine Person, ein Moment, ein Dilemma, bei dem der Ausgang offen war. Jede Woche kommt ein neues Histogramm dazu, vielleicht ist deines das nächste.</p>
+
+  <div class="hints">
+    <strong>Gut geeignet sind Momente,</strong> in denen jemand wirklich wählen musste, mit mindestens zwei ernsthaften Wegen, und die gut belegt sind. Berühmt muss die Person nicht sein. Gerade die Unbekannten sind oft die spannendsten.
+  </div>
+
+  <form id="formular" novalidate>
+    <label for="thema">Person oder Ereignis</label>
+    <input id="thema" type="text" maxlength="120" autocomplete="off" placeholder="z. B. Chiune Sugihara, Kaunas 1940">
+
+    <label for="moment">Welche Entscheidung? <span class="opt">(optional)</span></label>
+    <textarea id="moment" maxlength="1500" placeholder="Worum ging es, was stand auf dem Spiel, welche Wege gab es?"></textarea>
+
+    <label for="quelle">Wo kann man nachlesen? <span class="opt">(optional)</span></label>
+    <input id="quelle" type="text" maxlength="300" autocomplete="off" placeholder="Buch, Artikel oder Link">
+
+    <div class="buttons">
+      <button type="submit" class="btn">Im E-Mail-Programm öffnen</button>
+      <button type="button" class="btn secondary" id="text-kopieren">Text kopieren</button>
+    </div>
+  </form>
+
+  <p class="small">Diese Seite verschickt und speichert nichts. Der Knopf öffnet dein eigenes E-Mail-Programm mit dem vorbereiteten Text, abgeschickt wird die Nachricht erst dort, von dir. Ohne E-Mail-Programm einfach Text und Adresse kopieren und aus dem Webmail schreiben. Mehr dazu in der <a href="impressum.html#datenschutz">Datenschutzerklärung</a>.</p>
+
+  <div class="address">
+    <span class="mail">read.me@web.de</span>
+    <button type="button" class="btn secondary" id="kopieren">Adresse kopieren</button>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="impressum.html#datenschutz">Datenschutz</a></footer>
+
+<script>
+// Vorschlag ohne Server: nichts wird übertragen oder gespeichert.
+// Senden über das eigene E-Mail-Programm (mailto), Kopieren über die Zwischenablage.
+(function () {
+  const ADR = 'read.me@web.de';
+  function kopiere(text, knopf, label) {
+    const fertig = function () {
+      knopf.textContent = 'Kopiert'; knopf.classList.add('ok');
+      setTimeout(function () { knopf.textContent = label; knopf.classList.remove('ok'); }, 2200);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(fertig, function () { auswahl(text, fertig); });
+    } else auswahl(text, fertig);
+  }
+  function auswahl(text, fertig) {          // Rückfall für ältere Browser
+    const t = document.createElement('textarea');
+    t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); fertig(); } catch (e) {}
+    t.remove();
+  }
+  const thema = document.getElementById('thema');
+  const moment = document.getElementById('moment');
+  const quelle = document.getElementById('quelle');
+  function betreff() { return 'Histogramm-Vorschlag' + (thema.value.trim() ? ': ' + thema.value.trim() : ''); }
+  function text() {
+    const teile = [];
+    if (thema.value.trim()) teile.push('Person oder Ereignis: ' + thema.value.trim());
+    if (moment.value.trim()) teile.push('Entscheidung:\n' + moment.value.trim());
+    if (quelle.value.trim()) teile.push('Zum Nachlesen: ' + quelle.value.trim());
+    return teile.join('\n\n');
+  }
+  document.getElementById('formular').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const body = text();
+    const url = 'mailto:' + ADR + '?subject=' + encodeURIComponent(betreff()) + (body ? '&body=' + encodeURIComponent(body) : '');
+    const link = document.createElement('a');
+    link.href = url; link.target = '_blank'; link.rel = 'noopener';
+    document.body.appendChild(link); link.click(); link.remove();
+  });
+  const k1 = document.getElementById('kopieren');
+  k1.addEventListener('click', function () { kopiere(ADR, k1, 'Adresse kopieren'); });
+  const k2 = document.getElementById('text-kopieren');
+  k2.addEventListener('click', function () {
+    const t = text();
+    kopiere(t ? 'An: ' + ADR + '\nBetreff: ' + betreff() + '\n\n' + t : ADR, k2, 'Text kopieren');
+  });
+})();
+</script>
+
+</body>
+</html>

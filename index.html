@@ -158,6 +158,8 @@
     letter-spacing: 0.03em;
   }
 
+  .impressum-link + .impressum-link { bottom: 2.1rem; }
+  a.card.card-suggest { border: 1px dashed var(--amber); }
   .impressum-link:hover {
     color: var(--amber-dark);
   }
@@ -1177,15 +1179,15 @@
     <a class="chip" href="chiune-sugihara.html"><span class="chip-dot gewissen"></span><span class="chip-title">Chiune Sugihara</span><span class="chip-date">Kaunas, 1940</span></a>
   </div>
 
-  <a class="card" href="folgt.html">
+  <a class="card card-suggest" href="vorschlagen.html">
     <div class="card-header">
-      <span class="card-date">Demnächst</span>
-      <span class="card-category" style="background:var(--paper-warm); color:var(--ink-muted)">In Arbeit</span>
+      <span class="card-date">Dein Vorschlag</span>
+      <span class="card-category" style="background:var(--amber-light); color:var(--amber-dark)">Mitmachen</span>
     </div>
     <div class="card-body">
-      <div class="card-title" style="color:var(--ink-faint)">Ein neues Histogramm</div>
-      <p class="card-teaser" style="color:var(--ink-faint)">Hast du einen Vorschlag? Schreib uns: <span style="color:var(--amber-dark)">read.me@web.de</span></p>
-      <div class="card-cta" style="color:var(--ink-faint)">Folgt bald</div>
+      <div class="card-title">Welche Entscheidung fehlt hier?</div>
+      <p class="card-teaser">Eine Person, ein Moment, ein offenes Dilemma. Jede Woche kommt ein neues Histogramm dazu, vielleicht ist deines das nächste.</p>
+      <div class="card-cta">Histogramm vorschlagen →</div>
     </div>
   </a>
 
@@ -1245,7 +1247,7 @@
   }
   function renderDaily() {
     const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
-      .filter(function(c) { return c.getAttribute('href') !== 'folgt.html'; });
+      .filter(function(c) { return c.getAttribute('href') !== 'vorschlagen.html'; });
     if (!cards.length) return;
     // ?tag=JJJJ-MM-TT zeigt zum Ausprobieren die Auswahl eines anderen Tages.
     const testTag = (location.search.match(/[?&]tag=(\d{4}-\d{2}-\d{2})/) || [])[1];
@@ -1291,13 +1293,13 @@
   // "Überrasch mich" — wählt zufällig ein aktives, noch nicht gespieltes Histogramm.
   // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
-  // Die Kontakt-Kachel (folgt.html) wird ausgeschlossen, da sie kein Szenario ist.
+  // Die Kontakt-Kachel (vorschlagen.html) wird ausgeschlossen, da sie kein Szenario ist.
   function surpriseMe() {
     const cards = document.querySelectorAll('main > a.card[href]');
     const ids = [];
     cards.forEach(function(card) {
       const href = card.getAttribute('href');
-      if (href && href !== 'folgt.html') {
+      if (href && href !== 'vorschlagen.html') {
         ids.push(href.replace('.html', ''));
       }
     });
@@ -1320,6 +1322,7 @@
     surpriseMe();
   }
 </script>
+<a class="impressum-link" href="impressum.html#datenschutz">Datenschutz</a>
 <a class="impressum-link" href="impressum.html">Impressum</a>
 
 </body>
