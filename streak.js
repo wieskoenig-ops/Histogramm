@@ -203,7 +203,11 @@ const Streak = (() => {
     // Nur anzeigen wenn heute oder gestern gespielt wurde — sonst bleibt es leer
     if (streak > 0 && played > 0 && (last === today() || last === yesterday())) {
       const tageLabel = streak === 1 ? 'Tag' : 'Tage';
-      el.textContent = `${streak} ${tageLabel} · ${played} gespielt`;
+      // Gesamtzahl aus den Kacheln der Startseite (ohne die Vorschlagskarte).
+      const total = document.querySelectorAll('main > a.card[href]:not([href="vorschlagen.html"])').length;
+      el.textContent = total
+        ? `${streak} ${tageLabel} · ${Math.min(played, total)} von ${total} gespielt`
+        : `${streak} ${tageLabel} · ${played} gespielt`;
     }
   }
 
