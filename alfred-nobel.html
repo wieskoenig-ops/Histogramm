@@ -281,6 +281,7 @@ const results = {
     B: { pct: 59, label: "Über das eigene Erbe nachgedacht" },
     C: { pct: 22, label: "Richtigstellung gefordert" },
     historical: 'B',
+    fact: 'Nobel nahm den Nachruf, der ihn als „Händler des Todes“ bezeichnete, ernst. Die Episode gilt als einer der Auslöser dafür, dass er in den folgenden Jahren grundlegend über sein Vermächtnis nachdachte.',
     narratives: {
       A: "Den Nachruf einfach zu ignorieren, wäre die naheliegendste Reaktion gewesen — aber genau das tat Nobel nach gängiger Überlieferung nicht ganz.",
       B: "Diese Episode gilt als einer der Auslöser dafür, dass Nobel in den folgenden Jahren begann, über sein Vermächtnis grundlegend neu nachzudenken.",
@@ -292,6 +293,7 @@ const results = {
     B: { pct: 63, label: "Stiftung mit Friedenspreis gegründet" },
     C: { pct: 23, label: "Vermögen geteilt" },
     historical: 'B',
+    fact: 'Nobel vermachte in seinem Testament den überwiegenden Teil seines Vermögens einer Stiftung, die jedes Jahr Preise vergibt, auch einen Friedenspreis. Seine Familie war schockiert.',
     narratives: {
       A: "Das Vermögen an die Familie zu vererben, wäre die erwartete, konventionelle Wahl gewesen — genau das tat Nobel nicht.",
       B: "Genau das legte Nobel in seinem Testament fest: der überwiegende Teil seines Vermögens sollte eine Stiftung finanzieren, die auch einen Friedenspreis vergibt — sehr zum Schock seiner Familie.",
@@ -375,7 +377,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

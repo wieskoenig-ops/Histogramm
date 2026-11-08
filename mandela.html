@@ -271,6 +271,7 @@ const results = {
     B: { pct: 59, label: "Sabotage gegründet" },
     C: { pct: 17, label: "Guerillakrieg vorbereitet" },
     historical: 'B',
+    fact: 'Mandela gründete 1961 Umkhonto we Sizwe, den bewaffneten Arm des ANC, mit dem erklärten Ziel, Sabotage gegen Infrastruktur zu verüben und Menschenleben bewusst zu schonen.',
     narratives: {
       A: "An der reinen Gewaltlosigkeit festzuhalten wäre nach Sharpeville nachvollziehbar gewesen — schien Mandela und seinen Mitstreitern aber wirkungslos geworden.",
       B: "Genau das gründete Mandela 1961: Umkhonto we Sizwe, den bewaffneten Arm des ANC, mit dem erklärten Ziel, Sabotage gegen Infrastruktur zu verüben und Menschenleben bewusst zu schonen.",
@@ -282,6 +283,7 @@ const results = {
     B: { pct: 54, label: "Erklärung vom Anklagebock" },
     C: { pct: 15, label: "Gericht nicht anerkannt" },
     historical: 'B',
+    fact: 'Mandela gab vom Anklagebock eine über drei Stunden lange Erklärung ab, die nicht kreuzverhört werden konnte. Vorbereitet hatte er sie unter anderem mit Hilfe der Schriftstellerin Nadine Gordimer.',
     narratives: {
       A: "Die Zeugenaussage hätte mehr rechtlichen Schutz geboten — aber auch weniger Raum, die politische Botschaft ungefiltert vorzutragen.",
       B: "Genau das entschied Mandela: eine über drei Stunden lange Erklärung vom Anklagebock, die nicht kreuzverhört werden konnte — vorbereitet mit Hilfe der Schriftstellerin Nadine Gordimer.",
@@ -376,7 +378,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

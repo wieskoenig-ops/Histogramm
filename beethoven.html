@@ -284,6 +284,7 @@ const results = {
     B: { pct: 52, label: "Napoleons Namen ausradiert" },
     C: { pct: 26, label: "Widmung still geändert" },
     historical: 'B',
+    fact: 'Laut seinem Schüler Ferdinand Ries, der es Jahrzehnte später erzählte, strich Beethoven Napoleons Namen in Wut vom Titelblatt. Das erhaltene Manuskript zeigt eine so heftig ausradierte Stelle, dass ein Loch im Papier entstand. Wie genau sich die Szene abspielte, ist bis heute umstritten. Die Sinfonie erhielt ihren bekannten Namen: Eroica.',
     narratives: {
       A: "Eine Sinfonie ohne Rücksicht auf Tagespolitik zu behandeln, wäre eine mögliche Haltung gewesen. Beethoven selbst konnte sie nicht einnehmen — die Enttäuschung über Napoleon saß zu tief.",
       B: "So erzählte es sein Schüler Ferdinand Ries Jahrzehnte später: Beethoven soll die Widmung wutentbrannt vom Titelblatt gerissen haben. Das erhaltene Manuskript zeigt tatsächlich eine so heftig ausradierte Stelle, dass ein Loch im Papier entstand — auch wenn Musikhistoriker bis heute darüber streiten, wie genau sich die Szene abgespielt hat. Die Sinfonie erhielt ihren bis heute bekannten Namen: Eroica.",
@@ -378,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

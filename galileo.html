@@ -279,6 +279,7 @@ const results = {
     B: { pct: 11, label: "Offen verweigert" },
     C: { pct: 58, label: "Freiwillig nach Rom" },
     historical: 'C',
+    fact: 'Galileo reiste 1633 nach Rom, weil er darauf vertraute, dass seine Argumente überzeugen würden. Kooperation war für ihn Strategie, nicht Kapitulation.',
     narratives: {
       A: "Zeit kaufen wäre klug gewesen — aber die Inquisition hatte Geduld, und der Sturm ging nicht vorbei.",
       B: "Das wäre die mutigste, sichtbarste Wahl gewesen — und historisch die gefährlichste.",
@@ -290,6 +291,7 @@ const results = {
     B: { pct: 27, label: "Form widerrufen, Inhalt behalten" },
     C: { pct: 12, label: "Standgehalten" },
     historical: 'A',
+    fact: 'Galileo widerrief im Juni 1633 vollständig und öffentlich. Er wurde zu Hausarrest verurteilt, den er bis zu seinem Tod 1642 in Arcetri verbrachte. Der berühmte Satz „Und sie bewegt sich doch“ ist erst viel später überliefert und gilt als Legende.',
     narratives: {
       A: "Das ist, was Galileo tat. Leben ist wertvoller als das Recht haben — und die Wahrheit bleibt wahr, egal was man sagt.",
       B: "Den inneren Vorbehalt zu suchen — die Worte zu sprechen, ohne sie zu meinen — ist moralisch komplex, und historisch schwer zu belegen.",
@@ -301,6 +303,7 @@ const results = {
     B: { pct: 71, label: "Erlaubt" },
     C: { pct: 7, label: "Verboten" },
     historical: 'B',
+    fact: 'Das Manuskript der Discorsi gelangte aus Italien hinaus und erschien 1638 in Leiden, während Galileo noch unter Hausarrest stand.',
     narratives: {
       A: "Der mittlere Weg: nicht verbieten, aber auch nicht offiziell erlauben, während Viviani die Verantwortung trägt. Eine Form von Feigheit — und von Klugheit.",
       B: "Das ist auch, was historisch geschah: die Discorsi erschienen 1638 in Leiden — geschmuggelt, während Galileo noch unter Hausarrest stand.",
@@ -384,7 +387,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

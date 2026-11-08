@@ -281,6 +281,7 @@ const results = {
     B: { pct: 62, label: "Fehlgeburt direkt gemalt" },
     C: { pct: 14, label: "Thema ausgespart" },
     historical: 'B',
+    fact: 'Kahlo malte 1932 das Bild „Henry Ford Hospital“: sich selbst im Krankenbett, blutend, umgeben von Sinnbildern ihres Verlusts. Eine direkte, ungeschönte Darstellung der Fehlgeburt und ein radikaler Bruch mit dem, was von Künstlerinnen erwartet wurde.',
     narratives: {
       A: "Ein versöhnlicheres Motiv hätte weniger Widerstand ausgelöst — aber auch weniger von dem gezeigt, was Kahlos Werk später auszeichnete.",
       B: "Genau das tat Kahlo mit dem Gemälde \"Henry Ford Hospital\" von 1932 — eine direkte, ungeschönte Darstellung der Fehlgeburt, ein radikaler Bruch mit dem, was von Künstlerinnen erwartet wurde.",
@@ -375,7 +376,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

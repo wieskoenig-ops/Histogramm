@@ -271,6 +271,7 @@ const results = {
     B: { pct: 21, label: "Plan verschoben" },
     C: { pct: 27, label: "Weiter auf Ismene eingeredet" },
     historical: 'A',
+    fact: 'Im Stück handelt Antigone sofort und allein: Sie geht hinaus und bedeckt den Leichnam mit Erde, ohne Ismene noch einmal zu fragen.',
     narratives: {
       A: "Im Stück handelt Antigone genau so: sofort und allein, ohne auf eine zweite Chance mit Ismene zu warten.",
       B: "Den Plan aufzuschieben wäre die vorsichtigste Wahl gewesen — mit dem Risiko, dass der Leichnam in der Zwischenzeit weiter geschändet wird.",
@@ -282,6 +283,7 @@ const results = {
     B: { pct: 14, label: "Geschwiegen, auf Haimon gesetzt" },
     C: { pct: 56, label: "Allein bekannt" },
     historical: 'C',
+    fact: 'Im Stück bekennt sich Antigone offen zur Tat und weist Ismenes Angebot, die Schuld zu teilen, zurück.',
     narratives: {
       A: "Ismenes Schuld anzunehmen wäre ein Akt der Solidarität gewesen — Antigone lehnt genau das ab, was auch als Stolz gelesen werden kann, nicht nur als Prinzipientreue.",
       B: "Auf Haimons Fürsprache zu setzen, wäre eine kluge Taktik gewesen. Haimon tritt im Stück tatsächlich für Antigone ein — aber erst nach ihrem offenen Bekenntnis, und ohne Kreon umzustimmen.",
@@ -293,6 +295,7 @@ const results = {
     B: { pct: 21, label: "Ausweg gesucht" },
     C: { pct: 34, label: "Selbst gehandelt" },
     historical: 'C',
+    fact: 'Im Stück nimmt sich Antigone in der Felsenkammer das Leben. Kreon hatte inzwischen eingelenkt, doch die Rettung kommt zu spät. Gerade das macht ihr Ende so tragisch.',
     narratives: {
       A: "Zu warten wäre im Nachhinein die klügere Wahl gewesen — Kreon war tatsächlich auf dem Weg, sie zu befreien, nur wusste Antigone das nicht.",
       B: "Ein Fluchtversuch aus der Felsenkammer kommt im Stück nicht vor — aber angesichts der Ungewissheit wäre er kein unvernünftiger Gedanke gewesen.",
@@ -376,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

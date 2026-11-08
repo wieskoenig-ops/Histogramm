@@ -281,6 +281,7 @@ const results = {
     B: { pct: 61, label: "Systematisch ausgewertet" },
     C: { pct: 22, label: "Daten geteilt" },
     historical: 'B',
+    fact: 'Franklin wertete die Beugungsmuster gründlich und mathematisch aus, statt sich vorschnell auf ein Modell festzulegen. Das entsprach ihrer bekannten Arbeitsweise.',
     narratives: {
       A: "Ein schnelles, vorläufiges Modell wäre nicht ihr Ansatz gewesen — sie war für ihre Sorgfalt und ihren Widerwillen gegen unbelegte Spekulation bekannt.",
       B: "Genau das entspricht Franklins bekannter Arbeitsweise: gründlich, methodisch, mit mathematischer Analyse der Beugungsmuster, statt sich vorschnell auf ein Modell festzulegen.",
@@ -375,7 +376,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

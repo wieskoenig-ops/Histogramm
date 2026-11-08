@@ -273,6 +273,7 @@ const results = {
     B: { pct: 31, label: "Aufgestanden" },
     C: { pct: 28, label: "Sitzen geblieben, geschwiegen" },
     historical: 'A',
+    fact: 'Rosa Parks blieb sitzen und sagte ruhig: „Nein.“ Es wurde einer der bekanntesten Momente der Bürgerrechtsbewegung.',
     narratives: {
       A: "Ein kurzes, ruhiges Wort — und damit einer der bekanntesten Momente der Bürgerrechtsbewegung.",
       B: "Nachgeben wäre vernünftig und sicher gewesen — die Entscheidung, die viele Menschen in diesem Moment getroffen hätten. Historisch war das nicht die Entscheidung von Rosa Parks.",
@@ -284,6 +285,7 @@ const results = {
     B: { pct: 28, label: "Laut gesprochen" },
     C: { pct: 54, label: "Ruhig sitzen geblieben" },
     historical: 'C',
+    fact: 'Parks blieb sitzen, sagte nichts mehr und ließ sich ohne Widerstand verhaften. So hat sie es selbst beschrieben: keine Dramatik, keine Provokation, nur die stille Weigerung.',
     narratives: {
       A: "In letzter Minute zurückzuziehen wäre unter dem Druck der Verhaftung eine nachvollziehbare, aber seltene Reaktion.",
       B: "Laut zu sprechen ist historisch schwerer zu belegen — Parks war bekannt für ihre Stille, nicht für Konfrontation.",
@@ -295,6 +297,7 @@ const results = {
     B: { pct: 33, label: "Um Bedenkzeit gebeten" },
     C: { pct: 53, label: "Sofort ja gesagt" },
     historical: 'C',
+    fact: 'Parks stimmte zu, dass ihr Fall vor Gericht ging. Sie war seit Jahren in der Bürgerrechtsbewegung aktiv und auf diesen Moment vorbereitet, auch wenn sie ihn nicht geplant hatte.',
     narratives: {
       A: "Abzulehnen fällt in diesem Moment schwer, nach allem was gerade passiert ist.",
       B: "Um Bedenkzeit zu bitten wäre menschlich und verständlich gewesen — historisch aber nicht das, was Parks tat.",
@@ -378,7 +381,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

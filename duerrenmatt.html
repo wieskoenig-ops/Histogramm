@@ -270,6 +270,7 @@ const results = {
     B: { pct: 11, label: "Heimlich geprüft" },
     C: { pct: 68, label: "Entschieden abgelehnt" },
     historical: 'C',
+    fact: 'Im Stück weist der Bürgermeister das Angebot im Namen der Stadt zurück, geschlossen und, wie es scheint, aufrichtig: „im Namen der Menschlichkeit“.',
     narratives: {
       A: "Eine bewusst offen gelassene Tür hätte die spätere Entwicklung vorweggenommen, statt sie als schleichenden Prozess zu zeigen.",
       B: "Im Stillen schon zu rechnen, während man öffentlich ablehnt, wäre zynischer, als es die Anfangsszene der Handlung zeigt.",
@@ -281,6 +282,7 @@ const results = {
     B: { pct: 58, label: "Selbst mitgekauft" },
     C: { pct: 25, label: "Suizid nahegelegt" },
     historical: 'C',
+    fact: 'Im Stück besucht der Bürgermeister Ill, bringt ihm ein Gewehr und legt ihm den Selbstmord als „ehrenhaften“ Ausweg nahe. Der Stadt bliebe so die Entscheidung erspart.',
     narratives: {
       A: "Öffentlich zu warnen hätte den schleichenden Verfall vielleicht gestoppt — im Stück unternimmt niemand diesen Schritt.",
       B: "Auch das würde zur allgemeinen Stimmung passen — im Stück ist es aber eine gezieltere, persönlichere Wendung, die den Bürgermeister belastet.",
@@ -292,6 +294,7 @@ const results = {
     B: { pct: 24, label: "Tat verhindert" },
     C: { pct: 15, label: "Wahrheit benannt" },
     historical: 'A',
+    fact: 'Im Stück leitet der Bürgermeister die Versammlung bis zum Ende. Die Tat geschieht, und die offizielle Version, Ill sei an einem Herzschlag gestorben, wird stillschweigend hingenommen.',
     narratives: {
       A: "Genau so endet die Versammlung im Stück: die Tat geschieht, die offizielle Version vom Herzinfarkt wird stillschweigend akzeptiert.",
       B: "Ein Eingreifen in letzter Sekunde hätte die gesamte Konsequenz der Handlung — den käuflichen moralischen Verfall — verhindert, den Dürrenmatt zeigen wollte.",
@@ -375,7 +378,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

@@ -276,6 +276,7 @@ const results = {
     B: { pct: 44, label: "Zugesagt" },
     C: { pct: 17, label: "Offen widersprochen" },
     historical: 'B',
+    fact: 'Gutenberg sagte zu. Ohne Fusts Geld gab es keine Presse, also kam die Bibel zuerst.',
     narratives: {
       A: "Der Versuch, beides zu vereinen, ist menschlich naheliegend — und in starren Verträgen oft schwer durchzuhalten.",
       B: "Ohne Kapital keine Erfindung — Pragmatismus, der historisch genau das war, was geschah.",
@@ -287,6 +288,7 @@ const results = {
     B: { pct: 35, label: "Heimlich gedruckt" },
     C: { pct: 38, label: "Offen versucht zu überzeugen" },
     historical: 'B',
+    fact: 'Ganz genau weiß man es nicht. Wahrscheinlich nutzte Gutenberg Zeit und Mittel für mehr, als im Vertrag mit Fust vorgesehen war, ohne ihn einzubeziehen. Das wurde später einer der Streitpunkte zwischen beiden.',
     narratives: {
       A: "Den Vertrag für bindend zu halten wiegt Loyalität gegenüber der Abmachung schwerer als die eigene Vision.",
       B: "Der heimliche Weg ist riskant, aber historisch wohl am nächsten dran: Gutenberg nutzte Zeit und Mittel für die Bibel, mehr als im ursprünglichen Vertrag mit Fust vorgesehen war.",
@@ -298,6 +300,7 @@ const results = {
     B: { pct: 31, label: "Bis zum Ende gekämpft" },
     C: { pct: 20, label: "Alles überlassen" },
     historical: 'A',
+    fact: 'Gutenberg verlor die große Werkstatt an Fust, arbeitete aber mit neuer Unterstützung andernorts weiter.',
     narratives: {
       A: "Nah an dem, was in der Realität geschah: Gutenberg verlor die große Werkstatt an Fust, baute aber mit neuer Unterstützung andernorts weiter.",
       B: "Idealismus gegen wirtschaftliche Realität — historisch verlor Gutenberg den Rechtsstreit trotzdem.",
@@ -381,7 +384,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

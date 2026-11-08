@@ -292,6 +292,7 @@ const results = {
     B: { pct: 29, label: "Sofort evakuiert" },
     C: { pct: 42, label: "AZ-5 gedrückt" },
     historical: 'C',
+    fact: 'Die Schicht drückte AZ-5, wie es die Vorschrift verlangte. Ausgerechnet das löste durch einen Konstruktionsfehler, den niemand im Kontrollraum kannte, den fatalen Leistungsanstieg aus: Die vorschriftsmäßige Reaktion wurde zur unmittelbaren Ursache der Explosion.',
     narratives: {
       A: "Andere Maßnahmen zuerst zu versuchen hätte wertvolle Sekunden gekostet — in der eskalierenden Lage praktisch keine Option.",
       B: "Sofort zu evakuieren, ohne die vorgeschriebene Notabschaltung überhaupt zu versuchen, widerspricht jedem damaligen Sicherheitsprotokoll für diese Situation.",
@@ -375,7 +376,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

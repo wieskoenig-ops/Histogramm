@@ -293,6 +293,7 @@ const results = {
     B: { pct: 55, label: "Ernste Schlussrede behalten" },
     C: { pct: 21, label: "Rede gekürzt" },
     historical: 'B',
+    fact: 'Chaplin behielt die ernste Rede direkt in die Kamera. Es war die erste Szene seiner Karriere, in der er überhaupt zum Publikum sprach.',
     narratives: {
       A: "Die ursprünglich geplante Tanznummer wäre die sicherere, komödiantischere Wahl gewesen — Chaplin ersetzte sie bewusst durch die politische Rede.",
       B: "Genau das entschied Chaplin: die direkte, ernste Ansprache blieb erhalten — die erste Szene seiner Karriere, in der er überhaupt zum Publikum sprach.",
@@ -376,7 +377,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

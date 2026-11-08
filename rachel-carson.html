@@ -284,6 +284,7 @@ const results = {
     B: { pct: 61, label: "Kleinem Kreis anvertraut, weitergearbeitet" },
     C: { pct: 24, label: "Pausiert" },
     historical: 'B',
+    fact: 'Carson sagte es nur wenigen Vertrauten und arbeitete weiter, nach außen unverändert, durch Mastektomie und Bestrahlung hindurch, während sich die Krankheit längst ausbreitete.',
     narratives: {
       A: "Mit der Krankheit an die Öffentlichkeit zu gehen, hätte Mitgefühl wecken können — aber auch genau das Bild der kranken, emotionalen Frau bedient, das ihre Gegner zeichnen wollten. Carson schwieg.",
       B: "Das ist exakt Carsons Weg: durch Mastektomie und Bestrahlung hindurch, nach außen unverändert, während sich die Krankheit längst ausbreitete.",
@@ -378,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

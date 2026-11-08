@@ -273,6 +273,7 @@ const results = {
     B: { pct: 11, label: "Erst abwarten" },
     C: { pct: 71, label: "Freie Rückkehrbahn" },
     historical: 'C',
+    fact: 'Das Kontrollzentrum entschied sich für den Weg um den Mond: Kurskorrekturen mit dem Triebwerk der Mondfähre, langsamer, aber ohne das beschädigte Servicemodul zu riskieren.',
     narratives: {
       A: "Die direkte Umkehr hätte Zeit gespart — aber niemand wusste, wie stark das Triebwerk des Servicemoduls durch die Explosion beschädigt war. Das Kontrollzentrum vermied dieses Risiko bewusst.",
       B: "Abzuwarten hätte in dieser Lage nur noch mehr Sauerstoff und Zeit gekostet, die ohnehin knapp wurden.",
@@ -378,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

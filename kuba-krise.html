@@ -276,6 +276,7 @@ const results = {
     B: { pct: 38, label: "Zustimmung zum Kapitän" },
     C: { pct: 21, label: "Verweigerung" },
     historical: 'A',
+    fact: 'Der Offizier Wassili Archipow wählte in der echten Geschichte diesen dritten Weg: weder gehorchen noch verweigern, sondern zuerst wissen wollen, was oben wirklich geschah.',
     narratives: {
       A: "Der dritte Weg — weder gehorchen noch verweigern, sondern zuerst wissen wollen — ist genau das, was in der echten Geschichte der Offizier Wassili Archipow tat.",
       B: "Diese Logik — keine Zeit, keine Information, also handeln — ist genau die Logik, die fast zum Atomkrieg geführt hätte.",
@@ -287,6 +288,7 @@ const results = {
     B: { pct: 32, label: "Hart geblieben" },
     C: { pct: 46, label: "Kompromiss: Auftauchen" },
     historical: 'C',
+    fact: 'Archipow blieb bei seinem Nein und schlug vor aufzutauchen. Die Hartnäckigkeit dieses Einzelnen hat die Geschichte verändert.',
     narratives: {
       A: "Auf Sehrohrtiefe zu gehen, hätte vielleicht Klarheit gebracht — aber den Abschuss grundsätzlich freigegeben. Archipow gab seine Zustimmung nicht.",
       B: "Vollständig stur zu bleiben — historisch betrachtet hat genau diese Sturheit möglicherweise die Welt gerettet.",
@@ -298,6 +300,7 @@ const results = {
     B: { pct: 51, label: "Auftauchen erzwingen" },
     C: { pct: 35, label: "Funktiefe verlangt" },
     historical: 'B',
+    fact: 'Das U-Boot tauchte auf, statt zu feuern. Archipows Weigerung, dem Angriffsbefehl zuzustimmen, verhinderte mitten in der Kubakrise den Abschuss eines Atomtorpedos.',
     narratives: {
       A: "Unter extremem Druck bleibt der Reflex zur Zurückhaltung oft stärker als gedacht — Feuer freizugeben wäre der seltenere Ausgang gewesen.",
       B: "Genau das geschah real: Auftauchen statt Schießen. Archipows Weigerung, dem Angriffsbefehl zuzustimmen, verhinderte mitten in der Kubakrise einen Atomtorpedo-Abschuss.",
@@ -381,7 +384,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

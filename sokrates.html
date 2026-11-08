@@ -280,6 +280,7 @@ const results = {
     B: { pct: 43, label: "Flucht angenommen" },
     C: { pct: 31, label: "Abgewartet" },
     historical: 'A',
+    fact: 'Sokrates lehnte Kritons Angebot zur Flucht ab. Wer dem Gesetz nur gehorche, wenn es bequem sei, habe ihm nie wirklich gehorcht. So überliefert es Platon.',
     narratives: {
       A: "Das Prinzip steht über dem Leben. Genau das lehrte Sokrates sein ganzes Leben. Und genau das tat er.",
       B: "Leben ist Leben, und ein ungerechtes Urteil verdient keinen Gehorsam. Das ist ein starkes Argument. Sokrates folgte ihm nicht.",
@@ -291,6 +292,7 @@ const results = {
     B: { pct: 20, label: "Gegenfrage gestellt" },
     C: { pct: 51, label: "Widerspruch: Prinzip" },
     historical: 'C',
+    fact: 'Sokrates widersprach Kriton: Nicht wie lange man lebe, zähle, sondern wie. Eine Flucht hätte alles verraten, was er gelehrt hatte. So überliefert es Platon im Dialog „Kriton“.',
     narratives: {
       A: "Sich von Kritons Argument überzeugen zu lassen — die Verantwortung gegenüber Kindern und Schülern wiegt schwer. Sokrates sah das anders.",
       B: "Den Spieß umzudrehen und die unbequeme Frage zurückzustellen ist typisch für Sokrates — auch wenn er es hier wohl nicht tat.",
@@ -302,6 +304,7 @@ const results = {
     B: { pct: 18, label: "Schweigen, trinken" },
     C: { pct: 44, label: "Nein, kein Grund zur Angst" },
     historical: 'C',
+    fact: 'Nach Platons Bericht trank Sokrates den Schierlingsbecher gefasst und ohne Furcht. Wer gut gelebt habe, so seine Haltung, habe keinen Grund, den Tod zu fürchten.',
     narratives: {
       A: "Ja zur Angst zu sagen, ohne daraus ein Argument zu machen, ist vielleicht die ehrlichste Antwort.",
       B: "Schweigen als letzte Antwort wäre die radikalste Wahl gewesen, und vielleicht die würdevollste. Aber Sokrates sprach bis zuletzt.",
@@ -385,7 +388,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

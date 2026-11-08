@@ -295,6 +295,7 @@ const results = {
     B: { pct: 22, label: "Mit Kontrolle weitergemacht" },
     C: { pct: 41, label: "Weiter unterschrieben" },
     historical: 'C',
+    fact: 'Dalí unterschrieb weiter, Stapel um Stapel. Die Schätzungen schwanken zwischen vierzigtausend und dreihundertfünfzigtausend blanko signierten Blättern. Wie viel davon Krankheit, wie viel Ausbeutung durch sein Umfeld und wie viel eigener Wille war, ist bis heute umstritten.',
     narratives: {
       A: "Aufzuhören, um den eigenen künstlerischen Ruf zu schützen, wäre eine Möglichkeit gewesen. Genau das tat Dalí nicht — auch als seine Gesundheit sich verschlechterte, wurde weiter signiert, oft mit Hilfe von Assistenten, die die Blätter vor ihm platzierten und wieder wegzogen.",
       B: "Weiterzuunterschreiben, aber auf nummerierte, kontrollierte Auflagen zu bestehen, wäre ein Mittelweg gewesen. Reale Kontrolle über die späteren Drucke hatte Dalí zu diesem Zeitpunkt aber kaum noch — die Entscheidungen darüber trafen längst andere.",
@@ -378,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

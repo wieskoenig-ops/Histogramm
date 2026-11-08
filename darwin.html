@@ -273,6 +273,7 @@ const results = {
     B: { pct: 73, label: "Weiter gewartet" },
     C: { pct: 18, label: "Vorsichtige Kurzfassung" },
     historical: 'B',
+    fact: 'Darwin wartete und sammelte weiter Beweise, vierzehn Jahre lang. Unter anderem untersuchte er acht Jahre lang Rankenfüßer, um seine Methode wasserdicht zu machen.',
     narratives: {
       A: "Ein sofortiges Veröffentlichen 1844 hätte einen Unterschied gemacht: Darwin tat es nicht. Vierzehn Jahre später holte ihn genau das ein, was er befürchtet hatte — jemand anderes kam ihm zuvor.",
       B: "Das war Darwins tatsächlicher Weg: vierzehn weitere Jahre, in denen er unter anderem acht Jahre lang Rankenfüßer untersuchte, nur um seine Methode wasserdicht zu machen.",
@@ -378,7 +379,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

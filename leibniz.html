@@ -270,6 +270,7 @@ const results = {
     B: { pct: 20, label: "Abgewartet" },
     C: { pct: 63, label: "Offen korrespondiert" },
     historical: 'C',
+    fact: 'Leibniz tauschte sich über Oldenburg und die Royal Society mit englischen Gelehrten aus, Jahre bevor er seine Ergebnisse 1684 veröffentlichte. Dieser Briefwechsel wurde später zum Nährboden für die Plagiatsvorwürfe.',
     narratives: {
       A: "Sofort und ohne jeden Austausch zu veröffentlichen, entsprach nicht der wissenschaftlichen Praxis der Zeit — Briefwechsel vor Publikation war üblich.",
       B: "Endlos abzuwarten hätte die eigene Priorität eher geschwächt als gestärkt.",
@@ -375,7 +376,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';

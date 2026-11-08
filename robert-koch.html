@@ -270,6 +270,7 @@ const results = {
     B: { pct: 71, label: "Erst gründlich bestätigt" },
     C: { pct: 13, label: "Informell geteilt" },
     historical: 'B',
+    fact: 'Koch prüfte weiter, an vielen Tieren und Gewebeproben, bis jeder Schritt seines Nachweises saß. So ging er 1882 bei der Entdeckung des Tuberkulose-Erregers vor. Seine Kriterien für den Erregernachweis wurden später als „Koch\'sche Postulate“ bekannt.',
     narratives: {
       A: "Vorschnelle Veröffentlichung hätte dem sorgfältigen Vorgehen widersprochen, das diese Entdeckung tatsächlich auszeichnete.",
       B: "Genau das entspricht Kochs Vorgehen bei der Tuberkulose-Entdeckung von 1882: methodisch, mehrfach überprüft, mit klaren Kriterien für den Erregernachweis — später als \"Koch'sche Postulate\" bekannt.",
@@ -375,7 +376,7 @@ async function submitDay(day) {
   // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
   const hist = results[day].historical;
   if (hist && hist !== letter && narratives[hist]) {
-    let t = narratives[hist].replace(/^Genau das [^:]{0,60}:\s*/, '');
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
     t = t.charAt(0).toUpperCase() + t.slice(1);
     const p = document.createElement('p');
     p.style.marginTop = '0.9rem';
