@@ -124,8 +124,7 @@
   }
 
   .surprise-row {
-    text-align: center;
-    margin-top: 1.75rem;
+    margin: -0.25rem 0 1.25rem;
   }
 
   .btn-surprise {
@@ -274,6 +273,8 @@
   /* Histogramm des Tages */
   .daily { margin-bottom: 0.5rem; }
   .daily .card { border: 2px solid var(--amber); margin-bottom: 0.6rem; }
+  #dailyLabel { font-size: 0.82rem; color: var(--amber-dark); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+  #dailyLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
   .daily .card:hover { border-color: var(--amber-dark); }
   .daily .card-title { font-size: 1.45rem; }
   .daily .card-cta { font-weight: bold; }
@@ -391,9 +392,6 @@
   <p class="hero-sub" style="margin-top:1.25rem; font-style: normal; font-size: 0.92rem; opacity: 0.85;">
     Jedes <a href="ueber.html" class="hero-word">Histogramm</a> versetzt dich in einen echten Moment der Geschichte — als Person, die entscheiden muss, ohne zu wissen, wie es ausgeht. Drei kurze Entscheidungen, keine richtige Antwort. Am Ende siehst du, wie andere gewählt haben.
   </p>
-  <div class="surprise-row">
-    <button class="btn-surprise" onclick="surpriseMe()">Überrasch mich →</button>
-  </div>
 </div>
 
 <main>
@@ -404,6 +402,9 @@
     <p class="daily-also" id="dailyAlso" hidden></p>
     <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
     <div class="section-label">Alle Histogramme</div>
+    <div class="surprise-row" id="dailyNext" hidden>
+      <button class="btn-surprise" onclick="surpriseMe()">Überrasch mich →</button>
+    </div>
   </section>
 
   <a class="card" href="wangari-maathai.html" data-tags="Zivilcourage, Umwelt, Frauen, Kenia" data-year="1989" data-region="afrika" data-country="KE" data-kind="person" data-gender="f" data-wikidata="Q46795" data-added="2026-11-06">
@@ -1289,11 +1290,12 @@
       box.hidden = false;
     }
     const clone = pick.cloneNode(true);
-    clone.classList.remove('played');
     clone.removeAttribute('id');
     const id = pick.getAttribute('href').replace('.html', '');
     const done = Streak.playedToday(id);
-    clone.querySelector('.card-cta').textContent = done ? 'Nochmal ansehen →' : 'Jetzt spielen →';
+    // Gespielt: Karte abgehakt, darunter geht es mit einem anderen Histogramm weiter.
+    clone.classList.toggle('played', done);
+    clone.querySelector('.card-cta').textContent = done ? 'Gespielt' : 'Jetzt spielen →';
     document.getElementById('dailyCard').appendChild(clone);
     // Die Originalkarte in der Liste ausblenden, damit sie nicht doppelt erscheint.
     pick.style.display = 'none';
@@ -1301,11 +1303,15 @@
     document.getElementById('dailyLabel').textContent = 'Histogramm des Tages · ' +
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
     const note = document.getElementById('dailyNote');
-    if (done) { note.textContent = '✓ Heute gespielt. Morgen kommt das nächste.'; note.classList.add('done'); }
+    if (done) {
+      note.textContent = '✓ Heute bereits gespielt. Morgen kommt das nächste.';
+      note.classList.add('done');
+      document.getElementById('dailyNext').hidden = false;
+    }
     document.getElementById('daily').hidden = false;
   }
 
-  // "Überrasch mich" — wählt zufällig ein aktives, noch nicht gespieltes Histogramm.
+  // „Überrasch mich“ — wählt zufällig ein noch nicht gespieltes Histogramm.
   // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
   // Die Kontakt-Kachel (vorschlagen.html) wird ausgeschlossen, da sie kein Szenario ist.
