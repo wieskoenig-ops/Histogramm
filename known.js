@@ -13,11 +13,11 @@
  */
 const Known = (() => {
   const API = 'https://histogrammapi.wieskoenig.workers.dev';
-  const MIN_ANSWERS = 20;
+  const MIN_ANSWERS = 10;
 
   const CSS = `
-  .known { max-width: 460px; margin: 0 auto 2rem; padding: 1rem 1.1rem; border: 1px dashed var(--border-strong, rgba(26,24,20,0.28)); border-radius: 2px; text-align: center; }
-  .known-q { font-size: 1rem; line-height: 1.4; margin-bottom: 0.75rem; color: var(--ink, #1a1814); }
+  .known { max-width: 460px; margin: 0 auto 2rem; padding: 1.1rem 1.1rem 1rem; border: 1px solid var(--amber, #c4780a); border-radius: 2px; text-align: center; background: var(--amber-light, #faeeda); }
+  .known-q { font-size: 1.05rem; line-height: 1.4; margin-bottom: 0.75rem; color: var(--ink, #1a1814); }
   .known-btns { display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; }
   .known-btns button { background: white; border: 1px solid var(--border-strong, rgba(26,24,20,0.28)); border-radius: 2px; padding: 0.5rem 0.9rem; font-family: Georgia, serif; font-size: 0.88rem; cursor: pointer; color: var(--ink, #1a1814); }
   .known-btns button:hover:not(:disabled) { border-color: var(--amber, #c4780a); }
@@ -28,6 +28,10 @@ const Known = (() => {
   .known-seg-D { background: var(--ink-muted, #5a574f); }
   .known-seg-B { background: var(--ink-faint, #a09d94); }
   .known-seg-C { background: var(--amber, #c4780a); }
+  .known-dummy { margin-top: 0.85rem; }
+  .known-dummy .known-stack div { background: repeating-linear-gradient(135deg, rgba(26,24,20,0.10) 0 6px, rgba(26,24,20,0.04) 6px 12px); color: var(--ink-faint, #a09d94); border-right: 2px solid var(--amber-light, #faeeda); }
+  .known-dummy .known-stack div:last-child { border-right: 0; }
+  .known-hint { font-size: 0.72rem; color: var(--ink-faint, #a09d94); letter-spacing: 0.03em; }
   .known-stack div.mine { box-shadow: inset 0 0 0 2px var(--amber-dark, #7a4906); }
   .known-legend { display: flex; justify-content: center; gap: 0.9rem; font-size: 0.7rem; color: var(--ink-faint, #a09d94); flex-wrap: wrap; }
   .known-legend span::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 0.3rem; }
@@ -58,13 +62,21 @@ const Known = (() => {
       : `Dann war das heute eine Entdeckung, wie für ${pct} % von ${t} Spielenden.`;
   }
 
+  // Platzhalter-Balken: zeigt schon vor der Antwort, dass hier eine Verteilung entsteht.
+  function dummy(ORDER, hint) {
+    const w = [34, 22, 26, 18];
+    return `<div class="known-dummy"><div class="known-stack">${ORDER.map((k, i) => `<div style="width:${w[i]}%">?</div>`).join('')}</div>`
+      + `<div class="known-hint">${hint}</div></div>`;
+  }
+
   function renderResult(box, counts, mine, labels, story, revisit, ORDER) {
     const t = ORDER.reduce((sum, k) => sum + counts[k], 0);
     const res = box.querySelector('.known-res');
     if (t < MIN_ANSWERS) {
-      res.innerHTML = revisit
-        ? `<div class="known-line">Deine Antwort: ${esc(labels[mine])}. Die Verteilung zeigen wir, sobald ${MIN_ANSWERS} Antworten da sind.</div>`
-        : `<div class="known-line">Danke! Du bist unter den ersten ${MIN_ANSWERS}, die geantwortet haben. Die Verteilung zeigen wir, sobald ${MIN_ANSWERS} Antworten da sind.</div>`;
+      res.innerHTML = dummy(ORDER, `Noch ${MIN_ANSWERS - t > 1 ? (MIN_ANSWERS - t) + ' Antworten' : 'eine Antwort'}, dann erscheint die Verteilung.`)
+        + (revisit
+          ? `<div class="known-line">Deine Antwort: ${esc(labels[mine])}.</div>`
+          : `<div class="known-line">Danke! Du bist unter den ersten ${MIN_ANSWERS}, die geantwortet haben.</div>`);
       return;
     }
     const pct = {};
@@ -92,7 +104,7 @@ const Known = (() => {
 
     box.innerHTML = `<div class="known-q">${esc(opts.q)}</div>`
       + `<div class="known-btns">${ORDER.map(k => `<button type="button" data-k="${k}">${esc(labels[k])}</button>`).join('')}</div>`
-      + `<div class="known-res"></div>`;
+      + `<div class="known-res">${dummy(ORDER, 'Wie viele kannten es? Antworte, dann siehst du die Verteilung.')}</div>`;
     const btns = box.querySelector('.known-btns');
 
     const prev = storageGet(storeKey);
