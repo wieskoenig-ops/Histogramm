@@ -1,8 +1,9 @@
 /**
  * known.js — Frage „Kanntest du … vorher?“ im Epilog.
  *
- * Zählt über dieselbe API wie die Entscheidungen, Schlüssel: PREFIX-kannte-A|B|C
- *   A = gut gekannt, B = nur den Namen / ungefähr, C = gar nicht.
+ * Zählt über dieselbe API wie die Entscheidungen, Schlüssel: PREFIX-kannte-A|B|C|D
+ *   A = gut gekannt, D = Person ja, diese Episode nicht
+ *   (nur bei Personen, story: false), B = nur den Namen / ungefähr, C = gar nicht.
  * Eine Antwort pro Gerät (localStorage). Prozente erst ab MIN_ANSWERS Antworten.
  *
  * Einbindung (am Ende der Seite):
@@ -13,7 +14,6 @@
 const Known = (() => {
   const API = 'https://histogrammapi.wieskoenig.workers.dev';
   const MIN_ANSWERS = 20;
-  const ORDER = ['A', 'B', 'C'];
 
   const CSS = `
   .known { max-width: 460px; margin: 0 auto 2rem; padding: 1rem 1.1rem; border: 1px dashed var(--border-strong, rgba(26,24,20,0.28)); border-radius: 2px; text-align: center; }
@@ -25,12 +25,14 @@ const Known = (() => {
   .known-stack { display: flex; height: 26px; border-radius: 1px; overflow: hidden; margin: 0.2rem 0 0.4rem; }
   .known-stack div { display: flex; align-items: center; justify-content: center; color: white; font-family: 'Courier New', monospace; font-size: 0.72rem; white-space: nowrap; overflow: hidden; }
   .known-seg-A { background: var(--ink, #1a1814); }
+  .known-seg-D { background: var(--ink-muted, #5a574f); }
   .known-seg-B { background: var(--ink-faint, #a09d94); }
   .known-seg-C { background: var(--amber, #c4780a); }
   .known-stack div.mine { box-shadow: inset 0 0 0 2px var(--amber-dark, #7a4906); }
   .known-legend { display: flex; justify-content: center; gap: 0.9rem; font-size: 0.7rem; color: var(--ink-faint, #a09d94); flex-wrap: wrap; }
   .known-legend span::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 0.3rem; }
   .known-legend .l-A::before { background: var(--ink, #1a1814); }
+  .known-legend .l-D::before { background: var(--ink-muted, #5a574f); }
   .known-legend .l-B::before { background: var(--ink-faint, #a09d94); }
   .known-legend .l-C::before { background: var(--amber, #c4780a); }
   .known-line { font-size: 0.88rem; line-height: 1.5; color: var(--ink-muted, #5a574f); font-style: italic; margin-top: 0.5rem; }`;
@@ -43,21 +45,21 @@ const Known = (() => {
   async function fetchCounts(key) {
     const res = await fetch(`${API}/results?prefix=${key}&_=${Date.now()}`);
     const d = await res.json();
-    return { A: d.A || 0, B: d.B || 0, C: d.C || 0 };
+    return { A: d.A || 0, B: d.B || 0, C: d.C || 0, D: d.D || 0 };
   }
 
   function line(k, pct, t, story) {
     if (k === 'A') return pct < 50
       ? `Das können nur ${pct} % von ${t} Spielenden von sich sagen.`
       : `Wie ${pct} % von ${t} Spielenden.`;
-    if (k === 'B') return `So ging es ${pct} % von ${t} Spielenden.`;
+    if (k === 'B' || k === 'D') return `So ging es ${pct} % von ${t} Spielenden.`;
     return pct >= 40
       ? `Du bist in guter Gesellschaft: ${pct} % von ${t} Spielenden ging es genauso.`
       : `Dann war das heute eine Entdeckung, wie für ${pct} % von ${t} Spielenden.`;
   }
 
-  function renderResult(box, counts, mine, labels, story, revisit) {
-    const t = counts.A + counts.B + counts.C;
+  function renderResult(box, counts, mine, labels, story, revisit, ORDER) {
+    const t = ORDER.reduce((sum, k) => sum + counts[k], 0);
     const res = box.querySelector('.known-res');
     if (t < MIN_ANSWERS) {
       res.innerHTML = revisit
@@ -83,7 +85,10 @@ const Known = (() => {
     }
     const key = opts.prefix + '-kannte';
     const storeKey = 'histogramm_kannte_' + opts.prefix;
-    const labels = { A: 'Ja, gut', B: opts.story ? 'Nur ungefähr' : 'Nur den Namen', C: 'Gar nicht' };
+    const labels = opts.story
+      ? { A: 'Ja, gut', B: 'Nur ungefähr', C: 'Gar nicht' }
+      : { A: 'Ja, gut', D: 'Ja, aber diese Episode nicht', B: 'Nur den Namen', C: 'Gar nicht' };
+    const ORDER = opts.story ? ['A', 'B', 'C'] : ['A', 'D', 'B', 'C'];
 
     box.innerHTML = `<div class="known-q">${esc(opts.q)}</div>`
       + `<div class="known-btns">${ORDER.map(k => `<button type="button" data-k="${k}">${esc(labels[k])}</button>`).join('')}</div>`
@@ -96,8 +101,8 @@ const Known = (() => {
       btns.remove();
       box.querySelector('.known-res').innerHTML = `<div class="known-line">Deine Antwort: ${esc(labels[prev])}</div>`;
       fetchCounts(key).then(c => {
-        if (c.A + c.B + c.C === 0) c[prev] = 1; // Zähler hinkt bis zu einer Minute hinterher
-        renderResult(box, c, prev, labels, opts.story, true);
+        if (ORDER.every(k => !c[k])) c[prev] = 1; // Zähler hinkt bis zu einer Minute hinterher
+        renderResult(box, c, prev, labels, opts.story, true, ORDER);
       }).catch(() => {});
       return;
     }
@@ -119,7 +124,7 @@ const Known = (() => {
         console.error('known.js: API nicht erreichbar', err);
       }
       btns.remove();
-      if (counts) renderResult(box, counts, k, labels, opts.story);
+      if (counts) renderResult(box, counts, k, labels, opts.story, false, ORDER);
       else box.querySelector('.known-res').innerHTML = '<div class="known-line">Danke für deine Antwort!</div>';
     });
   }
