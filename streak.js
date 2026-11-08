@@ -221,6 +221,9 @@ const Streak = (() => {
       const id = href.replace('.html', '');
       if (played.includes(id)) {
         card.classList.add('played');
+        // In der Liste deutlich sagen, dass es schon gespielt ist (die Tageskarte setzt ihren Text selbst).
+        const cta = card.querySelector('.card-cta');
+        if (cta && !card.closest('#dailyCard')) cta.textContent = '✓ Bereits gespielt';
       }
     });
   }
