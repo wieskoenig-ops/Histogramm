@@ -281,8 +281,6 @@
   .daily .card-cta { font-weight: bold; }
   .daily-note { font-size: 0.82rem; color: var(--ink-muted); font-style: italic; margin: 0 0 0.25rem; }
   .daily-reason { font-size: 0.95rem; font-style: italic; color: var(--ink); margin: 0 0 0.6rem; }
-  .daily-also { font-size: 0.82rem; color: var(--ink-muted); margin: 0 0 0.4rem; line-height: 1.6; }
-  .daily-also a { color: var(--amber-dark); }
   .daily-note.done { color: var(--amber-dark); font-style: normal; }
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
@@ -394,7 +392,6 @@
     <div class="section-label" id="dailyLabel">Histogramm des Tages</div>
     <p class="daily-reason" id="dailyReason" hidden></p>
     <div id="dailyCard"></div>
-    <p class="daily-also" id="dailyAlso" hidden></p>
     <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
     <div class="section-label" id="listLabel">Alle Histogramme</div>
     <div class="surprise-row" id="dailyNext" hidden>
@@ -1231,8 +1228,7 @@
   // ---- Histogramm des Tages ----
   // Alle sehen am selben (lokalen) Tag dasselbe Szenario. Grundlage sind die Kacheln (a.card[href]).
   // Reihenfolge: fest gemischt über einen Hash des Dateinamens, damit sie nicht von der Position
-  // auf der Seite abhängt. Eine Kachel mit data-added="JJJJ-MM-TT" ist an diesem Tag immer dran
-  // (neue Szenarien der Woche).
+  // auf der Seite abhängt.
   function dailyHash(str) {
     let h = 2166136261;
     for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
@@ -1247,26 +1243,15 @@
     const n = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2026, 0, 1)) / 86400000);
     return sorted[((n % sorted.length) + sorted.length) % sorted.length];
   }
-  // Reihenfolge: neues Szenario von heute > stärkster Anlass aus dem Kalender > feste Rotation.
+  // Reihenfolge: stärkster Anlass aus dem Kalender > feste Rotation. Neue Szenarien reihen sich
+  // in die Rotation ein; nur ein eigens für einen Termin geschriebenes steht als Anlass im Kalender.
   function dailyPick(cards, day) {
     const bySlug = {};
     cards.forEach(function(c) { bySlug[c.getAttribute('href').replace('.html', '')] = c; });
     let anl = [];
     try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
-    const fresh = cards.filter(function(c) { return c.getAttribute('data-added') === day; });
-    let card, reason = null;
-    if (fresh.length) {
-      card = fresh[0];
-      const own = anl.filter(function(a) { return bySlug[a.s] === card; })[0];
-      reason = own ? own.text : 'Neu: heute erschienen.';
-    } else if (anl.length) {
-      card = bySlug[anl[0].s];
-      reason = anl[0].text;
-    } else {
-      card = dailyRotation(cards, day);
-    }
-    const also = anl.filter(function(a) { return bySlug[a.s] !== card; }).slice(0, 2);
-    return { card: card, reason: reason, also: also, bySlug: bySlug };
+    if (anl.length) return { card: bySlug[anl[0].s], reason: anl[0].text };
+    return { card: dailyRotation(cards, day), reason: null };
   }
   function renderDaily() {
     const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
@@ -1281,20 +1266,6 @@
       const r = document.getElementById('dailyReason');
       r.textContent = result.reason;
       r.hidden = false;
-    }
-    if (result.also.length) {
-      const box = document.getElementById('dailyAlso');
-      box.appendChild(document.createTextNode('Außerdem heute: '));
-      result.also.forEach(function(a, i) {
-        if (i) box.appendChild(document.createTextNode(' · '));
-        const link = document.createElement('a');
-        link.href = a.s + '.html';
-        const t = result.bySlug[a.s].querySelector('.card-title');
-        link.textContent = t ? t.textContent.trim() : a.s;
-        box.appendChild(link);
-        if (a.text !== result.reason) box.appendChild(document.createTextNode(' – ' + a.text.replace(/\.$/, '')));
-      });
-      box.hidden = false;
     }
     const clone = pick.cloneNode(true);
     clone.removeAttribute('id');
