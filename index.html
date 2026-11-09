@@ -1282,8 +1282,7 @@
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
     const note = document.getElementById('dailyNote');
     if (done) {
-      note.textContent = '✓ Heute bereits gespielt. Morgen kommt das nächste.';
-      note.classList.add('done');
+      note.hidden = true;   // Die Karte sagt schon „Bereits gespielt“.
       document.getElementById('dailyNext').hidden = false;
     }
     document.getElementById('daily').hidden = false;
