@@ -1243,15 +1243,47 @@
     const n = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2026, 0, 1)) / 86400000);
     return sorted[((n % sorted.length) + sorted.length) % sorted.length];
   }
-  // Reihenfolge: stärkster Anlass aus dem Kalender > feste Rotation. Neue Szenarien reihen sich
-  // in die Rotation ein; nur ein eigens für einen Termin geschriebenes steht als Anlass im Kalender.
+  // Auswahl je Tag: stärkster Anlass aus dem Kalender > Rotation. Neue Szenarien reihen sich ein.
+  // Wiederholungsregel: dasselbe Histogramm des Tages frühestens nach PAUSE Tagen wieder.
+  // Ohne Server muss jeder Browser dieselbe Geschichte kennen: Sie wird ab DAILY_START Tag für Tag
+  // nachgerechnet (deterministisch). Vor RULE_START galt die Regel noch nicht.
+  // Ausnahme: ein eigens für einen Termin geschriebenes Szenario (punkte >= 500) kommt immer.
+  // Reichen die Szenarien nicht für die Pause, kommt das am längsten nicht gezeigte.
+  const DAILY_START = '2026-11-09', RULE_START = '2026-11-12', PAUSE = 70;
+  function dayNum(day) {
+    const p = day.split('-').map(Number);
+    return Math.round(Date.UTC(p[0], p[1] - 1, p[2]) / 86400000);
+  }
+  function numDay(n) { return new Date(n * 86400000).toISOString().slice(0, 10); }
+  function dailyPickOne(cards, bySlug, day, last, rule) {
+    let anl = [];
+    try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
+    const n = dayNum(day);
+    const frei = function(slug) { return !rule || last[slug] === undefined || n - last[slug] >= PAUSE; };
+    const a = anl.filter(function(x) { return x.punkte >= 500 || frei(x.s); })[0];
+    if (a) return { card: bySlug[a.s], reason: a.text };
+    if (!rule) return { card: dailyRotation(cards, day), reason: null };
+    // Rotation: das am längsten nicht gezeigte (nie gezeigte zuerst), bei Gleichstand fest gemischt.
+    let best = null, bestLast = 0, bestH = 0;
+    cards.forEach(function(c) {
+      const slug = c.getAttribute('href').replace('.html', '');
+      const l = last[slug] === undefined ? -Infinity : last[slug];
+      const h = dailyHash(day + slug);
+      if (!best || l < bestLast || (l === bestLast && h < bestH)) { best = c; bestLast = l; bestH = h; }
+    });
+    return { card: best, reason: null };
+  }
   function dailyPick(cards, day) {
     const bySlug = {};
     cards.forEach(function(c) { bySlug[c.getAttribute('href').replace('.html', '')] = c; });
-    let anl = [];
-    try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
-    if (anl.length) return { card: bySlug[anl[0].s], reason: anl[0].text };
-    return { card: dailyRotation(cards, day), reason: null };
+    const last = {};
+    const end = dayNum(day);
+    for (let n = Math.min(dayNum(DAILY_START), end); n < end; n++) {
+      const d = numDay(n);
+      const r = dailyPickOne(cards, bySlug, d, last, d >= RULE_START);
+      last[r.card.getAttribute('href').replace('.html', '')] = n;
+    }
+    return dailyPickOne(cards, bySlug, day, last, day >= RULE_START);
   }
   function renderDaily() {
     const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
@@ -1270,7 +1302,7 @@
     const clone = pick.cloneNode(true);
     clone.removeAttribute('id');
     const id = pick.getAttribute('href').replace('.html', '');
-    const done = Streak.playedToday(id);
+    const done = Streak.playedToday(id) || Streak.getPlayedIds().indexOf(id) !== -1;
     // Gespielt: Karte abgehakt, darunter geht es mit einem anderen Histogramm weiter.
     clone.classList.toggle('played', done);
     clone.querySelector('.card-cta').textContent = done ? '✓ Bereits gespielt' : 'Jetzt spielen →';
