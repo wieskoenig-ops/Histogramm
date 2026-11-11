@@ -1102,6 +1102,22 @@ window.KALENDER_DATEN = [
 "name": "Fritz Haber"
 },
 {
+"s": "rokeya-sakhawat-hussain",
+"t": "geburt",
+"m": 12,
+"d": 9,
+"y": 1880,
+"name": "Roquia Sakhawat Hussain"
+},
+{
+"s": "rokeya-sakhawat-hussain",
+"t": "tod",
+"m": 12,
+"d": 9,
+"y": 1932,
+"name": "Roquia Sakhawat Hussain"
+},
+{
 "s": "alfred-nobel",
 "t": "tod",
 "m": 12,
