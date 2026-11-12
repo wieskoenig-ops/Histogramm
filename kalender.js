@@ -24,11 +24,14 @@ const Kalender = (function() {
 
   // Planbare Ereignisse mit festem Zeitraum (von/bis als JJJJ-MM-TT). Die Wochenaufgabe ergänzt neue,
   // sobald Termine feststehen (Nobelpreis-Bekanntgaben, Olympia, Weltmeisterschaften, Klimakonferenzen …).
-  // Optional: text (eigener Satz statt „Gerade läuft …“) und punkte (Standard 80). Für ein Szenario,
+  // Mehrtägige zählen nur am ersten und letzten Tag.
+  // Optional: text (eigener Satz statt „Heute beginnt/endet …“) und punkte (Standard 80). Für ein Szenario,
   // das eigens für einen Termin geschrieben wurde: von = bis = Termin, s = [slug], punkte: 500.
   const EREIGNISSE = [
     { von: '2026-11-09', bis: '2026-11-20', name: 'die Weltklimakonferenz COP31 in Antalya', s: ['paris-2015', 'wangari-maathai', 'rachel-carson', 'james-lovelock'] }
   ];
+
+  const RAENDER_AB = '2026-11-13';
 
   const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
 
@@ -83,8 +86,17 @@ const Kalender = (function() {
     AKTIONSTAGE.forEach(function(a) {
       if (a.m === monat && a.d === tag) ausThema(a.s, 'Heute ist ' + a.name + '.', 50);
     });
+    // Mehrtägige Ereignisse zählen nur am ersten und am letzten Tag („Heute beginnt …“, „Heute endet …“),
+    // damit nicht tagelang derselbe Anlass die Auswahl bestimmt. Vor RAENDER_AB galt: jeder Tag zählt.
     EREIGNISSE.forEach(function(ev) {
-      if (day >= ev.von && day <= ev.bis) ausThema(ev.s, ev.text || ('Gerade läuft ' + ev.name + '.'), ev.punkte || 80);
+      if (day < ev.von || day > ev.bis) return;
+      let text = ev.text;
+      if (ev.von === ev.bis) text = text || ('Heute ist ' + ev.name + '.');
+      else if (day < RAENDER_AB) text = text || ('Gerade läuft ' + ev.name + '.');
+      else if (day === ev.von) text = text || ('Heute beginnt ' + ev.name + '.');
+      else if (day === ev.bis) text = text || ('Heute endet ' + ev.name + '.');
+      else return;
+      ausThema(ev.s, text, ev.punkte || 80);
     });
 
     liste.sort(function(a, b) { return (b.punkte - a.punkte) || (hash(day + a.s) - hash(day + b.s)); });
