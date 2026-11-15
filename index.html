@@ -284,6 +284,11 @@
   .daily-note.done { color: var(--amber-dark); font-style: normal; }
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
+  .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
+  #listLabel .list-toggle { margin-left: auto; font-size: 0.78rem; color: var(--ink-faint); white-space: nowrap; }
+  #listLabel .list-toggle:hover { color: var(--amber-dark); }
+  #listLabel span { flex: 1; }
+
   .card.played {
     border-color: rgba(196, 120, 10, 0.4);
   }
@@ -371,6 +376,8 @@
 <script src="streak.js"></script>
 <script src="kalender-daten.js"></script>
 <script src="kalender.js"></script>
+<script src="raetsel-daten.js"></script>
+<script src="raetsel.js"></script>
 </head>
 <body>
 
@@ -383,7 +390,7 @@
   <div class="hero-title">Dieselben Fragen.<br><span>Seit 2500 Jahren.</span></div>
   <p class="hero-sub">Im Rückblick ist Geschichte eindeutig. Im Moment war sie es nie.</p>
   <p class="hero-sub" style="margin-top:1.25rem; font-style: normal; font-size: 0.92rem; opacity: 0.85;">
-    Jedes <a href="ueber.html" class="hero-word">Histogramm</a> versetzt dich in einen echten Moment der Geschichte — als Person, die entscheiden muss, ohne zu wissen, wie es ausgeht. Drei kurze Entscheidungen, keine richtige Antwort. Am Ende siehst du, wie andere gewählt haben.
+    Jedes <a href="ueber.html" class="hero-word">Histogramm</a> versetzt dich in einen echten Moment der Geschichte — als Person, die entscheiden muss, ohne zu wissen, wie es ausgeht. Drei kurze Entscheidungen, keine richtige Antwort. Am Ende siehst du, wie andere gewählt haben — und rätst, wer du warst.
   </p>
 </div>
 
@@ -1241,6 +1248,7 @@
     renderDaily();
     Streak.markPlayedCards();
     Streak.renderHeaderStreak('headerStreak');
+    raetselKarten();
   });
 
 
@@ -1339,6 +1347,54 @@
     document.getElementById('daily').hidden = false;
   }
 
+  // ---- Rätselmodus „Wer war's?“ ----
+  // Noch nicht gespielte Personen-Histogramme erscheinen verdeckt: nur Ort, Jahr und Thema.
+  // Sie öffnen im Rätselmodus (?raetsel). Gespielte zeigen den Namen. ?offen zeigt alle mit Namen.
+  const OFFEN = /[?&]offen\b/.test(location.search);
+  function cardSlug(c) { return c.getAttribute('href').split(/[?#]/)[0].replace('.html', ''); }
+  function istRaetsel(slug) {
+    return !OFFEN && !!(window.RAETSEL_DATEN || {})[slug] && Streak.getPlayedIds().indexOf(slug) === -1;
+  }
+  function raetselKarten() {
+    const daten = window.RAETSEL_DATEN || {};
+    let gesamt = 0, offen = 0;
+    document.querySelectorAll('main a.card[href]').forEach(function(c) {
+      const slug = cardSlug(c);
+      if (!daten[slug]) return;
+      const imListe = !c.closest('#dailyCard');
+      if (imListe) { gesamt++; if (!istRaetsel(slug)) offen++; }
+      if (!istRaetsel(slug)) return;
+      c.classList.add('raetsel');
+      c.setAttribute('href', slug + '.html?raetsel');
+      const t = c.querySelector('.card-title');
+      if (t) t.textContent = 'Wer war’s?';
+      const sw = Raetsel.schwaerzer(slug);
+      const teaser = c.querySelector('.card-teaser');
+      if (teaser && sw) teaser.textContent = sw(teaser.textContent);
+      const cta = c.querySelector('.card-cta');
+      if (cta) cta.textContent = imListe ? 'Rätseln →' : 'Jetzt rätseln →';
+      if (!imListe) {
+        const r = document.getElementById('dailyReason');
+        if (sw && !r.hidden) r.textContent = sw(r.textContent);
+        const label = document.getElementById('dailyLabel');
+        label.textContent = label.textContent.replace('Histogramm des Tages', 'Rätsel des Tages');
+        const note = document.getElementById('dailyNote');
+        if (!note.hidden) note.textContent = 'Drei Entscheidungen, dann die Frage: Wer war’s? Heute rätseln alle dasselbe.';
+      }
+    });
+    const ll = document.getElementById('listLabel');
+    if (ll && gesamt) {
+      ll.innerHTML = '';
+      const span = document.createElement('span');
+      span.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + offen + ' von ' + gesamt + ' Personen aufgedeckt';
+      const a = document.createElement('a');
+      a.className = 'list-toggle';
+      a.href = OFFEN ? 'index.html' : 'index.html?offen';
+      a.textContent = OFFEN ? 'Als Rätsel zeigen' : 'Alle Namen zeigen';
+      ll.appendChild(span); ll.appendChild(a);
+    }
+  }
+
   // „Überrasch mich“ — wählt zufällig ein noch nicht gespieltes Histogramm.
   // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
@@ -1349,7 +1405,7 @@
     cards.forEach(function(card) {
       const href = card.getAttribute('href');
       if (href && href !== 'vorschlagen.html') {
-        ids.push(href.replace('.html', ''));
+        ids.push(href.split(/[?#]/)[0].replace('.html', ''));
       }
     });
 
@@ -1362,7 +1418,7 @@
     // statt den Knopf ins Leere laufen zu lassen.
     const pool = unplayed.length > 0 ? unplayed : ids;
     const choice = pool[Math.floor(Math.random() * pool.length)];
-    window.location.href = choice + '.html';
+    window.location.href = choice + '.html' + (istRaetsel(choice) ? '?raetsel' : '');
   }
 
   // Vom Epilog-Knopf „Nächstes Histogramm“ (index.html#weiter): direkt ein noch nicht gespieltes Szenario öffnen
