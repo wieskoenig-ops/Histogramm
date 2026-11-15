@@ -285,9 +285,8 @@
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
   .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
-  #listLabel .list-toggle { margin-left: auto; font-size: 0.78rem; color: var(--ink-faint); white-space: nowrap; }
-  #listLabel .list-toggle:hover { color: var(--amber-dark); }
-  #listLabel span { flex: 1; }
+  .list-toggle { display: block; margin: -0.4rem 0 1rem 2.2rem; font-size: 0.8rem; font-style: italic; color: var(--ink-faint); }
+  .list-toggle:hover { color: var(--amber-dark); }
 
   .card.played {
     border-color: rgba(196, 120, 10, 0.4);
@@ -1384,14 +1383,12 @@
     });
     const ll = document.getElementById('listLabel');
     if (ll && gesamt) {
-      ll.innerHTML = '';
-      const span = document.createElement('span');
-      span.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + offen + ' von ' + gesamt + ' Personen aufgedeckt';
+      ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + offen + ' von ' + gesamt + ' aufgedeckt';
       const a = document.createElement('a');
       a.className = 'list-toggle';
       a.href = OFFEN ? 'index.html' : 'index.html?offen';
-      a.textContent = OFFEN ? 'Als Rätsel zeigen' : 'Alle Namen zeigen';
-      ll.appendChild(span); ll.appendChild(a);
+      a.textContent = OFFEN ? 'Ungespielte wieder als Rätsel zeigen' : 'Lieber alle Namen sehen?';
+      ll.parentNode.insertBefore(a, ll.nextSibling);
     }
   }
 
