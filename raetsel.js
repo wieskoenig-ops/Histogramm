@@ -56,6 +56,89 @@ const Raetsel = (() => {
 
   function storageGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function storageSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* egal */ } }
+  // Kleine Belohnung ohne Ankündigung: nach richtiger Antwort zieht einmal ein Schwarm über die Seite.
+  // Boids-Regeln (Zusammenhalt, Ausrichtung, Abstand) plus ein gemeinsamer Zug in eine Richtung.
+  function schwarm() {
+    try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) { /* weiter */ }
+    const cv = document.createElement('canvas');
+    cv.setAttribute('aria-hidden', 'true');
+    cv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:50';
+    document.body.appendChild(cv);
+    const ctx = cv.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = window.innerWidth, H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+    const tinte = getComputedStyle(document.body).color || '#1a1814';
+    const rechts = Math.random() < 0.5;
+    const dir = rechts ? 1 : -1;
+    const tempo = Math.max(W, 500) / 6.5;           // px/s, Querung in gut sechs Sekunden
+    const zugY = -0.12 - Math.random() * 0.12;      // leicht steigend
+    const y0 = H * (0.35 + Math.random() * 0.3);
+    const N = 16 + Math.floor(Math.random() * 6);
+    const boids = [];
+    for (let i = 0; i < N; i++) {
+      boids.push({
+        x: (rechts ? -40 : W + 40) - dir * Math.random() * 140,
+        y: y0 + (Math.random() - 0.5) * 90,
+        vx: dir * tempo * (0.85 + Math.random() * 0.3),
+        vy: tempo * (zugY + (Math.random() - 0.5) * 0.3),
+        ph: Math.random() * 6.28,
+        amber: i === 0,
+      });
+    }
+    const PERC = 60, SEP = 14;
+    let last = performance.now();
+    const start = last;
+    function frame(now) {
+      const gesamt = Math.min((now - last) / 1000, 0.25); last = now;
+      const schritte = Math.max(1, Math.ceil(gesamt / 0.017));
+      for (let s = 0; s < schritte; s++) schritt(gesamt / schritte, now);
+      zeichne(now);
+    }
+    function schritt(dt, now) {
+      for (const b of boids) {
+        let cx = 0, cy = 0, mx = 0, my = 0, sx = 0, sy = 0, n = 0;
+        for (const o of boids) {
+          if (o === b) continue;
+          const dx = o.x - b.x, dy = o.y - b.y, d = Math.hypot(dx, dy);
+          if (d > PERC || d === 0) continue;
+          cx += o.x; cy += o.y; mx += o.vx; my += o.vy; n++;
+          if (d < SEP) { sx -= dx / d; sy -= dy / d; }
+        }
+        let ax = 0, ay = 0;
+        if (n) {
+          ax += (cx / n - b.x) * 0.9 + (mx / n - b.vx) * 1.6;
+          ay += (cy / n - b.y) * 0.9 + (my / n - b.vy) * 1.6;
+        }
+        ax += sx * 90 + (dir * tempo - b.vx) * 0.5;
+        ay += sy * 90 + (zugY * tempo - b.vy) * 0.5 + Math.sin(now / 700 + b.ph) * 18;
+        b.vx += ax * dt; b.vy += ay * dt;
+        b.x += b.vx * dt; b.y += b.vy * dt;
+      }
+    }
+    function zeichne(now) {
+      const t = (now - start) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineWidth = 1.3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      let sichtbar = false;
+      for (const b of boids) {
+        if (b.x > -60 && b.x < W + 60 && b.y > -60 && b.y < H + 60) sichtbar = true;
+        // Möwen-Silhouette: zwei Flügelbögen, die Spitzen schlagen auf und ab
+        const f = Math.sin(t * 9 + b.ph) * 2.6;
+        ctx.beginPath();
+        ctx.moveTo(b.x - 6, b.y - f);
+        ctx.quadraticCurveTo(b.x - 3, b.y - 3.5, b.x, b.y);
+        ctx.quadraticCurveTo(b.x + 3, b.y - 3.5, b.x + 6, b.y - f);
+        ctx.strokeStyle = b.amber ? '#c4780a' : tinte;
+        ctx.globalAlpha = b.amber ? 0.85 : 0.55;
+        ctx.stroke();
+      }
+      if ((t > 1.5 && !sichtbar) || t > 15) { cv.remove(); return; }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
   function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
   // Namen als ganze Wörter, mit Genitiv („Semmelweis'“, „Mozarts“). Längste Form zuerst.
@@ -251,6 +334,7 @@ const Raetsel = (() => {
       try { if (typeof Streak !== 'undefined') Streak.markPlayed(cfg.slug); } catch (e) { /* egal */ }
       teilenKnopf(erg.querySelector('.raetsel-teilen'), richtig);
       if (!richtig) gehoert(erg.querySelector('.raetsel-gehoert'));
+      if (richtig && !schonGezaehlt) setTimeout(schwarm, 1600);
       if (!schonGezaehlt) {
         storageSet(KEY, k);
         try { await fetch(`${API}/vote?key=${cfg.prefix}-erkannt-${k}`, { method: 'POST' }); } catch (e) { /* offline */ }
