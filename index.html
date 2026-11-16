@@ -124,8 +124,12 @@
   }
 
   .surprise-row {
-    margin: -0.25rem 0 1.25rem;
+    margin: 0.2rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
   }
+  .surprise-row[hidden] { display: none; }
 
   .btn-surprise {
     background: none;
@@ -274,7 +278,7 @@
   .daily { margin-bottom: 0.5rem; }
   .daily .card { border: 2px solid var(--amber); margin-bottom: 0.6rem; }
   #dailyLabel, #listLabel { font-size: 0.82rem; color: var(--amber-dark); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
-  #listLabel { color: var(--ink); }
+  #listLabel { color: var(--ink); margin-top: 3rem; padding-top: 2.2rem; border-top: 1px solid var(--border-strong); font-size: 0.9rem; }
   #dailyLabel::before, #listLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
   .daily .card:hover { border-color: var(--amber-dark); }
   .daily .card-title { font-size: 1.45rem; }
@@ -285,13 +289,12 @@
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
   .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
-  .sammlung { margin: -0.4rem 0 1.2rem; }
-  .sammlung.offen { padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
-  .sammlung-knopf { background: none; border: 0; padding: 0.2rem 0 0.2rem 2.2rem; margin-bottom: 0.6rem; font-family: Georgia, serif; font-size: 0.85rem; font-style: italic; color: var(--amber-dark); cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .sammlung-knopf { background: none; border: 1px solid var(--amber); border-radius: 999px; padding: 0.7rem 1.4rem; font-family: 'Georgia', serif; font-size: 0.85rem; letter-spacing: 0.03em; color: var(--amber-dark); cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
   .sammlung-knopf::after { content: ' ▸'; }
-  .sammlung.offen .sammlung-knopf::after { content: ' ▾'; }
-  .sammlung-karten { display: none; }
-  .sammlung.offen .sammlung-karten { display: block; }
+  .sammlung-knopf[aria-expanded="true"] { background: var(--amber-light); }
+  .sammlung-knopf[aria-expanded="true"]::after { content: ' ▾'; }
+  .sammlung { display: none; padding-bottom: 1rem; border-bottom: 1px solid var(--border-strong); margin-bottom: 2.2rem; }
+  .sammlung.offen { display: block; }
 
   .card.played {
     border-color: rgba(196, 120, 10, 0.4);
@@ -1320,20 +1323,20 @@
       return c.getAttribute('href') !== 'vorschlagen.html' && c.style.display !== 'none' && gespielt.indexOf(cardSlug(c)) !== -1;
     });
     if (!karten.length) return;
-    // Ein echter Knopf statt <details>: auf dem iPad reicht so sicher ein Tipp.
-    const box = document.createElement('div');
-    box.className = 'sammlung';
+    // Knopf neben „Überrasch mich“ (echter Knopf: auf dem iPad reicht ein Tipp),
+    // die Karten klappen direkt über der Liste auf.
     const knopf = document.createElement('button');
     knopf.type = 'button';
     knopf.className = 'sammlung-knopf';
     knopf.textContent = 'Bereits gespielt: ' + karten.length;
-    const inhalt = document.createElement('div');
-    inhalt.className = 'sammlung-karten';
-    karten.forEach(function(c) { inhalt.appendChild(c); });
-    box.appendChild(knopf);
-    box.appendChild(inhalt);
-    const ll = document.getElementById('listLabel');
-    ll.parentNode.insertBefore(box, ll.nextSibling);
+    const reihe = document.getElementById('dailyNext');
+    reihe.appendChild(knopf);
+    reihe.hidden = false;
+    const box = document.createElement('div');
+    box.className = 'sammlung';
+    karten.forEach(function(c) { box.appendChild(c); });
+    const sek = document.getElementById('daily');
+    sek.parentNode.insertBefore(box, sek.nextSibling);
     function setze(auf) {
       box.classList.toggle('offen', auf);
       knopf.setAttribute('aria-expanded', auf ? 'true' : 'false');
@@ -1348,12 +1351,13 @@
   }
 
 
+
   // „Überrasch mich“ — wählt zufällig ein noch nicht gespieltes Histogramm.
   // Nutzt die bereits vorhandenen Kacheln (a.card[href]) als einzige Datenquelle,
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
   // Die Kontakt-Kachel (vorschlagen.html) wird ausgeschlossen, da sie kein Szenario ist.
   function surpriseMe() {
-    const cards = document.querySelectorAll('main > a.card[href], main .sammlung-karten > a.card[href]');
+    const cards = document.querySelectorAll('main > a.card[href], main > .sammlung > a.card[href]');
     const ids = [];
     cards.forEach(function(card) {
       const href = card.getAttribute('href');
