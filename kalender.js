@@ -1,4 +1,5 @@
 // Kalender für das „Histogramm des Tages“: findet Anlässe, die zu einem Szenario passen.
+// Seit 17.11.2026 bestimmen Anlässe nicht mehr die Auswahl, sie erscheinen nur als „Übrigens: …“ unter dem Rätsel des Tages.
 // Automatische Jahrestage (Szenendaten, Geburts- und Todestage) kommen aus kalender-daten.js,
 // erzeugt von histogramm-tools/kalender_bauen.py. Die Listen unten werden von Hand gepflegt.
 const Kalender = (function() {
@@ -26,8 +27,8 @@ const Kalender = (function() {
   // Planbare Ereignisse mit festem Zeitraum (von/bis als JJJJ-MM-TT). Die Wochenaufgabe ergänzt neue,
   // sobald Termine feststehen (Nobelpreis-Bekanntgaben, Olympia, Weltmeisterschaften, Klimakonferenzen …).
   // Mehrtägige zählen nur am ersten und letzten Tag.
-  // Optional: text (eigener Satz statt „Heute beginnt/endet …“) und punkte (Standard 80). Für ein Szenario,
-  // das eigens für einen Termin geschrieben wurde: von = bis = Termin, s = [slug], punkte: 500.
+  // Optional: text (eigener Satz statt „Heute beginnt/endet …“), s (passende Szenarien, darf fehlen) und punkte (Standard 80).
+  // Seit 17.11.2026 wählen Anlässe nicht mehr das Tagesrätsel, sie erscheinen nur als „Übrigens: …“.
   const EREIGNISSE = [
     { von: '2026-11-09', bis: '2026-11-20', name: 'die Weltklimakonferenz COP31 in Antalya', s: ['paris-2015', 'wangari-maathai', 'rachel-carson', 'james-lovelock'] }
   ];
@@ -74,18 +75,19 @@ const Kalender = (function() {
         text = 'Heute vor ' + n + ' Jahren starb ' + e.name + '.';
         punkte = 60;
       }
-      liste.push({ s: e.s, text: text, punkte: punkte + rundBonus(n) });
+      liste.push({ s: e.s, t: e.t, name: e.name || '', text: text, punkte: punkte + rundBonus(n) });
     });
 
-    function ausThema(s, text, punkte) {
-      const passend = s.filter(function(x) { return da.has(x); });
-      if (!passend.length) return;
+    function ausThema(s, text, punkte, t) {
+      const passend = (s || []).filter(function(x) { return da.has(x); });
+      // Ohne passendes Szenario trotzdem als „Übrigens“-Anlass verwendbar.
+      if (!passend.length) { liste.push({ s: '_' + text, t: t, text: text, punkte: punkte }); return; }
       // Innerhalb eines Themas wechselt das Szenario von Jahr zu Jahr bzw. Tag zu Tag.
       passend.sort(function(a, b) { return hash(day + a) - hash(day + b); });
-      passend.forEach(function(x, i) { liste.push({ s: x, text: text, punkte: punkte - i }); });
+      passend.forEach(function(x, i) { liste.push({ s: x, t: t, text: text, punkte: punkte - i }); });
     }
     AKTIONSTAGE.forEach(function(a) {
-      if (a.m === monat && a.d === tag) ausThema(a.s, 'Heute ist ' + a.name + '.', 50);
+      if (a.m === monat && a.d === tag) ausThema(a.s, 'Heute ist ' + a.name + '.', 50, 'tag');
     });
     // Mehrtägige Ereignisse zählen nur am ersten und am letzten Tag („Heute beginnt …“, „Heute endet …“),
     // damit nicht tagelang derselbe Anlass die Auswahl bestimmt. Vor RAENDER_AB galt: jeder Tag zählt.
@@ -97,7 +99,7 @@ const Kalender = (function() {
       else if (day === ev.von) text = text || ('Heute beginnt ' + ev.name + '.');
       else if (day === ev.bis) text = text || ('Heute endet ' + ev.name + '.');
       else return;
-      ausThema(ev.s, text, ev.punkte || 80);
+      ausThema(ev.s, text, ev.punkte || 80, 'ereignis');
     });
 
     liste.sort(function(a, b) { return (b.punkte - a.punkte) || (hash(day + a.s) - hash(day + b.s)); });

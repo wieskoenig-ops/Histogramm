@@ -278,6 +278,11 @@
   .daily { margin-bottom: 0.5rem; }
   .daily .card { border: 2px solid var(--amber); margin-bottom: 0.6rem; }
   #dailyLabel, #listLabel { font-size: 0.82rem; color: var(--amber-dark); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+  #situationenLabel { font-size: 0.9rem; color: var(--ink); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; margin-top: 3rem; padding-top: 2.2rem; border-top: 1px solid var(--border-strong); }
+  #situationenLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
+  .situationen-note { font-size: 0.85rem; font-style: italic; color: var(--ink-muted); margin: -0.4rem 0 1.4rem 2.2rem; }
+  .daily-fakt { font-size: 0.85rem; color: var(--ink-muted); margin: 0.8rem 0 0.25rem; line-height: 1.5; }
+  .daily-fakt i { color: var(--amber-dark); }
   #listLabel { color: var(--ink); margin-top: 3rem; padding-top: 2.2rem; border-top: 1px solid var(--border-strong); font-size: 0.9rem; }
   #dailyLabel::before, #listLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
   .daily .card:hover { border-color: var(--amber-dark); }
@@ -353,7 +358,8 @@
     <p class="daily-reason" id="dailyReason" hidden></p>
     <div id="dailyCard"></div>
     <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
-    <div class="section-label" id="listLabel">Alle Histogramme</div>
+    <p class="daily-fakt" id="dailyFakt" hidden></p>
+    <div class="section-label" id="listLabel">Alle Rätsel</div>
     <div class="surprise-row" id="dailyNext" hidden>
       <button class="btn-surprise" onclick="surpriseMe()">Überrasch mich →</button>
     </div>
@@ -729,29 +735,7 @@
     </div>
   </a>
 
-  <a class="card" href="tschernobyl.html" data-tags="Wissenschaft, Katastrophe, UdSSR" data-year="1986" data-region="europa" data-country="UA" data-kind="rolle" data-gender="-" data-wikidata="Q486" data-added="2026-07-27">
-    <div class="card-header">
-      <span class="card-date">Prypjat, 1986</span>
-      <span class="card-category wissenschaft">Wissenschaft</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Tschernobyl</div>
-      <p class="card-teaser">Ein Test, zehn Stunden zu spät begonnen. Der Reaktor verhält sich nicht so, wie er soll.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
-  <a class="card" href="enthuellungsplattform.html" data-tags="Gewissen, Medien, Transparenz" data-year="2010" data-region="-" data-country="-" data-kind="rolle" data-gender="-" data-wikidata="Q359" data-added="2026-07-27">
-    <div class="card-header">
-      <span class="card-date">2010</span>
-      <span class="card-category gewissen">Gewissen</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Die Enthüllungsplattform</div>
-      <p class="card-teaser">Hunderttausende geheime Dokumente liegen bei dir. Veröffentlichen kann Menschenleben kosten. Verschweigen auch.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
   <a class="card" href="gandhi.html" data-tags="Zivilcourage, Führung, Indien, Gewaltlosigkeit" data-year="1922" data-region="asien" data-country="IN" data-kind="person" data-gender="m" data-wikidata="Q1001" data-added="2026-07-26">
     <div class="card-header">
@@ -885,17 +869,6 @@
     </div>
   </a>
 
-  <a class="card" href="duerrenmatt.html" data-tags="Literatur, Moral, Gerechtigkeit" data-year="1956" data-region="europa" data-country="CH" data-kind="figur" data-gender="m" data-wikidata="Q688919" data-added="2026-07-26">
-    <div class="card-header">
-      <span class="card-date">Güllen, 1956</span>
-      <span class="card-category literatur">Literatur</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Der Besuch der alten Dame</div>
-      <p class="card-teaser">Claire Zachanassian bietet der Stadt eine Milliarde. Die Bedingung: der Tod eines Mannes. Du bist Bürgermeister.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
   <a class="card" href="astrid-lindgren.html" data-tags="Literatur, Kinder, Zivilcourage, Schweden" data-year="1944" data-region="europa" data-country="SE" data-kind="person" data-gender="f" data-wikidata="Q55767" data-added="2026-07-04">
     <div class="card-header">
@@ -909,17 +882,6 @@
     </div>
   </a>
 
-  <a class="card" href="paris-2015.html" data-tags="Führung, Umwelt, Klima, Diplomatie" data-year="2015" data-region="europa" data-country="FR" data-kind="rolle" data-gender="-" data-wikidata="Q21707860" data-added="2026-07-04">
-    <div class="card-header">
-      <span class="card-date">Paris, 2015</span>
-      <span class="card-category fuehrung">Führung</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Paris 2015</div>
-      <p class="card-teaser">Die Zukunft deines Landes hängt buchstäblich vom Meeresspiegel ab. Jetzt verhandelst du um ein einziges Wort.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
   <a class="card" href="james-lovelock.html" data-tags="Wissenschaft, Umwelt, Klima, Gaia" data-year="1973" data-region="europa" data-country="GB" data-kind="person" data-gender="m" data-wikidata="Q210898" data-added="2026-07-04">
     <div class="card-header">
@@ -1029,17 +991,6 @@
     </div>
   </a>
 
-  <a class="card" href="apollo13.html" data-tags="Führung, Wissenschaft, Krise, USA" data-year="1970" data-region="nordamerika" data-country="US" data-kind="rolle" data-gender="-" data-wikidata="Q182252" data-added="2026-07-03">
-    <div class="card-header">
-      <span class="card-date">Houston, 1970</span>
-      <span class="card-category fuehrung">Führung</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Apollo 13</div>
-      <p class="card-teaser">320.000 Kilometer von der Erde entfernt explodiert ein Sauerstofftank. Die nächsten vier Tage entscheiden, ob drei Menschen überleben.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
   <a class="card" href="mandela.html" data-tags="Gewissen, Widerstand, Gerechtigkeit, Südafrika" data-year="1964" data-region="afrika" data-country="ZA" data-kind="person" data-gender="m" data-wikidata="Q8023" data-added="2026-07-03">
     <div class="card-header">
@@ -1089,17 +1040,6 @@
     </div>
   </a>
 
-  <a class="card" href="trainerfrage.html" data-tags="Sport, Führung, Vertrauen, Gegenwart" data-year="2026" data-region="europa" data-country="DE" data-kind="gegenwart" data-gender="-" data-wikidata="-" data-added="2026-07-01">
-    <div class="card-header">
-      <span class="card-date">Heute · 2026</span>
-      <span class="card-category sport">Sport</span>
-    </div>
-    <div class="card-body">
-      <div class="card-title">Der Bundestrainer</div>
-      <p class="card-teaser">Der Stammtorwart ist eine Legende — 38 Jahre alt, lange verletzt. Der Herausforderer ist frisch. Du entscheidest.</p>
-      <div class="card-cta">3 Entscheidungen →</div>
-    </div>
-  </a>
 
   <a class="card" href="rosa-parks.html" data-tags="Zivilcourage, Bürgerrechte, Gesellschaft, USA" data-year="1955" data-region="nordamerika" data-country="US" data-kind="person" data-gender="f" data-wikidata="Q41921" data-added="2026-07-01">
     <div class="card-header">
@@ -1137,6 +1077,77 @@
     </div>
   </a>
 
+
+
+  <div class="section-label" id="situationenLabel">Situationen</div>
+  <p class="situationen-note">Hier gibt es niemanden zu erraten, nur die Entscheidung.</p>
+  <!-- SITUATIONEN: neue Szenarien ohne Person (Rolle, Figur, Gegenwart) hier als erste Karte einfügen -->
+  <a class="card" href="tschernobyl.html" data-tags="Wissenschaft, Katastrophe, UdSSR" data-year="1986" data-region="europa" data-country="UA" data-kind="rolle" data-gender="-" data-wikidata="Q486" data-added="2026-07-27">
+    <div class="card-header">
+      <span class="card-date">Prypjat, 1986</span>
+      <span class="card-category wissenschaft">Wissenschaft</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Tschernobyl</div>
+      <p class="card-teaser">Ein Test, zehn Stunden zu spät begonnen. Der Reaktor verhält sich nicht so, wie er soll.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+  <a class="card" href="enthuellungsplattform.html" data-tags="Gewissen, Medien, Transparenz" data-year="2010" data-region="-" data-country="-" data-kind="rolle" data-gender="-" data-wikidata="Q359" data-added="2026-07-27">
+    <div class="card-header">
+      <span class="card-date">2010</span>
+      <span class="card-category gewissen">Gewissen</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Die Enthüllungsplattform</div>
+      <p class="card-teaser">Hunderttausende geheime Dokumente liegen bei dir. Veröffentlichen kann Menschenleben kosten. Verschweigen auch.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+  <a class="card" href="duerrenmatt.html" data-tags="Literatur, Moral, Gerechtigkeit" data-year="1956" data-region="europa" data-country="CH" data-kind="figur" data-gender="m" data-wikidata="Q688919" data-added="2026-07-26">
+    <div class="card-header">
+      <span class="card-date">Güllen, 1956</span>
+      <span class="card-category literatur">Literatur</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Besuch der alten Dame</div>
+      <p class="card-teaser">Claire Zachanassian bietet der Stadt eine Milliarde. Die Bedingung: der Tod eines Mannes. Du bist Bürgermeister.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+  <a class="card" href="paris-2015.html" data-tags="Führung, Umwelt, Klima, Diplomatie" data-year="2015" data-region="europa" data-country="FR" data-kind="rolle" data-gender="-" data-wikidata="Q21707860" data-added="2026-07-04">
+    <div class="card-header">
+      <span class="card-date">Paris, 2015</span>
+      <span class="card-category fuehrung">Führung</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Paris 2015</div>
+      <p class="card-teaser">Die Zukunft deines Landes hängt buchstäblich vom Meeresspiegel ab. Jetzt verhandelst du um ein einziges Wort.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+  <a class="card" href="apollo13.html" data-tags="Führung, Wissenschaft, Krise, USA" data-year="1970" data-region="nordamerika" data-country="US" data-kind="rolle" data-gender="-" data-wikidata="Q182252" data-added="2026-07-03">
+    <div class="card-header">
+      <span class="card-date">Houston, 1970</span>
+      <span class="card-category fuehrung">Führung</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Apollo 13</div>
+      <p class="card-teaser">320.000 Kilometer von der Erde entfernt explodiert ein Sauerstofftank. Die nächsten vier Tage entscheiden, ob drei Menschen überleben.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
+  <a class="card" href="trainerfrage.html" data-tags="Sport, Führung, Vertrauen, Gegenwart" data-year="2026" data-region="europa" data-country="DE" data-kind="gegenwart" data-gender="-" data-wikidata="-" data-added="2026-07-01">
+    <div class="card-header">
+      <span class="card-date">Heute · 2026</span>
+      <span class="card-category sport">Sport</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Der Bundestrainer</div>
+      <p class="card-teaser">Der Stammtorwart ist eine Legende — 38 Jahre alt, lange verletzt. Der Herausforderer ist frisch. Du entscheidest.</p>
+      <div class="card-cta">3 Entscheidungen →</div>
+    </div>
+  </a>
   <a class="card" href="titanic.html" data-tags="Katastrophe, Führung, Moral" data-year="1912" data-region="meer" data-country="-" data-kind="rolle" data-gender="-" data-wikidata="Q25173" data-added="2026-06-30">
     <div class="card-header">
       <span class="card-date">14. April 1912</span>
@@ -1148,7 +1159,6 @@
       <div class="card-cta">3 Entscheidungen →</div>
     </div>
   </a>
-
 
   <a class="card card-suggest" href="vorschlagen.html">
     <div class="card-header">
@@ -1204,14 +1214,21 @@
   // Ausnahme: ein eigens für einen Termin geschriebenes Szenario (punkte >= 500) kommt immer.
   // Reichen die Szenarien nicht für die Pause, kommt das am längsten nicht gezeigte.
   const DAILY_START = '2026-11-09', RULE_START = '2026-11-12', PAUSE = 70;
+  // Ab hier: Tagesrätsel nur aus Rätseln (Personen), reine Rotation; Anlässe nur noch als „Übrigens“.
+  const NUR_RAETSEL_AB = '2026-11-17';
+  function istRaetselKarte(c) { return !!(window.RAETSEL_DATEN || {})[c.getAttribute('href').replace('.html', '')]; }
   function dayNum(day) {
     const p = day.split('-').map(Number);
     return Math.round(Date.UTC(p[0], p[1] - 1, p[2]) / 86400000);
   }
   function numDay(n) { return new Date(n * 86400000).toISOString().slice(0, 10); }
   function dailyPickOne(cards, bySlug, day, last, rule) {
+    if (day >= NUR_RAETSEL_AB) {
+      const r = cards.filter(istRaetselKarte);
+      if (r.length) cards = r;
+    }
     let anl = [];
-    try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
+    try { if (typeof Kalender !== 'undefined' && day < NUR_RAETSEL_AB) anl = Kalender.anlaesse(day, Object.keys(bySlug)); } catch (e) { anl = []; }
     const n = dayNum(day);
     const frei = function(slug) { return !rule || last[slug] === undefined || n - last[slug] >= PAUSE; };
     const a = anl.filter(function(x) { return x.punkte >= 500 || frei(x.s); })[0];
@@ -1239,6 +1256,34 @@
     }
     return dailyPickOne(cards, bySlug, day, last, day >= RULE_START);
   }
+  // „Übrigens: …“ — ein Anlass des Tages, unabhängig vom Rätsel. Namen ungelöster Rätsel bleiben geschwärzt,
+  // Daten aus Rätseln (Momente) werden nicht genannt, sie würden eine Karte verraten.
+  function tagesFakt(day, cards) {
+    let anl = [];
+    try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, cards.map(function(c) { return c.getAttribute('href').replace('.html', ''); })); } catch (e) { anl = []; }
+    const daten = window.RAETSEL_DATEN || {};
+    // Ereignisse und Aktionstage zuerst, dann Jahrestage von Personen und Szenen.
+    anl = anl.filter(function(a) { return a.t === 'tag' || a.t === 'ereignis'; }).concat(anl.filter(function(a) { return a.t !== 'tag' && a.t !== 'ereignis'; }));
+    let text = null;
+    for (let i = 0; i < anl.length && !text; i++) {
+      const a = anl[i];
+      const raetsel = !!daten[a.s];
+      if (a.t === 'tag' || a.t === 'ereignis') text = a.text;
+      else if (a.t === 'moment') {
+        if (raetsel) continue;
+        const k = cards.filter(function(c) { return c.getAttribute('href') === a.s + '.html'; })[0];
+        const titel = k && k.querySelector('.card-title') ? k.querySelector('.card-title').textContent : '';
+        text = a.text.replace('dieses Histogramms', 'des Histogramms „' + titel + '“').replace('spielt dieses Histogramm', 'spielt das Histogramm „' + titel + '“');
+      } else if (raetsel && istRaetsel(a.s)) {
+        text = a.text.split(a.name).join(Raetsel.BALKEN) + ' Wer das ist, verrät eines unserer Rätsel.';
+      } else text = a.text;
+    }
+    if (!text) return;
+    const el = document.getElementById('dailyFakt');
+    el.innerHTML = '<i>Übrigens:</i> ';
+    el.appendChild(document.createTextNode(text));
+    el.hidden = false;
+  }
   function renderDaily() {
     const cards = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]'))
       .filter(function(c) { return c.getAttribute('href') !== 'vorschlagen.html'; });
@@ -1263,8 +1308,9 @@
     document.getElementById('dailyCard').appendChild(clone);
     // Die Originalkarte in der Liste ausblenden, damit sie nicht doppelt erscheint.
     pick.style.display = 'none';
+    if (day >= NUR_RAETSEL_AB) tagesFakt(day, cards);
     const d = testTag ? new Date(day + 'T12:00:00') : new Date();
-    document.getElementById('dailyLabel').textContent = 'Histogramm des Tages · ' +
+    document.getElementById('dailyLabel').textContent = (day >= NUR_RAETSEL_AB ? 'Rätsel des Tages · ' : 'Histogramm des Tages · ') +
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
     const note = document.getElementById('dailyNote');
     if (done) {
@@ -1311,7 +1357,7 @@
     });
     const ll = document.getElementById('listLabel');
     if (ll && gesamt) {
-      ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + (gesamt - offen) + ' Rätsel offen';
+      ll.textContent = OFFEN ? 'Alle Rätsel' : 'Alle Rätsel · ' + (gesamt - offen) + ' offen';
     }
     if (!OFFEN) sammlung(gesamt);
   }
@@ -1320,7 +1366,7 @@
     const gespielt = Streak.getPlayedIds();
     const karten = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]')).filter(function(c) {
       // Die Listenkopie des heutigen Histogramms ist ausgeblendet (steht oben als Tageskarte) und zählt nicht mit.
-      return c.getAttribute('href') !== 'vorschlagen.html' && c.style.display !== 'none' && gespielt.indexOf(cardSlug(c)) !== -1;
+      return (window.RAETSEL_DATEN || {})[cardSlug(c)] && c.style.display !== 'none' && gespielt.indexOf(cardSlug(c)) !== -1;
     });
     if (!karten.length) return;
     // Knopf neben „Überrasch mich“ (echter Knopf: auf dem iPad reicht ein Tipp),
@@ -1328,7 +1374,7 @@
     const knopf = document.createElement('button');
     knopf.type = 'button';
     knopf.className = 'sammlung-knopf';
-    knopf.textContent = 'Bereits gespielt: ' + karten.length;
+    knopf.textContent = 'Bereits aufgedeckt: ' + karten.length;
     const reihe = document.getElementById('dailyNext');
     reihe.appendChild(knopf);
     reihe.hidden = false;
