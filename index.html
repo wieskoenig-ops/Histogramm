@@ -1311,19 +1311,20 @@
     }
     if (!OFFEN) sammlung(gesamt);
   }
-  // Gelöste Rätsel wandern in eine eingeklappte „Sammlung“ unter der Liste.
+  // Alles Gespielte (gelöste Rätsel und gespielte Rollen) wandert in eine eingeklappte „Sammlung“ unter der Liste.
   function sammlung(gesamt) {
     const daten = window.RAETSEL_DATEN || {};
+    const gespielt = Streak.getPlayedIds();
     const geloest = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]')).filter(function(c) {
-      const slug = cardSlug(c);
-      return daten[slug] && !istRaetsel(slug);
+      return c.getAttribute('href') !== 'vorschlagen.html' && gespielt.indexOf(cardSlug(c)) !== -1;
     });
     if (!geloest.length) return;
+    const aufgedeckt = geloest.filter(function(c) { return daten[cardSlug(c)]; }).length;
     const d = document.createElement('details');
     d.className = 'sammlung';
     try { d.open = localStorage.getItem('histogramm_sammlung_offen') === '1'; } catch (e) { /* egal */ }
     const sum = document.createElement('summary');
-    sum.textContent = 'Deine Sammlung · ' + geloest.length + ' von ' + gesamt + ' aufgedeckt';
+    sum.textContent = 'Deine Sammlung · ' + geloest.length + ' gespielt' + (aufgedeckt ? ', ' + aufgedeckt + ' Rätsel aufgedeckt' : '');
     d.appendChild(sum);
     const vor = document.querySelector('main > a.card-suggest');
     vor.parentNode.insertBefore(d, vor);

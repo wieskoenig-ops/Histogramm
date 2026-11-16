@@ -247,6 +247,8 @@ const Raetsel = (() => {
       erg.querySelector('.raetsel-urteil').textContent = richtig ? 'Richtig — es war ' + cfg.name + '.' : 'Nicht ganz — es war ' + cfg.name + '.';
       erg.querySelector('.raetsel-weiter').addEventListener('click', () => { box.dataset.fertig = '1'; origEpilog(); });
       aufdecken();
+      // Gelöst ist gelöst, auch ohne Epilog: Karte wandert auf der Startseite in die Sammlung.
+      try { if (typeof Streak !== 'undefined') Streak.markPlayed(cfg.slug); } catch (e) { /* egal */ }
       teilenKnopf(erg.querySelector('.raetsel-teilen'), richtig);
       if (!richtig) gehoert(erg.querySelector('.raetsel-gehoert'));
       if (!schonGezaehlt) {
