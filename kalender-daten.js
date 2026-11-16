@@ -1,6 +1,14 @@
 // Automatisch erzeugt von histogramm-tools/kalender_bauen.py — nicht von Hand bearbeiten.
 window.KALENDER_DATEN = [
 {
+"s": "chiune-sugihara",
+"t": "geburt",
+"m": 1,
+"d": 1,
+"y": 1900,
+"name": "Chiune Sugihara"
+},
+{
 "s": "ernest-shackleton",
 "t": "tod",
 "m": 1,
@@ -702,6 +710,14 @@ window.KALENDER_DATEN = [
 "d": 26,
 "y": 2022,
 "name": "James Lovelock"
+},
+{
+"s": "chiune-sugihara",
+"t": "tod",
+"m": 7,
+"d": 31,
+"y": 1986,
+"name": "Chiune Sugihara"
 },
 {
 "s": "otto-warburg",
