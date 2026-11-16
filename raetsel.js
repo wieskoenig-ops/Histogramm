@@ -16,6 +16,8 @@
  * Optional zusatz: [Wörter, die praktisch ein Name sind, z. B. 'Fliegeberg'] werden ebenfalls geschwärzt
  * und beim Aufdecken wieder im Original gezeigt.
  * Nach einer falschen Antwort: „Hattest du von … schon gehört?“, Schlüssel PREFIX-gehoert-J|N.
+ * Nach der Antwort: „Rätsel teilen“ mit Link ins Rätsel, ohne Namen (Ort und Jahr von der Startseiten-Karte).
+ * ?tdt = vom Rätsel des Tages gekommen, dann steht das Datum im Teilen-Text.
  * Raetsel.schwaerzer(slug) liefert eine Funktion, die Namen in einem Text schwärzt (für die Startseite).
  */
 const Raetsel = (() => {
@@ -46,6 +48,9 @@ const Raetsel = (() => {
   .raetsel-gehoert-btns button:disabled { cursor: default; opacity: 0.45; }
   .raetsel-gehoert-btns button.mein { opacity: 1; border-color: var(--ink, #1a1814); }
   .raetsel-gehoert-z { font-size: 0.85rem; font-style: italic; color: var(--ink-muted, #5a574f); margin-top: 0.6rem; }
+  .raetsel-laeuft .share-row { display: none; }
+  .raetsel-teilen { margin-top: 1rem; background: none; border: 1px solid var(--border-strong, rgba(26,24,20,0.28)); border-radius: 2px; padding: 0.55rem 1.1rem; font-family: Georgia, serif; font-size: 0.88rem; cursor: pointer; color: var(--ink, #1a1814); }
+  .raetsel-teilen:hover { border-color: var(--amber, #c4780a); }
   .raetsel-auf { background: var(--amber-light, #faeeda); transition: background 2.5s; }
   @media (max-width: 480px) { .raetsel-opts { grid-template-columns: 1fr; } }`;
 
@@ -100,6 +105,7 @@ const Raetsel = (() => {
       });
       setTimeout(() => document.querySelectorAll('.raetsel-auf').forEach(e => e.classList.remove('raetsel-auf')), 50);
       document.title = document.title.replace('Wer war’s?', cfg.name);
+      document.body.classList.remove('raetsel-laeuft');
     }
 
     const style = document.createElement('style');
@@ -124,6 +130,7 @@ const Raetsel = (() => {
       hero.appendChild(b);
     }
     document.title = 'Histogramm — Wer war’s?';
+    document.body.classList.add('raetsel-laeuft'); // Teilen-Zeilen der Momente würden die Lösung verraten
     schwaerzen(document.body);
 
     // Nach jeder Entscheidung die neu eingesetzten Texte schwärzen.
@@ -195,6 +202,39 @@ const Raetsel = (() => {
       if (frueher) waehle(frueher, true);
     }
 
+    // Ort und Jahr stehen auf der Karte der Startseite („Berlin, 1896“).
+    let ortJahr = null;
+    async function holeOrt() {
+      if (ortJahr !== null) return ortJahr;
+      ortJahr = '';
+      try {
+        const html = await (await fetch('index.html')).text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const karte = doc.querySelector('a.card[href="' + cfg.slug + '.html"] .card-date');
+        if (karte) ortJahr = karte.textContent.trim();
+      } catch (e) { /* ohne Ort */ }
+      return ortJahr;
+    }
+    function teilenKnopf(btn, richtig) {
+      holeOrt();
+      btn.addEventListener('click', async () => {
+        const ort = await holeOrt();
+        const tdt = /[?&]tdt\b/.test(location.search);
+        const datum = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const zeilen = [
+          tdt ? 'Histogramm · Rätsel des Tages vom ' + datum : 'Histogramm · Wer war’s?',
+          (ort ? ort + ': ' : '') + 'Drei Entscheidungen. Wer war’s?',
+          richtig ? 'Ich hab’s erraten. Du auch?' : 'Ich lag daneben. Schaffst du’s?',
+          'https://histogramm.me/' + cfg.slug + '.html?raetsel'
+        ];
+        const text = zeilen.join('\n');
+        try {
+          if (navigator.share) { await navigator.share({ text }); return; }
+        } catch (e) { if (e && e.name === 'AbortError') return; }
+        try { await navigator.clipboard.writeText(text); btn.textContent = 'Kopiert ✓'; setTimeout(() => { btn.textContent = 'Rätsel teilen'; }, 2000); } catch (e) { /* nichts */ }
+      });
+    }
+
     async function antworten(k, schonGezaehlt) {
       box.querySelectorAll('.raetsel-opts button').forEach(b => {
         b.disabled = true;
@@ -204,10 +244,11 @@ const Raetsel = (() => {
       });
       const erg = box.querySelector('.raetsel-erg');
       const richtig = k === 'A';
-      erg.innerHTML = '<div class="raetsel-urteil"></div><div class="raetsel-quote"></div>' + (richtig ? '' : '<div class="raetsel-gehoert"></div>') + '<button class="next-day-btn visible raetsel-weiter" type="button">Epilog lesen →</button>';
+      erg.innerHTML = '<div class="raetsel-urteil"></div><div class="raetsel-quote"></div><button class="raetsel-teilen" type="button">Rätsel teilen</button>' + (richtig ? '' : '<div class="raetsel-gehoert"></div>') + '<button class="next-day-btn visible raetsel-weiter" type="button">Epilog lesen →</button>';
       erg.querySelector('.raetsel-urteil').textContent = richtig ? 'Richtig — es war ' + cfg.name + '.' : 'Nicht ganz — es war ' + cfg.name + '.';
       erg.querySelector('.raetsel-weiter').addEventListener('click', () => { box.dataset.fertig = '1'; origEpilog(); });
       aufdecken();
+      teilenKnopf(erg.querySelector('.raetsel-teilen'), richtig);
       if (!richtig) gehoert(erg.querySelector('.raetsel-gehoert'));
       if (!schonGezaehlt) {
         storageSet(KEY, k);
@@ -230,7 +271,7 @@ const Raetsel = (() => {
     if (typeof SCENARIO_PREFIX === 'undefined') return;
     const slug = location.pathname.split('/').pop().replace(/\.html$/, '');
     const d = (window.RAETSEL_DATEN || {})[slug];
-    if (d) init(Object.assign({ prefix: SCENARIO_PREFIX }, d));
+    if (d) init(Object.assign({ prefix: SCENARIO_PREFIX, slug }, d));
   });
 
   return { init, schwaerzer, BALKEN };

@@ -1375,7 +1375,7 @@
       if (imListe) { gesamt++; if (!istRaetsel(slug)) offen++; }
       if (!istRaetsel(slug)) return;
       c.classList.add('raetsel');
-      c.setAttribute('href', slug + '.html?raetsel');
+      c.setAttribute('href', slug + '.html?raetsel' + (imListe ? '' : '&tdt'));
       const t = c.querySelector('.card-title');
       if (t) t.textContent = 'Wer war’s?';
       const sw = Raetsel.schwaerzer(slug);
