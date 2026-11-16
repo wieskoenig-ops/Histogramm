@@ -13,6 +13,9 @@
  *   <script src="raetsel-daten.js"></script>
  *   <script src="raetsel.js"></script>
  * Startet von selbst, wenn es für den Dateinamen der Seite einen Eintrag gibt.
+ * Optional zusatz: [Wörter, die praktisch ein Name sind, z. B. 'Fliegeberg'] werden ebenfalls geschwärzt
+ * und beim Aufdecken wieder im Original gezeigt.
+ * Nach einer falschen Antwort: „Hattest du von … schon gehört?“, Schlüssel PREFIX-gehoert-J|N.
  * Raetsel.schwaerzer(slug) liefert eine Funktion, die Namen in einem Text schwärzt (für die Startseite).
  */
 const Raetsel = (() => {
@@ -36,6 +39,13 @@ const Raetsel = (() => {
   .raetsel-urteil { font-size: 1.15rem; margin-top: 1.4rem; color: var(--ink, #1a1814); }
   .raetsel-quote { font-size: 0.9rem; font-style: italic; color: var(--ink-muted, #5a574f); margin-top: 0.4rem; }
   .raetsel-weiter { margin-top: 1.4rem; }
+  .raetsel-gehoert { max-width: 420px; margin: 1.4rem auto 0; padding: 1rem; background: var(--amber-light, #faeeda); border-radius: 2px; }
+  .raetsel-gehoert-q { font-size: 1rem; margin-bottom: 0.7rem; color: var(--ink, #1a1814); }
+  .raetsel-gehoert-btns { display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; }
+  .raetsel-gehoert-btns button { background: white; border: 1px solid var(--border-strong, rgba(26,24,20,0.28)); border-radius: 2px; padding: 0.5rem 0.9rem; font-family: Georgia, serif; font-size: 0.88rem; cursor: pointer; color: var(--ink, #1a1814); }
+  .raetsel-gehoert-btns button:disabled { cursor: default; opacity: 0.45; }
+  .raetsel-gehoert-btns button.mein { opacity: 1; border-color: var(--ink, #1a1814); }
+  .raetsel-gehoert-z { font-size: 0.85rem; font-style: italic; color: var(--ink-muted, #5a574f); margin-top: 0.6rem; }
   .raetsel-auf { background: var(--amber-light, #faeeda); transition: background 2.5s; }
   @media (max-width: 480px) { .raetsel-opts { grid-template-columns: 1fr; } }`;
 
@@ -51,7 +61,7 @@ const Raetsel = (() => {
   function schwaerzer(slug) {
     const d = (window.RAETSEL_DATEN || {})[slug];
     if (!d) return null;
-    const re = namensRegex(d.namen);
+    const re = namensRegex(d.namen.concat(d.zusatz || []));
     return t => t.replace(re, BALKEN);
   }
 
@@ -62,7 +72,8 @@ const Raetsel = (() => {
 
     // Lange Namensformen zuerst, damit „Ignaz Semmelweis“ nicht als „Ignaz ▇▇▇▇▇“ übrig bleibt.
     const namen = cfg.namen.slice().sort((a, b) => b.length - a.length);
-    const re = namensRegex(cfg.namen);
+    const re = namensRegex(cfg.namen.concat(cfg.zusatz || []));
+    const original = new Map(); // Textknoten → Originaltext, zum Aufdecken
 
     function schwaerzen(root) {
       const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -70,7 +81,11 @@ const Raetsel = (() => {
       while (w.nextNode()) nodes.push(w.currentNode);
       nodes.forEach(n => {
         if (epilog.contains(n) || box.contains(n)) return;
-        if (re.test(n.nodeValue)) { re.lastIndex = 0; n.nodeValue = n.nodeValue.replace(re, BALKEN); }
+        if (re.test(n.nodeValue)) {
+          re.lastIndex = 0;
+          if (!original.has(n)) original.set(n, n.nodeValue);
+          n.nodeValue = n.nodeValue.replace(re, BALKEN);
+        }
         re.lastIndex = 0;
       });
     }
@@ -80,7 +95,7 @@ const Raetsel = (() => {
       while (w.nextNode()) nodes.push(w.currentNode);
       nodes.forEach(n => {
         if (n.nodeValue.indexOf(BALKEN) === -1) return;
-        n.nodeValue = n.nodeValue.split(BALKEN).join(cfg.kurz || namen[namen.length - 1]);
+        n.nodeValue = original.has(n) ? original.get(n) : n.nodeValue.split(BALKEN).join(cfg.kurz || namen[namen.length - 1]);
         if (n.parentElement) n.parentElement.classList.add('raetsel-auf');
       });
       setTimeout(() => document.querySelectorAll('.raetsel-auf').forEach(e => e.classList.remove('raetsel-auf')), 50);
@@ -148,6 +163,38 @@ const Raetsel = (() => {
       if (frueher) antworten(frueher, true);
     }
 
+    // Nach falscher Antwort: Name schon mal gehört? Unterscheidet „zu schwache Hinweise“ von „echte Entdeckung“.
+    function gehoert(el) {
+      const GKEY = 'histogramm_raetsel_gehoert_' + cfg.prefix;
+      el.innerHTML = '<div class="raetsel-gehoert-q"></div><div class="raetsel-gehoert-btns"></div><div class="raetsel-gehoert-z"></div>';
+      el.querySelector('.raetsel-gehoert-q').textContent = 'Hattest du von ' + cfg.name + ' schon gehört?';
+      const wrap = el.querySelector('.raetsel-gehoert-btns');
+      const z = el.querySelector('.raetsel-gehoert-z');
+      const opts = [['J', 'Ja, aber nicht erkannt'], ['N', 'Nein, noch nie']];
+      async function waehle(g, schon) {
+        wrap.querySelectorAll('button').forEach(b => { b.disabled = true; if (b.dataset.g === g) b.classList.add('mein'); });
+        if (!schon) {
+          storageSet(GKEY, g);
+          try { await fetch(`${API}/vote?key=${cfg.prefix}-gehoert-${g}`, { method: 'POST' }); } catch (e) { /* offline */ }
+        }
+        z.textContent = g === 'N' ? 'Dann war das heute eine Entdeckung.' : 'Danke!';
+        try {
+          const res = await fetch(`${API}/results?prefix=${cfg.prefix}-gehoert&_=${Date.now()}`);
+          const d = await res.json();
+          const t = (d.J || 0) + (d.N || 0);
+          if (t >= MIN_ANSWERS) z.textContent += ' So ging es ' + Math.round((d[g] || 0) / t * 100) + ' % von ' + t + ' Spielenden, die falsch lagen.';
+        } catch (e) { /* ohne Zahlen */ }
+      }
+      opts.forEach(([g, l]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.textContent = l; b.dataset.g = g;
+        b.addEventListener('click', () => waehle(g));
+        wrap.appendChild(b);
+      });
+      const frueher = storageGet(GKEY);
+      if (frueher) waehle(frueher, true);
+    }
+
     async function antworten(k, schonGezaehlt) {
       box.querySelectorAll('.raetsel-opts button').forEach(b => {
         b.disabled = true;
@@ -157,10 +204,11 @@ const Raetsel = (() => {
       });
       const erg = box.querySelector('.raetsel-erg');
       const richtig = k === 'A';
-      erg.innerHTML = '<div class="raetsel-urteil"></div><div class="raetsel-quote"></div><button class="next-day-btn visible raetsel-weiter" type="button">Epilog lesen →</button>';
+      erg.innerHTML = '<div class="raetsel-urteil"></div><div class="raetsel-quote"></div>' + (richtig ? '' : '<div class="raetsel-gehoert"></div>') + '<button class="next-day-btn visible raetsel-weiter" type="button">Epilog lesen →</button>';
       erg.querySelector('.raetsel-urteil').textContent = richtig ? 'Richtig — es war ' + cfg.name + '.' : 'Nicht ganz — es war ' + cfg.name + '.';
       erg.querySelector('.raetsel-weiter').addEventListener('click', () => { box.dataset.fertig = '1'; origEpilog(); });
       aufdecken();
+      if (!richtig) gehoert(erg.querySelector('.raetsel-gehoert'));
       if (!schonGezaehlt) {
         storageSet(KEY, k);
         try { await fetch(`${API}/vote?key=${cfg.prefix}-erkannt-${k}`, { method: 'POST' }); } catch (e) { /* offline */ }
