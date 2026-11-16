@@ -285,11 +285,13 @@
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
   .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
-  .sammlung { margin: 2rem 0 1.5rem; }
-  .sammlung summary { cursor: pointer; list-style: none; font-size: 0.82rem; color: var(--ink); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; margin-bottom: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .sammlung { margin: -0.4rem 0 1.2rem 2.2rem; }
+  .sammlung[open] { margin-left: 0; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+  .sammlung[open] summary { margin-left: 2.2rem; }
+  .sammlung summary { cursor: pointer; list-style: none; font-size: 0.85rem; font-style: italic; color: var(--amber-dark); margin-bottom: 0.8rem; }
   .sammlung summary::-webkit-details-marker { display: none; }
-  .sammlung summary::before { content: '▸'; color: var(--amber); width: 1.6rem; flex: none; text-align: center; transition: transform 0.15s; }
-  .sammlung[open] summary::before { transform: rotate(90deg); }
+  .sammlung summary::after { content: ' ▸'; }
+  .sammlung[open] summary::after { content: ' ▾'; }
   .sammlung summary:hover { color: var(--amber-dark); }
 
   .card.played {
@@ -1316,7 +1318,8 @@
     const daten = window.RAETSEL_DATEN || {};
     const gespielt = Streak.getPlayedIds();
     const geloest = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]')).filter(function(c) {
-      return c.getAttribute('href') !== 'vorschlagen.html' && gespielt.indexOf(cardSlug(c)) !== -1;
+      // Die Listenkopie des heutigen Histogramms ist ausgeblendet (steht oben als Tageskarte) und zählt nicht mit.
+      return c.getAttribute('href') !== 'vorschlagen.html' && c.style.display !== 'none' && gespielt.indexOf(cardSlug(c)) !== -1;
     });
     if (!geloest.length) return;
     const aufgedeckt = geloest.filter(function(c) { return daten[cardSlug(c)]; }).length;
@@ -1324,10 +1327,11 @@
     d.className = 'sammlung';
     try { d.open = localStorage.getItem('histogramm_sammlung_offen') === '1'; } catch (e) { /* egal */ }
     const sum = document.createElement('summary');
-    sum.textContent = 'Deine Sammlung · ' + geloest.length + ' gespielt' + (aufgedeckt ? ', ' + aufgedeckt + ' Rätsel aufgedeckt' : '');
+    sum.textContent = 'Bereits gespielt: ' + geloest.length + (aufgedeckt ? ', davon ' + aufgedeckt + ' Rätsel aufgedeckt' : '');
     d.appendChild(sum);
-    const vor = document.querySelector('main > a.card-suggest');
-    vor.parentNode.insertBefore(d, vor);
+    // Direkt unter „Alle Histogramme · … Rätsel offen“, damit man sie sieht.
+    const ll = document.getElementById('listLabel');
+    ll.parentNode.insertBefore(d, ll.nextSibling);
     geloest.forEach(function(c) { d.appendChild(c); });
     d.addEventListener('toggle', function() {
       try { localStorage.setItem('histogramm_sammlung_offen', d.open ? '1' : '0'); } catch (e) { /* egal */ }
