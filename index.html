@@ -287,6 +287,12 @@
   .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
   .list-toggle { display: block; margin: -0.4rem 0 1rem 2.2rem; font-size: 0.8rem; font-style: italic; color: var(--ink-faint); }
   .list-toggle:hover { color: var(--amber-dark); }
+  .sammlung { margin: 2rem 0 1.5rem; }
+  .sammlung summary { cursor: pointer; list-style: none; font-size: 0.82rem; color: var(--ink); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; margin-bottom: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .sammlung summary::-webkit-details-marker { display: none; }
+  .sammlung summary::before { content: '▸'; color: var(--amber); width: 1.6rem; flex: none; text-align: center; transition: transform 0.15s; }
+  .sammlung[open] summary::before { transform: rotate(90deg); }
+  .sammlung summary:hover { color: var(--amber-dark); }
 
   .card.played {
     border-color: rgba(196, 120, 10, 0.4);
@@ -298,60 +304,6 @@
     font-size: 0.8rem;
     color: var(--amber-dark);
     letter-spacing: 0.04em;
-  }
-
-  /* Kompakte Chip-Darstellung für Platzhalter ("In Vorbereitung") */
-  .chip-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-bottom: 2rem;
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: white;
-    border: 1px solid var(--border-strong);
-    border-radius: 999px;
-    padding: 0.4rem 0.9rem 0.4rem 0.55rem;
-    text-decoration: none;
-    font-size: 0.82rem;
-    transition: border-color 0.15s, transform 0.15s;
-  }
-
-  .chip:hover {
-    border-color: var(--amber);
-    transform: translateY(-1px);
-  }
-
-  .chip-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .chip-dot.fuehrung     { background: #b89a5a; }
-  .chip-dot.krieg        { background: #8fa3b1; }
-  .chip-dot.zivilcourage { background: #c4846a; }
-  .chip-dot.wissenschaft { background: #7a9e8e; }
-  .chip-dot.gewissen     { background: #9a8fb0; }
-  .chip-dot.sport        { background: #b07a5a; }
-  .chip-dot.kunst        { background: #a08070; }
-  .chip-dot.musik        { background: #8a7a9e; }
-  .chip-dot.literatur    { background: #7a9070; }
-  .chip-dot.wirtschaft   { background: #8a7256; }
-
-  .chip-title {
-    font-family: 'Georgia', serif;
-    color: var(--ink);
-  }
-
-  .chip-date {
-    font-size: 0.72rem;
-    color: var(--ink-faint);
   }
 
   footer {
@@ -1195,43 +1147,6 @@
     </div>
   </a>
 
-  <div class="section-label">In Vorbereitung</div>
-
-  <div class="chip-cloud">
-    <a class="chip" href="mauerfall.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Der Grenzoffizier</span><span class="chip-date">Ost-Berlin, 1989</span></a>
-    <a class="chip" href="jesse-owens.html"><span class="chip-dot sport"></span><span class="chip-title">Jesse Owens</span><span class="chip-date">Berlin, 1936</span></a>
-    <a class="chip" href="kindertransporte.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Die Kindertransporte</span><span class="chip-date">Wien, 1938</span></a>
-    <a class="chip" href="bankangestellte.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">Die Bankangestellte</span><span class="chip-date">New York, 2008</span></a>
-    <a class="chip" href="caravaggio.html"><span class="chip-dot kunst"></span><span class="chip-title">Caravaggio</span><span class="chip-date">Rom, 1606</span></a>
-    <a class="chip" href="beatles.html"><span class="chip-dot musik"></span><span class="chip-title">Die Beatles</span><span class="chip-date">London, 1969</span></a>
-    <a class="chip" href="max-brod.html"><span class="chip-dot literatur"></span><span class="chip-title">Max Brod</span><span class="chip-date">Prag, 1924</span></a>
-    <a class="chip" href="petrov.html"><span class="chip-dot gewissen"></span><span class="chip-title">Stanislav Petrov</span><span class="chip-date">Sowjetunion, 1983</span></a>
-    <a class="chip" href="machiavelli.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Machiavelli</span><span class="chip-date">Florenz, 1513</span></a>
-    <a class="chip" href="adenauer.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Adenauer</span><span class="chip-date">Bonn, 1952</span></a>
-    <a class="chip" href="karl-marx.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">Karl Marx</span><span class="chip-date">Köln, 1843</span></a>
-    <a class="chip" href="goscinny-uderzo.html"><span class="chip-dot kunst"></span><span class="chip-title">Goscinny &amp; Uderzo</span><span class="chip-date">Paris, 1977</span></a>
-    <a class="chip" href="keynes.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">John Maynard Keynes</span><span class="chip-date">Paris, 1919</span></a>
-    <a class="chip" href="ada-lovelace.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Ada Lovelace</span><span class="chip-date">London, 1843</span></a>
-    <a class="chip" href="garrett-morgan.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Garrett Morgan</span><span class="chip-date">Cleveland, 1916</span></a>
-    <a class="chip" href="stephanie-kwolek.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Stephanie Kwolek</span><span class="chip-date">Wilmington, 1965</span></a>
-    <a class="chip" href="mutter-teresa.html"><span class="chip-dot gewissen"></span><span class="chip-title">Mutter Teresa</span><span class="chip-date">Kalkutta, 1960er</span></a>
-    <a class="chip" href="stephen-hawking.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Stephen Hawking</span><span class="chip-date">Cambridge, 1985</span></a>
-    <a class="chip" href="antoine-lavoisier.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Antoine Lavoisier</span><span class="chip-date">Paris, 1794</span></a>
-    <a class="chip" href="otto-hahn.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Otto Hahn</span><span class="chip-date">Berlin, 1938</span></a>
-    <a class="chip" href="rene-descartes.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">René Descartes</span><span class="chip-date">Niederlande, 1633</span></a>
-    <a class="chip" href="simone-de-beauvoir.html"><span class="chip-dot literatur"></span><span class="chip-title">Simone de Beauvoir</span><span class="chip-date">Paris, 1949</span></a>
-    <a class="chip" href="chiune-sugihara.html"><span class="chip-dot gewissen"></span><span class="chip-title">Chiune Sugihara</span><span class="chip-date">Kaunas, 1940</span></a>
-    <a class="chip" href="ching-shih.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Ching Shih</span><span class="chip-date">Kanton, 1810</span></a>
-    <a class="chip" href="jane-goodall.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Jane Goodall</span><span class="chip-date">Chicago, 1986</span></a>
-    <a class="chip" href="gertrud-woker.html"><span class="chip-dot gewissen"></span><span class="chip-title">Gertrud Woker</span><span class="chip-date">Bern, 1925</span></a>
-    <a class="chip" href="rose-valland.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Rose Valland</span><span class="chip-date">Paris, 1941</span></a>
-    <a class="chip" href="veuve-clicquot.html"><span class="chip-dot wirtschaft"></span><span class="chip-title">Veuve Clicquot</span><span class="chip-date">Reims, 1805</span></a>
-    <a class="chip" href="sofja-kowalewskaja.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Sofja Kowalewskaja</span><span class="chip-date">St. Petersburg, 1868</span></a>
-    <a class="chip" href="nellie-bly.html"><span class="chip-dot zivilcourage"></span><span class="chip-title">Nellie Bly</span><span class="chip-date">New York, 1887</span></a>
-    <a class="chip" href="emily-warren-roebling.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Emily Warren Roebling</span><span class="chip-date">Brooklyn, 1872</span></a>
-    <a class="chip" href="mamie-phipps-clark.html"><span class="chip-dot wissenschaft"></span><span class="chip-title">Mamie Phipps Clark</span><span class="chip-date">New York, 1946</span></a>
-    <a class="chip" href="sacagawea.html"><span class="chip-dot fuehrung"></span><span class="chip-title">Sacagawea</span><span class="chip-date">Fort Mandan, 1805</span></a>
-  </div>
 
   <a class="card card-suggest" href="vorschlagen.html">
     <div class="card-header">
@@ -1392,17 +1307,37 @@
         if (!note.hidden) note.textContent = 'Drei Entscheidungen, dann die Frage: Wer war’s? Heute rätseln alle dasselbe.';
       }
     });
-    // „In Vorbereitung“: Namen würden spätere Rätsel verraten, also nur Ort und Jahr zeigen.
-    if (!OFFEN) document.querySelectorAll('.chip-title').forEach(function(t) { t.hidden = true; });
     const ll = document.getElementById('listLabel');
     if (ll && gesamt) {
-      ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + offen + ' von ' + gesamt + ' aufgedeckt';
+      ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + (gesamt - offen) + ' Rätsel offen';
       const a = document.createElement('a');
       a.className = 'list-toggle';
       a.href = OFFEN ? 'index.html' : 'index.html?offen';
       a.textContent = OFFEN ? 'Ungespielte wieder als Rätsel zeigen' : 'Lieber alle Namen sehen?';
       ll.parentNode.insertBefore(a, ll.nextSibling);
     }
+    if (!OFFEN) sammlung(gesamt);
+  }
+  // Gelöste Rätsel wandern in eine eingeklappte „Sammlung“ unter der Liste.
+  function sammlung(gesamt) {
+    const daten = window.RAETSEL_DATEN || {};
+    const geloest = Array.prototype.slice.call(document.querySelectorAll('main > a.card[href]')).filter(function(c) {
+      const slug = cardSlug(c);
+      return daten[slug] && !istRaetsel(slug);
+    });
+    if (!geloest.length) return;
+    const d = document.createElement('details');
+    d.className = 'sammlung';
+    try { d.open = localStorage.getItem('histogramm_sammlung_offen') === '1'; } catch (e) { /* egal */ }
+    const sum = document.createElement('summary');
+    sum.textContent = 'Deine Sammlung · ' + geloest.length + ' von ' + gesamt + ' aufgedeckt';
+    d.appendChild(sum);
+    const vor = document.querySelector('main > a.card-suggest');
+    vor.parentNode.insertBefore(d, vor);
+    geloest.forEach(function(c) { d.appendChild(c); });
+    d.addEventListener('toggle', function() {
+      try { localStorage.setItem('histogramm_sammlung_offen', d.open ? '1' : '0'); } catch (e) { /* egal */ }
+    });
   }
 
   // „Überrasch mich“ — wählt zufällig ein noch nicht gespieltes Histogramm.
@@ -1410,7 +1345,7 @@
   // damit keine separate Liste bei jedem neuen Histogramm gepflegt werden muss.
   // Die Kontakt-Kachel (vorschlagen.html) wird ausgeschlossen, da sie kein Szenario ist.
   function surpriseMe() {
-    const cards = document.querySelectorAll('main > a.card[href]');
+    const cards = document.querySelectorAll('main > a.card[href], main > .sammlung > a.card[href]');
     const ids = [];
     cards.forEach(function(card) {
       const href = card.getAttribute('href');
