@@ -285,8 +285,6 @@
 
   /* Gespielte Kacheln — dezenter Amber-Rahmen */
   .card.raetsel .card-title { font-style: italic; color: var(--amber-dark); }
-  .list-toggle { display: block; margin: -0.4rem 0 1rem 2.2rem; font-size: 0.8rem; font-style: italic; color: var(--ink-faint); }
-  .list-toggle:hover { color: var(--amber-dark); }
   .sammlung { margin: 2rem 0 1.5rem; }
   .sammlung summary { cursor: pointer; list-style: none; font-size: 0.82rem; color: var(--ink); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; margin-bottom: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
   .sammlung summary::-webkit-details-marker { display: none; }
@@ -1274,7 +1272,7 @@
 
   // ---- Rätselmodus „Wer war's?“ ----
   // Noch nicht gespielte Personen-Histogramme erscheinen verdeckt: nur Ort, Jahr und Thema.
-  // Sie öffnen im Rätselmodus (?raetsel). Gespielte zeigen den Namen. ?offen zeigt alle mit Namen.
+  // Sie öffnen im Rätselmodus (?raetsel). Gespielte zeigen den Namen. ?offen zeigt alle mit Namen (nur intern, kein Link mehr: Rätseln, oder du erfährst es nicht).
   const OFFEN = /[?&]offen\b/.test(location.search);
   function cardSlug(c) { return c.getAttribute('href').split(/[?#]/)[0].replace('.html', ''); }
   function istRaetsel(slug) {
@@ -1310,11 +1308,6 @@
     const ll = document.getElementById('listLabel');
     if (ll && gesamt) {
       ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + (gesamt - offen) + ' Rätsel offen';
-      const a = document.createElement('a');
-      a.className = 'list-toggle';
-      a.href = OFFEN ? 'index.html' : 'index.html?offen';
-      a.textContent = OFFEN ? 'Ungespielte wieder als Rätsel zeigen' : 'Lieber alle Namen sehen?';
-      ll.parentNode.insertBefore(a, ll.nextSibling);
     }
     if (!OFFEN) sammlung(gesamt);
   }
