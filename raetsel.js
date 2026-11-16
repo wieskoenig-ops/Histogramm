@@ -105,7 +105,6 @@ const Raetsel = (() => {
       });
       setTimeout(() => document.querySelectorAll('.raetsel-auf').forEach(e => e.classList.remove('raetsel-auf')), 50);
       document.title = document.title.replace('Wer war’s?', cfg.name);
-      document.body.classList.remove('raetsel-laeuft');
     }
 
     const style = document.createElement('style');
@@ -130,7 +129,7 @@ const Raetsel = (() => {
       hero.appendChild(b);
     }
     document.title = 'Histogramm — Wer war’s?';
-    document.body.classList.add('raetsel-laeuft'); // Teilen-Zeilen der Momente würden die Lösung verraten
+    document.body.classList.add('raetsel-laeuft'); // Teilen-Zeilen der Momente entfallen im Rätsel; geteilt wird das ganze Rätsel
     schwaerzen(document.body);
 
     // Nach jeder Entscheidung die neu eingesetzten Texte schwärzen.

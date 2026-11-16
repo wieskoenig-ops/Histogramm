@@ -1392,6 +1392,8 @@
         if (!note.hidden) note.textContent = 'Drei Entscheidungen, dann die Frage: Wer war’s? Heute rätseln alle dasselbe.';
       }
     });
+    // „In Vorbereitung“: Namen würden spätere Rätsel verraten, also nur Ort und Jahr zeigen.
+    if (!OFFEN) document.querySelectorAll('.chip-title').forEach(function(t) { t.hidden = true; });
     const ll = document.getElementById('listLabel');
     if (ll && gesamt) {
       ll.textContent = OFFEN ? 'Alle Histogramme' : 'Alle Histogramme · ' + offen + ' von ' + gesamt + ' aufgedeckt';

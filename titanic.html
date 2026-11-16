@@ -955,7 +955,7 @@ function showEpilog() {
 }
 
 function copyShare(day) {
-  const text = document.getElementById('shareText' + day).textContent;
+  const text = document.getElementById('shareText' + day).textContent + '\nhttps://histogramm.me' + location.pathname;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.querySelector(`#result${day} .btn-share`);
     btn.textContent = 'Kopiert ✓';
