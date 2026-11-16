@@ -271,6 +271,14 @@ window.KALENDER_DATEN = [
 "name": "Alexander Fleming"
 },
 {
+"s": "norman-borlaug",
+"t": "geburt",
+"m": 3,
+"d": 25,
+"y": 1914,
+"name": "Norman Borlaug"
+},
+{
 "s": "beethoven",
 "t": "tod",
 "m": 3,
@@ -827,6 +835,14 @@ window.KALENDER_DATEN = [
 "y": 1939,
 "n": 2,
 "txt": "12. September 1939"
+},
+{
+"s": "norman-borlaug",
+"t": "tod",
+"m": 9,
+"d": 12,
+"y": 2009,
+"name": "Norman Borlaug"
 },
 {
 "s": "emil-zatopek",

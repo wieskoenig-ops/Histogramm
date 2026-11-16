@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ein sicherer Posten im Krieg, ein Angebot aus einem fremden Land, ein Weizen, der noch nicht existiert. Wie entscheidest du dich als junger Pflanzenforscher?">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Histogramm">
+<meta property="og:title" content="Histogramm — Norman Borlaug">
+<meta property="og:description" content="Ein sicherer Posten im Krieg, ein Angebot aus einem fremden Land, ein Weizen, der noch nicht existiert. Wie entscheidest du dich als junger Pflanzenforscher?">
+<meta property="og:url" content="https://histogramm.me/norman-borlaug.html">
+<meta property="og:image" content="https://histogramm.me/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Histogramm — Norman Borlaug">
+<meta name="twitter:description" content="Ein sicherer Posten im Krieg, ein Angebot aus einem fremden Land, ein Weizen, der noch nicht existiert. Wie entscheidest du dich als junger Pflanzenforscher?">
+<meta name="twitter:image" content="https://histogramm.me/og-image.png">
+<title>Histogramm — Norman Borlaug</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { text-decoration: none; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <a class="site-name" href="index.html">Histogramm</a>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Mexiko, <span>1944</span></div>
+  <div class="location-stamp">Das Weizenprogramm der Rockefeller-Stiftung</div>
+  <p class="hero-question">Ein sicherer Posten im Krieg, ein Angebot aus einem fremden Land, ein Weizen, der noch nicht existiert. Wie entscheidest du dich als junger Pflanzenforscher?</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Das Angebot</span>
+        <span class="scene-time">Wilmington, Delaware, Sommer 1944</span>
+      </div>
+      <div class="scene-body">
+        <p>Du bist Pflanzenforscher und arbeitest in einem Labor des Chemiekonzerns DuPont. Dein Versuch, dich zum Militär zu melden, wurde wegen kriegswichtiger Arbeit abgelehnt. Nun entwickelst du Material für die Front, darunter einen Klebstoff für Versorgungsabwürfe über dem Pazifik.</p>
+        <p>Die Rockefeller-Stiftung baut zusammen mit der mexikanischen Regierung ein Programm für Landwirtschaft auf. Mexiko muss einen großen Teil seines Weizens einführen, und Stammrost hat die Ernten zuvor stark getroffen. Der Projektleiter hatte dich schon einmal gefragt, und du hattest abgelehnt. Jetzt fragt er erneut. Du warst nie in Mexiko und sprichst kein Spanisch. DuPont will dich halten und bietet dir mehr Geld.</p>
+        <p>Eine Entscheidung wird erwartet.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Norman Borlaug, Pflanzenforscher</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du bleibst bei DuPont, wo deine Arbeit im Krieg gebraucht wird und dein Gehalt verdoppelt werden soll.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du kehrst an eine Universität zurück und setzt dort Forschung und Lehre in der Pflanzenwissenschaft fort.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du gehst nach Mexiko und arbeitest dort für die Stiftung am Weizenprogramm, ohne das Land zu kennen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Zwei Ernten →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Zwei Ernten</span>
+        <span class="scene-time">Mexiko, Mitte der 1940er-Jahre</span>
+      </div>
+      <div class="scene-body">
+        <p>Du arbeitest nun auf den Feldern Mexikos und kreuzt Weizensorten, die dem Rost widerstehen sollen. Eine Zuchtgeneration pro Jahr bedeutet Jahre bis zu einer brauchbaren Sorte. Dir fällt auf, dass das Land zwei Anbauzeiten hat: den Sommer im zentralen Hochland und den Winter im Yaqui-Tal bei Ciudad Obregón in Sonora, rund 1.000 Kilometer und etwa 2.600 Höhenmeter entfernt.</p>
+        <p>Würdest du das Saatgut zwischen beiden Orten hin- und herfahren, ließen sich zwei Generationen im Jahr ziehen. Dein Vorgesetzter George Harrar lehnt das ab. Es sei zu teuer, und frisch geerntetes Saatgut brauche nach damaliger Lehrmeinung eine Ruhezeit, bevor es keimt. Zudem gilt in der Zucht die Regel, Weizen dort zu züchten, wo er später wachsen soll.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Norman Borlaug, Leiter der Weizenzüchtung</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du trittst von deinem Posten zurück, um deinen Plan gegen Harrars Entscheidung durchzusetzen.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du fügst dich Harrars Entscheidung und züchtest an einem einzigen Standort, wie es in der Fachwelt üblich ist.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du testest den Anbau an zwei Orten nur auf einer kleinen Versuchsfläche und legst die Ergebnisse später vor.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Das Saatgut →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Das Saatgut</span>
+        <span class="scene-time">Indien und Pakistan, Herbst 1965</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit 1963 prüfst du in Indien und Pakistan kurzhalmige Weizensorten aus Mexiko. Behörden und Bauern zögern, doch im Sommer 1965 stimmen beide Regierungen unter dem Druck von Hungersnöten einem größeren Programm zu: Rund 450 Tonnen Saatgut sollen kommen, 250 für Pakistan und 200 für Indien.</p>
+        <p>Die Lieferung hatte Zollprobleme in Mexiko, einen Umweg per Lastwagen-Konvoi bis Los Angeles und Ärger um einen Scheck hinter sich. Zwölf Stunden nach dem Auslaufen des Frachters bricht zwischen Indien und Pakistan Krieg um Kaschmir aus. Dann stellt sich heraus, dass das Saatgut im Lager in Mexiko zu stark begast wurde. Weniger als die Hälfte der Körner keimt noch. Die Aussaat steht vor der Tür.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Norman Borlaug, Berater für Indien und Pakistan</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du verschiebst die Aussaat, bis aus Mexiko neues Saatgut mit voller Keimfähigkeit geliefert werden kann.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du lässt an allen Standorten die doppelte Saatmenge ausbringen und säst zum vorgesehenen Termin.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du bündelst das Saatgut auf wenigen, sorgfältig betreuten Versuchsfeldern und planst den breiten Anbau für später.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
+    <div class="epilog-date">Oslo, 1970</div>
+    <div class="epilog-title">Aus Mangel wurde Überschuss. Er selbst sprach von einem vorläufigen Erfolg.</div>
+    <div class="epilog-body">
+      <p>Zwischen 1965 und 1970 stieg die Weizenernte in Indien von rund 12 auf rund 20 Millionen Tonnen, in Pakistan von rund 4,6 auf rund 7,3 Millionen Tonnen. Pakistan galt 1968 als selbstversorgt, Indien erreichte das bei Getreide insgesamt 1974. Die kurzhalmigen Sorten, die dem Gewicht der Ähren und dem Stickstoffdünger standhielten, wurden zum Kern dessen, was später „Grüne Revolution“ hieß.</p>
+      <p style="margin-top:1rem">Am 10. Dezember 1970 erhielt Borlaug in Oslo den Friedensnobelpreis. In seiner Nobelvorlesung nannte er den Erfolg im Kampf gegen den Hunger vorläufig und forderte, das Bevölkerungswachstum zu bremsen. Er starb am 12. September 2009 in Dallas.</p>
+    </div>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="index.html" style="font-size:0.8rem; color:var(--ink-faint)">oder alle Histogramme ansehen</a></p>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Norman_Borlaug" target="_blank" rel="noopener">Mehr zu Norman Borlaug auf Wikipedia →</a></p>
+    <p style="text-align:center; margin-top:1.75rem; font-size:0.78rem; color:var(--ink-faint)">Fehler entdeckt? <a href="fehler.html?s=norman-borlaug" style="color:var(--ink-muted)">Melden</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'norman-borlaug';
+
+const results = {
+  1: {
+    A: { pct: 22, label: "Bei DuPont geblieben" },
+    B: { pct: 18, label: "An die Universität zurückgekehrt" },
+    C: { pct: 60, label: "Nach Mexiko gegangen" },
+    historical: 'C',
+    narratives: {
+      A: "Bei DuPont wäre Borlaug in sicherer, kriegswichtiger Arbeit geblieben, zu einem Gehalt, das Berichten zufolge verdoppelt werden sollte. Der Preis wäre gewesen, dass er die mexikanische Weizenzüchtung nicht mitgeprägt hätte. Mexiko musste damals einen großen Teil seines Weizens einführen und hatte durch Stammrost schwere Ernteverluste erlebt. Ob jemand anderes dieselbe Arbeitsweise gewählt hätte, lässt sich nicht sagen.",
+      B: "Die Universität wäre ein vertrauter Weg gewesen: Borlaug hatte an der University of Minnesota promoviert und 1941 an der University of Iowa gelehrt. Dort hätte er Grundlagenforschung betreiben können, weit weg von der Praxis. Gerade sein späterer Stil, in Mexiko selbst auf den Feldern der Bauern zu arbeiten statt im Büro, wäre in diesem Rahmen vermutlich kaum gefragt gewesen.",
+      C: "Genau das tat Borlaug: Im Juli 1944 schlug er das Gehaltsangebot von DuPont aus und flog nach Mexiko-Stadt, um beim Weizenprogramm der Rockefeller-Stiftung zu arbeiten, ohne das Land zuvor besucht zu haben und ohne Spanisch zu sprechen. Im Frühjahr 1945 übernahm er die Leitung des Programms."
+    }
+  },
+  2: {
+    A: { pct: 28, label: "Zurückgetreten" },
+    B: { pct: 36, label: "An einem Standort gezüchtet" },
+    C: { pct: 36, label: "Kleiner Probelauf" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Borlaug: Er trat zurück. Der Stiftungsberater Elvin Stakman vermittelte, beide Seiten gaben nach, und der Doppelanbau wurde erlaubt. Das Saatgut pendelte nun zwischen dem Hochland um Toluca und dem Yaqui-Tal. Damit ließen sich zwei Generationen im Jahr ziehen, die Zuchtzeit halbierte sich, und die Sorten kamen mit sehr verschiedenen Bedingungen zurecht. Die angebliche Notwendigkeit einer Ruhezeit des Saatguts gilt heute als widerlegt.",
+      B: "Harrars Linie entsprach der damaligen Fachmeinung: Ruhezeit des Saatguts, Zucht am Zielort, geringere Kosten. Mit einer Generation pro Jahr wäre jede Sorte aber Jahre später fertig geworden. In einem Land, das viel Weizen einführte und unter Rostverlusten litt, hätte das den Fortschritt spürbar gebremst. Die Idee des Doppelanbaus hätte dabei nie geprüft werden können.",
+      C: "Ein kleiner Probelauf hätte Harrars Bedenken mit Daten beantworten können und kaum Geld gekostet. Das Risiko lag im Zeitverlust und darin, dass Harrar als Projektleiter die Kosten und die damalige Lehrmeinung schon als Gründe gegen den Plan genannt hatte. Ein Versuch gegen seinen Willen hätte das Verhältnis zu ihm womöglich belastet."
+    },
+    fact: "Borlaug trat zurück. Der Stiftungsberater Elvin Stakman vermittelte, beide Seiten gaben nach, und der Doppelanbau wurde erlaubt. Dadurch ließen sich zwei Generationen im Jahr ziehen und die Zuchtzeit halbierte sich."
+  },
+  3: {
+    A: { pct: 20, label: "Auf neues Saatgut gewartet" },
+    B: { pct: 53, label: "Doppelte Saatmenge ausgebracht" },
+    C: { pct: 27, label: "Nur Versuchsfelder bestellt" },
+    historical: 'B',
+    narratives: {
+      A: "Neues Saatgut mit voller Keimfähigkeit hätte ein sauberes Ergebnis versprochen. Die erste Lieferung hatte aber schon Zollprobleme, einen Konvoi nach Los Angeles und Zahlungsärger hinter sich, und im Herbst 1965 herrschte Krieg zwischen den beiden Empfängerländern. Die Aussaat der Saison wäre womöglich verpasst worden, und die Regierungen hatten dem Programm erst unter dem Druck der Hungersnot zugestimmt.",
+      B: "Genau das tat Borlaug: Er ordnete an, auf allen Flächen die Saatmenge zu verdoppeln, um die schlechte Keimung auszugleichen. Die Aussaat lief zum vorgesehenen Termin. Die Ernte überzeugte so sehr, dass Indien 1966 rund 18.000 Tonnen Saatgut aus Mexiko kaufte und Pakistan 1967 rund 42.000 Tonnen.",
+      C: "Wenige gut betreute Felder hätten verlässliche Daten geliefert und Fehler im großen Maßstab vermieden. Dafür wäre ein weiteres Jahr vergangen, in einer Lage, die beide Regierungen gerade erst zum Handeln gebracht hatte. Auch politisch hätte das Vorhaben an Schwung verlieren können, weil die Behörden ohnehin gezögert hatten."
+    }
+  }
+};
+
+const sceneNames = { 1: "Das Angebot", 2: "Zwei Ernten", 3: "Das Saatgut" };
+const scenarioTitle = "Histogramm Norman Borlaug 1944";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  const narrEl = document.getElementById('narrative' + day);
+  narrEl.textContent = narratives[letter];
+  // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
+  const hist = results[day].historical;
+  if (hist && hist !== letter && narratives[hist]) {
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    const p = document.createElement('p');
+    p.style.marginTop = '0.9rem';
+    const b = document.createElement('strong');
+    b.textContent = 'Was tatsächlich geschah: ';
+    p.appendChild(b);
+    p.appendChild(document.createTextNode(t));
+    narrEl.appendChild(p);
+  }
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('norman-borlaug');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Norman Borlaug, bevor du gespielt hast?', story: false });</script>
+<script src="raetsel-daten.js"></script>
+<script src="raetsel.js"></script>
+</body>
+</html>

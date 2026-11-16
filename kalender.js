@@ -18,8 +18,9 @@ const Kalender = (function() {
     { m: 6,  d: 21, name: 'die Fête de la Musique', s: ['beethoven', 'mozart', 'miles-davis', 'zappa'] },
     { m: 9,  d: 21, name: 'der Internationale Tag des Friedens', s: ['gandhi', 'willy-brandt', 'alfred-nobel', 'kuba-krise'] },
     { m: 10, d: 2,  name: 'der Internationale Tag der Gewaltlosigkeit', s: ['gandhi'] },
+    { m: 10, d: 16, name: 'der Welternährungstag', s: ['norman-borlaug'] },
     { m: 10, d: 31, name: 'der Reformationstag', s: ['martin-luther'] },
-    { m: 12, d: 10, name: 'der Tag der Nobelpreisverleihung', s: ['alfred-nobel', 'marie-curie', 'daniel-kahneman', 'wangari-maathai', 'mandela'] }
+    { m: 12, d: 10, name: 'der Tag der Nobelpreisverleihung', s: ['alfred-nobel', 'marie-curie', 'daniel-kahneman', 'wangari-maathai', 'mandela', 'norman-borlaug'] }
   ];
 
   // Planbare Ereignisse mit festem Zeitraum (von/bis als JJJJ-MM-TT). Die Wochenaufgabe ergänzt neue,

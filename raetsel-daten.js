@@ -63,5 +63,6 @@ window.RAETSEL_DATEN = {
   'sokrates': { name: 'Sokrates', kurz: 'Sokrates', namen: ['Sokrates'], falsch: ['Diogenes', 'Pythagoras', 'Anaxagoras'] },
   'rosa-parks': { name: 'Rosa Parks', kurz: 'Rosa Parks', namen: ['Rosa Louise McCauley', 'Rosa Parks', 'Parks', 'Rosa'], falsch: ['Claudette Colvin', 'Coretta Scott King', 'Fannie Lou Hamer'] },
   'kuba-krise': { name: 'Wassili Archipow', kurz: 'Archipow', namen: ['Wassili Archipow', 'Wassili Arkhipov', 'Archipow', 'Arkhipov', 'Wassili'], falsch: ['Stanislaw Petrow', 'Sergei Koroljow', 'Michail Kalaschnikow'] },
-  'gutenberg': { name: 'Johannes Gutenberg', kurz: 'Gutenberg', namen: ['Johannes Gensfleisch', 'Johannes Gutenberg', 'Gutenberg', 'Gensfleisch', 'Johannes'], falsch: ['Nikolaus von Kues', 'Albrecht Pfister', 'William Caxton'] }
+  'gutenberg': { name: 'Johannes Gutenberg', kurz: 'Gutenberg', namen: ['Johannes Gensfleisch', 'Johannes Gutenberg', 'Gutenberg', 'Gensfleisch', 'Johannes'], falsch: ['Nikolaus von Kues', 'Albrecht Pfister', 'William Caxton'] },
+  'norman-borlaug': { name: 'Norman Borlaug', kurz: 'Borlaug', namen: ['Norman Ernest Borlaug', 'Norman Borlaug', 'Borlaug', 'Norman'], falsch: ['Nikolai Wawilow', 'Paul Hermann Müller', 'Luther Burbank'] }
 };
