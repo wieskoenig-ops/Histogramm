@@ -139,6 +139,15 @@ const Raetsel = (() => {
     requestAnimationFrame(frame);
   }
 
+  // Neutraler Kurzcode statt Dateiname: Links und Adresszeile verraten die Person nicht.
+  // r.html rechnet denselben Code für alle Einträge in RAETSEL_DATEN nach und leitet weiter.
+  function kurzcode(slug) {
+    let h = 5381;
+    for (let i = 0; i < slug.length; i++) h = ((h * 33) ^ slug.charCodeAt(i)) >>> 0;
+    return h.toString(36);
+  }
+  function kurzlink(slug, tdt) { return 'r.html?k=' + kurzcode(slug) + (tdt ? '&tdt' : ''); }
+
   function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
   // Namen als ganze Wörter, mit Genitiv („Semmelweis'“, „Mozarts“). Längste Form zuerst.
@@ -212,6 +221,7 @@ const Raetsel = (() => {
       hero.appendChild(b);
     }
     document.title = 'Histogramm — Wer war’s?';
+    try { history.replaceState(history.state, '', kurzlink(cfg.slug, /[?&]tdt\b/.test(location.search))); } catch (e) { /* egal */ }
     document.body.classList.add('raetsel-laeuft'); // Teilen-Zeilen der Momente entfallen im Rätsel; geteilt wird das ganze Rätsel
     schwaerzen(document.body);
 
@@ -307,7 +317,7 @@ const Raetsel = (() => {
           tdt ? 'Histogramm · Rätsel des Tages vom ' + datum : 'Histogramm · Wer war’s?',
           (ort ? ort + ': ' : '') + 'Drei Entscheidungen. Wer war’s?',
           richtig ? 'Ich hab’s erraten. Du auch?' : 'Ich lag daneben. Schaffst du’s?',
-          'https://histogramm.me/' + cfg.slug + '.html?raetsel'
+          'https://histogramm.me/' + kurzlink(cfg.slug, false)
         ];
         const text = zeilen.join('\n');
         try {
@@ -359,5 +369,5 @@ const Raetsel = (() => {
     if (d) init(Object.assign({ prefix: SCENARIO_PREFIX, slug }, d));
   });
 
-  return { init, schwaerzer, BALKEN };
+  return { init, schwaerzer, kurzcode, BALKEN };
 })();
