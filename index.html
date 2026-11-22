@@ -281,7 +281,7 @@
   #situationenLabel { font-size: 0.9rem; color: var(--ink); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; margin-top: 3rem; padding-top: 2.2rem; border-top: 1px solid var(--border-strong); }
   #situationenLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
   .situationen-note { font-size: 0.85rem; font-style: italic; color: var(--ink-muted); margin: -0.4rem 0 1.4rem 2.2rem; }
-  .daily-fakt { font-size: 0.85rem; color: var(--ink-muted); margin: 0.8rem 0 0.25rem; line-height: 1.5; }
+  .daily-fakt { font-size: 0.85rem; color: var(--ink-muted); margin: 0.35rem 0 0.9rem 2.2rem; line-height: 1.5; }
   .daily-fakt i { color: var(--amber-dark); }
   #listLabel { color: var(--ink); margin-top: 3rem; padding-top: 2.2rem; border-top: 1px solid var(--border-strong); font-size: 0.9rem; }
   #dailyLabel::before, #listLabel::before { content: ''; width: 1.6rem; height: 2px; margin-top: 0.7em; background: var(--amber); flex: none; }
@@ -355,10 +355,10 @@
 <main>
   <section class="daily" id="daily" hidden>
     <div class="section-label" id="dailyLabel">Histogramm des Tages</div>
+    <p class="daily-fakt" id="dailyFakt" hidden></p>
     <p class="daily-reason" id="dailyReason" hidden></p>
     <div id="dailyCard"></div>
     <p class="daily-note" id="dailyNote">Heute spielen alle dasselbe. Morgen kommt ein anderes.</p>
-    <p class="daily-fakt" id="dailyFakt" hidden></p>
     <div class="section-label" id="listLabel">Alle Rätsel</div>
     <div class="surprise-row" id="dailyNext" hidden>
       <button class="btn-surprise" onclick="surpriseMe()">Überrasch mich →</button>
@@ -1270,7 +1270,7 @@
   }
   // „Übrigens: …“ — ein Anlass des Tages, unabhängig vom Rätsel. Namen ungelöster Rätsel bleiben geschwärzt,
   // Daten aus Rätseln (Momente) werden nicht genannt, sie würden eine Karte verraten.
-  function tagesFakt(day, cards) {
+  function tagesFakt(day, cards, heute) {
     let anl = [];
     try { if (typeof Kalender !== 'undefined') anl = Kalender.anlaesse(day, cards.map(function(c) { return c.getAttribute('href').replace('.html', ''); })); } catch (e) { anl = []; }
     const daten = window.RAETSEL_DATEN || {};
@@ -1279,6 +1279,7 @@
     let text = null;
     for (let i = 0; i < anl.length && !text; i++) {
       const a = anl[i];
+      if (a.s === heute) continue;   // nichts über das heutige Rätsel verraten
       const raetsel = !!daten[a.s];
       if (a.t === 'tag' || a.t === 'ereignis') text = a.text;
       else if (a.t === 'moment') {
@@ -1286,8 +1287,6 @@
         const k = cards.filter(function(c) { return c.getAttribute('href') === a.s + '.html'; })[0];
         const titel = k && k.querySelector('.card-title') ? k.querySelector('.card-title').textContent : '';
         text = a.text.replace('dieses Histogramms', 'des Histogramms „' + titel + '“').replace('spielt dieses Histogramm', 'spielt das Histogramm „' + titel + '“');
-      } else if (raetsel && istRaetsel(a.s)) {
-        text = a.text.split(a.name).join(Raetsel.BALKEN) + ' Wer das ist, verrät eines unserer Rätsel.';
       } else text = a.text;
     }
     if (!text) return;
@@ -1320,7 +1319,7 @@
     document.getElementById('dailyCard').appendChild(clone);
     // Die Originalkarte in der Liste ausblenden, damit sie nicht doppelt erscheint.
     pick.style.display = 'none';
-    if (day >= NUR_RAETSEL_AB) tagesFakt(day, cards);
+    if (day >= NUR_RAETSEL_AB) tagesFakt(day, cards, pick.getAttribute('href').replace('.html', ''));
     const d = testTag ? new Date(day + 'T12:00:00') : new Date();
     document.getElementById('dailyLabel').textContent = (day >= NUR_RAETSEL_AB ? 'Rätsel des Tages · ' : 'Histogramm des Tages · ') +
       d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });

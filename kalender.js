@@ -33,6 +33,42 @@ const Kalender = (function() {
     { von: '2026-11-09', bis: '2026-11-20', name: 'die Weltklimakonferenz COP31 in Antalya', s: ['paris-2015', 'wangari-maathai', 'rachel-carson', 'james-lovelock'] }
   ];
 
+  // Geburts- und Todestage von Persönlichkeiten OHNE eigenes Histogramm, nur für „Übrigens: …“.
+  // Nur gut belegte Daten (gregorianisch, keine Julianischen Daten). wer = kurze Einordnung.
+  // geb/tod als 'JJJJ-MM-TT'; tod darf fehlen (dann nur Geburtstag). Nur Verstorbene aufnehmen.
+  const PERSONEN = [
+    { name: 'Albert Einstein', wer: 'Physiker', geb: '1879-03-14', tod: '1955-04-18' },
+    { name: 'Johann Wolfgang von Goethe', wer: 'Dichter', geb: '1749-08-28', tod: '1832-03-22' },
+    { name: 'Friedrich Schiller', wer: 'Dichter', geb: '1759-11-10' },
+    { name: 'Charles Darwin', wer: 'Naturforscher', geb: '1809-02-12', tod: '1882-04-19' },
+    { name: 'Immanuel Kant', wer: 'Philosoph', geb: '1724-04-22', tod: '1804-02-12' },
+    { name: 'Hannah Arendt', wer: 'politische Denkerin', geb: '1906-10-14', tod: '1975-12-04' },
+    { name: 'Anne Frank', wer: 'Tagebuchschreiberin', geb: '1929-06-12' },
+    { name: 'Martin Luther King', wer: 'Bürgerrechtler', geb: '1929-01-15', tod: '1968-04-04' },
+    { name: 'Charlie Chaplin', wer: 'Filmemacher', geb: '1889-04-16', tod: '1977-12-25' },
+    { name: 'John Lennon', wer: 'Musiker', geb: '1940-10-09', tod: '1980-12-08' },
+    { name: 'Ada Lovelace', wer: 'Mathematikerin', geb: '1815-12-10' },
+    { name: 'Franz Kafka', wer: 'Schriftsteller', geb: '1883-07-03', tod: '1924-06-03' },
+    { name: 'Alexander von Humboldt', wer: 'Naturforscher', geb: '1769-09-14', tod: '1859-05-06' },
+    { name: 'Marlene Dietrich', wer: 'Schauspielerin', geb: '1901-12-27', tod: '1992-05-06' },
+    { name: 'Konrad Zuse', wer: 'Computerpionier', geb: '1910-06-22', tod: '1995-12-18' },
+    { name: 'Stephen Hawking', wer: 'Physiker', geb: '1942-01-08', tod: '2018-03-14' },
+    { name: 'John F. Kennedy', wer: 'US-Präsident', geb: '1917-05-29', tod: '1963-11-22' },
+    { name: 'Pablo Picasso', wer: 'Maler', geb: '1881-10-25', tod: '1973-04-08' },
+    { name: 'Vincent van Gogh', wer: 'Maler', geb: '1853-03-30', tod: '1890-07-29' },
+    { name: 'Neil Armstrong', wer: 'Astronaut', geb: '1930-08-05', tod: '2012-08-25' },
+    { name: 'Bertha von Suttner', wer: 'Friedensnobelpreisträgerin', geb: '1843-06-09', tod: '1914-06-21' },
+    { name: 'Bertolt Brecht', wer: 'Dramatiker', geb: '1898-02-10', tod: '1956-08-14' },
+    { name: 'Thomas Edison', wer: 'Erfinder', geb: '1847-02-11', tod: '1931-10-18' },
+    { name: 'Simone de Beauvoir', wer: 'Philosophin', geb: '1908-01-09', tod: '1986-04-14' },
+    { name: 'Heinrich Heine', wer: 'Dichter', geb: '1797-12-13', tod: '1856-02-17' },
+    { name: 'Karl Marx', wer: 'Philosoph und Ökonom', geb: '1818-05-05', tod: '1883-03-14' },
+    { name: 'Charles Dickens', wer: 'Schriftsteller', geb: '1812-02-07', tod: '1870-06-09' },
+    { name: 'Jane Austen', wer: 'Schriftstellerin', geb: '1775-12-16', tod: '1817-07-18' },
+    { name: 'Albert Schweitzer', wer: 'Arzt und Theologe', geb: '1875-01-14', tod: '1965-09-04' },
+    { name: 'Steve Jobs', wer: 'Apple-Gründer', geb: '1955-02-24', tod: '2011-10-05' }
+  ];
+
   const RAENDER_AB = '2026-11-13';
 
   const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
@@ -76,6 +112,21 @@ const Kalender = (function() {
         punkte = 60;
       }
       liste.push({ s: e.s, t: e.t, name: e.name || '', text: text, punkte: punkte + rundBonus(n) });
+    });
+
+    // Persönlichkeiten ohne Histogramm: schwächer als alles mit Szenariobezug.
+    PERSONEN.forEach(function(pe) {
+      [['geburt', pe.geb], ['tod', pe.tod]].forEach(function(x) {
+        if (!x[1]) return;
+        const q = x[1].split('-').map(Number);
+        if (q[1] !== monat || q[2] !== tag) return;
+        const n = jahr - q[0];
+        if (n < 1) return;
+        const text = x[0] === 'geburt'
+          ? 'Heute vor ' + n + ' Jahren wurde ' + pe.name + ' geboren, ' + pe.wer + '.'
+          : 'Heute vor ' + n + ' Jahren starb ' + pe.name + ', ' + pe.wer + '.';
+        liste.push({ s: '_' + pe.name + x[0], t: x[0], name: pe.name, text: text, punkte: 30 + rundBonus(n) });
+      });
     });
 
     function ausThema(s, text, punkte, t) {
