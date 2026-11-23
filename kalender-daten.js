@@ -271,6 +271,14 @@ window.KALENDER_DATEN = [
 "name": "Juri Alexejewitsch Gagarin"
 },
 {
+"s": "kate-sheppard",
+"t": "geburt",
+"m": 3,
+"d": 10,
+"y": 1847,
+"name": "Kate Sheppard"
+},
+{
 "s": "alexander-fleming",
 "t": "tod",
 "m": 3,
@@ -669,6 +677,14 @@ window.KALENDER_DATEN = [
 "d": 13,
 "y": 1954,
 "name": "Frida Kahlo"
+},
+{
+"s": "kate-sheppard",
+"t": "tod",
+"m": 7,
+"d": 13,
+"y": 1934,
+"name": "Kate Sheppard"
 },
 {
 "s": "oppenheimer",

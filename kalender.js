@@ -8,7 +8,7 @@ const Kalender = (function() {
   // Ernste Gedenktage (z. B. 27. Januar, 9. November) bewusst NICHT aufnehmen.
   const AKTIONSTAGE = [
     { m: 2,  d: 11, name: 'der Internationale Tag der Frauen und Mädchen in der Wissenschaft', s: ['marie-curie', 'lise-meitner', 'rosalind-franklin', 'rachel-carson'] },
-    { m: 3,  d: 8,  name: 'der Internationale Frauentag', s: ['rosa-parks', 'wangari-maathai', 'marie-curie', 'rosa-luxemburg', 'astrid-lindgren', 'frida-kahlo', 'lise-meitner', 'rosalind-franklin', 'rachel-carson'] },
+    { m: 3,  d: 8,  name: 'der Internationale Frauentag', s: ['rosa-parks', 'wangari-maathai', 'marie-curie', 'rosa-luxemburg', 'astrid-lindgren', 'frida-kahlo', 'kate-sheppard', 'lise-meitner', 'rosalind-franklin', 'rachel-carson'] },
     { m: 3,  d: 21, name: 'der Internationale Tag gegen Rassismus', s: ['rosa-parks', 'mandela', 'peter-norman', 'cassius-clay'] },
     { m: 4,  d: 7,  name: 'der Weltgesundheitstag', s: ['semmelweis', 'robert-koch', 'alexander-fleming'] },
     { m: 4,  d: 22, name: 'der Tag der Erde', s: ['rachel-carson', 'james-lovelock', 'wangari-maathai', 'paris-2015'] },

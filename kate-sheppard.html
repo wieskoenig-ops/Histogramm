@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ein Gesetz, das die Hälfte der Erwachsenen von der Wahl ausschließt, scheitert im Parlament immer wieder knapp. Welchen Weg wählst du, um Mehrheiten zu gewinnen?">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Histogramm">
+<meta property="og:title" content="Histogramm — Kate Sheppard">
+<meta property="og:description" content="Ein Gesetz, das die Hälfte der Erwachsenen von der Wahl ausschließt, scheitert im Parlament immer wieder knapp. Welchen Weg wählst du, um Mehrheiten zu gewinnen?">
+<meta property="og:url" content="https://histogramm.me/kate-sheppard.html">
+<meta property="og:image" content="https://histogramm.me/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Histogramm — Kate Sheppard">
+<meta name="twitter:description" content="Ein Gesetz, das die Hälfte der Erwachsenen von der Wahl ausschließt, scheitert im Parlament immer wieder knapp. Welchen Weg wählst du, um Mehrheiten zu gewinnen?">
+<meta name="twitter:image" content="https://histogramm.me/og-image.png">
+<title>Histogramm — Kate Sheppard</title>
+<style>
+  :root {
+    --ink: #1a1814; --ink-muted: #5a574f; --ink-faint: #a09d94;
+    --paper: #f7f4ef; --paper-warm: #ede9e0;
+    --amber: #c4780a; --amber-light: #faeeda; --amber-dark: #7a4906;
+    --border: rgba(26,24,20,0.12); --border-strong: rgba(26,24,20,0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(26,24,20,0.035) 79px, rgba(26,24,20,0.035) 80px);
+    pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 1; border-bottom: 1px solid var(--border-strong); padding: 1.5rem 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .site-name { text-decoration: none; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--amber-dark); }
+  .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem 3rem; }
+  .date-stamp { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 0.4rem; }
+  .date-stamp span { color: var(--amber); }
+  .location-stamp { font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2.5rem; }
+  .hero-question { font-size: 1.35rem; color: var(--ink); max-width: 560px; margin: 0 auto; line-height: 1.55; font-style: italic; }
+  .progress-bar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background 0.3s; }
+  .progress-dot.active { background: var(--amber); }
+  .progress-dot.done { background: var(--ink-muted); }
+  .progress-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0.5rem; }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .scene { border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+  .scene-header { background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .scene-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+  .scene-time { font-size: 0.8rem; font-family: 'Courier New', monospace; opacity: 0.8; }
+  .scene-body { background: white; padding: 1.75rem 1.5rem; line-height: 1.75; font-size: 1rem; color: var(--ink); border-bottom: 1px solid var(--border); }
+  .scene-body p + p { margin-top: 1rem; }
+  .scene-role { background: var(--amber-light); padding: 1rem 1.5rem; font-size: 1.15rem; color: var(--amber-dark); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; }
+  .role-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; font-weight: bold; }
+  .wiki-link { display: inline-block; margin-top: 1rem; font-size: 0.82rem; color: var(--amber-dark); text-decoration: none; border-bottom: 1px solid var(--amber); padding-bottom: 1px; }
+  .wiki-link:hover { opacity: 0.75; }
+  .decisions-heading { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-top: 0.25rem; }
+  .decision-option { display: block; width: 100%; text-align: left; background: white; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.65rem; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.5; transition: border-color 0.15s, background 0.15s; position: relative; }
+  .decision-option:hover { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected { border-color: var(--amber); background: var(--amber-light); }
+  .decision-option.selected::after { content: '✓'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--amber); font-size: 1rem; }
+  .option-letter { display: inline-block; width: 1.4rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-faint); vertical-align: middle; margin-right: 0.25rem; }
+  .cta-row { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; border-radius: 2px; padding: 0.8rem 2rem; font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #2e2b25; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .cta-hint { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; }
+  .result-panel { display: none; margin-top: 2rem; border: 1px solid var(--border-strong); border-radius: 2px; overflow: hidden; }
+  .result-panel.visible { display: block; }
+  .result-header { background: var(--paper-warm); border-bottom: 1px solid var(--border); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+  .result-body { background: white; padding: 1.25rem 1.5rem; }
+  .result-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; font-size: 0.85rem; }
+  .bar-label { width: 1.5rem; color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; text-align: center; }
+  .bar-track { flex: 1; height: 24px; background: var(--paper-warm); border-radius: 1px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; background: var(--ink-muted); transition: width 0.8s ease; border-radius: 1px; }
+  .bar-fill.highlight { background: var(--amber); }
+  .bar-pct { width: 2.8rem; text-align: right; font-size: 0.8rem; color: var(--ink-muted); font-family: 'Courier New', monospace; flex-shrink: 0; }
+  .bar-pct.highlight { color: var(--amber-dark); font-weight: bold; }
+  .result-narrative { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .share-row { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .share-text { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 2px; padding: 0.5rem 0.85rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--ink-muted); flex: 1; }
+  .btn-share { background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.5rem 1rem; font-family: 'Georgia', serif; font-size: 0.8rem; color: var(--ink); cursor: pointer; white-space: nowrap; transition: border-color 0.15s; }
+  .btn-share:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn { display: none; width: 100%; background: none; border: 1px solid var(--border-strong); border-radius: 2px; padding: 1rem; font-family: 'Georgia', serif; font-size: 0.9rem; color: var(--ink-muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; letter-spacing: 0.05em; }
+  .next-day-btn:hover { border-color: var(--amber); color: var(--amber-dark); }
+  .next-day-btn.visible { display: block; }
+  .epilog { display: none; text-align: center; padding: 3rem 1.5rem; border: 1px solid var(--border-strong); border-radius: 2px; background: white; }
+  .epilog.visible { display: block; }
+  .epilog-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .epilog-title { font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.3; }
+  .epilog-body { font-size: 0.95rem; line-height: 1.8; color: var(--ink-muted); max-width: 500px; margin: 0 auto 2rem; }
+  .epilog-cta { font-size: 0.8rem; color: var(--ink-faint); font-style: italic; margin-top: 1.5rem; }
+  .epilog-cta a { color: var(--amber-dark); }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  @media (max-width: 600px) { header { padding: 1rem; } .hero { padding: 3rem 1.25rem 2rem; } main { padding: 0 1.25rem 4rem; } .date-stamp { font-size: 2.4rem; } }
+</style>
+<script src="streak.js"></script>
+</head>
+<body>
+
+<header>
+  <a class="site-name" href="index.html">Histogramm</a>
+  <a class="back-link" href="index.html">← Alle Histogramme</a>
+</header>
+
+<div class="hero">
+  <div class="date-stamp">Christchurch, <span>1893</span></div>
+  <div class="location-stamp">Eine Kolonie im Südpazifik</div>
+  <p class="hero-question">Ein Gesetz, das die Hälfte der Erwachsenen von der Wahl ausschließt, scheitert im Parlament immer wieder knapp. Welchen Weg wählst du, um Mehrheiten zu gewinnen?</p>
+</div>
+
+<div class="progress-bar" id="progressBar">
+  <span class="progress-label">Tag</span>
+  <div class="progress-dot active" id="dot1"></div>
+  <div class="progress-dot" id="dot2"></div>
+  <div class="progress-dot" id="dot3"></div>
+</div>
+
+<main>
+  <!-- MOMENT 1 -->
+  <div id="day1">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 1 · Die knappe Niederlage</span>
+        <span class="scene-time">Christchurch, August 1890</span>
+      </div>
+      <div class="scene-body">
+        <p>Seit 1879 dürfen in deiner Kolonie alle erwachsenen Männer wählen, ob sie Besitz haben oder nicht. Frauen sind ausgeschlossen, auch wenn sie seit Jahren bei Kommunalwahlen und Schulausschüssen mitstimmen dürfen, soweit sie Grundsteuern zahlen oder einen Haushalt führen. Du leitest in der Frauenvereinigung, der du angehörst, die Abteilung für Wahlrecht und Gesetzgebung.</p>
+        <p>Gerade hat das Parlament in der Hauptstadt über die Sache beraten. Ein Antrag, der dem Wahlrecht für Frauen im Grundsatz zustimmt, ging mit 37 zu 11 Stimmen durch. Der Änderungsantrag, der es tatsächlich in das neue Wahlgesetz geschrieben hätte, scheiterte danach um sieben Stimmen. Die Zeit bis zur nächsten Sitzungsperiode willst du nutzen, und bald wird ein neues Parlament gewählt.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Kate Sheppard, Leiterin der Abteilung für Wahlrecht</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(1, 'A', this)"><span class="option-letter">A</span>Du konzentrierst dich auf die Wahl: Du lässt Kandidaten befragen, wie sie zum Frauenwahlrecht stehen, und wirbst bei den wahlberechtigten Männern um Zusagen für das neue Parlament.</button>
+    <button class="decision-option" onclick="selectOption(1, 'B', this)"><span class="option-letter">B</span>Du organisierst im ganzen Land eine Petition, in der Frauen mit ihrer Unterschrift das Wahlrecht fordern, und lässt sie im Parlament vorlegen.</button>
+    <button class="decision-option" onclick="selectOption(1, 'C', this)"><span class="option-letter">C</span>Du schlägst vor, das Wahlrecht zunächst auf Frauen zu beschränken, die Grundsteuer zahlen, um zögernde Abgeordnete zu gewinnen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn1" onclick="submitDay(1)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint1">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result1">
+      <div class="result-header">So hat die Welt entschieden — Moment 1</div>
+      <div class="result-body">
+        <p class="result-title" id="result1Title"></p>
+        <div id="bars1"></div>
+        <div class="result-narrative" id="narrative1"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText1"></div>
+          <button class="btn-share" onclick="copyShare(1)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay1" onclick="goToDay(2)">Weiter — Das Oberhaus →</button>
+  </div>
+
+  <!-- MOMENT 2 -->
+  <div id="day2" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 2 · Das Oberhaus</span>
+        <span class="scene-time">Christchurch, Herbst 1891</span>
+      </div>
+      <div class="scene-body">
+        <p>Das Wahlgesetz hat das Abgeordnetenhaus mit deutlicher Mehrheit passiert, doch im Oberhaus ist es um zwei Stimmen gescheitert. Dieses Gremium wird nicht gewählt, seine Mitglieder werden ernannt, und kein Wahlkampf kann sie ablösen. Die Eingabe mit rund 10.000 Unterschriften von Frauen hat im Haus Eindruck gemacht, im Oberhaus aber nicht gereicht.</p>
+        <p>Bis zur nächsten Sitzungsperiode bleibt gut ein Jahr. Deine Mitstreiterinnen sind müde, Gegner aus dem Brauerei- und Schankgewerbe sammeln sich. Du musst entscheiden, wie du die Zeit nutzt, und alles, was du an Kraft und Geld hast, kannst du nur einmal einsetzen.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Kate Sheppard, nach der Niederlage im Oberhaus</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(2, 'A', this)"><span class="option-letter">A</span>Du schreibst jedem Mitglied des Oberhauses persönlich und suchst Gespräche, um Zweifler einzeln zu überzeugen, ohne eine neue Massenaktion zu starten.</button>
+    <button class="decision-option" onclick="selectOption(2, 'B', this)"><span class="option-letter">B</span>Du gründest mit Verbündeten eine eigene überparteiliche Wahlrechtsvereinigung, damit das Anliegen nicht mehr mit dem Kampf gegen den Alkohol verbunden wird.</button>
+    <button class="decision-option" onclick="selectOption(2, 'C', this)"><span class="option-letter">C</span>Du sammelst erneut Unterschriften von Frauen im ganzen Land und willst die Zahl der ersten Eingabe deutlich übertreffen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn2" onclick="submitDay(2)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint2">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result2">
+      <div class="result-header">So hat die Welt entschieden — Moment 2</div>
+      <div class="result-body">
+        <p class="result-title" id="result2Title"></p>
+        <div id="bars2"></div>
+        <div class="result-narrative" id="narrative2"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText2"></div>
+          <button class="btn-share" onclick="copyShare(2)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay2" onclick="goToDay(3)">Weiter — Zehn Wochen →</button>
+  </div>
+
+  <!-- MOMENT 3 -->
+  <div id="day3" style="display:none">
+    <div class="scene">
+      <div class="scene-header">
+        <span class="scene-label">Moment 3 · Zehn Wochen</span>
+        <span class="scene-time">Christchurch, September 1893</span>
+      </div>
+      <div class="scene-body">
+        <p>Das Wahlgesetz ist durch beide Kammern gegangen. Am 19. September hat der Gouverneur es unterschrieben, und die Zeitungen melden, in Neuseeland dürften erstmals in einem selbstverwalteten Land alle erwachsenen Frauen bei einer Parlamentswahl abstimmen. Der Wahltag ist der 28. November, zehn Wochen entfernt.</p>
+        <p>Die Zeitungen streuen das Gerücht, die Wahl könne vorgezogen werden, damit möglichst wenige Frauen bereit sind. Wer nicht in die Wählerliste eingetragen ist, kann nicht abstimmen. Du hast ein landesweites Netz von Ortsgruppen, aber keine Zeit, alles zugleich zu tun. Die Gegner des Gesetzes, vor allem das Schankgewerbe, sind noch da.</p>
+      </div>
+      <div class="scene-role">
+        <span class="role-label">Deine Rolle</span>
+        <span>Kate Sheppard, nach dem Wahlgesetz</span>
+      </div>
+    </div>
+
+    <div class="decisions-heading">Deine Entscheidung</div>
+    <button class="decision-option" onclick="selectOption(3, 'A', this)"><span class="option-letter">A</span>Du richtest alles auf die Wählerlisten aus: Eintragungsformulare, Helferinnen in den Ortsgruppen und Hilfe beim Ausfüllen.</button>
+    <button class="decision-option" onclick="selectOption(3, 'B', this)"><span class="option-letter">B</span>Du organisierst Versammlungen in den größeren Städten, in denen erklärt wird, wie man wählt und warum es auf jede Stimme ankommt.</button>
+    <button class="decision-option" onclick="selectOption(3, 'C', this)"><span class="option-letter">C</span>Du veröffentlichst, wie die Abgeordneten über das Gesetz abgestimmt haben, und rufst die Frauen auf, seine Gegner abzuwählen.</button>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="submitBtn3" onclick="submitDay(3)" disabled>Entscheiden →</button>
+      <span class="cta-hint" id="hint3">Wähle eine Option</span>
+    </div>
+    <div class="result-panel" id="result3">
+      <div class="result-header">So hat die Welt entschieden — Moment 3</div>
+      <div class="result-body">
+        <p class="result-title" id="result3Title"></p>
+        <div id="bars3"></div>
+        <div class="result-narrative" id="narrative3"></div>
+        <div class="share-row">
+          <div class="share-text" id="shareText3"></div>
+          <button class="btn-share" onclick="copyShare(3)">Teilen</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-day-btn" id="nextDay3" onclick="showEpilog()">Epilog lesen →</button>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog" id="epilog">
+    <div class="known" id="known"></div>
+    <div class="epilog-date">Christchurch, 28. November 1893</div>
+    <div class="epilog-title">Zum ersten Mal wählten Frauen ein nationales Parlament.</div>
+    <div class="epilog-body">
+      <p>Bei der Wahl am 28. November 1893 waren nach den Angaben, die sich in der Literatur finden, knapp neun von zehn erwachsenen Frauen in die Listen eingetragen, und etwa zwei Drittel gaben ihre Stimme ab. Neuseeland war damit das erste selbstverwaltete Land, in dem alle erwachsenen Frauen bei einer Parlamentswahl abstimmen durften. Kandidieren durften sie allerdings erst ab 1919, und die erste Frau zog 1933 ins Parlament ein.</p>
+      <p style="margin-top:1rem">Sheppard wurde 1896 erste Präsidentin des Nationalen Frauenrats, reiste später nach England, um dort die Wahlrechtsbewegung zu unterstützen, und schrieb bis ins hohe Alter über Frauenrechte. Die Petition von 1893 ist heute in den Archiven Neuseelands erhalten und steht im UNESCO-Register „Memory of the World“. Seit 1991 ziert ihr Porträt den Zehn-Dollar-Schein.</p>
+    </div>
+    <button class="btn-primary" onclick="location.href='index.html#weiter'" style="margin: 0 auto; display:block">Nächstes Histogramm →</button>
+    <p style="text-align:center; margin-top:0.75rem"><a href="index.html" style="font-size:0.8rem; color:var(--ink-faint)">oder alle Histogramme ansehen</a></p>
+    <p style="margin-top:1.5rem"><a class="wiki-link" href="https://de.wikipedia.org/wiki/Kate_Sheppard" target="_blank" rel="noopener">Mehr zu Kate Sheppard auf Wikipedia →</a></p>
+    <p style="text-align:center; margin-top:1.75rem; font-size:0.78rem; color:var(--ink-faint)">Fehler entdeckt? <a href="fehler.html?s=kate-sheppard" style="color:var(--ink-muted)">Melden</a></p>
+  </div>
+</main>
+
+<footer>Histogramm — Wie hättest du entschieden? &nbsp;·&nbsp; © 2026</footer>
+
+<script>
+const state = { selections: {}, justifications: {} };
+const API_BASE = 'https://histogrammapi.wieskoenig.workers.dev';
+const SCENARIO_PREFIX = 'kate-sheppard';
+
+const results = {
+  1: {
+    A: { pct: 27, label: "Wahlkampf mit Kandidatenbefragung" },
+    B: { pct: 49, label: "Petition im ganzen Land" },
+    C: { pct: 24, label: "Wahlrecht für Steuerzahlerinnen" },
+    historical: 'B',
+    narratives: {
+      A: "Dafür sprach, dass die Abstimmung nur um sieben Stimmen verloren war und dass ein neues Parlament bevorstand: Schon kleine Verschiebungen konnten reichen, und der Grundsatzantrag war mit 37 zu 11 Stimmen durchgegangen. Der Haken lag darin, dass nur Männer wählten und Kandidaten Zusagen im Wahlkampf leicht geben und später wieder abrücken konnten. Schon 1887 hatte die Frauenvereinigung ihre Mitglieder aufgefordert, Kandidaten zu befragen, und nur wenige Frauen taten es. Ohne einen sichtbaren Beleg, dass viele Frauen das Wahlrecht wollten, blieb der Einwand der Gegner, die Forderung komme von einer kleinen Minderheit.",
+      B: "Genau das tat Kate Sheppard: Sie entwarf den Wortlaut einer Petition, ließ Formulare drucken und warb im ganzen Land um Unterschriften von Frauen. Das Papier mit rund 10.000 Namen wurde 1891 von dem Abgeordneten John Hall dem Parlament vorgelegt, der ihr diesen Schritt nach der Niederlage empfohlen hatte.",
+      C: "Eine Beschränkung auf steuerzahlende Frauen hätte an Bestehendes angeknüpft: Frauen mit Grundsteuern durften bei Kommunalwahlen bereits abstimmen, und Haushaltsvorstände hatten bei Schulausschüssen seit 1877 eine Stimme. Zögernde Abgeordnete hätten sich so leichter überzeugen lassen. Zugleich hätte man damit eine Forderung aufgegeben, die ausdrücklich alle erwachsenen Frauen meinte, und viele Frauen wären weiter ohne Stimme geblieben. Einmal beschlossen, wäre eine Einschränkung auch nicht ohne Weiteres wieder zu erweitern gewesen."
+    }
+  },
+  2: {
+    A: { pct: 25, label: "Oberhaus persönlich angeschrieben" },
+    B: { pct: 22, label: "Eigene Wahlrechtsvereinigung" },
+    C: { pct: 53, label: "Zweite, größere Petition" },
+    historical: 'C',
+    narratives: {
+      A: "Das Oberhaus hatte das Gesetz um nur zwei Stimmen zu Fall gebracht, da konnten Einzelgespräche tatsächlich etwas bewirken, und Mitglieder, die nicht wiedergewählt werden mussten, ließen sich nicht durch Wahlkampfdruck beeinflussen. Doch ohne neue Zahlen blieb jeder Brief eine Bitte. Die Gegner hätten dem entgegenhalten können, hinter dem Anliegen stehe nur ein kleiner Kreis, und ein einzelner Fürsprecher hätte kaum Gewicht gehabt gegenüber einem Parlament, das auf sichtbare Unterstützung reagierte.",
+      B: "Eine überparteiliche Vereinigung hätte den Verdacht entkräften können, es gehe nur um ein Alkoholverbot, das die Frauen durch ihre Stimme erreichen wollten. Allerdings besaß die Frauenvereinigung bereits Ortsgruppen im ganzen Land und ein eigenes Blatt, das erst aufgebaut werden müsste. Eine neue Organisation hätte Zeit gekostet, die bis zur nächsten Sitzungsperiode knapp war. Tatsächlich entstand im September 1892 das Canterbury Women's Institute, an dem Sheppard führend beteiligt war, aber es trat neben die Petitionen, nicht an ihre Stelle.",
+      C: "Genau das tat Kate Sheppard: Sie versprach eine Petition, die doppelt so groß sein sollte wie die erste, und arbeitete über den Sommer daran; sie erhielt rund 20.000 Unterschriften von Frauen. Gegner organisierten mit bezahlten Sammlern zwei Gegenpetitionen mit zusammen etwa 5.000 Unterschriften. Das Wahlgesetz von 1892 ging wieder leicht durchs Abgeordnetenhaus, scheiterte aber, weil sich beide Kammern nicht darauf einigen konnten, ob Frauen per Post abstimmen sollten."
+    }
+  },
+  3: {
+    A: { pct: 51, label: "Eintragung in die Wählerlisten" },
+    B: { pct: 24, label: "Versammlungen in den Städten" },
+    C: { pct: 25, label: "Abstimmungsliste veröffentlicht" },
+    historical: 'A',
+    narratives: {
+      A: "Genau das tat Kate Sheppard: Gemeinsam mit den Ortsgruppen der Frauenvereinigung warb sie in den zehn Wochen bis zur Wahl dafür, dass sich Frauen in die Wählerlisten eintragen ließen. Bis zum Wahltag waren etwa 88 Prozent der erwachsenen Frauen eingetragen, und rund zwei Drittel stimmten am 28. November ab.",
+      B: "Versammlungen hätten Frauen erklärt, wie man wählt, und Gesprächsstoff geliefert. Die Haupthalle in Christchurch war schon in diesen Wochen ein wichtiger Treffpunkt, und Veranstaltungen waren auch tatsächlich Teil der Kampagne. Als alleiniger Schwerpunkt hätten sie aber wenig genützt, wenn eine Frau, die nicht in der Wählerliste stand, am Wahltag nicht abstimmen konnte. Bei einer vorgezogenen Wahl, vor der gewarnt wurde, wäre auch die Zeit für Reisen von Stadt zu Stadt knapp geworden.",
+      C: "Eine Liste der Abstimmungen hätte Gegner sichtbar gemacht und eine klare Wahlempfehlung gegeben. Allerdings hatten viele Abgeordnete im August die Abstimmung dadurch umgangen, dass sie dem Saal fernblieben, statt mit Nein zu stimmen, und nur wenige wagten offen, gegen das Gesetz zu stimmen, weil sie Wählerinnen fürchteten. Eine solche Liste wäre also ungenau gewesen und hätte die Frauen früh auf eine Seite im Parteienstreit gezogen, während es darum ging, möglichst viele von ihnen überhaupt an die Urnen zu bringen."
+    }
+  }
+};
+
+const sceneNames = { 1: "Die knappe Niederlage", 2: "Das Oberhaus", 3: "Zehn Wochen" };
+const scenarioTitle = "Histogramm Kate Sheppard 1893";
+
+function buildShareText(day, letter, pct) {
+  const info = results[day][letter];
+  const isHistorical = letter === results[day].historical;
+  const suffix = isHistorical ? " — wie er." : ".";
+  return `${scenarioTitle} · ${sceneNames[day]}: ${letter} (${pct}%) · ${info.label}${suffix}`;
+}
+
+function selectOption(day, letter, btn) {
+  const options = btn.parentElement.querySelectorAll('.decision-option');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selections[day] = letter;
+  document.getElementById('submitBtn' + day).disabled = false;
+  document.getElementById('hint' + day).textContent = '';
+}
+
+async function submitDay(day) {
+  const letter = state.selections[day];
+  if (!letter) return;
+  const prefix = SCENARIO_PREFIX + '-moment' + day;
+
+  const submitBtn = document.getElementById('submitBtn' + day);
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gezählt …';
+
+  const options = ['A', 'B', 'C'];
+  let counts = { A: 0, B: 0, C: 0 };
+
+  try {
+    await fetch(`${API_BASE}/vote?key=${prefix}-${letter}`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/results?prefix=${prefix}&_=${Date.now()}`);
+    const data = await res.json();
+    counts = { A: data.A || 0, B: data.B || 0, C: data.C || 0 };
+  } catch (err) {
+    console.error('API nicht erreichbar, Fallback genutzt', err);
+    const fb = results[day];
+    counts = { A: fb.A.pct, B: fb.B.pct, C: fb.C.pct };
+  }
+
+  const total = counts.A + counts.B + counts.C;
+  const pct = {};
+  options.forEach(opt => { pct[opt] = total > 0 ? Math.round((counts[opt] / total) * 100) : 0; });
+
+  const labels = results[day];
+  const narratives = results[day].narratives;
+
+  let barsHtml = '';
+  options.forEach(opt => {
+    const isChosen = opt === letter;
+    barsHtml += `
+      <div class="bar-row">
+        <span class="bar-label">${opt}</span>
+        <div class="bar-track"><div class="bar-fill ${isChosen ? 'highlight' : ''}" style="width:${pct[opt]}%"></div></div>
+        <span class="bar-pct ${isChosen ? 'highlight' : ''}">${pct[opt]}%</span>
+      </div>`;
+  });
+
+  const majorityOpt = options.reduce((a, b) => pct[a] > pct[b] ? a : b);
+  const isMajority = letter === majorityOpt;
+  const chosenLabel = labels[letter].label;
+  const titleText = total > 0
+    ? (isMajority ? `Du hast wie die Mehrheit entschieden — ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`
+                  : `Du hast gegen die Mehrheit entschieden — nur ${pct[letter]}% haben "${chosenLabel}" gewählt. (${total} Stimmen)`)
+    : `Du bist die erste Stimme. Schau später wieder vorbei.`;
+
+  document.getElementById('result' + day + 'Title').textContent = titleText;
+  document.getElementById('bars' + day).innerHTML = barsHtml;
+  const narrEl = document.getElementById('narrative' + day);
+  narrEl.textContent = narratives[letter];
+  // Bei einer anderen Wahl zusätzlich erzählen, was historisch tatsächlich geschah.
+  const hist = results[day].historical;
+  if (hist && hist !== letter && narratives[hist]) {
+    let t = results[day].fact || narratives[hist].replace(/^Genau das (?:tat|taten|geschah|ist überliefert)\b[^:.—]{0,60}(?::|\.|\s—)\s*/, '');
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    const p = document.createElement('p');
+    p.style.marginTop = '0.9rem';
+    const b = document.createElement('strong');
+    b.textContent = 'Was tatsächlich geschah: ';
+    p.appendChild(b);
+    p.appendChild(document.createTextNode(t));
+    narrEl.appendChild(p);
+  }
+  document.getElementById('shareText' + day).textContent = buildShareText(day, letter, pct[letter]);
+  document.getElementById('result' + day).classList.add('visible');
+  setTimeout(() => document.getElementById('result' + day).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  submitBtn.textContent = 'Entscheiden →';
+  const nextBtn = document.getElementById('nextDay' + day);
+  if (nextBtn) nextBtn.classList.add('visible');
+  updateProgress(day);
+}
+
+function updateProgress(day) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (i < day + 1) dot.classList.add('done');
+    if (i === day + 1) dot.classList.add('active');
+  }
+}
+
+function goToDay(day) {
+  document.getElementById('day' + (day - 1)).style.opacity = '0.6';
+  const next = document.getElementById('day' + day);
+  next.style.display = 'block';
+  setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  const dot = document.getElementById('dot' + day);
+  if (dot) dot.classList.add('active');
+}
+
+function showEpilog() {
+  Streak.markPlayed('kate-sheppard');
+  document.getElementById('epilog').classList.add('visible');
+  setTimeout(() => document.getElementById('epilog').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
+function copyShare(day) {
+  const text = document.getElementById('shareText' + day).textContent + '\nhttps://histogramm.me' + location.pathname;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#result${day} .btn-share`);
+    btn.textContent = 'Kopiert ✓';
+    setTimeout(() => { btn.textContent = 'Teilen'; }, 2000);
+  });
+}
+</script>
+<script src="known.js"></script>
+<script>Known.init({ prefix: SCENARIO_PREFIX, q: 'Kanntest du Kate Sheppard, bevor du gespielt hast?', story: false });</script>
+<script src="raetsel-daten.js"></script>
+<script src="raetsel.js"></script>
+</body>
+</html>
